@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sonata.templating.helper.locale.class">Sonata\IntlBundle\Templating\Helper\LocaleHelper</parameter>
+        <parameter key="sonata.templating.helper.number.class">Sonata\IntlBundle\Templating\Helper\NumberHelper</parameter>
+        <parameter key="sonata.templating.helper.datetime.class">Sonata\IntlBundle\Templating\Helper\DateTimeHelper</parameter>
+
+        <parameter key="sonata.twig.helper.locale.class">Sonata\IntlBundle\Twig\Extension\LocaleExtension</parameter>
+        <parameter key="sonata.twig.helper.number.class">Sonata\IntlBundle\Twig\Extension\NumberExtension</parameter>
+        <parameter key="sonata.twig.helper.datetime.class">Sonata\IntlBundle\Twig\Extension\DateTimeExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="sonata.templating.helper.locale" class="%sonata.templating.helper.locale.class%">
+            <tag name="templating.helper" alias="locale" />
+            <argument type="service" id="session" />
+        </service>
+
+        <service id="sonata.templating.helper.number" class="%sonata.templating.helper.number.class%">
+            <tag name="templating.helper" alias="number" />
+            <argument type="service" id="session" />
+        </service>
+
+        <service id="sonata.templating.helper.datetime" class="%sonata.templating.helper.datetime.class%">
+            <tag name="templating.helper" alias="datetime" />
+            <argument type="service" id="session" />
+        </service>
+
+        <service id="sonata.twig.extension.locale" class="%sonata.twig.helper.locale.class%" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="sonata.templating.helper.locale" />
+        </service>
+
+        <service id="sonata.twig.extension.number" class="%sonata.twig.helper.number.class%" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="sonata.templating.helper.number" />
+        </service>
+
+        <service id="sonata.twig.extension.datetime" class="%sonata.twig.helper.datetime.class%" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="sonata.templating.helper.datetime" />
+        </service>
+    </services>
+</container>
