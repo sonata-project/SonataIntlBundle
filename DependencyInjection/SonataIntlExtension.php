@@ -11,11 +11,11 @@
 
 namespace Sonata\IntlBundle\DependencyInjection;
 
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Config\FileLocator;
 
