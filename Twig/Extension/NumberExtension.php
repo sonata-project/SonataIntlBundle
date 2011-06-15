@@ -65,7 +65,7 @@ class NumberExtension extends \Twig_Extension
 
     public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
-        return $this->helper->formatCurrency($number, $attributes, $textAttributes, $locale);
+        return $this->helper->formatDecimal($number, $attributes, $textAttributes, $locale);
     }
 
     public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
