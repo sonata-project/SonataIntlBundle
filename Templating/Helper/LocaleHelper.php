@@ -11,7 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Locale\Locale;
     
@@ -20,7 +19,7 @@ use Symfony\Component\Locale\Locale;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class LocaleHelper extends Helper
+class LocaleHelper extends BaseHelper
 {
     protected $session;
 
@@ -40,7 +39,7 @@ class LocaleHelper extends Helper
         $countries = Locale::getDisplayCountries($locale ?: $this->session->getLocale());
 
         if (array_key_exists($code, $countries)) {
-            return $countries[$code];
+            return $this->fixCharset($countries[$code]);
         }
 
         return '';
@@ -52,7 +51,7 @@ class LocaleHelper extends Helper
         $languages = Locale::getDisplayLanguages($locale ?: $this->session->getLocale());
 
         if (array_key_exists($code, $languages)) {
-            return $languages[$code];
+            return $this->fixCharset($languages[$code]);
         }
 
         return '';
@@ -63,7 +62,7 @@ class LocaleHelper extends Helper
         $locales = Locale::getDisplayLocales($locale ?: $this->session->getLocale());
 
         if (array_key_exists($code, $locales)) {
-            return $locales[$code];
+            return $this->fixCharset($locales[$code]);
         }
 
         return '';

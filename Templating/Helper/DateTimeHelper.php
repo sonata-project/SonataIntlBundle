@@ -11,7 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpFoundation\Session;
 
 /**
@@ -20,7 +19,7 @@ use Symfony\Component\HttpFoundation\Session;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class DateTimeHelper extends Helper
+class DateTimeHelper extends BaseHelper
 {
     protected $session;
 
@@ -45,7 +44,7 @@ class DateTimeHelper extends Helper
             \IntlDateFormatter::NONE
         );
 
-        return $formatter->format($this->getTimestamp($date));
+        return $this->fixCharset($formatter->format($this->getTimestamp($date)));
     }
 
     public function formatDateTime($datetime, $locale = null)
@@ -56,7 +55,7 @@ class DateTimeHelper extends Helper
             \IntlDateFormatter::MEDIUM
         );
 
-        return $formatter->format($this->getTimestamp($datetime));
+        return $this->fixCharset($formatter->format($this->getTimestamp($datetime)));
     }
 
     public function formatTime($time, $locale = null)
@@ -67,7 +66,7 @@ class DateTimeHelper extends Helper
             \IntlDateFormatter::MEDIUM
         );
 
-        return $formatter->format($this->getTimestamp($time));
+        return $this->fixCharset($formatter->format($this->getTimestamp($time)));
     }
 
     public function format($datetime, $pattern, $locale = null)
@@ -81,7 +80,7 @@ class DateTimeHelper extends Helper
             $pattern
         );
 
-        return $formatter->format($this->getTimestamp($datetime));
+        return $this->fixCharset($formatter->format($this->getTimestamp($datetime)));
     }
 
     public function getTimestamp($data)
