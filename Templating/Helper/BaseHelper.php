@@ -16,12 +16,19 @@ use Symfony\Component\Templating\Helper\Helper;
 /**
  * BaseHelper provides charset conversion.
  *
+ * The php Intl extension will always output UTF-8 encoded strings [1]. If the
+ * framework is configured to use another encoding than UTF-8 this will lead to
+ * garbled text. The BaseHelper provides functionality to the other helpers to
+ * convert from UTF-8 to the kernel charset.
+ *
+ * [1] http://www.php.net/manual/en/intl.examples.basic.php
+ *
  * @author Alexander <iam.asm89@gmail.com>
  */
 abstract class BaseHelper extends Helper
 {
     /**
-     * Fixes the charset by converting a string from a UTF-8 charset to the
+     * Fixes the charset by converting a string from an UTF-8 charset to the
      * charset of the kernel.
      *
      * Precondition: the kernel charset is not UTF-8
