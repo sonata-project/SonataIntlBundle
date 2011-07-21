@@ -11,8 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Session;
-
 /**
  * DateHelper displays culture information. More information here
  * http://userguide.icu-project.org/formatparse/datetime
@@ -21,21 +19,6 @@ use Symfony\Component\HttpFoundation\Session;
  */
 class DateTimeHelper extends BaseHelper
 {
-    protected $session;
-
-
-    /**
-     * Constructor.
-     *
-     * @param Session $session A Session instance
-     * @param array $attributes The default attributes to apply to the NumberFormatter instance
-     * @param array $textAttributes The default text attributes to apply to the NumberFormatter instance
-     */
-    public function __construct(Session $session)
-    {
-        $this->session          = $session;
-    }
-
     public function formatDate($date, $locale = null)
     {
         $formatter = new \IntlDateFormatter(

@@ -11,9 +11,8 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Locale\Locale;
-    
+
 /**
  * LocaleHelper displays culture information.
  *
@@ -21,18 +20,6 @@ use Symfony\Component\Locale\Locale;
  */
 class LocaleHelper extends BaseHelper
 {
-    protected $session;
-
-    /**
-     * Constructor.
-     *
-     * @param HttpKernel $kernel A HttpKernel instance
-     */
-    public function __construct(Session $session)
-    {
-        $this->session = $session;
-    }
-
     public function country($code, $locale = null)
     {
 

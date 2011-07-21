@@ -11,6 +11,7 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
+use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Templating\Helper\Helper;
 
 /**
@@ -27,6 +28,21 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 abstract class BaseHelper extends Helper
 {
+    protected $session;
+
+    /**
+     * Constructor.
+     *
+     * @param string $charset The output charset of the helper
+     * @param Session $session A Session instance
+     */
+    public function __construct($charset, Session $session)
+    {
+        $this->setCharset($charset);
+
+        $this->session = $session;
+    }
+
     /**
      * Fixes the charset by converting a string from an UTF-8 charset to the
      * charset of the kernel.

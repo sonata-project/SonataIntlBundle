@@ -21,8 +21,6 @@ use Symfony\Component\Locale\Locale;
  */
 class NumberHelper extends BaseHelper
 {
-    protected $session;
-
     protected $attributes = array();
 
     protected $textAttributes = array();
@@ -30,13 +28,15 @@ class NumberHelper extends BaseHelper
     /**
      * Constructor.
      *
+     * @param string $charset The output charset of the helper
      * @param Session $session A Session instance
      * @param array $attributes The default attributes to apply to the NumberFormatter instance
      * @param array $textAttributes The default text attributes to apply to the NumberFormatter instance
      */
-    public function __construct(Session $session, array $attributes = array(), array $textAttributes = array())
+    public function __construct($charset, Session $session, array $attributes = array(), array $textAttributes = array())
     {
-        $this->session          = $session;
+        parent::__construct($charset, $session);
+
         $this->attributes       = $attributes;
         $this->textAttributes   = $textAttributes;
     }
