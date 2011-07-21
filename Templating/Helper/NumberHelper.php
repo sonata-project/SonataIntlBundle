@@ -11,7 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Locale\Locale;
 
@@ -20,24 +19,24 @@ use Symfony\Component\Locale\Locale;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class NumberHelper extends Helper
+class NumberHelper extends BaseHelper
 {
-    protected $session;
-
     protected $attributes = array();
 
     protected $textAttributes = array();
-    
+
     /**
      * Constructor.
      *
+     * @param string $charset The output charset of the helper
      * @param Session $session A Session instance
      * @param array $attributes The default attributes to apply to the NumberFormatter instance
      * @param array $textAttributes The default text attributes to apply to the NumberFormatter instance
      */
-    public function __construct(Session $session, array $attributes = array(), array $textAttributes = array())
+    public function __construct($charset, Session $session, array $attributes = array(), array $textAttributes = array())
     {
-        $this->session          = $session;
+        parent::__construct($charset, $session);
+
         $this->attributes       = $attributes;
         $this->textAttributes   = $textAttributes;
     }
@@ -116,8 +115,8 @@ class NumberHelper extends Helper
     {
 
         $formatter = $this->getFormatter($locale ?: $this->session->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes);
-        
-        return $formatter->formatCurrency($number, $currency);
+
+        return $this->fixCharset($formatter->formatCurrency($number, $currency));
     }
 
     /**
@@ -164,7 +163,7 @@ class NumberHelper extends Helper
     {
         $formatter = $this->getFormatter($locale ?: $this->session->getLocale(), $style, $attributes, $textAttributes);
 
-        return $formatter->format($number);
+        return $this->fixCharset($formatter->format($number));
     }
 
     /**
