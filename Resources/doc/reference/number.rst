@@ -1,7 +1,7 @@
 Number Helper
 =============
 
-The number helper provides functions to format :
+The number helper provides functions to format:
  - currency
  - decimal
  - scientific

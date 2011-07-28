@@ -1,7 +1,7 @@
 Datetime Helper
 ================
 
-The DateTime helper provides functions to format :
+The DateTime helper provides functions to format:
  - date
  - time
  - datetime
@@ -25,4 +25,4 @@ The second argument can be used to use a specific pattern :
 
     {% format_date date_time_object, 'dd MMM Y G' %} => '30 nov. 1981 ap. J.-C.'
 
-more information about patterns can be found here : http://userguide.icu-project.org/formatparse/datetime
+More information about patterns can be found here: http://userguide.icu-project.org/formatparse/datetime

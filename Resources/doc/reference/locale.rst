@@ -1,7 +1,7 @@
 Locale Helper
 =============
 
-The locale helper provides functions to display :
+The locale helper provides functions to display:
  - country name from the ISO code
  - language name from the ISO code
  - locale name from the ISO code
