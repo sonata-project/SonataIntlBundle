@@ -15,14 +15,14 @@ retrieved by using the session instance.
 
 .. code-block:: twig
 
-    {% format_date date_time_object %} => '30 nov. 1981'
-    {% format_time date_time_object %} => '02:00:00'
-    {% format_datetime date_time_object %} => '30 nov. 1981'
+    {{ format_date(date_time_object) }} => '1 août 2011'
+    {{ format_time(date_time_object) }} => '19:55:26'
+    {{ format_datetime(date_time_object) }} => '1 août 2011 19:55:26'
 
 The second argument can be used to use a specific pattern :
 
 .. code-block:: twig
 
-    {% format_date date_time_object, 'dd MMM Y G' %} => '30 nov. 1981 ap. J.-C.'
+    {{ format_date(date_time_object, 'dd MMM Y G') }} => '01 août 2011 ap. J.-C.'
 
 More information about patterns can be found here: http://userguide.icu-project.org/formatparse/datetime
