@@ -35,6 +35,12 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         // check convertor
         $this->assertEquals(375930000, $helper->getTimestamp($datetime));
 
+        // warning .. this use value php.ini's timezone configuration
+        $this->assertEquals(1293708203, $helper->getTimestamp('2010-12-30 12:23:23'));
+        $this->assertEquals(1293663600, $helper->getTimestamp('2010-12-30'));
+        $this->assertEquals(1293708180, $helper->getTimestamp('2010-12-30 12:23'));
+
+
         // check default method
         $this->assertEquals('30 nov. 1981', $helper->formatDate($datetime));
         $this->assertEquals('02:00:00', $helper->formatTime($datetime));

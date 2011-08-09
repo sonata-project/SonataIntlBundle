@@ -73,8 +73,12 @@ class DateTimeHelper extends BaseHelper
         }
 
         // the format method accept array or integer
-        if(is_numeric($data)) {
+        if (is_numeric($data)) {
             return (int)$data;
+        }
+
+        if (is_string($data)) {
+            $data = strtotime($data);
         }
 
         return $data;
@@ -88,5 +92,4 @@ class DateTimeHelper extends BaseHelper
     {
         return 'sonata_intl_datetime';
     }
-
 }

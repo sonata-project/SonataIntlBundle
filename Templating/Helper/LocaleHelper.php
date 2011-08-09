@@ -22,7 +22,6 @@ class LocaleHelper extends BaseHelper
 {
     public function country($code, $locale = null)
     {
-
         $countries = Locale::getDisplayCountries($locale ?: $this->session->getLocale());
 
         if (array_key_exists($code, $countries)) {
@@ -34,7 +33,6 @@ class LocaleHelper extends BaseHelper
 
     public function language($code, $locale = null)
     {
-
         $languages = Locale::getDisplayLanguages($locale ?: $this->session->getLocale());
 
         if (array_key_exists($code, $languages)) {
