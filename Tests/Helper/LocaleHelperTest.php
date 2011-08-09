@@ -7,7 +7,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- * 
+ *
  */
 
 namespace Sonata\IntlBundle\Tests\Helper;
@@ -26,7 +26,7 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new LocaleHelper($session);
+        $helper = new LocaleHelper('UTF-8', $session);
 
         $this->assertEquals('français', $helper->language('fr'));
         $this->assertEquals('France', $helper->country('FR'));
@@ -40,7 +40,7 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
 
         // for now these tests are commented as the RessourceBundle always fallback to the
         // system value ... don't know how the framework should behave.
-        
+
 //        $this->assertEquals('', $helper->language('fr', 'fake'));
 //        $this->assertEquals('', $helper->country('FR', 'fake'));
 //        $this->assertEquals('', $helper->locale('fr', 'fake'));

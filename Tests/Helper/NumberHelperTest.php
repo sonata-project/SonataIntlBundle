@@ -24,7 +24,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new NumberHelper($session);
+        $helper = new NumberHelper('UTF-8', $session);
 
         // currency
         $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR'));
@@ -42,7 +42,7 @@ class NumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1,0001E3', $helper->formatScientific(1000.1));
         $this->assertEquals('1,00000015459E6', $helper->formatScientific(1000000.15459));
         $this->assertEquals('1,00000015459E6', $helper->formatScientific(1000000.15459));
-        
+
         // duration
         $this->assertEquals('1 000 000', $helper->formatDuration(1000000));
 

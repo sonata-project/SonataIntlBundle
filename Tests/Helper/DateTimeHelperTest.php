@@ -25,7 +25,7 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new DateTimeHelper($session);
+        $helper = new DateTimeHelper('UTF-8', $session);
 
         $datetime = new \DateTime();
         $datetime->setDate(1981, 11, 30);
@@ -43,6 +43,8 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
 
         // check default method
         $this->assertEquals('30 nov. 1981', $helper->formatDate($datetime));
+        $this->assertEquals('30 déc. 2010', $helper->formatDate('2010-12-30 12:23:23'));
+
         $this->assertEquals('02:00:00', $helper->formatTime($datetime));
         $this->assertEquals('30 nov. 1981 02:00:00', $helper->formatDateTime($datetime));
 
