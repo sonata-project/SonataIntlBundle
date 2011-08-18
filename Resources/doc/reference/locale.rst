@@ -16,12 +16,12 @@ retrieved by using the session instance.
 
 .. code-block:: twig
 
-    {{ country('FR') }} => France (if the current locale in session is 'fr')
-    {{ country('FR', 'de') }} => Frankreich (force the locale)
+    {{ 'FR' | country }} => France (if the current locale in session is 'fr')
+    {{ 'FR' | country('de') }} => Frankreich (force the locale)
     
-    {{ language('fr') }} => français (if the current locale in session is 'fr')
-    {{ language('fr', 'en') }} => French (force the locale)
+    {{ 'fr' | language }} => français (if the current locale in session is 'fr')
+    {{ 'fr' | language('en') }} => French (force the locale)
 
-    {{ locale('fr') }} => français (if the current locale in session is 'fr')
-    {{ locale('fr', 'en') }} => French (force the locale)
+    {{ 'fr' | locale }} => français (if the current locale in session is 'fr')
+    {{ 'fr' | locale('en') }} => French (force the locale)
 
