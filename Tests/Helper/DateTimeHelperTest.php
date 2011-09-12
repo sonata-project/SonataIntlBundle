@@ -25,31 +25,36 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new DateTimeHelper('UTF-8', $session);
+        $helper = new DateTimeHelper(new \DateTimeZone('Europe/Paris'), 'UTF-8', $session);
 
-        $datetime = new \DateTime();
-        $datetime->setDate(1981, 11, 30);
-        $datetime->setTime(2, 0, 0);
-        $datetime->setTimezone(new \DateTimeZone('Europe/Paris'));
+        $datetimeLondon = new \DateTime();
+        $datetimeLondon->setDate(1981, 11, 30);
+        $datetimeLondon->setTime(2, 0, 0);
+        $datetimeLondon->setTimezone(new \DateTimeZone('Europe/London'));
+
+        $datetimeParis = $helper->getDatetime('1981-11-30 02:00');
+
+        $this->assertEquals('Mon, 30 Nov 1981 01:00:00 +0000', $datetimeLondon->format('r'));
+        $this->assertEquals('Mon, 30 Nov 1981 02:00:00 +0100', $datetimeParis->format('r'));
 
         // check convertor
-        $this->assertEquals(375930000, $helper->getTimestamp($datetime));
+        $this->assertEquals(375930000, $helper->getDatetime($datetimeParis)->format('U'));
+        $this->assertEquals(375930000, $helper->getDatetime($datetimeLondon)->format('U'));
 
         // warning .. this use value php.ini's timezone configuration
-        $this->assertEquals(1293708203, $helper->getTimestamp('2010-12-30 12:23:23'));
-        $this->assertEquals(1293663600, $helper->getTimestamp('2010-12-30'));
-        $this->assertEquals(1293708180, $helper->getTimestamp('2010-12-30 12:23'));
+        $this->assertEquals(1293708203, $helper->getDatetime('2010-12-30 12:23:23')->format('U'));
+        $this->assertEquals(1293663600, $helper->getDatetime('2010-12-30')->format('U'));
+        $this->assertEquals(1293708180, $helper->getDatetime('2010-12-30 12:23')->format('U'));
 
 
         // check default method
-        $this->assertEquals('30 nov. 1981', $helper->formatDate($datetime));
+        $this->assertEquals('30 nov. 1981', $helper->formatDate($datetimeParis));
         $this->assertEquals('30 déc. 2010', $helper->formatDate('2010-12-30 12:23:23'));
 
-        $this->assertEquals('02:00:00', $helper->formatTime($datetime));
-        $this->assertEquals('30 nov. 1981 02:00:00', $helper->formatDateTime($datetime));
+        $this->assertEquals('02:00:00', $helper->formatTime($datetimeParis));
+        $this->assertEquals('30 nov. 1981 02:00:00', $helper->formatDateTime($datetimeParis));
 
         // custom format
-        $this->assertEquals('30 nov. 1981 ap. J.-C.', $helper->format($datetime, 'dd MMM Y G'));
-
+        $this->assertEquals('30 nov. 1981 ap. J.-C.', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
 }

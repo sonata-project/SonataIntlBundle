@@ -18,6 +18,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Config\Definition\Processor;
 
 /**
  * PageExtension
@@ -34,10 +35,26 @@ class SonataIntlExtension extends Extension
      * @param array            $config    An array of configuration settings
      * @param ContainerBuilder $container A ContainerBuilder instance
      */
-    public function load(array $config, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
+        $processor = new Processor();
+        $configuration = new Configuration();
+        $config = $processor->processConfiguration($configuration, $configs);
+
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('intl.xml');
+
+        try {
+            new \DateTimeZone($config['timezone']);
+        } catch(\Exception $e) {
+            throw new \RuntimeException(sprintf('Unable to create a valid DatetimeZone, please check the sonata_intl configuration! (%s)', $e->getMessage()));
+        }
+
+        $datetimeZone = new Definition('DateTimeZone', array($config['timezone']));
+        $datetimeZone->setPublic(false);
+
+        $container->getDefinition('sonata.templating.helper.datetime')
+            ->replaceArgument(0, $datetimeZone);
     }
 
     /**
@@ -47,19 +64,22 @@ class SonataIntlExtension extends Extension
      */
     public function getXsdValidationBasePath()
     {
-
         return __DIR__.'/../Resources/config/schema';
     }
 
+    /**
+     * @return string
+     */
     public function getNamespace()
     {
-
-        return 'http://www.sonata-project.org/schema/dic/page';
+        return 'http://www.sonata-project.org/schema/dic/intl';
     }
 
+    /**
+     * @return string
+     */
     public function getAlias()
     {
-
         return "sonata_intl";
     }
 }

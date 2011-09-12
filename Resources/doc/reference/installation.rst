@@ -11,6 +11,7 @@ Next, be sure to enable the bundles in your application kernel:
 
 .. code-block:: php
 
+  <?php
   // app/AppKernel.php
   public function registerBundles()
   {

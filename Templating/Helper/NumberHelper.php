@@ -29,7 +29,7 @@ class NumberHelper extends BaseHelper
      * Constructor.
      *
      * @param string $charset The output charset of the helper
-     * @param Session $session A Session instance
+     * @param \Symfony\Component\HttpFoundation\Session $session A Session instance
      * @param array $attributes The default attributes to apply to the NumberFormatter instance
      * @param array $textAttributes The default text attributes to apply to the NumberFormatter instance
      */
@@ -159,6 +159,13 @@ class NumberHelper extends BaseHelper
         return $this->fixCharset($formatter->format($number));
     }
 
+    /**
+     * @param $culture
+     * @param $style
+     * @param array $attributes
+     * @param array $textAttributes
+     * @return \NumberFormatter
+     */
     protected function getFormatter($culture, $style, $attributes = array(), $textAttributes = array())
     {
         $formatter = new \NumberFormatter($culture, $style);

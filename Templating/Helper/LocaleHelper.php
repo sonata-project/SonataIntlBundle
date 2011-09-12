@@ -20,6 +20,11 @@ use Symfony\Component\Locale\Locale;
  */
 class LocaleHelper extends BaseHelper
 {
+    /**
+     * @param $code
+     * @param null $locale
+     * @return string
+     */
     public function country($code, $locale = null)
     {
         $countries = Locale::getDisplayCountries($locale ?: $this->session->getLocale());
@@ -31,6 +36,11 @@ class LocaleHelper extends BaseHelper
         return '';
     }
 
+    /**
+     * @param $code
+     * @param null $locale
+     * @return string
+     */
     public function language($code, $locale = null)
     {
         $languages = Locale::getDisplayLanguages($locale ?: $this->session->getLocale());
@@ -42,6 +52,11 @@ class LocaleHelper extends BaseHelper
         return '';
     }
 
+    /**
+     * @param $code
+     * @param null $locale
+     * @return string
+     */
     public function locale($code, $locale = null)
     {
         $locales = Locale::getDisplayLocales($locale ?: $this->session->getLocale());

@@ -29,6 +29,7 @@
 
         <service id="sonata.templating.helper.datetime" class="%sonata.templating.helper.datetime.class%">
             <tag name="templating.helper" alias="datetime" />
+            <argument />
             <argument>%kernel.charset%</argument>
             <argument type="service" id="session" />
         </service>

@@ -9,7 +9,7 @@
          processIsolation="true"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="../../autoload.php"
+         bootstrap="Tests/tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="IntlBundle Test Suite">
