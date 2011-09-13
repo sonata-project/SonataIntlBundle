@@ -170,11 +170,11 @@ class NumberHelper extends BaseHelper
     {
         $formatter = new \NumberFormatter($culture, $style);
 
-        foreach(array_merge($this->textAttributes, $textAttributes) as $name => $value) {
+        foreach($textAttributes + $this->textAttributes  as $name => $value) {
             $formatter->setTextAttribute($name, $value);
         }
 
-        foreach(array_merge($this->attributes, $attributes) as $name => $value) {
+        foreach($attributes + $this->attributes as $name => $value) {
             $formatter->setAttribute($name, $value);
         }
 
