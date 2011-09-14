@@ -45,12 +45,12 @@ class LocaleExtension extends \Twig_Extension
         );
     }
 
-    public function getFunctions()
+    public function getFilters()
     {
         return array(
-            'country'    => new \Twig_Function_Method($this, 'country', array('is_safe' => array('html'))),
-            'locale'     => new \Twig_Function_Method($this, 'locale', array('is_safe' => array('html'))),
-            'language'   => new \Twig_Function_Method($this, 'language', array('is_safe' => array('html'))),
+            'country'    => new \Twig_Filter_Method($this, 'country', array('is_safe' => array('html'))),
+            'locale'     => new \Twig_Filter_Method($this, 'locale', array('is_safe' => array('html'))),
+            'language'   => new \Twig_Filter_Method($this, 'language', array('is_safe' => array('html'))),
         );
     }
 

@@ -45,12 +45,12 @@ class DateTimeExtension extends \Twig_Extension
         );
     }
 
-    public function getFunctions()
+    public function getFilters()
     {
         return array(
-            'format_date'     => new \Twig_Function_Method($this, 'formatDate', array('is_safe' => array('html'))),
-            'format_time'     => new \Twig_Function_Method($this, 'formatTime', array('is_safe' => array('html'))),
-            'format_datetime' => new \Twig_Function_Method($this, 'formatDatetime', array('is_safe' => array('html'))),
+            'format_date'     => new \Twig_Filter_Method($this, 'formatDate', array('is_safe' => array('html'))),
+            'format_time'     => new \Twig_Filter_Method($this, 'formatTime', array('is_safe' => array('html'))),
+            'format_datetime' => new \Twig_Filter_Method($this, 'formatDatetime', array('is_safe' => array('html'))),
         );
     }
 
