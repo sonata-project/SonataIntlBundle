@@ -45,16 +45,16 @@ class NumberExtension extends \Twig_Extension
         );
     }
 
-    public function getFunctions()
+    public function getFilters()
     {
         return array(
-            'number_format_currency'    => new \Twig_Function_Method($this, 'formatCurrency', array('is_safe' => array('html'))),
-            'number_format_decimal'     => new \Twig_Function_Method($this, 'formatDecimal', array('is_safe' => array('html'))),
-            'number_format_scientific'  => new \Twig_Function_Method($this, 'formatScientific', array('is_safe' => array('html'))),
-            'number_format_spellout'    => new \Twig_Function_Method($this, 'formatSpellout', array('is_safe' => array('html'))),
-            'number_format_percent'     => new \Twig_Function_Method($this, 'formatPercent', array('is_safe' => array('html'))),
-            'number_format_duration'    => new \Twig_Function_Method($this, 'formatDuration', array('is_safe' => array('html'))),
-            'number_format_ordinal'     => new \Twig_Function_Method($this, 'formatOrdinal', array('is_safe' => array('html'))),
+            'number_format_currency'    => new \Twig_Filter_Method($this, 'formatCurrency', array('is_safe' => array('html'))),
+            'number_format_decimal'     => new \Twig_Filter_Method($this, 'formatDecimal', array('is_safe' => array('html'))),
+            'number_format_scientific'  => new \Twig_Filter_Method($this, 'formatScientific', array('is_safe' => array('html'))),
+            'number_format_spellout'    => new \Twig_Filter_Method($this, 'formatSpellout', array('is_safe' => array('html'))),
+            'number_format_percent'     => new \Twig_Filter_Method($this, 'formatPercent', array('is_safe' => array('html'))),
+            'number_format_duration'    => new \Twig_Filter_Method($this, 'formatDuration', array('is_safe' => array('html'))),
+            'number_format_ordinal'     => new \Twig_Filter_Method($this, 'formatOrdinal', array('is_safe' => array('html'))),
         );
     }
 
