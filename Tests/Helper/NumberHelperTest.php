@@ -62,4 +62,24 @@ class NumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
 
     }
+
+    public function testArguments()
+    {
+        $session = $this->getMock('Symfony\\Component\\HttpFoundation\\Session', array('getLocale'), array(), 'Session', false);
+
+        $session->expects($this->any())
+            ->method('getLocale')
+            ->will($this->returnValue('fr'));
+
+        $helper = new NumberHelper('UTF-8', $session, array(\NumberFormatter::FRACTION_DIGITS => 2), array(\NumberFormatter::NEGATIVE_PREFIX => 'MINUS'));
+
+        // Check that the 'default' options are used
+        $this->assertEquals('1,34', $helper->formatDecimal(1.337));
+        $this->assertEquals('MINUS1,34', $helper->formatDecimal(-1.337));
+
+        // Check that the options are overwritten
+        $this->assertEquals('1,337', $helper->formatDecimal(1.337, array(\NumberFormatter::FRACTION_DIGITS => 3)));
+        $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array(\NumberFormatter::NEGATIVE_PREFIX => 'MIN')));
+    }
+
 }
