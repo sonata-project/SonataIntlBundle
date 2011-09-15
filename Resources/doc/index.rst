@@ -1,7 +1,7 @@
-Welcome to SonataIntlBundle documentation
-=========================================
+SonataIntlBundle documentation
+==============================
 
-The ``SonataIntlBundle`` provides helper to the php-intl extension
+The ``SonataIntlBundle`` provides helper to the ``php-intl`` extension
 
 Reference Guide
 ---------------

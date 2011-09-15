@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('timezone')->defaultValue('Europe/Paris')->end()
+                ->scalarNode('timezone')->defaultValue(date_default_timezone_get())->end()
             ->end();
 
         return $treeBuilder;
