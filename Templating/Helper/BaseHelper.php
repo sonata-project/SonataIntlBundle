@@ -67,6 +67,10 @@ abstract class BaseHelper extends Helper
      */
     public static function getUCIDataVersion()
     {
+        if(defined('INTL_ICU_VERSION')) {
+            return INTL_ICU_VERSION;
+        }
+
         ob_start();
         phpinfo();
         $content = ob_get_contents();
