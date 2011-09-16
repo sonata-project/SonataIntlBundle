@@ -60,4 +60,27 @@ abstract class BaseHelper extends Helper
 
         return $string;
     }
+
+    /**
+     * @static
+     * @return string
+     */
+    public static function getUCIDataVersion()
+    {
+        ob_start();
+        phpinfo();
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        $info = explode("\n", $content);
+
+        foreach($info as $line) {
+            $results = array();
+            if (preg_match('/ICU Data version => (.*)/', $line, $results)) {
+                return $results[1];
+            }
+        }
+
+        return null;
+    }
 }

@@ -56,11 +56,17 @@ class NumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('200 %', $helper->formatPercent(1.999));
         $this->assertEquals('99 %', $helper->formatPercent(0.99));
 
-        // ordinal
-        $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1));
-        $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
-        $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
-
+        if (version_compare(NumberHelper::getUCIDataVersion(), '4.8.0', '>=')) {
+            // todo : adjust value here
+            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1));
+            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
+        } else if (version_compare(NumberHelper::getUCIDataVersion(), '4.6.0', '>=')) {
+            // ordinal
+            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1));
+            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
+        }
     }
 
     public function testArguments()
@@ -81,5 +87,4 @@ class NumberTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1,337', $helper->formatDecimal(1.337, array(\NumberFormatter::FRACTION_DIGITS => 3)));
         $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array(\NumberFormatter::NEGATIVE_PREFIX => 'MIN')));
     }
-
 }
