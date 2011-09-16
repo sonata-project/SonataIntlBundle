@@ -11,6 +11,8 @@
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
+use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+
 /**
  * LocaleExtension extends Twig with local capabilities.
  *
@@ -18,10 +20,9 @@ namespace Sonata\IntlBundle\Twig\Extension;
  */
 class LocaleExtension extends \Twig_Extension
 {
-
     protected $helper;
-    
-    public function __construct($helper)
+
+    public function __construct(LocaleHelper $helper)
     {
         $this->helper = $helper;
     }

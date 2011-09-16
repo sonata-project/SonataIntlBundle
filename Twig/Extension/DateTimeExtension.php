@@ -11,6 +11,8 @@
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
+use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+
 /**
  * DateTimeExtension extends Twig with localized date/time capabilities.
  *
@@ -20,8 +22,8 @@ class DateTimeExtension extends \Twig_Extension
 {
 
     protected $helper;
-    
-    public function __construct($helper)
+
+    public function __construct(DateTimeHelper $helper)
     {
         $this->helper = $helper;
     }
@@ -54,31 +56,31 @@ class DateTimeExtension extends \Twig_Extension
         );
     }
 
-    public function formatDate($date, $pattern = null, $locale = null)
+    public function formatDate($date, $pattern = null, $locale = null, $timezone = null)
     {
         if ($pattern) {
-            return $this->helper->format($date, $pattern, $locale);
+            return $this->helper->format($date, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatDate($date, $locale);
+        return $this->helper->formatDate($date, $locale, $timezone);
     }
 
-    public function formatTime($time, $pattern = null, $locale = null)
+    public function formatTime($time, $pattern = null, $locale = null, $timezone = null)
     {
         if ($pattern) {
-            return $this->helper->format($time, $pattern, $locale);
+            return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatTime($time, $locale);
+        return $this->helper->formatTime($time, $locale, $timezone);
     }
 
-    public function formatDatetime($time, $pattern = null, $locale = null)
+    public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null)
     {
         if ($pattern) {
-            return $this->helper->format($time, $pattern, $locale);
+            return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatDateTime($time, $locale);
+        return $this->helper->formatDateTime($time, $locale, $timezone);
     }
 
     /**

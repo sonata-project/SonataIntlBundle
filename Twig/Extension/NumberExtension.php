@@ -11,6 +11,8 @@
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
+use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+
 /**
  * NumberExtension extends Twig with number capabilities.
  *
@@ -20,8 +22,8 @@ class NumberExtension extends \Twig_Extension
 {
 
     protected $helper;
-    
-    public function __construct($helper)
+
+    public function __construct(NumberHelper $helper)
     {
         $this->helper = $helper;
     }
