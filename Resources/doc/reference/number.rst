@@ -27,3 +27,4 @@ retrieved by using the session instance.
     {{ 42 | number_format_spellout }} => quarante-deux
     {{ 1.999 | number_format_percent }} => 200 %
     {{ 1 | number_format_ordinal }} => 1ᵉʳ
+    {{ -1.1337 | number_format_decimal({'fraction_digits': 2}, {'negative_prefix': 'MINUS'}) }} => MINUS1,34
