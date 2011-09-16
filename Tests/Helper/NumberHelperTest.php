@@ -78,14 +78,31 @@ class NumberTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new NumberHelper('UTF-8', $session, array(\NumberFormatter::FRACTION_DIGITS => 2), array(\NumberFormatter::NEGATIVE_PREFIX => 'MINUS'));
+        $helper = new NumberHelper('UTF-8', $session, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
 
         // Check that the 'default' options are used
         $this->assertEquals('1,34', $helper->formatDecimal(1.337));
         $this->assertEquals('MINUS1,34', $helper->formatDecimal(-1.337));
 
         // Check that the options are overwritten
-        $this->assertEquals('1,337', $helper->formatDecimal(1.337, array(\NumberFormatter::FRACTION_DIGITS => 3)));
-        $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array(\NumberFormatter::NEGATIVE_PREFIX => 'MIN')));
+        $this->assertEquals('1,337', $helper->formatDecimal(1.337, array('fraction_digits' => 3)));
+        $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array('negative_prefix' => 'MIN')));
+
+        // Check that exception are thrown on non-existing class constant
+        $exceptionThrown = false;
+        try {
+            $helper->formatDecimal(1.337, array('non_existant' => 3));
+        } catch(\InvalidArgumentException $e) {
+            $exceptionThrown = true;
+        }
+        $this->assertTrue($exceptionThrown);
+
+        $exceptionThrown = false;
+        try {
+            $helper->formatDecimal(1.337, array(), array('non_existant' => 'MIN'));
+        } catch(\InvalidArgumentException $e) {
+            $exceptionThrown = true;
+        }
+        $this->assertTrue($exceptionThrown);
     }
 }

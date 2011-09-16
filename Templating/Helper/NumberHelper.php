@@ -170,12 +170,22 @@ class NumberHelper extends BaseHelper
     {
         $formatter = new \NumberFormatter($culture, $style);
 
-        foreach($textAttributes + $this->textAttributes  as $name => $value) {
-            $formatter->setTextAttribute($name, $value);
+        foreach(array_merge($this->textAttributes, $textAttributes)  as $name => $value) {
+            $constantName = strtoupper($name);
+            if(!defined('NumberFormatter::'.$constantName)) {
+                throw new \InvalidArgumentException("Numberformatter has no text attribute '$name'");
+            }
+
+            $formatter->setTextAttribute(constant('NumberFormatter::'.$constantName), $value);
         }
 
-        foreach($attributes + $this->attributes as $name => $value) {
-            $formatter->setAttribute($name, $value);
+        foreach(array_merge($this->attributes, $attributes) as $name => $value) {
+            $constantName = strtoupper($name);
+            if(!defined('NumberFormatter::'.$constantName)) {
+                throw new \InvalidArgumentException("Numberformatter has no attribute '$name'");
+            }
+
+            $formatter->setAttribute(constant('NumberFormatter::'.$constantName), $value);
         }
 
         return $formatter;
