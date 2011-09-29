@@ -128,7 +128,8 @@ class DateTimeHelper extends BaseHelper
      */
     public function process(\IntlDateFormatter $formatter, \Datetime $date)
     {
-        return $this->fixCharset($formatter->format($date));
+        $time = $date->getTimestamp();
+        return $this->fixCharset($formatter->format($time));
     }
 
     /**
