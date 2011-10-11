@@ -11,7 +11,7 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * DateHelper displays culture information. More information here
@@ -26,11 +26,11 @@ class DateTimeHelper extends BaseHelper
     /**
      * @param \DateTimeZone $defaultTimezone
      * @param $charset
-     * @param \Symfony\Component\HttpFoundation\Session $session
+     * @param \Symfony\Component\HttpFoundation\Request $request
      */
-    public function __construct(\DateTimeZone $defaultTimezone, $charset, Session $session)
+    public function __construct(\DateTimeZone $defaultTimezone, $charset, Request $request)
     {
-        parent::__construct($charset, $session);
+        parent::__construct($charset, $request);
 
         $this->defaultTimezone = $defaultTimezone;
     }
@@ -46,7 +46,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->session->getLocale() ,
+            $locale ?: $this->request->getLocale() ,
             \IntlDateFormatter::MEDIUM,
             \IntlDateFormatter::NONE,
             $timezone ?: $date->getTimezone()->getName(),
@@ -67,7 +67,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->session->getLocale() ,
+            $locale ?: $this->request->getLocale() ,
             \IntlDateFormatter::MEDIUM,
             \IntlDateFormatter::MEDIUM,
             $timezone ?: $date->getTimezone()->getName(),
@@ -88,7 +88,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->session->getLocale() ,
+            $locale ?: $this->request->getLocale() ,
             \IntlDateFormatter::NONE,
             \IntlDateFormatter::MEDIUM,
             $timezone ?: $date->getTimezone()->getName(),
@@ -110,7 +110,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->session->getLocale() ,
+            $locale ?: $this->request->getLocale() ,
             \IntlDateFormatter::FULL,
             \IntlDateFormatter::FULL,
             $timezone ?: $date->getTimezone()->getName(),

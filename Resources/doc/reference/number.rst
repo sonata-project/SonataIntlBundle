@@ -15,7 +15,7 @@ Twig usage
 ----------
 
 By default, if the second argument is not set then the current locale value is
-retrieved by using the session instance.
+retrieved by using the request instance.
 
 
 .. code-block:: twig
