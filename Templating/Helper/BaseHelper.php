@@ -11,7 +11,7 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Session;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\Helper\Helper;
 
 /**
@@ -28,19 +28,19 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 abstract class BaseHelper extends Helper
 {
-    protected $session;
+    protected $request;
 
     /**
      * Constructor.
      *
      * @param string $charset The output charset of the helper
-     * @param Session $session A Session instance
+     * @param Request $request A Request instance
      */
-    public function __construct($charset, Session $session)
+    public function __construct($charset, Request $request)
     {
         $this->setCharset($charset);
 
-        $this->session = $session;
+        $this->request = $request;
     }
 
     /**
