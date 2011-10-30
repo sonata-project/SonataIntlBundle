@@ -18,13 +18,11 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
-        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
 
-        $request->expects($this->any())
-            ->method('getLocale')
-            ->will($this->returnValue('fr'));
-
-        $helper = new NumberHelper('UTF-8', $request);
+        $helper = new NumberHelper('UTF-8', $localeDetector);
 
         // currency
         $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR'));
@@ -72,13 +70,11 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 
     public function testArguments()
     {
-        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
 
-        $request->expects($this->any())
-            ->method('getLocale')
-            ->will($this->returnValue('fr'));
-
-        $helper = new NumberHelper('UTF-8', $request, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
+        $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
 
         // Check that the 'default' options are used
         $this->assertEquals('1,34', $helper->formatDecimal(1.337));

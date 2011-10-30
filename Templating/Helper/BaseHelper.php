@@ -13,6 +13,7 @@ namespace Sonata\IntlBundle\Templating\Helper;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\Helper\Helper;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
 /**
  * BaseHelper provides charset conversion.
@@ -28,19 +29,19 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 abstract class BaseHelper extends Helper
 {
-    protected $request;
+    protected $localeDetector;
 
     /**
      * Constructor.
      *
      * @param string $charset The output charset of the helper
-     * @param Request $request A Request instance
+     * @param \Sonata\IntlBundle\Locale\LocaleDetectorInterface $localeDetector
      */
-    public function __construct($charset, Request $request)
+    public function __construct($charset, LocaleDetectorInterface $localeDetector)
     {
         $this->setCharset($charset);
 
-        $this->request = $request;
+        $this->localeDetector = $localeDetector;
     }
 
     /**
@@ -67,7 +68,7 @@ abstract class BaseHelper extends Helper
      */
     public static function getUCIDataVersion()
     {
-        if(defined('INTL_ICU_VERSION')) {
+        if (defined('INTL_ICU_VERSION')) {
             return INTL_ICU_VERSION;
         }
 

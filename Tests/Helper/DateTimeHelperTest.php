@@ -19,13 +19,11 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
-        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
 
-        $request->expects($this->any())
-            ->method('getLocale')
-            ->will($this->returnValue('fr'));
-
-        $helper = new DateTimeHelper(new \DateTimeZone('Europe/Paris'), 'UTF-8', $request);
+        $helper = new DateTimeHelper(new \DateTimeZone('Europe/Paris'), 'UTF-8', $localeDetector);
 
         $datetimeLondon = new \DateTime();
         $datetimeLondon->setDate(1981, 11, 30);

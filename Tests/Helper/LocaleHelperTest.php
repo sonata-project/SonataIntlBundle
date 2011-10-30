@@ -20,13 +20,11 @@ class LocaleTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
-        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
 
-        $request->expects($this->any())
-            ->method('getLocale')
-            ->will($this->returnValue('fr'));
-
-        $helper = new LocaleHelper('UTF-8', $request);
+        $helper = new LocaleHelper('UTF-8', $localeDetector);
 
         $this->assertEquals('français', $helper->language('fr'));
         $this->assertEquals('France', $helper->country('FR'));

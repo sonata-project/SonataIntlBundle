@@ -11,8 +11,8 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Locale\Locale;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
 /**
  * NumberHelper displays culture information.
@@ -29,13 +29,13 @@ class NumberHelper extends BaseHelper
      * Constructor.
      *
      * @param string $charset The output charset of the helper
-     * @param \Symfony\Component\HttpFoundation\Request $request A Request instance
+     * @param \Sonata\IntlBundle\Locale\LocaleDetectorInterface $localeDetector
      * @param array $attributes The default attributes to apply to the NumberFormatter instance
      * @param array $textAttributes The default text attributes to apply to the NumberFormatter instance
      */
-    public function __construct($charset, Request $request, array $attributes = array(), array $textAttributes = array())
+    public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = array(), array $textAttributes = array())
     {
-        parent::__construct($charset, $request);
+        parent::__construct($charset, $localeDetector);
 
         $this->attributes       = $attributes;
         $this->textAttributes   = $textAttributes;
@@ -109,7 +109,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
-        $formatter = $this->getFormatter($locale ?: $this->request->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes);
+        $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
     }
@@ -154,7 +154,7 @@ class NumberHelper extends BaseHelper
      */
     public function format($number, $style, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
-        $formatter = $this->getFormatter($locale ?: $this->request->getLocale(), $style, $attributes, $textAttributes);
+        $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes);
 
         return $this->fixCharset($formatter->format($number));
     }
