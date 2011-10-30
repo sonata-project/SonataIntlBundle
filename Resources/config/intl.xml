@@ -18,20 +18,20 @@
         <service id="sonata.templating.helper.locale" class="%sonata.templating.helper.locale.class%">
             <tag name="templating.helper" alias="locale" />
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="session" />
+            <argument type="service" id="request" strict="false" />
         </service>
 
         <service id="sonata.templating.helper.number" class="%sonata.templating.helper.number.class%">
             <tag name="templating.helper" alias="number" />
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="session" />
+            <argument type="service" id="request" strict="false" />
         </service>
 
         <service id="sonata.templating.helper.datetime" class="%sonata.templating.helper.datetime.class%">
             <tag name="templating.helper" alias="datetime" />
             <argument />
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="session" />
+            <argument type="service" id="request" strict="false" />
         </service>
 
         <service id="sonata.twig.extension.locale" class="%sonata.twig.helper.locale.class%" public="false">

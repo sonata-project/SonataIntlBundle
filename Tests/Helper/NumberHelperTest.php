@@ -18,13 +18,13 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
-        $session = $this->getMock('Symfony\\Component\\HttpFoundation\\Session', array('getLocale'), array(), 'Session', false);
+        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
 
-        $session->expects($this->any())
+        $request->expects($this->any())
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new NumberHelper('UTF-8', $session);
+        $helper = new NumberHelper('UTF-8', $request);
 
         // currency
         $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR'));
@@ -72,13 +72,13 @@ class NumberTest extends \PHPUnit_Framework_TestCase
 
     public function testArguments()
     {
-        $session = $this->getMock('Symfony\\Component\\HttpFoundation\\Session', array('getLocale'), array(), 'Session', false);
+        $request = $this->getMock('Symfony\\Component\\HttpFoundation\\Request', array('getLocale'), array(), 'Request', false);
 
-        $session->expects($this->any())
+        $request->expects($this->any())
             ->method('getLocale')
             ->will($this->returnValue('fr'));
 
-        $helper = new NumberHelper('UTF-8', $session, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
+        $helper = new NumberHelper('UTF-8', $request, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
 
         // Check that the 'default' options are used
         $this->assertEquals('1,34', $helper->formatDecimal(1.337));

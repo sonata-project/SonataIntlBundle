@@ -36,7 +36,7 @@ Configuration
 You can configure the default timezone used by the date helper with the following configuration. By default the
 ``php.ini`` value is used (retrieved by the ``date_default_timezone_get()`` function).
 
-The locale value used by the bundle is provided by the user session.
+The locale value used by the bundle is provided by the request.
 
 .. code-block:: yaml
 

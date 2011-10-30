@@ -27,7 +27,7 @@ class LocaleHelper extends BaseHelper
      */
     public function country($code, $locale = null)
     {
-        $countries = Locale::getDisplayCountries($locale ?: $this->session->getLocale());
+        $countries = Locale::getDisplayCountries($locale ?: $this->request->getLocale());
 
         if (array_key_exists($code, $countries)) {
             return $this->fixCharset($countries[$code]);
@@ -43,7 +43,7 @@ class LocaleHelper extends BaseHelper
      */
     public function language($code, $locale = null)
     {
-        $languages = Locale::getDisplayLanguages($locale ?: $this->session->getLocale());
+        $languages = Locale::getDisplayLanguages($locale ?: $this->request->getLocale());
 
         if (array_key_exists($code, $languages)) {
             return $this->fixCharset($languages[$code]);
@@ -59,7 +59,7 @@ class LocaleHelper extends BaseHelper
      */
     public function locale($code, $locale = null)
     {
-        $locales = Locale::getDisplayLocales($locale ?: $this->session->getLocale());
+        $locales = Locale::getDisplayLocales($locale ?: $this->request->getLocale());
 
         if (array_key_exists($code, $locales)) {
             return $this->fixCharset($locales[$code]);
