@@ -64,7 +64,7 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
             $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
         } else {
-            $this->markTestIncomplete('Unknown UCI DATA Version, feel free to contribute ...');
+            $this->markTestIncomplete(sprintf('Unknown UCI DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getUCIDataVersion()));
         }
     }
 
