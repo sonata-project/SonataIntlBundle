@@ -59,7 +59,7 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('1er', $helper->formatOrdinal(1));
             $this->assertEquals('100e', $helper->formatOrdinal(100));
             $this->assertEquals('10 000e', $helper->formatOrdinal(10000));
-        } else if (version_compare(NumberHelper::getUCIDataVersion(), '4.6.0', '>=')) {
+        } else if (version_compare(NumberHelper::getUCIDataVersion(), '4.1.0', '>=')) {
             $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1));
             $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
             $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
