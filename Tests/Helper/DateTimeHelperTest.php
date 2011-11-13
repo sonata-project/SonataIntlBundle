@@ -17,6 +17,11 @@ use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 
 class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
 {
+    public function setUp()
+    {
+        date_default_timezone_set('Europe/Paris');
+    }
+    
     public function testLocale()
     {
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
