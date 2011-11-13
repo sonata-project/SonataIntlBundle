@@ -16,7 +16,7 @@ use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
 use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Locale\Locale;
 
-class LocaleTest extends \PHPUnit_Framework_TestCase
+class LocaleHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {

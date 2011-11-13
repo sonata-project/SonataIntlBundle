@@ -14,7 +14,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use Symfony\Component\Templating\Helper\Helper;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
-class NumberTest extends \PHPUnit_Framework_TestCase
+class NumberHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
