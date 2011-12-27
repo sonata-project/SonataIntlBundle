@@ -26,7 +26,7 @@ class SessionDetector implements LocaleDetectorInterface
      */
     public function __construct(Session $session, $defaultLocale)
     {
-        if (!version_compare(Kernel::VERSION, '2.1.0', '<')) {
+        if (!version_compare(Kernel::VERSION, '2.1.0-DEV', '<')) {
             throw new \RuntimeException('Invalid Symfony2 version, please use Symfony 2.0.x series');
         }
 
