@@ -56,7 +56,7 @@ class SonataIntlExtension extends Extension
 
         $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(0, $datetimeZone);
 
-        if (version_compare(Kernel::VERSION, '2.1.0', '>=')) {
+        if (version_compare(Kernel::VERSION, '2.1.0-DEV', '>=')) {
             $container->getDefinition('sonata.intl.templating.helper.locale')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
             $container->getDefinition('sonata.intl.templating.helper.number')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
             $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(2, new Reference('sonata.intl.locale_detector.request'));
