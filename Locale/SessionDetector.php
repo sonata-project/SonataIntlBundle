@@ -13,6 +13,7 @@ namespace Sonata\IntlBundle\Locale;
 
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Kernel;
+use Sonata\IntlBundle\SonataIntlBundle;
 
 class SessionDetector implements LocaleDetectorInterface
 {
@@ -26,7 +27,7 @@ class SessionDetector implements LocaleDetectorInterface
      */
     public function __construct(Session $session, $defaultLocale)
     {
-        if (!version_compare(Kernel::VERSION, '2.1.0', '<')) {
+        if (!version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '<')) {
             throw new \RuntimeException('Invalid Symfony2 version, please use Symfony 2.0.x series');
         }
 

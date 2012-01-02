@@ -11,6 +11,8 @@
 
 namespace Sonata\IntlBundle\Locale;
 
+use Sonata\IntlBundle\SonataIntlBundle;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
@@ -26,7 +28,7 @@ class RequestDetector implements LocaleDetectorInterface
      */
     public function __construct(Request $request, $defaultLocale)
     {
-        if (version_compare(Kernel::VERSION, '2.1.0', '<')) {
+        if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '<')) {
             throw new \RuntimeException('Invalid Symfony2 version, please use Symfony 2.1.x series');
         }
 

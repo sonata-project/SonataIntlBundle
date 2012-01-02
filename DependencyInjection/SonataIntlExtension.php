@@ -11,6 +11,8 @@
 
 namespace Sonata\IntlBundle\DependencyInjection;
 
+use Sonata\IntlBundle\SonataIntlBundle;
+
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
@@ -56,7 +58,7 @@ class SonataIntlExtension extends Extension
 
         $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(0, $datetimeZone);
 
-        if (version_compare(Kernel::VERSION, '2.1.0', '>=')) {
+        if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {
             $container->getDefinition('sonata.intl.templating.helper.locale')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
             $container->getDefinition('sonata.intl.templating.helper.number')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
             $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(2, new Reference('sonata.intl.locale_detector.request'));
