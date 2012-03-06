@@ -41,4 +41,12 @@ The locale value used by the bundle is provided by the request.
 .. code-block:: yaml
 
     sonata_intl:
-        timezone: Europe/Paris
+        timezone:
+            # default timezone used as fallback
+            default: Europe/Paris
+
+            # locale specific overrides
+            locales:
+                fr: Europe/Paris
+                en_UK: Europe/London
+
