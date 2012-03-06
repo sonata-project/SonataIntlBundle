@@ -47,16 +47,10 @@ class SonataIntlExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('intl.xml');
 
-        try {
-            new \DateTimeZone($config['timezone']);
-        } catch(\Exception $e) {
-            throw new \RuntimeException(sprintf('Unable to create a valid DatetimeZone, please check the sonata_intl configuration! (%s)', $e->getMessage()));
-        }
+        $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
 
-        $datetimeZone = new Definition('DateTimeZone', array($config['timezone']));
-        $datetimeZone->setPublic(false);
-
-        $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(0, $datetimeZone);
+        $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(0, $config['timezone']['default']);
+        $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(3, $config['timezone']['locales']);
 
         if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {
             $container->getDefinition('sonata.intl.templating.helper.locale')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
@@ -100,5 +94,23 @@ class SonataIntlExtension extends Extension
     public function getAlias()
     {
         return "sonata_intl";
+    }
+
+    /**
+     * Validate timezones
+     *
+     * @param array $timezones
+     *
+     * @throws \RuntimeException If one of the locales is invalid
+     */
+    private function validateTimezones(array $timezones)
+    {
+        foreach ($timezones as $timezone) {
+            try {
+                new \DateTimeZone($timezone);
+            } catch(\Exception $e) {
+                throw new \RuntimeException(sprintf('Unable to create a valid DatetimeZone, please check the sonata_intl configuration! (%s)', $e->getMessage()));
+            }
+        }
     }
 }

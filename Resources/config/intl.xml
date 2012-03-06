@@ -45,6 +45,7 @@
             <argument />
             <argument>%kernel.charset%</argument>
             <argument />
+            <argument />
         </service>
 
         <service id="sonata.intl.twig.extension.locale" class="%sonata.intl.twig.helper.locale.class%" public="false">
