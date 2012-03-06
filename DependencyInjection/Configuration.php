@@ -22,8 +22,16 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('timezone')->defaultValue(date_default_timezone_get())->end()
                 ->scalarNode('locale')->defaultValue(false)->end()
+                ->arrayNode('timezone')
+                    ->children()
+                        ->scalarNode('default')->defaultValue(date_default_timezone_get())->end()
+                        ->arrayNode('locales')
+                            ->useAttributeAsKey('name')
+                            ->prototype('scalar')
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;
