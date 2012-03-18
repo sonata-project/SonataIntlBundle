@@ -12,23 +12,32 @@
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 
+/**
+ * Tests for the DateTimeHelper.
+ *
+ * @author Thomas Rabaix <thomas.rabaix@ekino.com>
+ * @author Alexander <iam.asm89@gmail.com>
+ */
 class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
         date_default_timezone_set('Europe/Paris');
     }
-    
+
     public function testLocale()
     {
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
-        $helper = new DateTimeHelper('Europe/Paris', 'UTF-8', $localeDetector, array());
+        $timezoneDetector = $this->getMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector->expects($this->any())
+            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
 
         $datetimeLondon = new \DateTime();
         $datetimeLondon->setDate(1981, 11, 30);
@@ -68,11 +77,22 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
+        $timezoneDetector = $this->getMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector->expects($this->any())
+            ->method('getTimezone')->will($this->returnValue('Europe/London'));
+
+        $timezoneDetectorWithMapping = $this->getMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetectorWithMapping->expects($this->any())
+            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+
+        $this->assertEquals('Europe/London', $timezoneDetector->getTimezone());
+        $this->assertEquals('Europe/Paris', $timezoneDetectorWithMapping->getTimezone());
+
         // One helper without a locale mapping (current default)
-        $helper = new DateTimeHelper('Europe/London', 'UTF-8', $localeDetector, array());
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
 
         // Helper with a mapping for the detected locale
-        $helperWithMapping = new DateTimeHelper('Europe/London', 'UTF-8', $localeDetector, array('fr' => 'Europe/Paris'));
+        $helperWithMapping = new DateTimeHelper($timezoneDetectorWithMapping, 'UTF-8', $localeDetector);
 
         $dateLondon = new \DateTime('13:37', new \DateTimeZone('Europe/London'));
 

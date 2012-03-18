@@ -12,6 +12,8 @@
         <parameter key="sonata.intl.templating.helper.number.class">Sonata\IntlBundle\Templating\Helper\NumberHelper</parameter>
         <parameter key="sonata.intl.templating.helper.datetime.class">Sonata\IntlBundle\Templating\Helper\DateTimeHelper</parameter>
 
+        <parameter key="sonata.intl.timezone_detector.default.class">Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector</parameter>
+
         <parameter key="sonata.intl.twig.helper.locale.class">Sonata\IntlBundle\Twig\Extension\LocaleExtension</parameter>
         <parameter key="sonata.intl.twig.helper.number.class">Sonata\IntlBundle\Twig\Extension\NumberExtension</parameter>
         <parameter key="sonata.intl.twig.helper.datetime.class">Sonata\IntlBundle\Twig\Extension\DateTimeExtension</parameter>
@@ -31,21 +33,20 @@
         <service id="sonata.intl.templating.helper.locale" class="%sonata.intl.templating.helper.locale.class%">
             <tag name="templating.helper" alias="locale" />
             <argument>%kernel.charset%</argument>
-            <argument />
+            <argument type="service" id="sonata.intl.locale_detector" />
         </service>
 
         <service id="sonata.intl.templating.helper.number" class="%sonata.intl.templating.helper.number.class%">
             <tag name="templating.helper" alias="number" />
             <argument>%kernel.charset%</argument>
-            <argument />
+            <argument type="service" id="sonata.intl.locale_detector" />
         </service>
 
         <service id="sonata.intl.templating.helper.datetime" class="%sonata.intl.templating.helper.datetime.class%">
             <tag name="templating.helper" alias="datetime" />
-            <argument />
+            <argument type="service" id="sonata.intl.timezone_detector" />
             <argument>%kernel.charset%</argument>
-            <argument />
-            <argument />
+            <argument type="service" id="sonata.intl.locale_detector" />
         </service>
 
         <service id="sonata.intl.twig.extension.locale" class="%sonata.intl.twig.helper.locale.class%" public="false">
@@ -61,6 +62,12 @@
         <service id="sonata.intl.twig.extension.datetime" class="%sonata.intl.twig.helper.datetime.class%" public="false">
             <tag name="twig.extension" />
             <argument type="service" id="sonata.intl.templating.helper.datetime" />
+        </service>
+
+        <service id="sonata.intl.timezone_detector.default" class='%sonata.intl.timezone_detector.default.class%' >
+            <argument type="service" id="sonata.intl.locale_detector" />
+            <argument />
+            <argument />
         </service>
     </services>
 </container>
