@@ -12,27 +12,29 @@
 namespace Sonata\IntlBundle\Templating\Helper;
 
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
+use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**
  * DateHelper displays culture information. More information here
  * http://userguide.icu-project.org/formatparse/datetime
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
+ * @author Alexander <iam.asm89@gmail.com>
  */
 class DateTimeHelper extends BaseHelper
 {
-    protected $defaultTimezone;
+    protected $timezoneDetector;
 
     /**
-     * @param \DateTimeZone $defaultTimezone
-     * @param $charset
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param TimezoneDetectorInterface $timezoneDetector
+     * @param string                    $charset
+     * @param LocaleDetectorInterface   $localeDetector
      */
-    public function __construct(\DateTimeZone $defaultTimezone, $charset, LocaleDetectorInterface $localeDetector)
+    public function __construct(TimezoneDetectorInterface $timezoneDetector, $charset, LocaleDetectorInterface $localeDetector)
     {
         parent::__construct($charset, $localeDetector);
 
-        $this->defaultTimezone = $defaultTimezone;
+        $this->timezoneDetector = $timezoneDetector;
     }
 
     /**
@@ -49,7 +51,7 @@ class DateTimeHelper extends BaseHelper
             $locale ?: $this->localeDetector->getLocale(),
             \IntlDateFormatter::MEDIUM,
             \IntlDateFormatter::NONE,
-            $timezone ?: $date->getTimezone()->getName(),
+            $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
 
@@ -70,7 +72,7 @@ class DateTimeHelper extends BaseHelper
             $locale ?: $this->localeDetector->getLocale(),
             \IntlDateFormatter::MEDIUM,
             \IntlDateFormatter::MEDIUM,
-            $timezone ?: $date->getTimezone()->getName(),
+            $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
 
@@ -91,7 +93,7 @@ class DateTimeHelper extends BaseHelper
             $locale ?: $this->localeDetector->getLocale(),
             \IntlDateFormatter::NONE,
             \IntlDateFormatter::MEDIUM,
-            $timezone ?: $date->getTimezone()->getName(),
+            $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
 
@@ -113,7 +115,7 @@ class DateTimeHelper extends BaseHelper
             $locale ?: $this->localeDetector->getLocale(),
             \IntlDateFormatter::FULL,
             \IntlDateFormatter::FULL,
-            $timezone ?: $date->getTimezone()->getName(),
+            $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN,
             $pattern
         );
@@ -153,7 +155,7 @@ class DateTimeHelper extends BaseHelper
 
         $date = new \DateTime();
         $date->setTimestamp($data);
-        $date->setTimezone($timezone ?: $this->defaultTimezone);
+        $date->setTimezone(new \DateTimeZone($timezone ?: $this->timezoneDetector->getTimezone()));
 
         return $date;
     }
