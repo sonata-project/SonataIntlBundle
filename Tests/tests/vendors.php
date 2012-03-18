@@ -3,14 +3,18 @@
 
 set_time_limit(0);
 
-
 $vendorDir = __DIR__.'/../../vendor';
 if (!is_dir($vendorDir)) {
   mkdir($vendorDir);
 }
 
+if (isset($argv[1])) {
+    $_SERVER['SYMFONY_VERSION'] = $argv[1];
+}
+
 $deps = array(
-    array('symfony', 'git://github.com/symfony/symfony.git', 'v2.0.5'),
+    array('symfony', 'git://github.com/symfony/symfony.git', isset($_SERVER['SYMFONY_VERSION']) ? $_SERVER['SYMFONY_VERSION'] : 'origin/master'),
+
 );
 
 foreach ($deps as $dep) {
