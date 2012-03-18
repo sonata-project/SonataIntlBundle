@@ -24,10 +24,10 @@ use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * PageExtension
+ * SonataIntlExtension
  *
- *
- * @author     Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author Alexander <iam.asm89@gmail.com>
  */
 class SonataIntlExtension extends Extension
 {
@@ -47,31 +47,25 @@ class SonataIntlExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('intl.xml');
 
-        try {
-            new \DateTimeZone($config['timezone']);
-        } catch(\Exception $e) {
-            throw new \RuntimeException(sprintf('Unable to create a valid DatetimeZone, please check the sonata_intl configuration! (%s)', $e->getMessage()));
+        if (isset($config['timezone']['service'])) {
+            $container->setAlias('sonata.intl.timezone_detector', $config['timezone']['service']);
+            $container->removeDefinition('sonata.intl.timezone_detector.default');
+        } else {
+            $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
+
+            $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.default');
+            $container->getDefinition('sonata.intl.timezone_detector.default')
+                ->replaceArgument(1, $config['timezone']['default'])
+                ->replaceArgument(2, $config['timezone']['locales']);
         }
 
-        $datetimeZone = new Definition('DateTimeZone', array($config['timezone']));
-        $datetimeZone->setPublic(false);
-
-        $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(0, $datetimeZone);
-
         if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {
-            $container->getDefinition('sonata.intl.templating.helper.locale')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
-            $container->getDefinition('sonata.intl.templating.helper.number')->replaceArgument(1, new Reference('sonata.intl.locale_detector.request'));
-            $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(2, new Reference('sonata.intl.locale_detector.request'));
-
             $container->getDefinition('sonata.intl.locale_detector.request')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
-
+            $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request');
             $container->removeDefinition('sonata.intl.locale_detector.session');
         } else {
-            $container->getDefinition('sonata.intl.templating.helper.locale')->replaceArgument(1, new Reference('sonata.intl.locale_detector.session'));
-            $container->getDefinition('sonata.intl.templating.helper.number')->replaceArgument(1, new Reference('sonata.intl.locale_detector.session'));
-            $container->getDefinition('sonata.intl.templating.helper.datetime')->replaceArgument(2, new Reference('sonata.intl.locale_detector.session'));
-
             $container->getDefinition('sonata.intl.locale_detector.session')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('session.default_locale'));
+            $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.session');
             $container->removeDefinition('sonata.intl.locale_detector.request');
         }
     }
@@ -100,5 +94,22 @@ class SonataIntlExtension extends Extension
     public function getAlias()
     {
         return "sonata_intl";
+    }
+
+    /**
+     * Validate timezones
+     *
+     * @param array $timezones
+     *
+     * @throws \RuntimeException If one of the locales is invalid
+     */
+    private function validateTimezones(array $timezones)
+    {
+        $availableTimezones = \DateTimeZone::listIdentifiers();
+        foreach ($timezones as $timezone) {
+            if (!in_array($timezone, $availableTimezones)) {
+                throw new \RuntimeException(sprintf('Unknown timezone "%s". Please check your sonata_intl configuration.', $timezone));
+            }
+        }
     }
 }
