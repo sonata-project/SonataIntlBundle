@@ -21,7 +21,7 @@
 
     <services>
         <service id="sonata.intl.locale_detector.request" class='%sonata.intl.locale_detector.request.class%' >
-            <argument type="service" id="request" strict="false" />
+            <argument type="service" id="service_container" strict="false" />
             <argument />
         </service>
 
