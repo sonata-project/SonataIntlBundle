@@ -33,7 +33,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
     /**
      * @var string
      */
-    protected $defalutTimezone;
+    protected $defaultTimezone;
 
     public function __construct(LocaleDetectorInterface $localeDetector, $defaultTimezone, array $timezoneMap = array())
     {
