@@ -40,7 +40,7 @@ configure your own service it should implement the ``Sonata\IntlBundle\Timezone\
 
 The locale value used by the bundle is provided by the request.
 
-Example using a custom service:
+Example using a custom service.
 
 .. code-block:: yaml
 
@@ -49,7 +49,7 @@ Example using a custom service:
             service: my_custom_timezone_detector
 
 
-Or the naive approach mapping the locales to timezones:
+Or the naive approach mapping the locales to timezones.
 
 .. code-block:: yaml
 
