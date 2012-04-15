@@ -18,7 +18,7 @@ By default, if the second argument is not set then the current locale value is
 retrieved by using the request instance.
 
 
-.. code-block:: twig
+.. code-block:: jinja
 
     {{ 10.49 | number_format_currency('EUR') }} => 10,49 €
     {{ 10.15459 | number_format_decimal }} => 10,155

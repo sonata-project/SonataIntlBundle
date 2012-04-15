@@ -43,6 +43,7 @@ The locale value used by the bundle is provided by the request.
 Example using a custom service:
 
 .. code-block:: yaml
+
     sonata_intl:
         timezone:
             service: my_custom_timezone_detector
@@ -51,6 +52,7 @@ Example using a custom service:
 Or the naive approach mapping the locales to timezones:
 
 .. code-block:: yaml
+
     sonata_intl:
         timezone:
             # default timezone used as fallback
