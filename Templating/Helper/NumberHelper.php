@@ -52,6 +52,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $locale);
     }
 
@@ -66,6 +70,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $locale);
     }
 
@@ -80,6 +88,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $locale);
     }
 
@@ -94,6 +106,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $locale);
     }
 
@@ -109,6 +125,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
@@ -125,6 +145,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $locale);
     }
 
@@ -139,6 +163,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $locale);
     }
 
@@ -154,6 +182,10 @@ class NumberHelper extends BaseHelper
      */
     public function format($number, $style, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
+        if ($number === null) {
+            return '';
+        }
+
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes);
 
         return $this->fixCharset($formatter->format($number));

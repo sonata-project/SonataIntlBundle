@@ -14,6 +14,8 @@ The number helper provides functions to format:
 Twig usage
 ----------
 
+If the number is ``null`` it will be converted to an empty string.
+
 By default, if the second argument is not set then the current locale value is
 retrieved by using the request instance.
 
