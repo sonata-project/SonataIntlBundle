@@ -45,6 +45,10 @@ class DateTimeHelper extends BaseHelper
      */
     public function formatDate($date, $locale = null, $timezone = null)
     {
+        if ($date === null) {
+            return '';
+        }
+
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = new \IntlDateFormatter(
@@ -66,6 +70,10 @@ class DateTimeHelper extends BaseHelper
      */
     public function formatDateTime($datetime, $locale = null, $timezone = null)
     {
+        if ($datetime === null) {
+            return '';
+        }
+
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
@@ -87,6 +95,10 @@ class DateTimeHelper extends BaseHelper
      */
     public function formatTime($time, $locale = null, $timezone = null)
     {
+        if ($time === null) {
+            return '';
+        }
+
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = new \IntlDateFormatter(
@@ -109,6 +121,10 @@ class DateTimeHelper extends BaseHelper
      */
     public function format($datetime, $pattern, $locale = null, $timezone = null)
     {
+        if ($datetime === null) {
+            return '';
+        }
+
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(

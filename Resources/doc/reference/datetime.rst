@@ -12,6 +12,7 @@ Twig usage
 
 You can format a compatible date with 4 methods, a date can be:
 
+ - ``null`` (converted to an empty string)
  - a ``DateTime`` object
  - a timestamp a date string (``375930000``)
  - a string date ``1981-11-30``
