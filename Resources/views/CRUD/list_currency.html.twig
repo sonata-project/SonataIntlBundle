@@ -11,7 +11,9 @@ file that was distributed with this source code.
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
 {% block field%}
-    {% if value is not null %}
+    {%- if value is null -%}
+        &nbsp;
+    {%- else -%}
         {{ value | number_format_currency(field_description.options.currency) }}
-    {% endif %}
+    {%- endif -%}
 {% endblock %}
