@@ -41,15 +41,16 @@ class DateTimeHelper extends BaseHelper
      * @param \Datetime|string|integer $date
      * @param null|string $locale
      * @param null|string timezone
+     * @param null|integer dateType See \IntlDateFormatter::getDateType
      * @return string
      */
-    public function formatDate($date, $locale = null, $timezone = null)
+    public function formatDate($date, $locale = null, $timezone = null, $dateType = null)
     {
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = new \IntlDateFormatter(
             $locale ?: $this->localeDetector->getLocale(),
-            \IntlDateFormatter::MEDIUM,
+            null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             \IntlDateFormatter::NONE,
             $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
@@ -62,16 +63,18 @@ class DateTimeHelper extends BaseHelper
      * @param \Datetime|string|integer $datetime
      * @param null|string $locale
      * @param null|string timezone
+     * @param null|integer dateType See \IntlDateFormatter::getDateType
+     * @param null|integer timeType See \IntlDateFormatter::getTimeType
      * @return string
      */
-    public function formatDateTime($datetime, $locale = null, $timezone = null)
+    public function formatDateTime($datetime, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
             $locale ?: $this->localeDetector->getLocale(),
-            \IntlDateFormatter::MEDIUM,
-            \IntlDateFormatter::MEDIUM,
+            null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
+            null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
@@ -83,16 +86,17 @@ class DateTimeHelper extends BaseHelper
      * @param \Datetime|string|integer $time
      * @param null|string $locale
      * @param null|string timezone
+     * @param null|integer timeType See \IntlDateFormatter::getTimeType
      * @return string
      */
-    public function formatTime($time, $locale = null, $timezone = null)
+    public function formatTime($time, $locale = null, $timezone = null, $timeType = null)
     {
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = new \IntlDateFormatter(
             $locale ?: $this->localeDetector->getLocale(),
             \IntlDateFormatter::NONE,
-            \IntlDateFormatter::MEDIUM,
+            null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );

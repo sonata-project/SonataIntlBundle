@@ -56,31 +56,31 @@ class DateTimeExtension extends \Twig_Extension
         );
     }
 
-    public function formatDate($date, $pattern = null, $locale = null, $timezone = null)
+    public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
         if ($pattern) {
             return $this->helper->format($date, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatDate($date, $locale, $timezone);
+        return $this->helper->formatDate($date, $locale, $timezone, $dateType);
     }
 
-    public function formatTime($time, $pattern = null, $locale = null, $timezone = null)
+    public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
         if ($pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatTime($time, $locale, $timezone);
+        return $this->helper->formatTime($time, $locale, $timezone, $timeType);
     }
 
-    public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null)
+    public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
         if ($pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 
-        return $this->helper->formatDateTime($time, $locale, $timezone);
+        return $this->helper->formatDateTime($time, $locale, $timezone, $dateType, $timeType);
     }
 
     /**
