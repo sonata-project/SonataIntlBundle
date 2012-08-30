@@ -3,20 +3,9 @@ Installation
 
 This bundle requires the ``php-intl`` extension.
 
-To begin, add the dependent bundle to the ``vendor/bundles`` directory.
+To begin, add the dependent bundles::
 
-If you use the Symfony's ``bin/vendor`` script, you can add a new entry in the
-``deps`` file
-
-.. code-block:: ini
-
-    [SonataIntlBundle]
-        git=https://github.com/sonata-project/SonataIntlBundle
-        target=/bundles/Sonata/IntlBundle
-
-If you are using git, you can add them as submodules::
-
-  git submodule add git://github.com/sonata-project/SonataIntlBundle.git vendor/bundles/Sonata/IntlBundle
+    php composer.phar require sonata-project/intl-bundle
 
 Next, be sure to enable the bundles in your application kernel:
 
