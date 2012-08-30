@@ -20,7 +20,8 @@
         "symfony/dependency-injection": "2.*",
         "symfony/templating": "2.*",
         "symfony/locale": "2.*",
-        "twig/twig": "*"
+        "twig/twig": "*",
+        "ext-intl": "*"
     },
     "autoload": {
         "psr-0": { "Sonata\\IntlBundle": "" }
