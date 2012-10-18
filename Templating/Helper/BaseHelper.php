@@ -81,7 +81,7 @@ abstract class BaseHelper extends Helper
 
         foreach($info as $line) {
             $results = array();
-            if (preg_match('/ICU Data version => (.*)/', $line, $results)) {
+            if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
                 return $results[1];
             }
         }
