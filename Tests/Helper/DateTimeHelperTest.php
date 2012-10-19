@@ -68,7 +68,13 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
 
         // custom format
         $this->assertEquals('30 novembre 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
-        $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG));
+
+        if (version_compare(DateTimeHelper::getUCIDataVersion(), '4.8.0', '>=')) {
+            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG));
+        } else {
+            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG));
+        }
+
         $this->assertEquals('30 novembre 1981 02:00', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
         $this->assertEquals('30 nov. 1981 ap. J.-C.', $helper->format($datetimeParis, 'dd MMM Y G'));
     }

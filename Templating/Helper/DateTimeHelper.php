@@ -134,17 +134,22 @@ class DateTimeHelper extends BaseHelper
      */
     public function process(\IntlDateFormatter $formatter, \Datetime $date)
     {
-        return $this->fixCharset($formatter->format($date->getTimestamp()));
+        // strange bug with PHP 5.3.3-7+squeeze14 with Suhosin-Patch
+        // getTimestamp() method alters the object...
+        return $this->fixCharset($formatter->format((int) $date->format('U')));
     }
 
     /**
-     * @param \Datetime|string|integer $data
-     * @param null|string timezone
+     * Gets a date time instance by a given data and timezone
+     *
+     * @param \Datetime|string|integer $data     Value representing date
+     * @param null|string              $timezone Timezone of the date
+     *
      * @return \Datetime
      */
     public function getDatetime($data, $timezone = null)
     {
-        if($data instanceof \DateTime) {
+        if ($data instanceof \DateTime) {
             return $data;
         }
 

@@ -79,10 +79,25 @@ abstract class BaseHelper extends Helper
 
         $info = explode("\n", $content);
 
-        foreach($info as $line) {
-            $results = array();
-            if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
-                return $results[1];
+        if ('cli' == php_sapi_name()) {
+            foreach ($info as $line) {
+                $results = array();
+
+                if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
+                    return $results[2];
+                }
+            }
+        } else {
+            foreach ($info as $line) {
+                $results = array();
+
+                if (preg_match('/(ICU Data version).*/', $line, $results)) {
+                    return trim(strtolower(strip_tags($results[0])), 'ICU Data version');
+                }
+
+                if (preg_match('/(ICU version).*/', $line, $results)) {
+                    return trim(strtolower(strip_tags($results[0])), 'icu version');
+                }
             }
         }
 
