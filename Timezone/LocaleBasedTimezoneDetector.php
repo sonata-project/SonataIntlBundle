@@ -18,7 +18,7 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
+class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleBasedTimezoneDetectorInterface
 {
     /**
      * @var LocaleDetectorInterface
