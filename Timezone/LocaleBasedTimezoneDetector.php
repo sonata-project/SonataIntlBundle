@@ -42,7 +42,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleBa
 
     /**
      * Constructor
-     * 
+     *
      * @param LocaleDetectorInterface $localeDetector
      * @param string                  $defaultTimezone
      * @param array                   $timezoneMap
@@ -73,7 +73,8 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleBa
      *
      * @return string
      */
-    function getTimezone() {
+    public function getTimezone()
+    {
         $locale = $this->locale ?: $this->localeDetector->getLocale();
 
         return isset($this->timezoneMap[$locale]) ? $this->timezoneMap[$locale] : $this->defaultTimezone;

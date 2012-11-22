@@ -16,5 +16,5 @@ interface LocaleDetectorInterface
     /**
      * @return string
      */
-    function getLocale();
+    public function getLocale();
 }

@@ -22,7 +22,7 @@ class LocaleHelper extends BaseHelper
 {
     /**
      * @param $code
-     * @param null $locale
+     * @param  null   $locale
      * @return string
      */
     public function country($code, $locale = null)
@@ -38,7 +38,7 @@ class LocaleHelper extends BaseHelper
 
     /**
      * @param $code
-     * @param null $locale
+     * @param  null   $locale
      * @return string
      */
     public function language($code, $locale = null)
@@ -54,7 +54,7 @@ class LocaleHelper extends BaseHelper
 
     /**
      * @param $code
-     * @param null $locale
+     * @param  null   $locale
      * @return string
      */
     public function locale($code, $locale = null)

@@ -11,7 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Templating\Helper\Helper;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
@@ -34,7 +33,7 @@ abstract class BaseHelper extends Helper
     /**
      * Constructor.
      *
-     * @param string $charset The output charset of the helper
+     * @param string                                            $charset        The output charset of the helper
      * @param \Sonata\IntlBundle\Locale\LocaleDetectorInterface $localeDetector
      */
     public function __construct($charset, LocaleDetectorInterface $localeDetector)
@@ -50,7 +49,7 @@ abstract class BaseHelper extends Helper
      *
      * Precondition: the kernel charset is not UTF-8
      *
-     * @param string $string The string to fix
+     * @param  string $string The string to fix
      * @return string A string with the %kernel.charset% encoding
      */
     protected function fixCharset($string)
