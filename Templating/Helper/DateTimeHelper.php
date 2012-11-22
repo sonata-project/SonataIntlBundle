@@ -13,6 +13,7 @@ namespace Sonata\IntlBundle\Templating\Helper;
 
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
+use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetectorInterface;
 
 /**
  * DateHelper displays culture information. More information here
@@ -49,11 +50,15 @@ class DateTimeHelper extends BaseHelper
         $date   = $this->getDatetime($date, $timezone);
         $locale = $locale ?: $this->localeDetector->getLocale();
 
+	if ($this->timezoneDetector instanceof LocaleBasedTimezoneDetectorInterface) {
+            $this->timezoneDetector->setLocale($locale);
+	}
+
         $formatter = new \IntlDateFormatter(
             $locale,
             null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             \IntlDateFormatter::NONE,
-            $timezone ?: $this->timezoneDetector->setLocale($locale)->getTimezone(),
+            $timezone ?: $this->timezoneDetector->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
 
