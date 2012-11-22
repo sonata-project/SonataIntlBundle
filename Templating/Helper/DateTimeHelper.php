@@ -191,7 +191,7 @@ class DateTimeHelper extends BaseHelper
             $this->timezoneDetector->setLocale($locale);
         }
         
-        return $locale
+        return $locale;
     }
 
     /**
