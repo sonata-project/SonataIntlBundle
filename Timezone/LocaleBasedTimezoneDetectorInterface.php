@@ -12,16 +12,16 @@
 namespace Sonata\IntlBundle\Timezone;
 
 /**
- * Interfaces for services that are able to detect a timezone.
- *
- * @author Alexander <iam.asm89@gmail.com>
+ * Interface for TimezoneDetector that use the locale
  */
-interface TimezoneDetectorInterface
+interface LocaleBasedTimezoneDetectorInterface
 {
     /**
-     * Get the appropriate timezone.
+     * Set the locale to use to detect the timezone
      *
-     * @return string
+     * @param string $locale
+     *
+     * @return LocaleBasedTimezoneDetectorInterface
      */
-    public function getTimezone();
+    public function setLocale($locale);
 }

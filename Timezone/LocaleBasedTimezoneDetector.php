@@ -18,7 +18,7 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
+class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleBasedTimezoneDetectorInterface
 {
     /**
      * @var LocaleDetectorInterface
@@ -35,6 +35,18 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
      */
     protected $defaultTimezone;
 
+    /**
+     * @var string
+     */
+    protected $locale;
+
+    /**
+     * Constructor
+     *
+     * @param LocaleDetectorInterface $localeDetector
+     * @param string                  $defaultTimezone
+     * @param array                   $timezoneMap
+     */
     public function __construct(LocaleDetectorInterface $localeDetector, $defaultTimezone, array $timezoneMap = array())
     {
         $this->localeDetector  = $localeDetector;
@@ -43,12 +55,27 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
     }
 
     /**
+     * Set the locale used to detect the timezone
+     *
+     * @param string $locale
+     *
+     * @return LocaleBasedTimezoneDetector
+     */
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
      * Get the appropriate timezone.
      *
      * @return string
      */
-    function getTimezone() {
-        $locale = $this->localeDetector->getLocale();
+    public function getTimezone()
+    {
+        $locale = $this->locale ?: $this->localeDetector->getLocale();
 
         return isset($this->timezoneMap[$locale]) ? $this->timezoneMap[$locale] : $this->defaultTimezone;
     }

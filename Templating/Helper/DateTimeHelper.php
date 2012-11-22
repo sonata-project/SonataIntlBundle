@@ -13,6 +13,7 @@ namespace Sonata\IntlBundle\Templating\Helper;
 
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
+use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetectorInterface;
 
 /**
  * DateHelper displays culture information. More information here
@@ -39,17 +40,18 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $date
-     * @param null|string $locale
-     * @param null|string timezone
-     * @param null|integer dateType See \IntlDateFormatter::getDateType
+     * @param null|string              $locale
+     * @param null|string              $timezone
+     * @param null|integer             $dateType See \IntlDateFormatter::getDateType
+     *
      * @return string
      */
     public function formatDate($date, $locale = null, $timezone = null, $dateType = null)
     {
-        $date = $this->getDatetime($date, $timezone);
+        $date   = $this->getDatetime($date, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->localeDetector->getLocale(),
+            $this->getLocale($locale),
             null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             \IntlDateFormatter::NONE,
             $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -61,10 +63,11 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $datetime
-     * @param null|string $locale
-     * @param null|string timezone
-     * @param null|integer dateType See \IntlDateFormatter::getDateType
-     * @param null|integer timeType See \IntlDateFormatter::getTimeType
+     * @param null|string              $locale
+     * @param null|string              $timezone
+     * @param null|integer             $dateType See \IntlDateFormatter::getDateType
+     * @param null|integer             $timeType See \IntlDateFormatter::getTimeType
+     *
      * @return string
      */
     public function formatDateTime($datetime, $locale = null, $timezone = null, $dateType = null, $timeType = null)
@@ -72,7 +75,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->localeDetector->getLocale(),
+            $this->getLocale($locale),
             null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -84,9 +87,10 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $time
-     * @param null|string $locale
-     * @param null|string timezone
-     * @param null|integer timeType See \IntlDateFormatter::getTimeType
+     * @param null|string              $locale
+     * @param null|string              $timezone
+     * @param null|integer             $timeType See \IntlDateFormatter::getTimeType
+     *
      * @return string
      */
     public function formatTime($time, $locale = null, $timezone = null, $timeType = null)
@@ -94,7 +98,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->localeDetector->getLocale(),
+            $this->getLocale($locale),
             \IntlDateFormatter::NONE,
             null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -106,9 +110,10 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $datetime
-     * @param $pattern
-     * @param null|string $locale
-     * @param null|string timezone
+     * @param string                   $pattern
+     * @param null|string              $locale
+     * @param null|string              $timezone
+     *
      * @return string
      */
     public function format($datetime, $pattern, $locale = null, $timezone = null)
@@ -116,7 +121,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->localeDetector->getLocale(),
+            $this->getLocale($locale),
             \IntlDateFormatter::FULL,
             \IntlDateFormatter::FULL,
             $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -128,8 +133,9 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \IntlDateFormatter $formatter
-     * @param \Datetime $date
+     * @param  \IntlDateFormatter $formatter
+     * @param  \Datetime          $date
+     *
      * @return string
      */
     public function process(\IntlDateFormatter $formatter, \Datetime $date)
@@ -155,7 +161,7 @@ class DateTimeHelper extends BaseHelper
 
         // the format method accept array or integer
         if (is_numeric($data)) {
-             $data = (int)$data;
+             $data = (int) $data;
         }
 
         if (is_string($data)) {
@@ -167,6 +173,25 @@ class DateTimeHelper extends BaseHelper
         $date->setTimezone(new \DateTimeZone($timezone ?: $this->timezoneDetector->getTimezone()));
 
         return $date;
+    }
+    
+    /**
+     * Get the locale
+     * and set it to the timezoneDetector if possible
+     *
+     * @param string $locale
+     *
+     * @return string
+     */
+    public function getLocale($locale = null)
+    {
+        $locale = $locale ?: $this->localeDetector->getLocale();
+
+        if ($this->timezoneDetector instanceof LocaleBasedTimezoneDetectorInterface) {
+            $this->timezoneDetector->setLocale($locale);
+        }
+        
+        return $locale;
     }
 
     /**

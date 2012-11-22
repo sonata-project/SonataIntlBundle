@@ -25,7 +25,7 @@ class RequestDetector implements LocaleDetectorInterface
 
     /**
      * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     * @param string $defaultLocale
+     * @param string                                                    $defaultLocale
      */
     public function __construct(ContainerInterface $container, $defaultLocale)
     {
