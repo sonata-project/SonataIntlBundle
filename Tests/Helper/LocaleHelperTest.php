@@ -25,27 +25,27 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
             ->method('getLocale')->will($this->returnValue('fr'));
 
         $helper = new LocaleHelper('UTF-8', $localeDetector);
-        
+
         return $helper;
     }
-    
+
     public function testLanguage()
     {
         $helper = $this->getHelper();
         $this->assertEquals('français', $helper->language('fr'));
         $this->assertEquals('French', $helper->language('fr', 'en'));
         //        $this->assertEquals('', $helper->language('fr', 'fake'));
-        
+
     }
-    
+
     public function testCountry()
     {
         $helper = $this->getHelper();
         $this->assertEquals('France', $helper->country('FR'));
-        $this->assertEquals('France', $helper->country('FR', 'en'));              
+        $this->assertEquals('France', $helper->country('FR', 'en'));
 //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
-    
+
     public function testLocale()
     {
         $helper = $this->getHelper();

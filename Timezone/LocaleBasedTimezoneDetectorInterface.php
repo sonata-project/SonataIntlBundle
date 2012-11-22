@@ -23,5 +23,5 @@ interface LocaleBasedTimezoneDetectorInterface
      *
      * @return LocaleBasedTimezoneDetectorInterface
      */
-    function setLocale($locale);
+    public function setLocale($locale);
 }

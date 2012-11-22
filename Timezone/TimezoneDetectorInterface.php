@@ -23,5 +23,5 @@ interface TimezoneDetectorInterface
      *
      * @return string
      */
-    function getTimezone();
+    public function getTimezone();
 }
