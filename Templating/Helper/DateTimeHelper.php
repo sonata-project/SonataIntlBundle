@@ -46,13 +46,14 @@ class DateTimeHelper extends BaseHelper
      */
     public function formatDate($date, $locale = null, $timezone = null, $dateType = null)
     {
-        $date = $this->getDatetime($date, $timezone);
+        $date   = $this->getDatetime($date, $timezone);
+        $locale = $locale ?: $this->localeDetector->getLocale();
 
         $formatter = new \IntlDateFormatter(
-            $locale ?: $this->localeDetector->getLocale(),
+            $locale,
             null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             \IntlDateFormatter::NONE,
-            $timezone ?: $this->timezoneDetector->getTimezone(),
+            $timezone ?: $this->timezoneDetector->setLocale($locale)->getTimezone(),
             \IntlDateFormatter::GREGORIAN
         );
 
