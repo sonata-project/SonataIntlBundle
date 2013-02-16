@@ -39,7 +39,7 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $date
-     * @param null|string $locale
+     * @param null|string              $locale
      * @param null|string timezone
      * @param null|integer dateType See \IntlDateFormatter::getDateType
      * @return string
@@ -61,7 +61,7 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $datetime
-     * @param null|string $locale
+     * @param null|string              $locale
      * @param null|string timezone
      * @param null|integer dateType See \IntlDateFormatter::getDateType
      * @param null|integer timeType See \IntlDateFormatter::getTimeType
@@ -84,7 +84,7 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|integer $time
-     * @param null|string $locale
+     * @param null|string              $locale
      * @param null|string timezone
      * @param null|integer timeType See \IntlDateFormatter::getTimeType
      * @return string
@@ -128,8 +128,8 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \IntlDateFormatter $formatter
-     * @param \Datetime $date
+     * @param  \IntlDateFormatter $formatter
+     * @param  \Datetime          $date
      * @return string
      */
     public function process(\IntlDateFormatter $formatter, \Datetime $date)
@@ -155,7 +155,7 @@ class DateTimeHelper extends BaseHelper
 
         // the format method accept array or integer
         if (is_numeric($data)) {
-             $data = (int)$data;
+             $data = (int) $data;
         }
 
         if (is_string($data)) {
