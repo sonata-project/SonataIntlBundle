@@ -26,5 +26,11 @@
     "autoload": {
         "psr-0": { "Sonata\\IntlBundle": "" }
     },
-    "target-dir": "Sonata/IntlBundle"
+    "target-dir": "Sonata/IntlBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-2.0": "2.0.x-dev",
+            "dev-master": "2.1.x-dev"
+        }
+    }
 }
