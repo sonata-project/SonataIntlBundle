@@ -1,7 +1,7 @@
 Sonata Intl Bundle
 ==================
 
-[![Build Status](https://secure.travis-ci.org/sonata-project/SonataIntlBundle.png)](https://secure.travis-ci.org/#!/sonata-project/SonataIntlBundle)
+[![Build Status](https://api.travis-ci.org/sonata-project/SonataIntlBundle.png)](https://travis-ci.org/sonata-project/SonataIntlBundle)
 
 The ``SonataIntlBundle`` provides text and date formatting depends on locale.
 
