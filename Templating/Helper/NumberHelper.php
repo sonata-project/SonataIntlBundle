@@ -98,7 +98,7 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its currency representation (1 => one)
+     * format a value with its currency representation (1 => 1 $)
      *
      * @param float $number
      * @param $currency
