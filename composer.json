@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": "2.*",
-        "symfony/dependency-injection": "2.*",
-        "symfony/templating": "2.*",
-        "symfony/locale": "2.*",
+        "symfony/http-kernel": "2.2.*",
+        "symfony/dependency-injection": "2.2.*",
+        "symfony/templating": "2.2.*",
+        "symfony/locale": "2.2.*",
         "twig/twig": "*",
         "ext-intl": "*"
     },
@@ -29,8 +29,7 @@
     "target-dir": "Sonata/IntlBundle",
     "extra": {
         "branch-alias": {
-            "dev-2.0": "2.0.x-dev",
-            "dev-master": "2.1.x-dev"
+            "dev-master": "2.2.x-dev"
         }
     }
 }
