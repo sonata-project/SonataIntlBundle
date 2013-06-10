@@ -15,6 +15,11 @@ file that was distributed with this source code.
     {%- if value is null -%}
         &nbsp;
     {%- else -%}
-        {{ value | number_format_currency(field_description.options.currency) }}
+        {% set currency = field_description.options.currency %}
+        {% set attributes = field_description.options.attributes|default({}) %}
+        {% set textAttributes = field_description.options.textAttributes|default({}) %}
+        {% set locale = field_description.options.locale|default(null) %}
+
+        {{ value | number_format_currency(currency, attributes, textAttributes, locale) }}
     {%- endif -%}
 {% endblock %}
