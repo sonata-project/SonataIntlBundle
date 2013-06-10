@@ -50,3 +50,17 @@ by providing extra parameters :
 
     More information about patterns can be found here: 
     http://userguide.icu-project.org/formatparse/datetime
+
+
+PHP usage
+---------
+
+When defining your admin list / view, you can also provide extra parameters, for example :
+
+.. code-block:: php
+
+    $list->add('createdAt', 'date', array(
+        'pattern' => 'dd MMM Y G',
+        'locale' => 'fr',
+        'timezone' => 'Europe/Paris',
+    ))
