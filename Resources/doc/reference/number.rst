@@ -28,3 +28,21 @@ retrieved by using the request instance.
     {{ 1.999|number_format_percent }} {# => 200 % #}
     {{ 1|number_format_ordinal }} {# => 1ᵉʳ #}
     {{ (-1.1337)|number_format_decimal({'fraction_digits': 2}, {'negative_prefix': 'MINUS'}) }} {# => MINUS1,34 #}
+
+
+PHP usage
+---------
+
+When defining your admin list / view, you can also provide extra parameters, for example :
+
+.. code-block:: php
+
+    $list->add('amount', 'decimal', array(
+        'attributes' => array('fraction_digits' => 2),
+        'textAttributes' => array('negative_prefix' => 'MINUS'),
+    ))
+
+    $show->add('price', 'currency', array(
+        'currency' => 'EUR',
+        'locale' => 'fr',
+    ))
