@@ -47,6 +47,7 @@ class RequestDetector implements LocaleDetectorInterface
                 return $request->getLocale();
             }
         }
+
         return $this->defaultLocale;
     }
 }
