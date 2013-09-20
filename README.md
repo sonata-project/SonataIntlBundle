@@ -11,3 +11,8 @@ Check out the documentation on [http://sonata-project.org/bundles/intl/master/do
 
 * [Sonata Users](https://groups.google.com/group/sonata-users): Only for user questions
 * [Sonata Devs](https://groups.google.com/group/sonata-devs): Only for devs
+
+License
+-------
+
+This bundle is available under the [MIT License](Resources/meta/LICENSE).
