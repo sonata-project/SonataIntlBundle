@@ -6,6 +6,14 @@ The locale helper provides functions to display:
  - language name from the ISO code
  - locale name from the ISO code
 
+Detection
+---------
+
+The SonataIntlBundle provides a service to automatically detect the user's locale.
+``sonata.intl.locale_detector`` will be session-based if you're using Symfony < 2.1.x ; request-based otherwise.
+
+You'll need to handle the locale setting however (in request or session, depending on you Symfony version).
+
 
 Twig usage
 ----------
