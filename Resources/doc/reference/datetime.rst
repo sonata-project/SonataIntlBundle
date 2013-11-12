@@ -24,7 +24,7 @@ You can format a compatible date with 4 methods, a date can be:
     {{ date_time_object | format_datetime }} => '1 févr. 2011 19:55:26'
 
 By default the helpers methods use the current user's locale to display 
-information. Of course this behavior can be controller from within the template 
+information. Of course this behavior can be controlled from within the template 
 by providing extra parameters :
 
 * pattern : the pattern to use to render the date
