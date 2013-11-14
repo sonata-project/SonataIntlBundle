@@ -102,9 +102,10 @@ class SonataIntlExtension extends Extension
      */
     private function validateTimezones(array $timezones)
     {
-        $availableTimezones = \DateTimeZone::listIdentifiers();
         foreach ($timezones as $timezone) {
-            if (!in_array($timezone, $availableTimezones)) {
+            try {
+                $tz = new \DateTimeZone($timezone);
+            } catch (\Exception $e) {
                 throw new \RuntimeException(sprintf('Unknown timezone "%s". Please check your sonata_intl configuration.', $timezone));
             }
         }
