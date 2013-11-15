@@ -24,20 +24,26 @@ class LocaleBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
     public function testDetectsTimezoneForLocale()
     {
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
-        $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
+        $localeDetector
+            ->expects($this->any())
+            ->method('getLocale')
+            ->will($this->returnValue('fr'))
+        ;
 
-        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, 'Europe/London', array('fr' => 'Europe/Paris'));
+        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, array('fr' => 'Europe/Paris'));
         $this->assertEquals('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
-    public function testFallbackToDefaultLocale()
+    public function testTimezoneNotDetected()
     {
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
-        $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('de'));
+        $localeDetector
+            ->expects($this->any())
+            ->method('getLocale')
+            ->will($this->returnValue('de'))
+        ;
 
-        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, 'Europe/London', array('fr' => 'Europe/Paris'));
-        $this->assertEquals('Europe/London', $timezoneDetector->getTimezone());
+        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, array('fr' => 'Europe/Paris'));
+        $this->assertEquals(null, $timezoneDetector->getTimezone());
     }
 }
