@@ -50,10 +50,32 @@ class SonataIntlExtension extends Extension
         } else {
             $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
 
-            $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.default');
-            $container->getDefinition('sonata.intl.timezone_detector.default')
-                ->replaceArgument(1, $config['timezone']['default'])
-                ->replaceArgument(2, $config['timezone']['locales']);
+            $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.chain');
+
+            $timezoneDetectors = $config['timezone']['detectors'];
+
+            $bundles = $container->getParameter('kernel.bundles');
+
+            if (!isset($bundles['SonataUserBundle'])) {
+                $container->removeDefinition('sonata.intl.timezone_detector.user');
+
+                $key = array_search('user', $timezoneDetectors);
+                if (false !== $key) {
+                    unset($timezoneDetectors[$key]);
+                }
+            }
+
+            $container
+                ->getDefinition('sonata.intl.timezone_detector.locale')
+                ->replaceArgument(1, $config['timezone']['locales'])
+            ;
+
+            $container
+                ->getDefinition('sonata.intl.timezone_detector.chain')
+                ->replaceArgument(0, $config['timezone']['default'])
+            ;
+
+            $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
         }
 
         if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {

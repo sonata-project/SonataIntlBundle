@@ -11,10 +11,20 @@
 
 namespace Sonata\IntlBundle;
 
+use Sonata\IntlBundle\DependencyInjection\Compiler\TimezoneDetectorCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataIntlBundle extends Bundle
 {
+    /**
+     * @param ContainerBuilder $container
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new TimezoneDetectorCompilerPass());
+    }
+
     /**
      * Returns a cleaned version number
      *
