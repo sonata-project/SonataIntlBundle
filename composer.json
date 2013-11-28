@@ -23,6 +23,10 @@
         "twig/twig": "*",
         "ext-intl": "*"
     },
+    "require-dev": {
+        "sonata-project/user-bundle": "~2.2",
+        "symfony/security": "~2.2"
+    },
     "autoload": {
         "psr-0": { "Sonata\\IntlBundle": "" }
     },

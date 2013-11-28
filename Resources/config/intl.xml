@@ -12,7 +12,9 @@
         <parameter key="sonata.intl.templating.helper.number.class">Sonata\IntlBundle\Templating\Helper\NumberHelper</parameter>
         <parameter key="sonata.intl.templating.helper.datetime.class">Sonata\IntlBundle\Templating\Helper\DateTimeHelper</parameter>
 
-        <parameter key="sonata.intl.timezone_detector.default.class">Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector</parameter>
+        <parameter key="sonata.intl.timezone_detector.chain.class">Sonata\IntlBundle\Timezone\ChainTimezoneDetector</parameter>
+        <parameter key="sonata.intl.timezone_detector.user.class">Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector</parameter>
+        <parameter key="sonata.intl.timezone_detector.locale.class">Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector</parameter>
 
         <parameter key="sonata.intl.twig.helper.locale.class">Sonata\IntlBundle\Twig\Extension\LocaleExtension</parameter>
         <parameter key="sonata.intl.twig.helper.number.class">Sonata\IntlBundle\Twig\Extension\NumberExtension</parameter>
@@ -64,9 +66,20 @@
             <argument type="service" id="sonata.intl.templating.helper.datetime" />
         </service>
 
-        <service id="sonata.intl.timezone_detector.default" class='%sonata.intl.timezone_detector.default.class%' >
-            <argument type="service" id="sonata.intl.locale_detector" />
+        <service id="sonata.intl.timezone_detector.chain" class="%sonata.intl.timezone_detector.chain.class%">
             <argument />
+            <argument />
+        </service>
+
+        <service id="sonata.intl.timezone_detector.user" class="%sonata.intl.timezone_detector.user.class%">
+            <tag name="sonata_intl.timezone_detector" alias="user" />
+            <argument type="service" id="security.context" />
+            <argument />
+        </service>
+
+        <service id="sonata.intl.timezone_detector.locale" class="%sonata.intl.timezone_detector.locale.class%">
+            <tag name="sonata_intl.timezone_detector" alias="locale" />
+            <argument type="service" id="sonata.intl.locale_detector" />
             <argument />
         </service>
     </services>
