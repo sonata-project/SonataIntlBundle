@@ -29,6 +29,11 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('10,50 €', $helper->formatCurrency(10.499, 'EUR'));
         $this->assertEquals('10 000,50 €', $helper->formatCurrency(10000.499, 'EUR'));
 
+        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', array(
+            // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
+            'fraction_digits' => 0
+        )));
+
         // decimal
         $this->assertEquals('10', $helper->formatDecimal(10));
         $this->assertEquals('10,155', $helper->formatDecimal(10.15459));
