@@ -32,7 +32,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
 
     /**
      * @param LocaleDetectorInterface $localeDetector
-     * @param array $timezoneMap
+     * @param array                   $timezoneMap
      */
     public function __construct(LocaleDetectorInterface $localeDetector, array $timezoneMap = array())
     {
@@ -41,9 +41,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
     }
 
     /**
-     * Get the appropriate timezone.
-     *
-     * @return string
+     * {@inheritDoc}
      */
     public function getTimezone()
     {

@@ -31,7 +31,6 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('service')->end()
                         ->arrayNode('detectors')
-                            ->defaultValue(array('user', 'locale'))
                             ->prototype('scalar')
                             ->end()
                         ->end()

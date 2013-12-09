@@ -47,7 +47,7 @@ class ChainTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($timezone))
             ;
 
-            $chainTimezoneDetector->addTimezoneDetector($timezoneDetector);
+            $chainTimezoneDetector->addDetector($timezoneDetector);
         }
 
         $this->assertEquals($expectedTimezone, $chainTimezoneDetector->getTimezone());

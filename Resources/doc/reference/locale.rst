@@ -32,4 +32,3 @@ retrieved by using the request instance.
 
     {{ 'fr' | locale }} {# => français (if the current locale in session is 'fr') #}
     {{ 'fr' | locale('en') }} {# => French (force the locale) #}
-

@@ -15,6 +15,7 @@ use Sonata\IntlBundle\SonataIntlBundle;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Definition\Processor;
@@ -28,12 +29,8 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class SonataIntlExtension extends Extension
 {
-
     /**
-     * Loads the url shortener configuration.
-     *
-     * @param array            $config    An array of configuration settings
-     * @param ContainerBuilder $container A ContainerBuilder instance
+     * {@inheritDoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -44,40 +41,69 @@ class SonataIntlExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('intl.xml');
 
+        $this->configureTimezone($container, $config);
+        $this->configureLocale($container, $config);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    protected function configureTimezone(ContainerBuilder $container, array $config)
+    {
         if (isset($config['timezone']['service'])) {
             $container->setAlias('sonata.intl.timezone_detector', $config['timezone']['service']);
             $container->removeDefinition('sonata.intl.timezone_detector.default');
-        } else {
-            $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
 
-            $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.chain');
-
-            $timezoneDetectors = $config['timezone']['detectors'];
-
-            $bundles = $container->getParameter('kernel.bundles');
-
-            if (!isset($bundles['SonataUserBundle'])) {
-                $container->removeDefinition('sonata.intl.timezone_detector.user');
-
-                $key = array_search('user', $timezoneDetectors);
-                if (false !== $key) {
-                    unset($timezoneDetectors[$key]);
-                }
-            }
-
-            $container
-                ->getDefinition('sonata.intl.timezone_detector.locale')
-                ->replaceArgument(1, $config['timezone']['locales'])
-            ;
-
-            $container
-                ->getDefinition('sonata.intl.timezone_detector.chain')
-                ->replaceArgument(0, $config['timezone']['default'])
-            ;
-
-            $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
+            return;
         }
 
+        $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
+
+        $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.chain');
+
+        $timezoneDetectors = $config['timezone']['detectors'];
+
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (count($timezoneDetectors) == 0) { // no value define in the configuration, set one
+            // Support Sonata User Bundle
+            if (isset($bundles['SonataUserBundle'])) {
+                $timezoneDetectors[] = 'sonata.intl.timezone_detector.user';
+            }
+
+            $timezoneDetectors[] = 'sonata.intl.timezone_detector.locale';
+        }
+
+        foreach ($timezoneDetectors as $id) {
+            $container
+                ->getDefinition('sonata.intl.timezone_detector.chain')
+                ->addMethodCall('addDetector', array(new Reference($id)));
+        }
+
+        $container
+            ->getDefinition('sonata.intl.timezone_detector.locale')
+            ->replaceArgument(1, $config['timezone']['locales'])
+        ;
+
+        $container
+            ->getDefinition('sonata.intl.timezone_detector.chain')
+            ->replaceArgument(0, $config['timezone']['default'])
+        ;
+
+        if (!isset($bundles['SonataUserBundle'])) {
+            $container->removeDefinition('sonata.intl.timezone_detector.user');
+        }
+
+        $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    protected function configureLocale(ContainerBuilder $container, array $config)
+    {
         if (version_compare(SonataIntlBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {
             $container->getDefinition('sonata.intl.locale_detector.request')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
             $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request');
@@ -87,32 +113,6 @@ class SonataIntlExtension extends Extension
             $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.session');
             $container->removeDefinition('sonata.intl.locale_detector.request');
         }
-    }
-
-    /**
-     * Returns the base path for the XSD files.
-     *
-     * @return string The XSD base path
-     */
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__.'/../Resources/config/schema';
-    }
-
-    /**
-     * @return string
-     */
-    public function getNamespace()
-    {
-        return 'http://www.sonata-project.org/schema/dic/intl';
-    }
-
-    /**
-     * @return string
-     */
-    public function getAlias()
-    {
-        return "sonata_intl";
     }
 
     /**

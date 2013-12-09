@@ -68,7 +68,6 @@
 
         <service id="sonata.intl.timezone_detector.chain" class="%sonata.intl.timezone_detector.chain.class%">
             <argument />
-            <argument />
         </service>
 
         <service id="sonata.intl.timezone_detector.user" class="%sonata.intl.timezone_detector.user.class%">
