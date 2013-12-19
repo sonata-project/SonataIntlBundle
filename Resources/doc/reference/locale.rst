@@ -12,7 +12,7 @@ Detection
 The SonataIntlBundle provides a service to automatically detect the user's locale.
 ``sonata.intl.locale_detector`` will be session-based if you're using Symfony < 2.1.x ; request-based otherwise.
 
-You'll need to handle the locale setting however (in request or session, depending on you Symfony version).
+You'll need to handle the locale setting however (in request or session, depending on your Symfony version).
 
 
 Twig usage
