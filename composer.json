@@ -27,9 +27,8 @@
         "symfony/security": "~2.2"
     },
     "autoload": {
-        "psr-0": { "Sonata\\IntlBundle": "" }
+        "psr-4": { "Sonata\\IntlBundle\\": "" }
     },
-    "target-dir": "Sonata/IntlBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "2.2.x-dev"
