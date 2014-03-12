@@ -8,7 +8,7 @@ User timezone detector
 ----------------------
 
 If the SonataUserBundle is enabled, it returns the timezone from the
-``Sonata\UserBundle\Modle\User::getTimezone()`` method.
+``Sonata\UserBundle\Model\User::getTimezone()`` method.
 
 
 Locale timezone detector

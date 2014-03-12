@@ -170,7 +170,7 @@ class NumberHelper extends BaseHelper
     {
         $formatter = new \NumberFormatter($culture, $style);
 
-        foreach (array_merge($this->textAttributes, $textAttributes)  as $name => $value) {
+        foreach (array_merge($this->textAttributes, $textAttributes) as $name => $value) {
             $constantName = strtoupper($name);
             if (!defined('NumberFormatter::'.$constantName)) {
                 throw new \InvalidArgumentException("Numberformatter has no text attribute '$name'");

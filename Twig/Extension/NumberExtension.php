@@ -80,7 +80,7 @@ class NumberExtension extends \Twig_Extension
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $locale);
     }
 
-    public function formatPercent($number,  array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $locale);
     }
