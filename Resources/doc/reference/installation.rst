@@ -22,3 +22,9 @@ Next, be sure to enable the bundles in your application kernel:
       );
   }
 
+If you have trouble using twig extension like "Only the locale "en" is supported." even after having install the php intl extension and restart apache, you can add the symfony locales in composer.json ::
+
+  
+	"symfony/locale": "2.3.*"
+		
+Then, run php composer.phar update.
