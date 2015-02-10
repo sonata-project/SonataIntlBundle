@@ -19,7 +19,7 @@ file that was distributed with this source code.
         {% set locale = field_description.options.locale|default(null) %}
         {% set timezone = field_description.options.timezone|default(null) %}
         {% set dateType = field_description.options.dateType|default(null) %}
-        {% set timeType = field_description.options.dateType|default(null) %}
+        {% set timeType = field_description.options.timeType|default(null) %}
 
         {{ value | format_datetime(pattern, locale, timezone, dateType, timeType) }}
     {%- endif -%}
