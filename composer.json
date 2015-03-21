@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Symfony SonataIntlBundle",
     "keywords": ["sonata", "intl", "date", "time", "number"],
-    "homepage": "http://sonata-project.org/bundles/intl",
+    "homepage": "https://sonata-project.org/bundles/intl",
     "license": "MIT",
     "authors": [
         {

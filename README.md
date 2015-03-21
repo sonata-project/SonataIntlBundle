@@ -5,7 +5,7 @@ Sonata Intl Bundle
 
 The ``SonataIntlBundle`` provides text and date formatting depends on locale.
 
-Check out the documentation on [http://sonata-project.org/bundles/intl/master/doc/index.html](http://sonata-project.org/bundles/intl/master/doc/index.html)
+Check out the documentation on [https://sonata-project.org/bundles/intl/master/doc/index.html](https://sonata-project.org/bundles/intl/master/doc/index.html)
 
 **Google Groups**: For questions and proposals you can post on this google groups
 
