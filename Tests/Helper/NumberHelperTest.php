@@ -52,7 +52,12 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         // spell out
         $this->assertEquals('un', $helper->formatSpellout(1));
         $this->assertEquals('quarante-deux', $helper->formatSpellout(42));
-        $this->assertEquals('un million deux-cent-vingt-quatre-mille-cinq-cent-cinquante-sept virgule un deux cinq quatre', $helper->formatSpellout(1224557.1254));
+
+        if (version_compare(NumberHelper::getICUDataVersion(), '52', '>=')) {
+            $this->assertEquals('un million deux cent vingt-quatre mille cinq cent cinquante-sept virgule un deux cinq quatre', $helper->formatSpellout(1224557.1254));
+        } else {
+            $this->assertEquals('un million deux-cent-vingt-quatre-mille-cinq-cent-cinquante-sept virgule un deux cinq quatre', $helper->formatSpellout(1224557.1254));
+        }
 
         // percent
         $this->assertEquals('10 %', $helper->formatPercent(0.1));
