@@ -68,7 +68,9 @@ abstract class BaseHelper extends Helper
      */
     public static function getUCIDataVersion()
     {
-        parent::getICUDataVersion();
+        trigger_error(__CLASS__.'::'.__METHOD__.' is deprecated since 2.2 and will be removed on 3.0. Use '.__CLASS__.'::getICUDataVersion instead.', E_USER_DEPRECATED);
+
+        return self::getICUDataVersion();
     }
 
     /**
