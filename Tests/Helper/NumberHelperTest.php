@@ -60,16 +60,16 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('99 %', $helper->formatPercent(0.99));
 
         // ordinal
-        if (version_compare(NumberHelper::getUCIDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('1er', $helper->formatOrdinal(1), "UCI Version: ".NumberHelper::getUCIDataVersion());
-            $this->assertEquals('100e', $helper->formatOrdinal(100), "UCI Version: ".NumberHelper::getUCIDataVersion());
-            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), "UCI Version: ".NumberHelper::getUCIDataVersion());
-        } elseif (version_compare(NumberHelper::getUCIDataVersion(), '4.1.0', '>=')) {
-            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), "UCI Version: ".NumberHelper::getUCIDataVersion());
-            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), "UCI Version: ".NumberHelper::getUCIDataVersion());
-            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), "UCI Version: ".NumberHelper::getUCIDataVersion());
+        if (version_compare(NumberHelper::getICUDataVersion(), '4.8.0', '>=')) {
+            $this->assertEquals('1er', $helper->formatOrdinal(1), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('100e', $helper->formatOrdinal(100), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), "ICU Version: ".NumberHelper::getICUDataVersion());
+        } elseif (version_compare(NumberHelper::getICUDataVersion(), '4.1.0', '>=')) {
+            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), "ICU Version: ".NumberHelper::getICUDataVersion());
         } else {
-            $this->markTestIncomplete(sprintf('Unknown UCI DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getUCIDataVersion()));
+            $this->markTestIncomplete(sprintf('Unknown ICU DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getICUDataVersion()));
         }
     }
 

@@ -62,10 +62,20 @@ abstract class BaseHelper extends Helper
     }
 
     /**
+     * Typo in the fonction name
+     *
+     * @deprecated
+     */
+    public static function getUCIDataVersion()
+    {
+        parent::getICUDataVersion();
+    }
+
+    /**
      * @static
      * @return string
      */
-    public static function getUCIDataVersion()
+    public static function getICUDataVersion()
     {
         if (defined('INTL_ICU_VERSION')) {
             return INTL_ICU_VERSION;

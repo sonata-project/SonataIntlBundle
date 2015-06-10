@@ -31,6 +31,8 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider timezoneProvider
+     *
+     * @group legacy
      */
     public function testDetectsTimezoneForUser($timezone)
     {

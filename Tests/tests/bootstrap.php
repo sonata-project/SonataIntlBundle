@@ -8,4 +8,15 @@ if (file_exists($file = __DIR__.'/autoload.php')) {
 
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 
-echo sprintf("ICU Version : %s\n", DateTimeHelper::getUCIDataVersion());
+echo sprintf("ICU Version : %s\n", DateTimeHelper::getICUDataVersion());
+
+// try to get Symfony's PHPunit Bridge
+$files = array_filter(array(
+    __DIR__.'/../../vendor/symfony/symfony/src/Symfony/Bridge/PhpUnit/bootstrap.php',
+    __DIR__.'/../../vendor/symfony/phpunit-bridge/bootstrap.php',
+    __DIR__.'/../../../../../vendor/symfony/symfony/src/Symfony/Bridge/PhpUnit/bootstrap.php',
+    __DIR__.'/../../../../../vendor/symfony/phpunit-bridge/bootstrap.php',
+), 'file_exists');
+if ($files) {
+    require_once current($files);
+}

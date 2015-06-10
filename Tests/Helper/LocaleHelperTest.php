@@ -29,6 +29,9 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
         return $helper;
     }
 
+    /**
+     * @group legacy
+     */
     public function testLanguage()
     {
         $helper = $this->getHelper();
