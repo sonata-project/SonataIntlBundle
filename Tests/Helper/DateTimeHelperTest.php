@@ -70,9 +70,9 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('30 novembre 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
 
         if (version_compare(DateTimeHelper::getUCIDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG));
+            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), "UCI Version: ".DateTimeHelper::getUCIDataVersion());
         } else {
-            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG));
+            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), "UCI Version: ".DateTimeHelper::getUCIDataVersion());
         }
 
         $this->assertEquals('30 novembre 1981 02:00', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));

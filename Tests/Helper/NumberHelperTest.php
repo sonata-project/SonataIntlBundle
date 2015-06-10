@@ -61,13 +61,13 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
 
         // ordinal
         if (version_compare(NumberHelper::getUCIDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('1er', $helper->formatOrdinal(1));
-            $this->assertEquals('100e', $helper->formatOrdinal(100));
-            $this->assertEquals('10 000e', $helper->formatOrdinal(10000));
+            $this->assertEquals('1er', $helper->formatOrdinal(1), "UCI Version: ".NumberHelper::getUCIDataVersion());
+            $this->assertEquals('100e', $helper->formatOrdinal(100), "UCI Version: ".NumberHelper::getUCIDataVersion());
+            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), "UCI Version: ".NumberHelper::getUCIDataVersion());
         } elseif (version_compare(NumberHelper::getUCIDataVersion(), '4.1.0', '>=')) {
-            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1));
-            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100));
-            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000));
+            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), "UCI Version: ".NumberHelper::getUCIDataVersion());
+            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), "UCI Version: ".NumberHelper::getUCIDataVersion());
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), "UCI Version: ".NumberHelper::getUCIDataVersion());
         } else {
             $this->markTestIncomplete(sprintf('Unknown UCI DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getUCIDataVersion()));
         }
