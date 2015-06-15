@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  *
  */
+
 namespace Sonata\IntlBundle\Tests\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
 class NumberHelperTest extends \PHPUnit_Framework_TestCase
@@ -31,7 +31,7 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', array(
             // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
-            'fraction_digits' => 0
+            'fraction_digits' => 0,
         )));
 
         // decimal
@@ -66,13 +66,13 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
 
         // ordinal
         if (version_compare(NumberHelper::getICUDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('1er', $helper->formatOrdinal(1), "ICU Version: ".NumberHelper::getICUDataVersion());
-            $this->assertEquals('100e', $helper->formatOrdinal(100), "ICU Version: ".NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('1er', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('100e', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } elseif (version_compare(NumberHelper::getICUDataVersion(), '4.1.0', '>=')) {
-            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), "ICU Version: ".NumberHelper::getICUDataVersion());
-            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), "ICU Version: ".NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), "ICU Version: ".NumberHelper::getICUDataVersion());
+            $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } else {
             $this->markTestIncomplete(sprintf('Unknown ICU DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getICUDataVersion()));
         }

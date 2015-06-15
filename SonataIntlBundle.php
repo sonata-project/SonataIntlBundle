@@ -11,21 +11,21 @@
 
 namespace Sonata\IntlBundle;
 
-use Sonata\IntlBundle\DependencyInjection\Compiler\TimezoneDetectorCompilerPass;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataIntlBundle extends Bundle
 {
     /**
-     * Returns a cleaned version number
+     * Returns a cleaned version number.
      *
      * @static
+     *
      * @param $version
+     *
      * @return string
      */
     public static function getSymfonyVersion($version)
     {
-        return implode('.', array_slice(array_map(function($val) { return (int) $val; }, explode('.', $version)), 0, 3));
+        return implode('.', array_slice(array_map(function ($val) { return (int) $val; }, explode('.', $version)), 0, 3));
     }
 }

@@ -58,7 +58,6 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1293663600, $helper->getDatetime('2010-12-30')->format('U'));
         $this->assertEquals(1293708180, $helper->getDatetime('2010-12-30 12:23')->format('U'));
 
-
         // check default method
         $this->assertEquals('30 nov. 1981', $helper->formatDate($datetimeParis));
         $this->assertEquals('30 déc. 2010', $helper->formatDate('2010-12-30 12:23:23'));
@@ -70,17 +69,16 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('30 novembre 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
 
         if (version_compare(DateTimeHelper::getICUDataVersion(), '52', '>=')) {
-            $this->assertEquals('02:00:00 UTC+1', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), "ICU Version: ".DateTimeHelper::getICUDataVersion());
-        } else if (version_compare(DateTimeHelper::getICUDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), "ICU Version: ".DateTimeHelper::getICUDataVersion());
+            $this->assertEquals('02:00:00 UTC+1', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
+        } elseif (version_compare(DateTimeHelper::getICUDataVersion(), '4.8.0', '>=')) {
+            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
         } else {
-            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), "ICU Version: ".DateTimeHelper::getICUDataVersion());
+            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
         }
 
         $this->assertEquals('30 novembre 1981 02:00', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
         $this->assertEquals('30 nov. 1981 ap. J.-C.', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
-
 
     public function testLocaleTimezones()
     {
@@ -108,17 +106,16 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $dateLondon = new \DateTime('13:37', new \DateTimeZone('Europe/London'));
 
         // Test if the time is correctly corrected for the 'detected' timezone
-        $this->assertEquals('13:37', $helper->format($dateLondon, 'HH:mm'), "A date in the Europe/London timezone, should not be corrected when formatted with timezone Europe/London.");
-        $this->assertEquals('14:37', $helperWithMapping->format($dateLondon, 'HH:mm'), "A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Paris.");
-
+        $this->assertEquals('13:37', $helper->format($dateLondon, 'HH:mm'), 'A date in the Europe/London timezone, should not be corrected when formatted with timezone Europe/London.');
+        $this->assertEquals('14:37', $helperWithMapping->format($dateLondon, 'HH:mm'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Paris.');
 
         // Test if the time is correctly correct if the timezone is given as function parameter
-        $this->assertEquals('15:37', $helper->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), "A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.");
-        $this->assertEquals('15:37', $helperWithMapping->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), "A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.");
+        $this->assertEquals('15:37', $helper->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
+        $this->assertEquals('15:37', $helperWithMapping->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
 
         // Test if the time is correctly corrected for the 'detected' timezone
         $dateParis = new \DateTime('13:37', new \DateTimeZone('Europe/Paris'));
-        $this->assertEquals('12:37', $helper->format($dateParis, 'HH:mm'), "A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/London.");
-        $this->assertEquals('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), "A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.");
+        $this->assertEquals('12:37', $helper->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/London.');
+        $this->assertEquals('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.');
     }
 }

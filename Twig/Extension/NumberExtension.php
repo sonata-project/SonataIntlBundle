@@ -20,7 +20,6 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
  */
 class NumberExtension extends \Twig_Extension
 {
-
     protected $helper;
 
     public function __construct(NumberHelper $helper)

@@ -21,19 +21,19 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $processor = new Processor();
 
         $config = $processor->processConfiguration(new Configuration(), array(
-            array (
+            array(
                 'timezone' => array(
-                    'default' => 'Europe/Paris'
-                )
-            )
+                    'default' => 'Europe/Paris',
+                ),
+            ),
         ));
 
         $expected = array(
             'locale'   => false,
             'timezone' => array(
                 'detectors' => array(),
-                'default' => 'Europe/Paris',
-                'locales' => array(),
+                'default'   => 'Europe/Paris',
+                'locales'   => array(),
             ),
         );
 

@@ -11,7 +11,6 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Locale\Locale;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
 /**
@@ -42,12 +41,13 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its percent representation (0.1 => 10%)
+     * format a value with its percent representation (0.1 => 10%).
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -56,12 +56,13 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its duration representation
+     * format a value with its duration representation.
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -70,12 +71,13 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its decimal representation
+     * format a value with its decimal representation.
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -84,12 +86,13 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its spellout representation (1 => one)
+     * format a value with its spellout representation (1 => one).
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -98,13 +101,14 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its currency representation (1 => 1 $)
+     * format a value with its currency representation (1 => 1 $).
      *
      * @param float $number
      * @param $currency
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -115,12 +119,13 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its scientific representation (10 => 1E1)
+     * format a value with its scientific representation (10 => 1E1).
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -128,13 +133,14 @@ class NumberHelper extends BaseHelper
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $locale);
     }
 
-     /**
-     * format a value with its ordinal representation
+    /**
+     * format a value with its ordinal representation.
      *
-     * @param  float  $number
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -143,13 +149,14 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * format a value with its provided style
+     * format a value with its provided style.
      *
      * @param float $number
-     * @param integer style
-     * @param  array  $attributes
-     * @param  array  $textAttributes
-     * @param  null   $locale
+     * @param int style
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
      * @return string
      */
     public function format($number, $style, array $attributes = array(), array $textAttributes = array(), $locale = null)
@@ -162,8 +169,9 @@ class NumberHelper extends BaseHelper
     /**
      * @param $culture
      * @param $style
-     * @param  array            $attributes
-     * @param  array            $textAttributes
+     * @param array $attributes
+     * @param array $textAttributes
+     *
      * @return \NumberFormatter
      */
     protected function getFormatter($culture, $style, $attributes = array(), $textAttributes = array())

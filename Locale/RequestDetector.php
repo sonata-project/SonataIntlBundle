@@ -12,9 +12,8 @@
 namespace Sonata\IntlBundle\Locale;
 
 use Sonata\IntlBundle\SonataIntlBundle;
-
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
 
 class RequestDetector implements LocaleDetectorInterface
@@ -42,11 +41,12 @@ class RequestDetector implements LocaleDetectorInterface
      */
     public function getLocale()
     {
-        if ($this->container->isScopeActive("request")) {
+        if ($this->container->isScopeActive('request')) {
             if ($request = $this->container->get('request', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
                 return $request->getLocale();
             }
         }
+
         return $this->defaultLocale;
     }
 }

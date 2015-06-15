@@ -11,9 +11,9 @@
 
 namespace Sonata\IntlBundle\Locale;
 
+use Sonata\IntlBundle\SonataIntlBundle;
 use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\HttpKernel\Kernel;
-use Sonata\IntlBundle\SonataIntlBundle;
 
 class SessionDetector implements LocaleDetectorInterface
 {
