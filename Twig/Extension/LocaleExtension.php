@@ -56,10 +56,11 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * return the localized country name from the provided code
+     * return the localized country name from the provided code.
      *
      * @param  $code
-     * @param  null   $locale
+     * @param null $locale
+     *
      * @return string
      */
     public function country($code, $locale = null)
@@ -68,10 +69,11 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * return the localized locale name from the provided code
+     * return the localized locale name from the provided code.
      *
      * @param  $code
-     * @param  null   $locale
+     * @param null $locale
+     *
      * @return string
      */
     public function locale($code, $locale = null)
@@ -80,10 +82,11 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * return the localized language name from the provided code
+     * return the localized language name from the provided code.
      *
      * @param  $code
-     * @param  null   $locale
+     * @param null $locale
+     *
      * @return string
      */
     public function language($code, $locale = null)

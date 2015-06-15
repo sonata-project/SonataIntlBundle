@@ -11,8 +11,8 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Templating\Helper\Helper;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
+use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * BaseHelper provides charset conversion.
@@ -49,7 +49,8 @@ abstract class BaseHelper extends Helper
      *
      * Precondition: the kernel charset is not UTF-8
      *
-     * @param  string $string The string to fix
+     * @param string $string The string to fix
+     *
      * @return string A string with the %kernel.charset% encoding
      */
     protected function fixCharset($string)
@@ -62,7 +63,7 @@ abstract class BaseHelper extends Helper
     }
 
     /**
-     * Typo in the fonction name
+     * Typo in the fonction name.
      *
      * @deprecated
      */
@@ -75,6 +76,7 @@ abstract class BaseHelper extends Helper
 
     /**
      * @static
+     *
      * @return string
      */
     public static function getICUDataVersion()
@@ -112,6 +114,6 @@ abstract class BaseHelper extends Helper
             }
         }
 
-        return null;
+        return;
     }
 }

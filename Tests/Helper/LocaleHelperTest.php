@@ -13,7 +13,6 @@
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
-use Symfony\Component\Templating\Helper\Helper;
 use Symfony\Component\Locale\Locale;
 
 class LocaleHelperTest extends \PHPUnit_Framework_TestCase
@@ -38,7 +37,6 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('français', $helper->language('fr'));
         $this->assertEquals('French', $helper->language('fr', 'en'));
         //        $this->assertEquals('', $helper->language('fr', 'fake'));
-
     }
 
     public function testCountry()
@@ -60,6 +58,5 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('French (Canada)', $helper->locale('fr_CA', 'en'));
         //        $this->assertEquals('', $helper->locale('fr', 'fake'));
         //        $this->assertEquals('', $helper->locale('fr_CA', 'fake'));
-
     }
 }

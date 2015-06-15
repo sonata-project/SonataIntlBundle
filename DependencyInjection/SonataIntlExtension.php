@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Sonata project.
  *
@@ -11,18 +12,16 @@
 namespace Sonata\IntlBundle\DependencyInjection;
 
 use Sonata\IntlBundle\SonataIntlBundle;
-
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\Config\Definition\Processor;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
- * SonataIntlExtension
+ * SonataIntlExtension.
  *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  * @author Alexander <iam.asm89@gmail.com>
@@ -116,7 +115,7 @@ class SonataIntlExtension extends Extension
     }
 
     /**
-     * Validate timezones
+     * Validate timezones.
      *
      * @param array $timezones
      *

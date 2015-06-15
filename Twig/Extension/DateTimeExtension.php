@@ -20,7 +20,6 @@ use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
  */
 class DateTimeExtension extends \Twig_Extension
 {
-
     protected $helper;
 
     public function __construct(DateTimeHelper $helper)
