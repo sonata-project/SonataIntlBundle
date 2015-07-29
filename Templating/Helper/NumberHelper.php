@@ -178,6 +178,11 @@ class NumberHelper extends BaseHelper
     {
         $formatter = new \NumberFormatter($culture, $style);
 
+        self::checkInternalClass($formatter, '\NumberFormatter', array(
+            'culture' => $culture,
+            'style'   => $style,
+        ));
+
         foreach (array_merge($this->textAttributes, $textAttributes) as $name => $value) {
             $constantName = strtoupper($name);
             if (!defined('NumberFormatter::'.$constantName)) {

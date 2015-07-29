@@ -111,4 +111,22 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         }
         $this->assertTrue($exceptionThrown);
     }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testExceptionOnInvalidParams()
+    {
+        // https://wiki.php.net/rfc/internal_constructor_behaviour
+        $formatter = new \NumberFormatter('FR', -1);
+        $this->assertNull($formatter);
+
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
+
+        $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
+
+        $helper->format(10.49, -1);
+    }
 }
