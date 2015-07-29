@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\Kernel;
 class SonataIntlExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {

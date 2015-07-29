@@ -41,7 +41,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTimezone()
     {

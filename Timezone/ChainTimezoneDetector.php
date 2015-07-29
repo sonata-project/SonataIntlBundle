@@ -51,7 +51,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTimezone()
     {

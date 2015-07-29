@@ -35,7 +35,7 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getTimezone()
     {
