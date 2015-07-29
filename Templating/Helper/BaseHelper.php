@@ -116,4 +116,25 @@ abstract class BaseHelper extends Helper
 
         return;
     }
+
+    /**
+     * https://wiki.php.net/rfc/internal_constructor_behaviour.
+     *
+     * @param mixed  $instance
+     * @param string $class
+     * @param array  $args
+     */
+    protected static function checkInternalClass($instance, $class, array $args = array())
+    {
+        if ($instance !== null) {
+            return;
+        }
+
+        $messages = array();
+        foreach ($args as $name => $value) {
+            $messages[] = sprintf('%s => %s', $name, $value);
+        }
+
+        throw new \RuntimeException(sprintf('Unable to create internal class: %s, with params: %s', $class, implode(', ', $messages)));
+    }
 }
