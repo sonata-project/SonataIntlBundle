@@ -27,35 +27,16 @@ class NumberExtension extends \Twig_Extension
         $this->helper = $helper;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * Returns the token parser instance to add to the existing list.
-     *
-     * @return array An array of Twig_TokenParser instances
-     */
-    public function getTokenParsers()
-    {
-        return array(
-        );
-    }
-
     public function getFilters()
     {
         return array(
-            'number_format_currency'    => new \Twig_Filter_Method($this, 'formatCurrency', array('is_safe' => array('html'))),
-            'number_format_decimal'     => new \Twig_Filter_Method($this, 'formatDecimal', array('is_safe' => array('html'))),
-            'number_format_scientific'  => new \Twig_Filter_Method($this, 'formatScientific', array('is_safe' => array('html'))),
-            'number_format_spellout'    => new \Twig_Filter_Method($this, 'formatSpellout', array('is_safe' => array('html'))),
-            'number_format_percent'     => new \Twig_Filter_Method($this, 'formatPercent', array('is_safe' => array('html'))),
-            'number_format_duration'    => new \Twig_Filter_Method($this, 'formatDuration', array('is_safe' => array('html'))),
-            'number_format_ordinal'     => new \Twig_Filter_Method($this, 'formatOrdinal', array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_currency', array($this, 'formatCurrency'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_decimal', array($this, 'formatDecimal'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_scientific', array($this, 'formatScientific'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_spellout', array($this, 'formatSpellout'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_percent', array($this, 'formatPercent'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_duration', array($this, 'formatDuration'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('number_format_ordinal', array($this, 'formatOrdinal'), array('is_safe' => array('html'))),
         );
     }
 
@@ -95,9 +76,7 @@ class NumberExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
+     * {@inheritdoc}
      */
     public function getName()
     {
