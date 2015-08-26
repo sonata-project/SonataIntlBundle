@@ -27,36 +27,17 @@ class LocaleExtension extends \Twig_Extension
         $this->helper = $helper;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function initRuntime(\Twig_Environment $environment)
-    {
-        $this->environment = $environment;
-    }
-
-    /**
-     * Returns the token parser instance to add to the existing list.
-     *
-     * @return array An array of Twig_TokenParser instances
-     */
-    public function getTokenParsers()
-    {
-        return array(
-        );
-    }
-
     public function getFilters()
     {
         return array(
-            'country'    => new \Twig_Filter_Method($this, 'country', array('is_safe' => array('html'))),
-            'locale'     => new \Twig_Filter_Method($this, 'locale', array('is_safe' => array('html'))),
-            'language'   => new \Twig_Filter_Method($this, 'language', array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('country', array($this, 'country'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('locale', array($this, 'locale'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFilter('language', array($this, 'language'), array('is_safe' => array('html'))),
         );
     }
 
     /**
-     * return the localized country name from the provided code.
+     * Returns the localized country name from the provided code.
      *
      * @param  $code
      * @param null $locale
@@ -69,7 +50,7 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * return the localized locale name from the provided code.
+     * Returns the localized locale name from the provided code.
      *
      * @param  $code
      * @param null $locale
@@ -82,7 +63,7 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * return the localized language name from the provided code.
+     * Returns the localized language name from the provided code.
      *
      * @param  $code
      * @param null $locale
@@ -95,9 +76,7 @@ class LocaleExtension extends \Twig_Extension
     }
 
     /**
-     * Returns the name of the extension.
-     *
-     * @return string The extension name
+     * {@inheritdoc}
      */
     public function getName()
     {

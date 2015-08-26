@@ -20,7 +20,7 @@
         "symfony/dependency-injection": "~2.2",
         "symfony/templating": "~2.2",
         "symfony/locale": "~2.2",
-        "twig/twig": "*"
+        "twig/twig": "~1.12"
     },
     "require-dev": {
         "sonata-project/user-bundle": "~2.2",
