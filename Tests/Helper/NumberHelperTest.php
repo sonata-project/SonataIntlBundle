@@ -14,14 +14,14 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
+/**
+ * @author Stefano Arlandini <sarlandini@alice.it>
+ */
 class NumberHelperTest extends \PHPUnit_Framework_TestCase
 {
     public function testLocale()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
-        $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
-
+        $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         // currency
@@ -80,10 +80,7 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testArguments()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
-        $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
-
+        $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
 
         // Check that the 'default' options are used
@@ -93,23 +90,6 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         // Check that the options are overwritten
         $this->assertEquals('1,337', $helper->formatDecimal(1.337, array('fraction_digits' => 3)));
         $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array('negative_prefix' => 'MIN')));
-
-        // Check that exception are thrown on non-existing class constant
-        $exceptionThrown = false;
-        try {
-            $helper->formatDecimal(1.337, array('non_existant' => 3));
-        } catch (\InvalidArgumentException $e) {
-            $exceptionThrown = true;
-        }
-        $this->assertTrue($exceptionThrown);
-
-        $exceptionThrown = false;
-        try {
-            $helper->formatDecimal(1.337, array(), array('non_existant' => 'MIN'));
-        } catch (\InvalidArgumentException $e) {
-            $exceptionThrown = true;
-        }
-        $this->assertTrue($exceptionThrown);
     }
 
     /**
@@ -128,5 +108,140 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
 
         $helper->format(10.49, -1);
+    }
+
+    /**
+     * @dataProvider provideConstantValues
+     */
+    public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected)
+    {
+        $localeDetector = $this->createLocaleDetectorMock();
+        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $method = new \ReflectionMethod($helper, 'parseConstantValue');
+        $method->setAccessible(true);
+
+        if ($exceptionExpected) {
+            $this->setExpectedException('\InvalidArgumentException');
+        }
+
+        $this->assertEquals($expectedConstant, $method->invoke($helper, $constantName));
+    }
+
+    public function provideConstantValues()
+    {
+        return array(
+            array('positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false),
+            array('non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true),
+        );
+    }
+
+    /**
+     * @dataProvider provideAttributeValues
+     */
+    public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected)
+    {
+        $localeDetector = $this->createLocaleDetectorMock();
+        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $method = new \ReflectionMethod($helper, 'parseAttributes');
+        $method->setAccessible(true);
+
+        if ($exceptionExpected) {
+            $this->setExpectedException('\InvalidArgumentException');
+        }
+
+        $this->assertEquals($expectedAttributes, $method->invoke($helper, $attributes));
+    }
+
+    public function provideAttributeValues()
+    {
+        return array(
+            array(
+                array(
+                    'positive_prefix' => 'POSITIVE',
+                    'negative_prefix' => 'NEGATIVE',
+                ),
+                array(
+                    \NumberFormatter::POSITIVE_PREFIX => 'POSITIVE',
+                    \NumberFormatter::NEGATIVE_PREFIX => 'NEGATIVE',
+                ),
+                false,
+            ),
+            array(
+                array(
+                    'non_existent_constant' => 'NON_EXISTENT_VALUE',
+                ),
+                array(),
+                true,
+            ),
+        );
+    }
+
+    /**
+     * @dataProvider provideFormatMethodArguments
+     */
+    public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected)
+    {
+        $localeDetector = $this->createLocaleDetectorMock();
+        $helper = new NumberHelper('UTF-8', $localeDetector);
+
+        if ($exceptionExpected) {
+            $this->setExpectedException('\BadMethodCallException');
+        }
+
+        $this->assertEquals($expectedArguments, call_user_func_array(array($helper, 'normalizeMethodSignature'), $arguments));
+    }
+
+    public function provideFormatMethodArguments()
+    {
+        return array(
+            array(
+                array(null, null),
+                array(null, array()),
+                false,
+            ),
+            array(
+                array(null, 'fr'),
+                array('fr', array()),
+                true,
+            ),
+            array(
+                array(array(), null),
+                array(null, array()),
+                false,
+            ),
+            array(
+                array(array(), 'fr'),
+                array('fr', array()),
+                false,
+            ),
+            array(
+                array('fr', null),
+                array('fr', array()),
+                false,
+            ),
+        );
+    }
+
+    public function testFormatMethodWithDefaultArguments()
+    {
+        $localeDetector = $this->createLocaleDetectorMock();
+        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $method = new \ReflectionMethod($helper, 'format');
+        $method->setAccessible(true);
+
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array()));
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array(), 'fr'));
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array(), array()));
+    }
+
+    private function createLocaleDetectorMock()
+    {
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector
+            ->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'))
+        ;
+
+        return $localeDetector;
     }
 }
