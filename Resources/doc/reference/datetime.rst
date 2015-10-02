@@ -54,7 +54,7 @@ by providing extra parameters :
 PHP usage
 ^^^^^^^^^
 
-When defining your Admin, you can also provide exra parameters, i.e. :
+When defining your Admin, you can also provide extra parameters, i.e. :
 
 .. code-block:: php
 
