@@ -23,4 +23,4 @@ Cookbook
   :maxdepth: 1
   :numbered:
 
-  cookbooks/create_custom_timezone_detector
+  cookbook/create_custom_timezone_detector
