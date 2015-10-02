@@ -1,5 +1,5 @@
 Datetime Helper
-================
+===============
 
 The DateTime helper provides functions to format:
 
@@ -7,8 +7,11 @@ The DateTime helper provides functions to format:
  - time   : ``format_time``
  - date and time : ``format_datetime``
 
+Usage
+-----
+
 Twig usage
-----------
+^^^^^^^^^^
 
 You can format a compatible date with 4 methods, a date can be:
 
@@ -16,14 +19,13 @@ You can format a compatible date with 4 methods, a date can be:
  - a timestamp : ``375930000``
  - a date string : ``'1981-11-30'``
 
-
 .. code-block:: jinja
 
     {{ date_time_object | format_date }} => '1 févr. 2011'
     {{ date_time_object | format_time }} => '19:55:26'
     {{ date_time_object | format_datetime }} => '1 févr. 2011 19:55:26'
 
-By default the helpers methods use the current user's locale to display 
+By default the helper methods use the current user's locale to display
 information. Of course this behavior can be controlled from within the template 
 by providing extra parameters :
 
@@ -45,22 +47,43 @@ by providing extra parameters :
         constant('IntlDateFormatter::LONG'), constant('IntlDateFormatter::SHORT')) }} => '1 février 2011 19:55'
     {{ date_time_object | format_[date|time|datetime]('dd MMM Y G', 'fr', 'Europe/Paris') }} => '01 février 2011 ap. J.-C.'
 
-
 .. note::
 
-    More information about patterns can be found here: 
-    http://userguide.icu-project.org/formatparse/datetime
-
+    More information about patterns can be found here_:
 
 PHP usage
----------
+^^^^^^^^^
 
-When defining your admin list / view, you can also provide extra parameters, for example :
+When defining your Admin, you can also provide exra parameters, i.e. :
 
 .. code-block:: php
 
-    $list->add('createdAt', 'date', array(
-        'pattern' => 'dd MMM Y G',
-        'locale' => 'fr',
-        'timezone' => 'Europe/Paris',
-    ))
+    <?php
+    // src/AppBundle/Admin/PostAdmin.php
+
+    namespace AppBundle\Admin;
+
+    use Sonata\AdminBundle\Admin\Admin;
+    use Sonata\AdminBundle\Datagrid\ListMapper;
+    // ...
+
+    class PostAdmin extends Admin
+    {
+        // ...
+
+        protected function configureListFields(ListMapper $listMapper)
+        {
+            $listMapper
+                ->add('createdAt', 'date', array(
+                    'pattern' => 'dd MMM Y G',
+                    'locale' => 'fr',
+                    'timezone' => 'Europe/Paris',
+                ))
+                // ...
+            ;
+        }
+
+        // ...
+    }
+
+.. _here: http://userguide.icu-project.org/formatparse/datetime

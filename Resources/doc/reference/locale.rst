@@ -14,7 +14,6 @@ The SonataIntlBundle provides a service to automatically detect the user's local
 
 You'll need to handle the locale setting however (in request or session, depending on your Symfony version).
 
-
 Twig usage
 ----------
 
