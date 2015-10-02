@@ -1,24 +1,31 @@
 Installation
 ============
 
+Prerequisites
+-------------
+
 This bundle requires the ``php-intl`` extension.
 
-To begin, add the dependent bundles::
+The easiest way to install ``SonataTimelineBundle`` is to require it with Composer:
 
-    php composer.phar require sonata-project/intl-bundle
+.. code-block:: bash
 
-Next, be sure to enable the bundles in your application kernel:
+    $ php composer.phar require sonata-project/intl-bundle
+
+Alternatively, you could add a dependency into your ``composer.json`` file directly.
+
+Now, enable the bundle in the kernel:
 
 .. code-block:: php
 
-  <?php
-  // app/AppKernel.php
-  public function registerBundles()
-  {
-      return array(
-          // ...
-          new Sonata\IntlBundle\SonataIntlBundle(),
-          // ...
-      );
-  }
+    <?php
+    // app/AppKernel.php
 
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Sonata\IntlBundle\SonataIntlBundle(),
+            // ...
+        );
+    }

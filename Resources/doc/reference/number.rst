@@ -10,9 +10,11 @@ The number helper provides functions to format:
  - percent
  - ordinal
 
+Usage
+-----
 
 Twig usage
-----------
+^^^^^^^^^^
 
 By default, if the second argument is not set then the current locale value is
 retrieved by using the request instance.
@@ -29,20 +31,48 @@ retrieved by using the request instance.
     {{ 1|number_format_ordinal }} {# => 1ᵉʳ #}
     {{ (-1.1337)|number_format_decimal({'fraction_digits': 2}, {'negative_prefix': 'MINUS'}) }} {# => MINUS1,34 #}
 
-
 PHP usage
----------
+^^^^^^^^^
 
-When defining your admin list / view, you can also provide extra parameters, for example :
+When defining your Admin, you can also provide exra parameters, i.e. :
 
 .. code-block:: php
 
-    $list->add('amount', 'decimal', array(
-        'attributes' => array('fraction_digits' => 2),
-        'textAttributes' => array('negative_prefix' => 'MINUS'),
-    ))
+    <?php
+    // src/AppBundle/Admin/InvoiceAdmin.php
 
-    $show->add('price', 'currency', array(
-        'currency' => 'EUR',
-        'locale' => 'fr',
-    ))
+    namespace AppBundle\Admin;
+
+    use Sonata\AdminBundle\Admin\Admin;
+    use Sonata\AdminBundle\Datagrid\ListMapper;
+    use Sonata\AdminBundle\Show\ShowMapper;
+    // ...
+
+    class InvoiceAdmin extends Admin
+    {
+        // ...
+
+        protected function configureListFields(ListMapper $listMapper)
+        {
+            $listMapper
+                ->add('amount', 'decimal', array(
+                    'attributes' => array('fraction_digits' => 2),
+                    'textAttributes' => array('negative_prefix' => 'MINUS'),
+                ))
+                // ...
+            ;
+        }
+
+        protected function configureShowFields(ShowMapper $showMapper)
+        {
+            $showMapper
+                ->add('price', 'currency', array(
+                    'currency' => 'EUR',
+                    'locale' => 'fr',
+                ))
+                // ...
+            ;
+        }
+
+        // ...
+    }
