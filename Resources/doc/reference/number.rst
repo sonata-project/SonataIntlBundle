@@ -34,7 +34,7 @@ retrieved by using the request instance.
 PHP usage
 ^^^^^^^^^
 
-When defining your Admin, you can also provide exra parameters, i.e. :
+When defining your Admin, you can also provide extra parameters, i.e. :
 
 .. code-block:: php
 
