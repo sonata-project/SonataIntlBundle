@@ -27,6 +27,11 @@
             <argument />
         </service>
 
+        <service id="sonata.intl.locale_detector.request_stack" class='Sonata\IntlBundle\Locale\RequestStackDetector' >
+            <argument type="service" id="request_stack" />
+            <argument />
+        </service>
+
         <service id="sonata.intl.locale_detector.session" class='%sonata.intl.locale_detector.session.class%' >
             <argument type="service" id="session" strict="false" />
             <argument />
