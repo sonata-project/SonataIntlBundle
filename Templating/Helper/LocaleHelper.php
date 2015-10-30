@@ -11,7 +11,7 @@
 
 namespace Sonata\IntlBundle\Templating\Helper;
 
-use Symfony\Component\Locale\Locale;
+use Symfony\Component\Intl\Intl;
 
 /**
  * LocaleHelper displays culture information.
@@ -28,13 +28,9 @@ class LocaleHelper extends BaseHelper
      */
     public function country($code, $locale = null)
     {
-        $countries = Locale::getDisplayCountries($locale ?: $this->localeDetector->getLocale());
+        $name = Intl::getRegionBundle()->getCountryName($code, $locale ?: $this->localeDetector->getLocale());
 
-        if (array_key_exists($code, $countries)) {
-            return $this->fixCharset($countries[$code]);
-        }
-
-        return '';
+        return $name ? $this->fixCharset($name) : '';
     }
 
     /**
@@ -45,13 +41,11 @@ class LocaleHelper extends BaseHelper
      */
     public function language($code, $locale = null)
     {
-        $languages = Locale::getDisplayLanguages($locale ?: $this->localeDetector->getLocale());
+        $codes = explode('_', $code);
 
-        if (array_key_exists($code, $languages)) {
-            return $this->fixCharset($languages[$code]);
-        }
+        $name = Intl::getLanguageBundle()->getLanguageName($codes[0], isset($codes[1]) ? $code[1] : null, $locale ?: $this->localeDetector->getLocale());
 
-        return '';
+        return $name ? $this->fixCharset($name) : '';
     }
 
     /**
@@ -62,13 +56,9 @@ class LocaleHelper extends BaseHelper
      */
     public function locale($code, $locale = null)
     {
-        $locales = Locale::getDisplayLocales($locale ?: $this->localeDetector->getLocale());
+        $name = Intl::getLocaleBundle()->getLocaleName($code, $locale ?: $this->localeDetector->getLocale());
 
-        if (array_key_exists($code, $locales)) {
-            return $this->fixCharset($locales[$code]);
-        }
-
-        return '';
+        return $name ? $this->fixCharset($name) : '';
     }
 
     /**
