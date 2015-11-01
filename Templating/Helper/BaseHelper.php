@@ -28,13 +28,16 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 abstract class BaseHelper extends Helper
 {
+    /**
+     * @var LocaleDetectorInterface
+     */
     protected $localeDetector;
 
     /**
      * Constructor.
      *
-     * @param string                                            $charset        The output charset of the helper
-     * @param \Sonata\IntlBundle\Locale\LocaleDetectorInterface $localeDetector
+     * @param string                  $charset        The output charset of the helper
+     * @param LocaleDetectorInterface $localeDetector
      */
     public function __construct($charset, LocaleDetectorInterface $localeDetector)
     {

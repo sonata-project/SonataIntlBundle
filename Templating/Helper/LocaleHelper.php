@@ -21,8 +21,8 @@ use Symfony\Component\Locale\Locale;
 class LocaleHelper extends BaseHelper
 {
     /**
-     * @param $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */
@@ -38,8 +38,8 @@ class LocaleHelper extends BaseHelper
     }
 
     /**
-     * @param $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */
@@ -55,8 +55,8 @@ class LocaleHelper extends BaseHelper
     }
 
     /**
-     * @param $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */
@@ -72,9 +72,7 @@ class LocaleHelper extends BaseHelper
     }
 
     /**
-     * Returns the canonical name of this helper.
-     *
-     * @return string The canonical name
+     * {@inheritdoc}
      */
     public function getName()
     {

@@ -23,6 +23,9 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  */
 class DateTimeHelper extends BaseHelper
 {
+    /**
+     * @var TimezoneDetectorInterface
+     */
     protected $timezoneDetector;
 
     /**
@@ -63,8 +66,8 @@ class DateTimeHelper extends BaseHelper
     /**
      * @param \Datetime|string|int $date
      * @param null|string          $locale
-     * @param null|string timezone
-     * @param null|int dateType See \IntlDateFormatter::getDateType
+     * @param null|string          timezone
+     * @param null|int             dateType See \IntlDateFormatter::getDateType
      *
      * @return string
      */
@@ -86,9 +89,9 @@ class DateTimeHelper extends BaseHelper
     /**
      * @param \Datetime|string|int $datetime
      * @param null|string          $locale
-     * @param null|string timezone
-     * @param null|int dateType See \IntlDateFormatter::getDateType
-     * @param null|int timeType See \IntlDateFormatter::getTimeType
+     * @param null|string          timezone
+     * @param null|int             dateType See \IntlDateFormatter::getDateType
+     * @param null|int             timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -110,8 +113,8 @@ class DateTimeHelper extends BaseHelper
     /**
      * @param \Datetime|string|int $time
      * @param null|string          $locale
-     * @param null|string timezone
-     * @param null|int timeType See \IntlDateFormatter::getTimeType
+     * @param null|string          timezone
+     * @param null|int             timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -132,9 +135,9 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \Datetime|string|int $datetime
-     * @param $pattern
-     * @param null|string $locale
-     * @param null|string timezone
+     * @param                      $pattern
+     * @param null|string          $locale
+     * @param null|string          timezone
      *
      * @return string
      */
@@ -198,9 +201,7 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * Returns the canonical name of this helper.
-     *
-     * @return string The canonical name
+     * {@inheritdoc}
      */
     public function getName()
     {

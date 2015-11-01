@@ -20,13 +20,22 @@ use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
  */
 class DateTimeExtension extends \Twig_Extension
 {
+    /**
+     * @var DateTimeHelper
+     */
     protected $helper;
 
+    /**
+     * @param DateTimeHelper $helper
+     */
     public function __construct(DateTimeHelper $helper)
     {
         $this->helper = $helper;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(
@@ -36,6 +45,15 @@ class DateTimeExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @param \Datetime|string|int $date
+     * @param string|null          $pattern
+     * @param string|null          $locale
+     * @param string|null          $timezone
+     * @param string|null          $dateType
+     *
+     * @return string
+     */
     public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
         if ($pattern) {
@@ -45,6 +63,15 @@ class DateTimeExtension extends \Twig_Extension
         return $this->helper->formatDate($date, $locale, $timezone, $dateType);
     }
 
+    /**
+     * @param \Datetime|string|int $time
+     * @param string|null          $pattern
+     * @param string|null          $locale
+     * @param string|null          $timezone
+     * @param string|null          $timeType
+     *
+     * @return string
+     */
     public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
         if ($pattern) {
@@ -54,6 +81,16 @@ class DateTimeExtension extends \Twig_Extension
         return $this->helper->formatTime($time, $locale, $timezone, $timeType);
     }
 
+    /**
+     * @param \Datetime|string|int $time
+     * @param string|null          $pattern
+     * @param string|null          $locale
+     * @param string|null          $timezone
+     * @param string|null          $dateType
+     * @param string|null          $timeType
+     *
+     * @return string
+     */
     public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
         if ($pattern) {

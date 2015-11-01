@@ -17,13 +17,19 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class SessionDetector implements LocaleDetectorInterface
 {
+    /**
+     * @var Session
+     */
     protected $session;
 
+    /**
+     * @var string
+     */
     protected $defaultLocale;
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Session $session
-     * @param string                                    $defaultLocale
+     * @param Session $session
+     * @param string  $defaultLocale
      */
     public function __construct(Session $session, $defaultLocale)
     {
@@ -36,7 +42,7 @@ class SessionDetector implements LocaleDetectorInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLocale()
     {
