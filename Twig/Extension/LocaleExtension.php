@@ -20,13 +20,22 @@ use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
  */
 class LocaleExtension extends \Twig_Extension
 {
+    /**
+     * @var LocaleHelper
+     */
     protected $helper;
 
+    /**
+     * @param LocaleHelper $helper
+     */
     public function __construct(LocaleHelper $helper)
     {
         $this->helper = $helper;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(
@@ -39,8 +48,8 @@ class LocaleExtension extends \Twig_Extension
     /**
      * Returns the localized country name from the provided code.
      *
-     * @param  $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */
@@ -52,8 +61,8 @@ class LocaleExtension extends \Twig_Extension
     /**
      * Returns the localized locale name from the provided code.
      *
-     * @param  $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */
@@ -65,8 +74,8 @@ class LocaleExtension extends \Twig_Extension
     /**
      * Returns the localized language name from the provided code.
      *
-     * @param  $code
-     * @param null $locale
+     * @param string      $code
+     * @param string|null $locale
      *
      * @return string
      */

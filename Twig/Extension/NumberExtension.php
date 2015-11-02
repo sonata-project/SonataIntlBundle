@@ -20,13 +20,22 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
  */
 class NumberExtension extends \Twig_Extension
 {
+    /**
+     * @var NumberHelper
+     */
     protected $helper;
 
+    /**
+     * @param NumberHelper $helper
+     */
     public function __construct(NumberHelper $helper)
     {
         $this->helper = $helper;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFilters()
     {
         return array(
@@ -40,36 +49,93 @@ class NumberExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @param float  $number
+     * @param string $currency
+     * @param array  $attributes
+     * @param array  $textAttributes
+     * @param null   $locale
+     *
+     * @return string
+     */
     public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatDecimal($number, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatScientific($number, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatDuration($number, $attributes, $textAttributes, $locale);
     }
 
+    /**
+     * @param float $number
+     * @param array $attributes
+     * @param array $textAttributes
+     * @param null  $locale
+     *
+     * @return string
+     */
     public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
         return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $locale);

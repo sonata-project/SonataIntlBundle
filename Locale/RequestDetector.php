@@ -18,13 +18,19 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class RequestDetector implements LocaleDetectorInterface
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
 
+    /**
+     * @var string
+     */
     protected $defaultLocale;
 
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
-     * @param string                                                    $defaultLocale
+     * @param ContainerInterface $container
+     * @param string             $defaultLocale
      */
     public function __construct(ContainerInterface $container, $defaultLocale)
     {
@@ -37,7 +43,7 @@ class RequestDetector implements LocaleDetectorInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLocale()
     {

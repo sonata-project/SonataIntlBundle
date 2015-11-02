@@ -20,17 +20,23 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  */
 class NumberHelper extends BaseHelper
 {
+    /**
+     * @var array
+     */
     protected $attributes = array();
 
+    /**
+     * @var array
+     */
     protected $textAttributes = array();
 
     /**
      * Constructor.
      *
-     * @param string                                            $charset        The output charset of the helper
-     * @param \Sonata\IntlBundle\Locale\LocaleDetectorInterface $localeDetector
-     * @param array                                             $attributes     The default attributes to apply to the NumberFormatter instance
-     * @param array                                             $textAttributes The default text attributes to apply to the NumberFormatter instance
+     * @param string                  $charset        The output charset of the helper
+     * @param LocaleDetectorInterface $localeDetector
+     * @param array                   $attributes     The default attributes to apply to the NumberFormatter instance
+     * @param array                   $textAttributes The default text attributes to apply to the NumberFormatter instance
      */
     public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = array(), array $textAttributes = array())
     {
@@ -205,9 +211,7 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * Returns the canonical name of this helper.
-     *
-     * @return string The canonical name
+     * {@inheritdoc}
      */
     public function getName()
     {
