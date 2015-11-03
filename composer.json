@@ -19,7 +19,7 @@
         "symfony/http-kernel": "~2.2",
         "symfony/dependency-injection": "~2.2",
         "symfony/templating": "~2.2",
-        "symfony/locale": "~2.2",
+        "symfony/intl": "^2.3.21",
         "twig/twig": "~1.12"
     },
     "require-dev": {
