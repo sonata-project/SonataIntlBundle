@@ -16,17 +16,18 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": "~2.2",
-        "symfony/dependency-injection": "~2.2",
-        "symfony/templating": "~2.2",
-        "symfony/intl": "^2.3.21",
+        "symfony/http-kernel": "~2.2|~3.0",
+        "symfony/dependency-injection": "~2.2|~3.0",
+        "symfony/templating": "~2.2|~3.0",
+        "symfony/intl": "^2.3.21|~3.0",
         "twig/twig": "~1.12"
     },
     "require-dev": {
         "sonata-project/user-bundle": "~2.2",
         "symfony/security": "~2.2",
         "symfony/phpunit-bridge": "~2.7|~3.0",
-        "fabpot/php-cs-fixer": "~0.5|~1.0"
+        "fabpot/php-cs-fixer": "~0.5|~1.0",
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.5"
     },
     "autoload": {
         "psr-4": { "Sonata\\IntlBundle\\": "" }
