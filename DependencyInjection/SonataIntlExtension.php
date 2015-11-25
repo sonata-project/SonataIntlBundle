@@ -90,6 +90,11 @@ class SonataIntlExtension extends Extension
 
         if (!isset($bundles['SonataUserBundle'])) {
             $container->removeDefinition('sonata.intl.timezone_detector.user');
+        } else {
+            // support Symfony2.6+
+            $container->getDefinition('sonata.intl.timezone_detector.user')
+                ->replaceArgument(0, new Reference(interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')
+                    ? 'security.token_storage' : 'security.context'));
         }
 
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);

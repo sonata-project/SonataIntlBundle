@@ -77,8 +77,7 @@
 
         <service id="sonata.intl.timezone_detector.user" class="%sonata.intl.timezone_detector.user.class%">
             <tag name="sonata_intl.timezone_detector" alias="user" />
-            <argument type="service" id="security.context" />
-            <argument />
+            <argument type="service" />
         </service>
 
         <service id="sonata.intl.timezone_detector.locale" class="%sonata.intl.timezone_detector.locale.class%">

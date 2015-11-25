@@ -24,10 +24,10 @@
     },
     "require-dev": {
         "sonata-project/user-bundle": "~2.2",
-        "symfony/security": "~2.2",
+        "symfony/security": "~2.2|~3.0",
         "symfony/phpunit-bridge": "~2.7|~3.0",
         "fabpot/php-cs-fixer": "~0.5|~1.0",
-        "matthiasnoback/symfony-dependency-injection-test": "^0.7.5"
+        "matthiasnoback/symfony-dependency-injection-test": "^0.7.6"
     },
     "autoload": {
         "psr-4": { "Sonata\\IntlBundle\\": "" }
