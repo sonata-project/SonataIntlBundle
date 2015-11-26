@@ -14,19 +14,23 @@ namespace Sonata\IntlBundle\Twig\Extension;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
 /**
- * NumberExtension extends Twig with number capabilities.
+ * NumberExtension extends Twig with some filters to format numbers according
+ * to locale and/or custom options.
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
+ * @author Stefano Arlandini <sarlandini@alice.it>
  */
 class NumberExtension extends \Twig_Extension
 {
     /**
-     * @var NumberHelper
+     * @var NumberHelper The instance of the NumberHelper helper.
      */
     protected $helper;
 
     /**
-     * @param NumberHelper $helper
+     * Class constructor.
+     *
+     * @param NumberHelper $helper A NumberHelper helper instance.
      */
     public function __construct(NumberHelper $helper)
     {
@@ -50,102 +54,158 @@ class NumberExtension extends \Twig_Extension
     }
 
     /**
-     * @param float  $number
-     * @param string $currency
-     * @param array  $attributes
-     * @param array  $textAttributes
-     * @param null   $locale
-     *
-     * @return string
-     */
-    public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatDecimal($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatScientific($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatSpellout($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatPercent($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatDuration($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
-     * @param float $number
-     * @param array $attributes
-     * @param array $textAttributes
-     * @param null  $locale
-     *
-     * @return string
-     */
-    public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
-    {
-        return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $locale);
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getName()
     {
         return 'sonata_intl_number';
+    }
+
+    /**
+     * Formats a number as currency according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param string           $currency       The currency in which format the number.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 6, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+
+        return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number as decimal according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number in scientific notation according to the specified
+     * locale and \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number as spellout according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number as percent according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number as duration according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
+    }
+
+    /**
+     * Formats a number as ordinal according to the specified locale and
+     * \NumberFormatter attributes.
+     *
+     * @param string|float|int $number         The number to format.
+     * @param array            $attributes     The attributes used by \NumberFormatter.
+     * @param array            $textAttributes The text attributes used by \NumberFormatter.
+     * @param array            $symbols        The symbols used by the formatter.
+     * @param string|null      $locale         The locale used to format the number.
+     *
+     * @return string The formatted number.
+     */
+    public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    {
+        $methodArgs = array_pad(func_get_args(), 5, null);
+
+        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
     }
 }
