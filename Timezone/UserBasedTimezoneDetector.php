@@ -55,7 +55,5 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
         if ($user instanceof User) {
             return $user->getTimezone();
         }
-
-        return;
     }
 }
