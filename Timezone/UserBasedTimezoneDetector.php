@@ -12,8 +12,8 @@
 namespace Sonata\IntlBundle\Timezone;
 
 use Sonata\UserBundle\Model\User;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 /**
  * Detects timezones based on the detected locale.
@@ -23,7 +23,7 @@ use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 class UserBasedTimezoneDetector implements TimezoneDetectorInterface
 {
     /**
-     * @var SecurityContextInterface
+     * @var SecurityContextInterface|TokenStorageInterface
      */
     protected $securityContext;
 
@@ -32,6 +32,10 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
      */
     public function __construct($securityContext)
     {
+        if (!$securityContext instanceof TokenStorageInterface && !$securityContext instanceof SecurityContextInterface) {
+            throw new \InvalidArgumentException('Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
+        }
+
         $this->securityContext = $securityContext;
     }
 

@@ -73,14 +73,26 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
 
     public function testTimezoneNotDetected()
     {
-        $securityContext = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
-        $securityContext
+        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
+            $storage = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
+        } else {
+            $storage = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
+        }
+
+        $storage
             ->expects($this->any())
             ->method('getToken')
             ->will($this->returnValue(null))
         ;
 
-        $timezoneDetector = new UserBasedTimezoneDetector($securityContext);
+        $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertEquals(null, $timezoneDetector->getTimezone());
+    }
+
+    public function testInvalidArgumentException()
+    {
+        $this->setExpectedException('\InvalidArgumentException', 'Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
+
+        new UserBasedTimezoneDetector(new \stdClass());
     }
 }
