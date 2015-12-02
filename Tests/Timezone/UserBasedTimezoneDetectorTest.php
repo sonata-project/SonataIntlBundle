@@ -37,6 +37,10 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testDetectsTimezoneForUser($timezone)
     {
+        if (!class_exists('Sonata\UserBundle\Model\User')) {
+            $this->markTestSkipped('SonataUserBundle not installed.');
+        }
+
         $user = $this->getMock('Sonata\UserBundle\Model\User');
         $user
             ->expects($this->any())
