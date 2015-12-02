@@ -15,10 +15,6 @@ cache:
     - $HOME/.composer/cache
     - $HOME/.cache/pip
 
-env:
-  global:
-    - SYMFONY_DEPRECATIONS_HELPER=weak
-
 matrix:
   fast_finish: true
   include:
@@ -33,9 +29,9 @@ matrix:
     - php: 5.6
       env: SYMFONY_VERSION=2.7.*
     - php: 5.6
-      env: SYMFONY_VERSION=2.8.*@dev
+      env: SYMFONY_VERSION=2.8.*
     - php: 5.6
-      env: SYMFONY_VERSION="3.0.x-dev" DEPENDENCIES="dev" COMPOSER_FLAGS="--prefer-stable"
+      env: SYMFONY_VERSION=3.0.*
   allow_failures:
     - php: 7.0
     - php: hhvm
@@ -44,7 +40,6 @@ before_script:
   - mkdir -p ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d && echo "memory_limit=-1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - composer selfupdate
   - composer config -q github-oauth.github.com $GITHUB_OAUTH_TOKEN
-  - if [ "$SYMFONY_VERSION" = "2.8.*@dev" ] || [ "$SYMFONY_VERSION" = "3.0.x-dev" ]; then SYMFONY_DEPRECATIONS_HELPER=strict; fi;
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
   - if [ "$DEPENDENCIES" = "dev" ]; then perl -pi -e 's/^}$/,"minimum-stability":"dev"}/' composer.json; fi;
   - travis_wait composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
