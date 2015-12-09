@@ -83,4 +83,11 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
         $timezoneDetector = new UserBasedTimezoneDetector($securityContext);
         $this->assertEquals(null, $timezoneDetector->getTimezone());
     }
+
+    public function testInvalidArgumentException()
+    {
+        $this->setExpectedException('\InvalidArgumentException', 'Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
+
+        new UserBasedTimezoneDetector(new \stdClass());
+    }
 }
