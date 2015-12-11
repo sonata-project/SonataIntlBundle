@@ -13,7 +13,6 @@
 namespace Sonata\IntlBundle\Tests\Timezone;
 
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
-use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Tests for the LocaleBasedTimezoneDetector.
@@ -51,21 +50,17 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue($user))
         ;
 
-        if (Kernel::MAJOR_VERSION < 3) {
-            $storage = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
-            $storage
-                ->expects($this->any())
-                ->method('getToken')
-                ->will($this->returnValue($token))
-            ;
-        } else {
+        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $storage = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
-            $storage
-                ->expects($this->any())
-                ->method('getToken')
-                ->will($this->returnValue($token))
-            ;
+        } else {
+            $storage = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
         }
+
+        $storage
+            ->expects($this->any())
+            ->method('getToken')
+            ->will($this->returnValue($token))
+        ;
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertEquals($timezone, $timezoneDetector->getTimezone());
