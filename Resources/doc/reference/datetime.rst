@@ -45,7 +45,7 @@ by providing extra parameters :
     {{ date_time_object | format_time(null, 'fr', 'Europe/Paris', constant('IntlDateFormatter::SHORT')) }} => '19:55'
     {{ date_time_object | format_datetime(null, 'fr', 'Europe/Paris',
         constant('IntlDateFormatter::LONG'), constant('IntlDateFormatter::SHORT')) }} => '1 février 2011 19:55'
-    {{ date_time_object | format_[date|time|datetime]('dd MMM Y G', 'fr', 'Europe/Paris') }} => '01 février 2011 ap. J.-C.'
+    {{ date_time_object | format_[date|time|datetime]('dd MMM y G', 'fr', 'Europe/Paris') }} => '01 février 2011 ap. J.-C.'
 
 .. note::
 
@@ -75,7 +75,7 @@ When defining your Admin, you can also provide extra parameters, i.e. :
         {
             $listMapper
                 ->add('createdAt', 'date', array(
-                    'pattern' => 'dd MMM Y G',
+                    'pattern' => 'dd MMM y G',
                     'locale' => 'fr',
                     'timezone' => 'Europe/Paris',
                 ))
