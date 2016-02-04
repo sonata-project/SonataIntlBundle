@@ -29,6 +29,8 @@
         "fabpot/php-cs-fixer": "~0.5|~1.0",
         "matthiasnoback/symfony-dependency-injection-test": "^0.7.6"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\IntlBundle\\": "" }
     },
