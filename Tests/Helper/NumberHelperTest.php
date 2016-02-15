@@ -98,7 +98,12 @@ class NumberHelperTest extends \PHPUnit_Framework_TestCase
     public function testExceptionOnInvalidParams()
     {
         // https://wiki.php.net/rfc/internal_constructor_behaviour
-        $formatter = new \NumberFormatter('FR', -1);
+        try {
+            $formatter = new \NumberFormatter('FR', -1);
+        } catch (\IntlException $e) {
+            throw new \RuntimeException($e->getMessage());
+        }
+
         $this->assertNull($formatter);
 
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
