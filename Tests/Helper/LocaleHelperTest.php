@@ -35,6 +35,7 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
         $helper = $this->getHelper();
         $this->assertEquals('français', $helper->language('fr'));
         $this->assertEquals('français', $helper->language('fr_FR'));
+        $this->assertEquals('anglais américain', $helper->language('en_US'));
         $this->assertEquals('French', $helper->language('fr', 'en'));
         //        $this->assertEquals('', $helper->language('fr', 'fake'));
     }
