@@ -43,8 +43,11 @@ class LocaleHelper extends BaseHelper
     {
         $codes = explode('_', $code);
 
-        $name = Intl::getLanguageBundle()->getLanguageName($codes[0], isset($codes[1]) ? $codes[1] : null, 
-            $locale ?: $this->localeDetector->getLocale());
+        $name = Intl::getLanguageBundle()->getLanguageName(
+            $codes[0],
+            isset($codes[1]) ? $codes[1] : null,
+            $locale ?: $this->localeDetector->getLocale()
+        );
 
         return $name ? $this->fixCharset($name) : '';
     }
