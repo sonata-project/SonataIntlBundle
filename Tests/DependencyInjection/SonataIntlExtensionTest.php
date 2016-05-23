@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -16,13 +16,6 @@ use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;
 
 class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
-    protected function getContainerExtensions()
-    {
-        return array(
-            new SonataIntlExtension(),
-        );
-    }
-
     public function testLoad()
     {
         $this->setParameter('kernel.bundles', array());
@@ -36,5 +29,12 @@ class SonataIntlExtensionTest extends AbstractExtensionTestCase
         } else {
             $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.session');
         }
+    }
+
+    protected function getContainerExtensions()
+    {
+        return array(
+            new SonataIntlExtension(),
+        );
     }
 }
