@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -44,25 +44,6 @@ abstract class BaseHelper extends Helper
         $this->setCharset($charset);
 
         $this->localeDetector = $localeDetector;
-    }
-
-    /**
-     * Fixes the charset by converting a string from an UTF-8 charset to the
-     * charset of the kernel.
-     *
-     * Precondition: the kernel charset is not UTF-8
-     *
-     * @param string $string The string to fix
-     *
-     * @return string A string with the %kernel.charset% encoding
-     */
-    protected function fixCharset($string)
-    {
-        if ('UTF-8' !== $this->getCharset()) {
-            $string = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
-        }
-
-        return $string;
     }
 
     /**
@@ -118,6 +99,25 @@ abstract class BaseHelper extends Helper
         }
 
         return;
+    }
+
+    /**
+     * Fixes the charset by converting a string from an UTF-8 charset to the
+     * charset of the kernel.
+     *
+     * Precondition: the kernel charset is not UTF-8
+     *
+     * @param string $string The string to fix
+     *
+     * @return string A string with the %kernel.charset% encoding
+     */
+    protected function fixCharset($string)
+    {
+        if ('UTF-8' !== $this->getCharset()) {
+            $string = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
+        }
+
+        return $string;
     }
 
     /**

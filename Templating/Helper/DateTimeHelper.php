@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -46,24 +46,6 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param array $args
-     *
-     * @return \IntlDateFormatter
-     */
-    protected static function createInstance(array $args = array())
-    {
-        if (!self::$reflection) {
-            self::$reflection = new \ReflectionClass('IntlDateFormatter');
-        }
-
-        $instance = self::$reflection->newInstanceArgs($args);
-
-        self::checkInternalClass($instance, '\IntlDateFormatter', $args);
-
-        return $instance;
-    }
-
-    /**
      * @param \Datetime|string|int $date
      * @param null|string          $locale
      * @param null|string          timezone
@@ -76,7 +58,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = self::createInstance(array(
-            'locale'   => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             'timetype' => \IntlDateFormatter::NONE,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -100,7 +82,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance(array(
-            'locale'   => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -123,7 +105,7 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = self::createInstance(array(
-            'locale'   => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => \IntlDateFormatter::NONE,
             'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
@@ -146,12 +128,12 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance(array(
-            'locale'   => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => \IntlDateFormatter::FULL,
             'timetype' => \IntlDateFormatter::FULL,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
-            'pattern'  => $pattern,
+            'pattern' => $pattern,
         ));
 
         return $this->process($formatter, $date);
@@ -206,5 +188,23 @@ class DateTimeHelper extends BaseHelper
     public function getName()
     {
         return 'sonata_intl_datetime';
+    }
+
+    /**
+     * @param array $args
+     *
+     * @return \IntlDateFormatter
+     */
+    protected static function createInstance(array $args = array())
+    {
+        if (!self::$reflection) {
+            self::$reflection = new \ReflectionClass('IntlDateFormatter');
+        }
+
+        $instance = self::$reflection->newInstanceArgs($args);
+
+        self::checkInternalClass($instance, '\IntlDateFormatter', $args);
+
+        return $instance;
     }
 }

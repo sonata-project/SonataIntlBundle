@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -262,6 +262,14 @@ class NumberHelper extends BaseHelper
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return 'sonata_intl_number';
+    }
+
+    /**
      * Gets an instance of \NumberFormatter set with the given attributes and
      * style.
      *
@@ -282,7 +290,7 @@ class NumberHelper extends BaseHelper
 
         self::checkInternalClass($formatter, '\NumberFormatter', array(
             'culture' => $culture,
-            'style'   => $style,
+            'style' => $style,
         ));
 
         foreach ($attributes as $attribute => $value) {
@@ -298,14 +306,6 @@ class NumberHelper extends BaseHelper
         }
 
         return $formatter;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'sonata_intl_number';
     }
 
     /**

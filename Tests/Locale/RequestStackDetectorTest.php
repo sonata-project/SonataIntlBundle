@@ -1,13 +1,12 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 namespace Sonata\IntlBundle\Tests\Locale;
@@ -31,7 +30,7 @@ class RequestStackDetectorTest extends \PHPUnit_Framework_TestCase
     public function testGetLocale()
     {
         $requestStack = $this->getMock('Symfony\Component\HttpFoundation\RequestStack');
-        $request      = $this->getMock('Symfony\Component\HttpFoundation\Request');
+        $request = $this->getMock('Symfony\Component\HttpFoundation\Request');
 
         $requestStack
             ->expects($this->any())

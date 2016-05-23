@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -31,7 +31,7 @@ class RequestStackDetector implements LocaleDetectorInterface
      */
     public function __construct(RequestStack $requestStack, $defaultLocale)
     {
-        $this->requestStack  = $requestStack;
+        $this->requestStack = $requestStack;
         $this->defaultLocale = $defaultLocale;
     }
 
