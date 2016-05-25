@@ -20,6 +20,16 @@ use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
  */
 class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        if (!class_exists('Sonata\UserBundle\SonataUserBundle')) {
+            $this->markTestSkipped('SonataUserBundle must be installed to run this test.');
+        }
+    }
+
     public static function timezoneProvider()
     {
         return array(
