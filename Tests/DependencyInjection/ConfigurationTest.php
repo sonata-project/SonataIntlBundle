@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -29,11 +29,11 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         ));
 
         $expected = array(
-            'locale'   => false,
+            'locale' => false,
             'timezone' => array(
                 'detectors' => array(),
-                'default'   => 'Europe/Paris',
-                'locales'   => array(),
+                'default' => 'Europe/Paris',
+                'locales' => array(),
             ),
         );
 
