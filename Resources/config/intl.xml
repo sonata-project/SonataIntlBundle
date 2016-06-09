@@ -1,89 +1,70 @@
-<?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="sonata.intl.locale_detector.request.class">Sonata\IntlBundle\Locale\RequestDetector</parameter>
         <parameter key="sonata.intl.locale_detector.session.class">Sonata\IntlBundle\Locale\SessionDetector</parameter>
-
         <parameter key="sonata.intl.templating.helper.locale.class">Sonata\IntlBundle\Templating\Helper\LocaleHelper</parameter>
         <parameter key="sonata.intl.templating.helper.number.class">Sonata\IntlBundle\Templating\Helper\NumberHelper</parameter>
         <parameter key="sonata.intl.templating.helper.datetime.class">Sonata\IntlBundle\Templating\Helper\DateTimeHelper</parameter>
-
         <parameter key="sonata.intl.timezone_detector.chain.class">Sonata\IntlBundle\Timezone\ChainTimezoneDetector</parameter>
         <parameter key="sonata.intl.timezone_detector.user.class">Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector</parameter>
         <parameter key="sonata.intl.timezone_detector.locale.class">Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector</parameter>
-
         <parameter key="sonata.intl.twig.helper.locale.class">Sonata\IntlBundle\Twig\Extension\LocaleExtension</parameter>
         <parameter key="sonata.intl.twig.helper.number.class">Sonata\IntlBundle\Twig\Extension\NumberExtension</parameter>
         <parameter key="sonata.intl.twig.helper.datetime.class">Sonata\IntlBundle\Twig\Extension\DateTimeExtension</parameter>
     </parameters>
-
     <services>
-        <service id="sonata.intl.locale_detector.request" class='%sonata.intl.locale_detector.request.class%' >
-            <argument type="service" id="service_container" strict="false" />
-            <argument />
+        <service id="sonata.intl.locale_detector.request" class="%sonata.intl.locale_detector.request.class%">
+            <argument type="service" id="service_container" strict="false"/>
+            <argument/>
         </service>
-
-        <service id="sonata.intl.locale_detector.request_stack" class='Sonata\IntlBundle\Locale\RequestStackDetector' >
-            <argument type="service" id="request_stack" />
-            <argument />
+        <service id="sonata.intl.locale_detector.request_stack" class="Sonata\IntlBundle\Locale\RequestStackDetector">
+            <argument type="service" id="request_stack"/>
+            <argument/>
         </service>
-
-        <service id="sonata.intl.locale_detector.session" class='%sonata.intl.locale_detector.session.class%' >
-            <argument type="service" id="session" strict="false" />
-            <argument />
+        <service id="sonata.intl.locale_detector.session" class="%sonata.intl.locale_detector.session.class%">
+            <argument type="service" id="session" strict="false"/>
+            <argument/>
         </service>
-
         <service id="sonata.intl.templating.helper.locale" class="%sonata.intl.templating.helper.locale.class%">
-            <tag name="templating.helper" alias="locale" />
+            <tag name="templating.helper" alias="locale"/>
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="sonata.intl.locale_detector" />
+            <argument type="service" id="sonata.intl.locale_detector"/>
         </service>
-
         <service id="sonata.intl.templating.helper.number" class="%sonata.intl.templating.helper.number.class%">
-            <tag name="templating.helper" alias="number" />
+            <tag name="templating.helper" alias="number"/>
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="sonata.intl.locale_detector" />
+            <argument type="service" id="sonata.intl.locale_detector"/>
         </service>
-
         <service id="sonata.intl.templating.helper.datetime" class="%sonata.intl.templating.helper.datetime.class%">
-            <tag name="templating.helper" alias="datetime" />
-            <argument type="service" id="sonata.intl.timezone_detector" />
+            <tag name="templating.helper" alias="datetime"/>
+            <argument type="service" id="sonata.intl.timezone_detector"/>
             <argument>%kernel.charset%</argument>
-            <argument type="service" id="sonata.intl.locale_detector" />
+            <argument type="service" id="sonata.intl.locale_detector"/>
         </service>
-
         <service id="sonata.intl.twig.extension.locale" class="%sonata.intl.twig.helper.locale.class%" public="false">
-            <tag name="twig.extension" />
-            <argument type="service" id="sonata.intl.templating.helper.locale" />
+            <tag name="twig.extension"/>
+            <argument type="service" id="sonata.intl.templating.helper.locale"/>
         </service>
-
         <service id="sonata.intl.twig.extension.number" class="%sonata.intl.twig.helper.number.class%" public="false">
-            <tag name="twig.extension" />
-            <argument type="service" id="sonata.intl.templating.helper.number" />
+            <tag name="twig.extension"/>
+            <argument type="service" id="sonata.intl.templating.helper.number"/>
         </service>
-
         <service id="sonata.intl.twig.extension.datetime" class="%sonata.intl.twig.helper.datetime.class%" public="false">
-            <tag name="twig.extension" />
-            <argument type="service" id="sonata.intl.templating.helper.datetime" />
+            <tag name="twig.extension"/>
+            <argument type="service" id="sonata.intl.templating.helper.datetime"/>
         </service>
-
         <service id="sonata.intl.timezone_detector.chain" class="%sonata.intl.timezone_detector.chain.class%">
-            <argument />
+            <argument/>
         </service>
-
         <service id="sonata.intl.timezone_detector.user" class="%sonata.intl.timezone_detector.user.class%">
-            <tag name="sonata_intl.timezone_detector" alias="user" />
-            <argument />
+            <tag name="sonata_intl.timezone_detector" alias="user"/>
+            <argument/>
         </service>
-
         <service id="sonata.intl.timezone_detector.locale" class="%sonata.intl.timezone_detector.locale.class%">
-            <tag name="sonata_intl.timezone_detector" alias="locale" />
-            <argument type="service" id="sonata.intl.locale_detector" />
-            <argument />
+            <tag name="sonata_intl.timezone_detector" alias="locale"/>
+            <argument type="service" id="sonata.intl.locale_detector"/>
+            <argument/>
         </service>
     </services>
 </container>
