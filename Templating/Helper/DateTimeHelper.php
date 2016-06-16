@@ -166,6 +166,12 @@ class DateTimeHelper extends BaseHelper
             return $data;
         }
 
+        if ($data instanceof \DateTimeImmutable) {
+            $date = \DateTime::createFromFormat('U', $data->getTimestamp());
+
+            return $date;
+        }
+
         // the format method accept array or integer
         if (is_numeric($data)) {
             $data = (int) $data;
