@@ -18,6 +18,8 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * DateHelper displays culture information. More information here
  * http://userguide.icu-project.org/formatparse/datetime.
  *
+ * NEXT_MAJOR: Remove all \DateTime hints as soon as PHP >=5.5 is required.
+ *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
@@ -46,10 +48,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \DateTimeInterface|string|int $date
-     * @param null|string                   $locale
-     * @param null|string                   $timezone
-     * @param null|int                      $dateType See \IntlDateFormatter::getDateType
+     * @param \DateTime|\DateTimeInterface|string|int $date
+     * @param null|string                             $locale
+     * @param null|string                             $timezone
+     * @param null|int                                $dateType See \IntlDateFormatter::getDateType
      *
      * @return string
      */
@@ -69,11 +71,11 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \DateTimeInterface|string|int $datetime
-     * @param null|string                   $locale
-     * @param null|string                   $timezone
-     * @param null|int                      $dateType See \IntlDateFormatter::getDateType
-     * @param null|int                      $timeType See \IntlDateFormatter::getTimeType
+     * @param \DateTime|\DateTimeInterface|string|int $datetime
+     * @param null|string                             $locale
+     * @param null|string                             $timezone
+     * @param null|int                                $dateType See \IntlDateFormatter::getDateType
+     * @param null|int                                $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -93,10 +95,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \DateTimeInterface|string|int $time
-     * @param null|string                   $locale
-     * @param null|string                   $timezone
-     * @param null|int                      $timeType See \IntlDateFormatter::getTimeType
+     * @param \DateTime|\DateTimeInterface|string|int $time
+     * @param null|string                             $locale
+     * @param null|string                             $timezone
+     * @param null|int                                $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -116,10 +118,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \DateTimeInterface|string|int $datetime
-     * @param                               $pattern
-     * @param null|string                   $locale
-     * @param null|string                   $timezone
+     * @param \DateTime|\DateTimeInterface|string|int $datetime
+     * @param                                         $pattern
+     * @param null|string                             $locale
+     * @param null|string                             $timezone
      *
      * @return string
      */
@@ -139,9 +141,9 @@ class DateTimeHelper extends BaseHelper
         return $this->process($formatter, $date);
     }
 
-    // NEXT_MAJOR: Change to \DateTimeInterface
-
     /**
+     * NEXT_MAJOR: Change to $date to \DateTimeInterface.
+     *
      * @param \IntlDateFormatter $formatter
      * @param \DateTime          $date
      *
@@ -157,8 +159,8 @@ class DateTimeHelper extends BaseHelper
     /**
      * Gets a date time instance by a given data and timezone.
      *
-     * @param \DateTimeInterface|string|int $data     Value representing date
-     * @param null|string                   $timezone Timezone of the date
+     * @param \DateTime|\DateTimeInterface|string|int $data     Value representing date
+     * @param null|string                             $timezone Timezone of the date
      *
      * @return \DateTime
      */
