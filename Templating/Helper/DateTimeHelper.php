@@ -18,7 +18,7 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * DateHelper displays culture information. More information here
  * http://userguide.icu-project.org/formatparse/datetime.
  *
- * NEXT_MAJOR: Remove all \DateTime hints as soon as PHP >=5.5 is required.
+ * NEXT_MAJOR: Remove all \DateTime hints from PHPDoc
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
