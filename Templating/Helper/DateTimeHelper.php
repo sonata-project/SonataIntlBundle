@@ -46,10 +46,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \Datetime|string|int $date
-     * @param null|string          $locale
-     * @param null|string          timezone
-     * @param null|int             dateType See \IntlDateFormatter::getDateType
+     * @param \DateTimeInterface|string|int $date
+     * @param null|string                   $locale
+     * @param null|string                   $timezone
+     * @param null|int                      $dateType See \IntlDateFormatter::getDateType
      *
      * @return string
      */
@@ -69,11 +69,11 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \Datetime|string|int $datetime
-     * @param null|string          $locale
-     * @param null|string          timezone
-     * @param null|int             dateType See \IntlDateFormatter::getDateType
-     * @param null|int             timeType See \IntlDateFormatter::getTimeType
+     * @param \DateTimeInterface|string|int $datetime
+     * @param null|string                   $locale
+     * @param null|string                   $timezone
+     * @param null|int                      $dateType See \IntlDateFormatter::getDateType
+     * @param null|int                      $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -93,10 +93,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \Datetime|string|int $time
-     * @param null|string          $locale
-     * @param null|string          timezone
-     * @param null|int             timeType See \IntlDateFormatter::getTimeType
+     * @param \DateTimeInterface|string|int $time
+     * @param null|string                   $locale
+     * @param null|string                   $timezone
+     * @param null|int                      $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -116,10 +116,10 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param \Datetime|string|int $datetime
-     * @param                      $pattern
-     * @param null|string          $locale
-     * @param null|string          timezone
+     * @param \DateTimeInterface|string|int $datetime
+     * @param                               $pattern
+     * @param null|string                   $locale
+     * @param null|string                   $timezone
      *
      * @return string
      */
@@ -141,11 +141,11 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \IntlDateFormatter $formatter
-     * @param \Datetime          $date
+     * @param \DateTimeInterface $date
      *
      * @return string
      */
-    public function process(\IntlDateFormatter $formatter, \Datetime $date)
+    public function process(\IntlDateFormatter $formatter, \DateTimeInterface $date)
     {
         // strange bug with PHP 5.3.3-7+squeeze14 with Suhosin-Patch
         // getTimestamp() method alters the object...
@@ -155,10 +155,10 @@ class DateTimeHelper extends BaseHelper
     /**
      * Gets a date time instance by a given data and timezone.
      *
-     * @param \Datetime|string|int $data     Value representing date
-     * @param null|string          $timezone Timezone of the date
+     * @param \DateTimeInterface|string|int $data     Value representing date
+     * @param null|string                   $timezone Timezone of the date
      *
-     * @return \Datetime
+     * @return \DateTime
      */
     public function getDatetime($data, $timezone = null)
     {
