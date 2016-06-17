@@ -167,9 +167,7 @@ class DateTimeHelper extends BaseHelper
         }
 
         if ($data instanceof \DateTimeImmutable) {
-            $date = \DateTime::createFromFormat('U', $data->getTimestamp());
-
-            return $date;
+            return \DateTime::createFromFormat(\DateTime::ATOM, $data->format(\DateTime::ATOM));
         }
 
         // the format method accept array or integer
