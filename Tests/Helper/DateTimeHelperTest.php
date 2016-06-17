@@ -118,12 +118,11 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.');
     }
 
+    /**
+     * @requires PHP 5.5
+     */
     public function testImmutable()
     {
-        if (!class_exists('\DateTimeImmutable')) {
-            $this->markTestSkipped('\DateTimeImmutable is not available.');
-        }
-
         $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
