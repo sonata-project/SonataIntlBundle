@@ -139,13 +139,14 @@ class DateTimeHelper extends BaseHelper
         return $this->process($formatter, $date);
     }
 
+    // NEXT_MAJOR: Change to \DateTimeInterface
     /**
      * @param \IntlDateFormatter $formatter
-     * @param \DateTimeInterface $date
+     * @param \DateTime          $date
      *
      * @return string
      */
-    public function process(\IntlDateFormatter $formatter, \DateTimeInterface $date)
+    public function process(\IntlDateFormatter $formatter, \DateTime $date)
     {
         // strange bug with PHP 5.3.3-7+squeeze14 with Suhosin-Patch
         // getTimestamp() method alters the object...
