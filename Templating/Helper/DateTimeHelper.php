@@ -140,6 +140,7 @@ class DateTimeHelper extends BaseHelper
     }
 
     // NEXT_MAJOR: Change to \DateTimeInterface
+
     /**
      * @param \IntlDateFormatter $formatter
      * @param \DateTime          $date
