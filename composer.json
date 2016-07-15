@@ -37,7 +37,13 @@
         "sonata-project/user-bundle": "<2.0 || >=4.0"
     },
     "autoload": {
-        "psr-4": { "Sonata\\IntlBundle\\": "" }
+        "psr-4": { "Sonata\\IntlBundle\\": "" },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": { "Sonata\\IntlBundle\\Tests\\": "Tests/" }
     },
     "extra": {
         "branch-alias": {
