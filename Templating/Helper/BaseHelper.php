@@ -49,6 +49,8 @@ abstract class BaseHelper extends Helper
     /**
      * Typo in the fonction name.
      *
+     * NEXT_MAJOR: remove this method
+     *
      * @deprecated
      */
     public static function getUCIDataVersion()
