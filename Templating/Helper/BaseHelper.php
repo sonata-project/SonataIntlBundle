@@ -47,7 +47,7 @@ abstract class BaseHelper extends Helper
     }
 
     /**
-     * Typo in the fonction name.
+     * Typo in the method name.
      *
      * NEXT_MAJOR: remove this method
      *
