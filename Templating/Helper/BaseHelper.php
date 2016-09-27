@@ -55,7 +55,11 @@ abstract class BaseHelper extends Helper
      */
     public static function getUCIDataVersion()
     {
-        @trigger_error('The '.__METHOD__.' is deprecated since 2.2 and will be removed on 3.0. Use '.__CLASS__.'::getICUDataVersion instead.', E_USER_DEPRECATED);
+        @trigger_error(
+            'The '.__METHOD__.' is deprecated since 2.2 and will be removed on 3.0. '.
+            'Use '.__CLASS__.'::getICUDataVersion instead.',
+            E_USER_DEPRECATED
+        );
 
         return self::getICUDataVersion();
     }
@@ -140,6 +144,10 @@ abstract class BaseHelper extends Helper
             $messages[] = sprintf('%s => %s', $name, $value);
         }
 
-        throw new \RuntimeException(sprintf('Unable to create internal class: %s, with params: %s', $class, implode(', ', $messages)));
+        throw new \RuntimeException(sprintf(
+            'Unable to create internal class: %s, with params: %s',
+            $class,
+            implode(', ', $messages)
+        ));
     }
 }
