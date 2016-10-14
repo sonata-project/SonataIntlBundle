@@ -23,14 +23,14 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 class NumberExtension extends \Twig_Extension
 {
     /**
-     * @var NumberHelper The instance of the NumberHelper helper.
+     * @var NumberHelper The instance of the NumberHelper helper
      */
     protected $helper;
 
     /**
      * Class constructor.
      *
-     * @param NumberHelper $helper A NumberHelper helper instance.
+     * @param NumberHelper $helper A NumberHelper helper instance
      */
     public function __construct(NumberHelper $helper)
     {
@@ -65,14 +65,14 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param string           $currency       The currency in which format the number.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param string           $currency       The currency in which format the number
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -87,13 +87,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -108,13 +108,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -129,13 +129,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -150,13 +150,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -171,13 +171,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
@@ -192,13 +192,13 @@ class NumberExtension extends \Twig_Extension
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format.
-     * @param array            $attributes     The attributes used by \NumberFormatter.
-     * @param array            $textAttributes The text attributes used by \NumberFormatter.
-     * @param array            $symbols        The symbols used by the formatter.
-     * @param string|null      $locale         The locale used to format the number.
+     * @param string|float|int $number         The number to format
+     * @param array            $attributes     The attributes used by \NumberFormatter
+     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param array            $symbols        The symbols used by the formatter
+     * @param string|null      $locale         The locale used to format the number
      *
-     * @return string The formatted number.
+     * @return string The formatted number
      */
     public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
     {
