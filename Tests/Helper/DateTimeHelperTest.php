@@ -117,4 +117,24 @@ class DateTimeHelperTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('12:37', $helper->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/London.');
         $this->assertEquals('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.');
     }
+
+    /**
+     * @requires PHP 5.5
+     */
+    public function testImmutable()
+    {
+        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector->expects($this->any())
+            ->method('getLocale')->will($this->returnValue('fr'));
+
+        $timezoneDetector = $this->getMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector->expects($this->any())
+            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
+
+        $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s T', '2009-02-15 15:16:17 HKT');
+
+        $this->assertEquals('08:16', $helper->format($date, 'HH:mm'));
+    }
 }
