@@ -34,8 +34,6 @@ abstract class BaseHelper extends Helper
     protected $localeDetector;
 
     /**
-     * Constructor.
-     *
      * @param string                  $charset        The output charset of the helper
      * @param LocaleDetectorInterface $localeDetector
      */
