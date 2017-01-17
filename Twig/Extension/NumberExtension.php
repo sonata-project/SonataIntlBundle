@@ -28,8 +28,6 @@ class NumberExtension extends \Twig_Extension
     protected $helper;
 
     /**
-     * Class constructor.
-     *
      * @param NumberHelper $helper A NumberHelper helper instance
      */
     public function __construct(NumberHelper $helper)

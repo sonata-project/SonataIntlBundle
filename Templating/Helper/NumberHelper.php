@@ -37,8 +37,6 @@ class NumberHelper extends BaseHelper
     protected $symbols = array();
 
     /**
-     * Class constructor.
-     *
      * @param string                  $charset        The output charset of the helper
      * @param LocaleDetectorInterface $localeDetector A locale detector instance
      * @param array                   $attributes     The default attributes to apply to the \NumberFormatter instance
