@@ -3,10 +3,9 @@ Intl Bundle
 
 The ``SonataIntlBundle`` provides helper to the ``php-intl`` extension
 
-Reference Guide
----------------
-
 .. toctree::
+   :caption: Reference Guide
+   :name: reference-guide
    :maxdepth: 1
    :numbered:
 
@@ -16,10 +15,9 @@ Reference Guide
    reference/datetime
    reference/number
 
-Cookbook
---------
-
 .. toctree::
+  :caption: Cookbook
+  :name: cookbook
   :maxdepth: 1
   :numbered:
 
