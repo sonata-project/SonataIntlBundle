@@ -40,12 +40,25 @@ class RequestDetector implements LocaleDetectorInterface
      */
     public function getLocale()
     {
-        if ($this->container->isScopeActive('request')) {
-            if ($request = $this->container->get('request', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {
-                return $request->getLocale();
-            }
+        if ($request = $this->getRequest()) {
+            return $request->getLocale();
         }
 
         return $this->defaultLocale;
+    }
+
+    /**
+     * @return Request|null
+     */
+    private function getRequest()
+    {
+        $request = null;
+        if ($this->container->has('request_stack')) {
+            $request = $this->container->get('request_stack')->getCurrentRequest();
+        } elseif (method_exists($this->container, 'isScopeActive') && $this->container->isScopeActive('request')) {
+            $request = $this->container->get('request');
+        }
+
+        return $request;
     }
 }
