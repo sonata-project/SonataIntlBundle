@@ -36,6 +36,8 @@
     "conflict": {
         "sonata-project/user-bundle": "<2.0 || >=4.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": { "Sonata\\IntlBundle\\": "" },
         "exclude-from-classmap": [
