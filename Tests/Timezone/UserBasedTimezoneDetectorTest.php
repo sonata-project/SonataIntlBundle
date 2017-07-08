@@ -11,6 +11,7 @@
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
+use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
 
 /**
@@ -18,7 +19,7 @@ use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
+class UserBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
 {
     /**
      * {@inheritdoc}
@@ -45,14 +46,14 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testDetectsTimezoneForUser($timezone)
     {
-        $user = $this->getMock('Sonata\UserBundle\Model\User');
+        $user = $this->createMock('Sonata\UserBundle\Model\User');
         $user
             ->expects($this->any())
             ->method('getTimezone')
             ->will($this->returnValue($timezone))
         ;
 
-        $token = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        $token = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
         $token
             ->expects($this->any())
             ->method('getUser')
@@ -60,9 +61,9 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
         ;
 
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
-            $storage = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
+            $storage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
         } else {
-            $storage = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
+            $storage = $this->createMock('Symfony\Component\Security\Core\SecurityContextInterface');
         }
 
         $storage
@@ -78,9 +79,9 @@ class UserBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
     public function testTimezoneNotDetected()
     {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
-            $storage = $this->getMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
+            $storage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
         } else {
-            $storage = $this->getMock('Symfony\Component\Security\Core\SecurityContextInterface');
+            $storage = $this->createMock('Symfony\Component\Security\Core\SecurityContextInterface');
         }
 
         $storage
