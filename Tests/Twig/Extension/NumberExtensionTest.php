@@ -12,12 +12,13 @@
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberExtensionTest extends \PHPUnit_Framework_TestCase
+class NumberExtensionTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideFormatArguments
@@ -178,7 +179,7 @@ class NumberExtensionTest extends \PHPUnit_Framework_TestCase
 
     private function createLocaleDetectorMock()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'))
