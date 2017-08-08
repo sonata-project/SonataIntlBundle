@@ -55,8 +55,6 @@ matrix:
     - php: '7.1'
       env: SYMFONY=dev-master@dev
     - php: '7.1'
-      env: SONATA_USER=2.*
-    - php: '7.1'
       env: SONATA_USER=3.*
     - php: '7.1'
       env: SONATA_USER=dev-master@dev
