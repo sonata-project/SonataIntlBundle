@@ -45,7 +45,7 @@ class LocaleHelperTest extends PHPUnit_Framework_TestCase
         $helper = $this->getHelper();
         $this->assertEquals('France', $helper->country('FR'));
         $this->assertEquals('France', $helper->country('FR', 'en'));
-//        $this->assertEquals('', $helper->country('FR', 'fake'));
+        //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
     public function testLocale()
