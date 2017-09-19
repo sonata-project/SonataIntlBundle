@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\IntlBundle\Tests;
+namespace Sonata\IntlBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;

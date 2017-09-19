@@ -12,12 +12,13 @@
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 
-class LocaleHelperTest extends \PHPUnit_Framework_TestCase
+class LocaleHelperTest extends PHPUnit_Framework_TestCase
 {
     public function getHelper()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
@@ -44,7 +45,7 @@ class LocaleHelperTest extends \PHPUnit_Framework_TestCase
         $helper = $this->getHelper();
         $this->assertEquals('France', $helper->country('FR'));
         $this->assertEquals('France', $helper->country('FR', 'en'));
-//        $this->assertEquals('', $helper->country('FR', 'fake'));
+        //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
     public function testLocale()

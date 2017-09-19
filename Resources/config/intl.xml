@@ -15,7 +15,7 @@
     </parameters>
     <services>
         <service id="sonata.intl.locale_detector.request" class="%sonata.intl.locale_detector.request.class%">
-            <argument type="service" id="service_container" strict="false"/>
+            <argument type="service" id="service_container"/>
             <argument/>
         </service>
         <service id="sonata.intl.locale_detector.request_stack" class="Sonata\IntlBundle\Locale\RequestStackDetector">
@@ -23,7 +23,7 @@
             <argument/>
         </service>
         <service id="sonata.intl.locale_detector.session" class="%sonata.intl.locale_detector.session.class%">
-            <argument type="service" id="session" strict="false"/>
+            <argument type="service" id="session"/>
             <argument/>
         </service>
         <service id="sonata.intl.templating.helper.locale" class="%sonata.intl.templating.helper.locale.class%">
