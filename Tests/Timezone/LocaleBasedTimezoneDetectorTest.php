@@ -11,6 +11,7 @@
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
+use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 
 /**
@@ -18,11 +19,11 @@ use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-class LocaleBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
+class LocaleBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
 {
     public function testDetectsTimezoneForLocale()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')
@@ -35,7 +36,7 @@ class LocaleBasedTimezoneDetectorTest extends \PHPUnit_Framework_TestCase
 
     public function testTimezoneNotDetected()
     {
-        $localeDetector = $this->getMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')
