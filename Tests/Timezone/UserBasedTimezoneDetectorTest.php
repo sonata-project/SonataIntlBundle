@@ -33,10 +33,10 @@ class UserBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
 
     public static function timezoneProvider()
     {
-        return array(
-            array('Europe/Paris'),
-            array(null),
-        );
+        return [
+            ['Europe/Paris'],
+            [null],
+        ];
     }
 
     /**

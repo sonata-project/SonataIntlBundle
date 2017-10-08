@@ -38,11 +38,11 @@ class DateTimeExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('format_date', array($this, 'formatDate'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('format_time', array($this, 'formatTime'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('format_datetime', array($this, 'formatDatetime'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFilter('format_date', [$this, 'formatDate'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('format_time', [$this, 'formatTime'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('format_datetime', [$this, 'formatDatetime'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**

@@ -38,11 +38,11 @@ class LocaleExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('country', array($this, 'country'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('locale', array($this, 'locale'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('language', array($this, 'language'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFilter('country', [$this, 'country'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('locale', [$this, 'locale'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('language', [$this, 'language'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**

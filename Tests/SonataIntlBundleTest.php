@@ -17,13 +17,13 @@ class SonataIntlBundleTest extends \PHPUnit_Framework_TestCase
 {
     public function getVersions()
     {
-        return array(
-            array('2.0.1', '2.0.1', true, true),
-            array('2.0.2', '2.0.1', true, true),
-            array('2.1.1-DEV', '2.1.1', false, true),
-            array('2.1.0-RC1', '2.1.0', false, true),
-            array('2.1.0-RC1', '2.1.1', false, false),
-        );
+        return [
+            ['2.0.1', '2.0.1', true, true],
+            ['2.0.2', '2.0.1', true, true],
+            ['2.1.1-DEV', '2.1.1', false, true],
+            ['2.1.0-RC1', '2.1.0', false, true],
+            ['2.1.0-RC1', '2.1.1', false, false],
+        ];
     }
 
     /**

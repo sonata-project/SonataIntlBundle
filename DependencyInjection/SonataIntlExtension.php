@@ -55,7 +55,7 @@ class SonataIntlExtension extends Extension
             return;
         }
 
-        $this->validateTimezones($config['timezone']['locales'] + array($config['timezone']['default']));
+        $this->validateTimezones($config['timezone']['locales'] + [$config['timezone']['default']]);
 
         $container->setAlias('sonata.intl.timezone_detector', 'sonata.intl.timezone_detector.chain');
 
@@ -75,7 +75,7 @@ class SonataIntlExtension extends Extension
         foreach ($timezoneDetectors as $id) {
             $container
                 ->getDefinition('sonata.intl.timezone_detector.chain')
-                ->addMethodCall('addDetector', array(new Reference($id)));
+                ->addMethodCall('addDetector', [new Reference($id)]);
         }
 
         $container

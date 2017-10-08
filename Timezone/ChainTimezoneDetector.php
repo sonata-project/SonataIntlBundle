@@ -39,7 +39,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     public function __construct($defaultTimezone)
     {
         $this->defaultTimezone = $defaultTimezone;
-        $this->timezoneDetectors = array();
+        $this->timezoneDetectors = [];
     }
 
     /**
