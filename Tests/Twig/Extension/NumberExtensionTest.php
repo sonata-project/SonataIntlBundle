@@ -32,114 +32,114 @@ class NumberExtensionTest extends PHPUnit_Framework_TestCase
         foreach ($testData as $data) {
             list($methodArguments, $expectedResult) = $data;
 
-            $this->assertEquals($expectedResult, call_user_func_array(array($extension, $methodName), $methodArguments));
+            $this->assertEquals($expectedResult, call_user_func_array([$extension, $methodName], $methodArguments));
         }
     }
 
     public function provideFormatArguments()
     {
-        return array(
-            array(
+        return [
+            [
                 'formatCurrency',
-                array(
-                    array(
-                        array(10.49, 'EUR'),
+                [
+                    [
+                        [10.49, 'EUR'],
                         '10,49 €',
-                    ),
-                    array(
-                        array(10.499, 'EUR'),
+                    ],
+                    [
+                        [10.499, 'EUR'],
                         '10,50 €',
-                    ),
-                    array(
-                        array(10000.499, 'EUR'),
+                    ],
+                    [
+                        [10000.499, 'EUR'],
                         '10 000,50 €',
-                    ),
-                    array(
-                        array(
+                    ],
+                    [
+                        [
                             10000.499,
                             'EUR',
-                            array(),
-                            array(),
-                            array('MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'),
-                        ),
+                            [],
+                            [],
+                            ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
+                        ],
                         '10DOT000,50 €',
-                    ),
-                ),
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'formatDecimal',
-                array(
-                    array(
-                        array(10),
+                [
+                    [
+                        [10],
                         '10',
-                    ),
-                    array(
-                        array(10.15459),
+                    ],
+                    [
+                        [10.15459],
                         '10,155',
-                    ),
-                    array(
-                        array(1000000.15459),
+                    ],
+                    [
+                        [1000000.15459],
                         '1 000 000,155',
-                    ),
-                    array(
-                        array(
+                    ],
+                    [
+                        [
                             1000000.15459,
-                            array(),
-                            array(),
-                            array('GROUPING_SEPARATOR_SYMBOL' => 'DOT'),
-                        ),
+                            [],
+                            [],
+                            ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
+                        ],
                         '1DOT000DOT000,155',
-                    ),
-                ),
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'formatScientific',
-                array(
-                    array(
-                        array(10),
+                [
+                    [
+                        [10],
                         '1E1',
-                    ),
-                    array(
-                        array(1000),
+                    ],
+                    [
+                        [1000],
                         '1E3',
-                    ),
-                    array(
-                        array(1000.1),
+                    ],
+                    [
+                        [1000.1],
                         '1,0001E3',
-                    ),
-                    array(
-                        array(1000000.15459),
+                    ],
+                    [
+                        [1000000.15459],
                         '1,00000015459E6',
-                    ),
-                ),
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'formatDuration',
-                array(
-                    array(
-                        array(1000000),
+                [
+                    [
+                        [1000000],
                         '1 000 000',
-                    ),
-                ),
-            ),
-            array(
+                    ],
+                ],
+            ],
+            [
                 'formatPercent',
-                array(
-                    array(
-                        array(0.1),
+                [
+                    [
+                        [0.1],
                         '10 %',
-                    ),
-                    array(
-                        array(1.999),
+                    ],
+                    [
+                        [1.999],
                         '200 %',
-                    ),
-                    array(
-                        array(0.99),
+                    ],
+                    [
+                        [0.99],
                         '99 %',
-                    ),
-                ),
-            ),
-        );
+                    ],
+                ],
+            ],
+        ];
     }
 
     public function testFormatOrdinal()

@@ -24,17 +24,17 @@ class NumberHelper extends BaseHelper
     /**
      * @var array The default attributes to apply to the \NumberFormatter instance
      */
-    protected $attributes = array();
+    protected $attributes = [];
 
     /**
      * @var array The default text attributes to apply to the \NumberFormatter instance
      */
-    protected $textAttributes = array();
+    protected $textAttributes = [];
 
     /**
      * @var array The symbols used by \NumberFormatter
      */
-    protected $symbols = array();
+    protected $symbols = [];
 
     /**
      * @param string                  $charset        The output charset of the helper
@@ -43,7 +43,7 @@ class NumberHelper extends BaseHelper
      * @param array                   $textAttributes The default text attributes to apply to the \NumberFormatter instance
      * @param array                   $symbols        The default symbols to apply to the \NumberFormatter instance
      */
-    public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = array(), array $textAttributes = array(), array $symbols = array())
+    public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = [], array $textAttributes = [], array $symbols = [])
     {
         parent::__construct($charset, $localeDetector);
 
@@ -64,7 +64,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -85,7 +85,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -106,7 +106,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -127,7 +127,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -149,7 +149,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 6, null);
 
@@ -172,7 +172,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -193,7 +193,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -215,7 +215,7 @@ class NumberHelper extends BaseHelper
      *
      * @return string
      */
-    public function format($number, $style, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function format($number, $style, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 6, null);
 
@@ -253,10 +253,10 @@ class NumberHelper extends BaseHelper
         if ($oldSignature) {
             // If the old signature matches, we pass an empty array as symbols
             // argument and the symbols value as the locale argument.
-            return array($symbols, array());
+            return [$symbols, []];
         }
 
-        return array($locale, $symbols);
+        return [$locale, $symbols];
     }
 
     /**
@@ -279,17 +279,17 @@ class NumberHelper extends BaseHelper
      *
      * @return \NumberFormatter
      */
-    protected function getFormatter($culture, $style, $attributes = array(), $textAttributes = array(), $symbols = array())
+    protected function getFormatter($culture, $style, $attributes = [], $textAttributes = [], $symbols = [])
     {
         $attributes = $this->parseAttributes(array_merge($this->attributes, $attributes));
         $textAttributes = $this->parseAttributes(array_merge($this->textAttributes, $textAttributes));
         $symbols = $this->parseAttributes(array_merge($this->symbols, $symbols));
         $formatter = new \NumberFormatter($culture, $style);
 
-        self::checkInternalClass($formatter, '\NumberFormatter', array(
+        self::checkInternalClass($formatter, '\NumberFormatter', [
             'culture' => $culture,
             'style' => $style,
-        ));
+        ]);
 
         foreach ($attributes as $attribute => $value) {
             $formatter->setAttribute($attribute, $value);
@@ -317,7 +317,7 @@ class NumberHelper extends BaseHelper
      */
     protected function parseAttributes(array $attributes)
     {
-        $result = array();
+        $result = [];
 
         foreach ($attributes as $attribute => $value) {
             $result[$this->parseConstantValue($attribute)] = $value;
