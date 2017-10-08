@@ -82,7 +82,7 @@ abstract class BaseHelper extends Helper
 
         if ('cli' == php_sapi_name()) {
             foreach ($info as $line) {
-                $results = array();
+                $results = [];
 
                 if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
                     return $results[2];
@@ -90,7 +90,7 @@ abstract class BaseHelper extends Helper
             }
         } else {
             foreach ($info as $line) {
-                $results = array();
+                $results = [];
 
                 if (preg_match('/(ICU Data version).*/', $line, $results)) {
                     return trim(strtolower(strip_tags($results[0])), 'ICU Data version');
@@ -131,13 +131,13 @@ abstract class BaseHelper extends Helper
      * @param string $class
      * @param array  $args
      */
-    protected static function checkInternalClass($instance, $class, array $args = array())
+    protected static function checkInternalClass($instance, $class, array $args = [])
     {
         if ($instance !== null) {
             return;
         }
 
-        $messages = array();
+        $messages = [];
         foreach ($args as $name => $value) {
             $messages[] = sprintf('%s => %s', $name, $value);
         }

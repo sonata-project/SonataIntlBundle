@@ -23,13 +23,13 @@ class ChainTimezoneDetectorTest extends PHPUnit_Framework_TestCase
 {
     public static function timezoneProvider()
     {
-        return array(
-            array(array('Europe/Paris', 'Europe/London'), 'Europe/Paris'),
-            array(array('Europe/Paris', null), 'Europe/Paris'),
-            array(array(null, 'Europe/Paris'), 'Europe/Paris'),
-            array(array(null, null), 'America/Denver'),
-            array(array('Invalid/Timezone', null), 'America/Denver'),
-        );
+        return [
+            [['Europe/Paris', 'Europe/London'], 'Europe/Paris'],
+            [['Europe/Paris', null], 'Europe/Paris'],
+            [[null, 'Europe/Paris'], 'Europe/Paris'],
+            [[null, null], 'America/Denver'],
+            [['Invalid/Timezone', null], 'America/Denver'],
+        ];
     }
 
     /**

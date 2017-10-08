@@ -45,7 +45,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->scalarNode('default')->defaultValue(date_default_timezone_get())->end()
                         ->arrayNode('locales')
-                            ->defaultValue(array())
+                            ->defaultValue([])
                             ->useAttributeAsKey('name')
                             ->prototype('scalar')
                         ->end()

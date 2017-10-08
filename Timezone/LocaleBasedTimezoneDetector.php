@@ -34,7 +34,7 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
      * @param LocaleDetectorInterface $localeDetector
      * @param array                   $timezoneMap
      */
-    public function __construct(LocaleDetectorInterface $localeDetector, array $timezoneMap = array())
+    public function __construct(LocaleDetectorInterface $localeDetector, array $timezoneMap = [])
     {
         $this->localeDetector = $localeDetector;
         $this->timezoneMap = $timezoneMap;

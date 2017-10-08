@@ -20,22 +20,22 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
     {
         $processor = new Processor();
 
-        $config = $processor->processConfiguration(new Configuration(), array(
-            array(
-                'timezone' => array(
+        $config = $processor->processConfiguration(new Configuration(), [
+            [
+                'timezone' => [
                     'default' => 'Europe/Paris',
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
 
-        $expected = array(
+        $expected = [
             'locale' => false,
-            'timezone' => array(
-                'detectors' => array(),
+            'timezone' => [
+                'detectors' => [],
                 'default' => 'Europe/Paris',
-                'locales' => array(),
-            ),
-        );
+                'locales' => [],
+            ],
+        ];
 
         $this->assertEquals($expected, $config);
     }
