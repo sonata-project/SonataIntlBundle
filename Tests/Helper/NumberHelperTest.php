@@ -29,10 +29,10 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('10,50 €', $helper->formatCurrency(10.499, 'EUR'));
         $this->assertEquals('10 000,50 €', $helper->formatCurrency(10000.499, 'EUR'));
 
-        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', array(
+        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', [
             // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
             'fraction_digits' => 0,
-        )));
+        ]));
 
         // decimal
         $this->assertEquals('10', $helper->formatDecimal(10));
@@ -81,15 +81,15 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
     public function testArguments()
     {
         $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
+        $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
 
         // Check that the 'default' options are used
         $this->assertEquals('1,34', $helper->formatDecimal(1.337));
         $this->assertEquals('MINUS1,34', $helper->formatDecimal(-1.337));
 
         // Check that the options are overwritten
-        $this->assertEquals('1,337', $helper->formatDecimal(1.337, array('fraction_digits' => 3)));
-        $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, array(), array('negative_prefix' => 'MIN')));
+        $this->assertEquals('1,337', $helper->formatDecimal(1.337, ['fraction_digits' => 3]));
+        $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, [], ['negative_prefix' => 'MIN']));
     }
 
     /**
@@ -110,7 +110,7 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
-        $helper = new NumberHelper('UTF-8', $localeDetector, array('fraction_digits' => 2), array('negative_prefix' => 'MINUS'));
+        $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
 
         $helper->format(10.49, -1);
     }
@@ -134,10 +134,10 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
 
     public function provideConstantValues()
     {
-        return array(
-            array('positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false),
-            array('non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true),
-        );
+        return [
+            ['positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false],
+            ['non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true],
+        ];
     }
 
     /**
@@ -159,26 +159,26 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
 
     public function provideAttributeValues()
     {
-        return array(
-            array(
-                array(
+        return [
+            [
+                [
                     'positive_prefix' => 'POSITIVE',
                     'negative_prefix' => 'NEGATIVE',
-                ),
-                array(
+                ],
+                [
                     \NumberFormatter::POSITIVE_PREFIX => 'POSITIVE',
                     \NumberFormatter::NEGATIVE_PREFIX => 'NEGATIVE',
-                ),
+                ],
                 false,
-            ),
-            array(
-                array(
+            ],
+            [
+                [
                     'non_existent_constant' => 'NON_EXISTENT_VALUE',
-                ),
-                array(),
+                ],
+                [],
                 true,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -193,38 +193,38 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
             $this->setExpectedException('\BadMethodCallException');
         }
 
-        $this->assertEquals($expectedArguments, call_user_func_array(array($helper, 'normalizeMethodSignature'), $arguments));
+        $this->assertEquals($expectedArguments, call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
     }
 
     public function provideFormatMethodArguments()
     {
-        return array(
-            array(
-                array(null, null),
-                array(null, array()),
+        return [
+            [
+                [null, null],
+                [null, []],
                 false,
-            ),
-            array(
-                array(null, 'fr'),
-                array('fr', array()),
+            ],
+            [
+                [null, 'fr'],
+                ['fr', []],
                 true,
-            ),
-            array(
-                array(array(), null),
-                array(null, array()),
+            ],
+            [
+                [[], null],
+                [null, []],
                 false,
-            ),
-            array(
-                array(array(), 'fr'),
-                array('fr', array()),
+            ],
+            [
+                [[], 'fr'],
+                ['fr', []],
                 false,
-            ),
-            array(
-                array('fr', null),
-                array('fr', array()),
+            ],
+            [
+                ['fr', null],
+                ['fr', []],
                 false,
-            ),
-        );
+            ],
+        ];
     }
 
     public function testFormatMethodWithDefaultArguments()
@@ -234,9 +234,9 @@ class NumberHelperTest extends PHPUnit_Framework_TestCase
         $method = new \ReflectionMethod($helper, 'format');
         $method->setAccessible(true);
 
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array()));
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array(), 'fr'));
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, array(), array(), array()));
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], 'fr'));
+        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], []));
     }
 
     private function createLocaleDetectorMock()

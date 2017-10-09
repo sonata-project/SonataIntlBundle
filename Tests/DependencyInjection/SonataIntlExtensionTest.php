@@ -18,7 +18,7 @@ class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoad()
     {
-        $this->setParameter('kernel.bundles', array());
+        $this->setParameter('kernel.bundles', []);
         $this->setParameter('kernel.default_locale', 'en');
         $this->load();
 
@@ -33,8 +33,8 @@ class SonataIntlExtensionTest extends AbstractExtensionTestCase
 
     protected function getContainerExtensions()
     {
-        return array(
+        return [
             new SonataIntlExtension(),
-        );
+        ];
     }
 }

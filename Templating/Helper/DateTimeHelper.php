@@ -59,13 +59,13 @@ class DateTimeHelper extends BaseHelper
     {
         $date = $this->getDatetime($date, $timezone);
 
-        $formatter = self::createInstance(array(
+        $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             'timetype' => \IntlDateFormatter::NONE,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
-        ));
+        ]);
 
         return $this->process($formatter, $date);
     }
@@ -83,13 +83,13 @@ class DateTimeHelper extends BaseHelper
     {
         $date = $this->getDatetime($datetime, $timezone);
 
-        $formatter = self::createInstance(array(
+        $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
             'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
-        ));
+        ]);
 
         return $this->process($formatter, $date);
     }
@@ -106,13 +106,13 @@ class DateTimeHelper extends BaseHelper
     {
         $date = $this->getDatetime($time, $timezone);
 
-        $formatter = self::createInstance(array(
+        $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => \IntlDateFormatter::NONE,
             'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
-        ));
+        ]);
 
         return $this->process($formatter, $date);
     }
@@ -129,14 +129,14 @@ class DateTimeHelper extends BaseHelper
     {
         $date = $this->getDatetime($datetime, $timezone);
 
-        $formatter = self::createInstance(array(
+        $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => \IntlDateFormatter::FULL,
             'timetype' => \IntlDateFormatter::FULL,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
             'pattern' => $pattern,
-        ));
+        ]);
 
         return $this->process($formatter, $date);
     }
@@ -203,7 +203,7 @@ class DateTimeHelper extends BaseHelper
      *
      * @return \IntlDateFormatter
      */
-    protected static function createInstance(array $args = array())
+    protected static function createInstance(array $args = [])
     {
         if (!self::$reflection) {
             self::$reflection = new \ReflectionClass('IntlDateFormatter');

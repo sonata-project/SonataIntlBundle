@@ -30,7 +30,7 @@ class LocaleBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue('fr'))
         ;
 
-        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, array('fr' => 'Europe/Paris'));
+        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
         $this->assertEquals('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
@@ -43,7 +43,7 @@ class LocaleBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue('de'))
         ;
 
-        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, array('fr' => 'Europe/Paris'));
+        $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
         $this->assertEquals(null, $timezoneDetector->getTimezone());
     }
 }

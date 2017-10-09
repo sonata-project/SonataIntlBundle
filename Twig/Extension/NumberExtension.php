@@ -40,15 +40,15 @@ class NumberExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('number_format_currency', array($this, 'formatCurrency'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_decimal', array($this, 'formatDecimal'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_scientific', array($this, 'formatScientific'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_spellout', array($this, 'formatSpellout'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_percent', array($this, 'formatPercent'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_duration', array($this, 'formatDuration'), array('is_safe' => array('html'))),
-            new \Twig_SimpleFilter('number_format_ordinal', array($this, 'formatOrdinal'), array('is_safe' => array('html'))),
-        );
+        return [
+            new \Twig_SimpleFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
+        ];
     }
 
     /**
@@ -72,7 +72,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, $currency, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 6, null);
 
@@ -93,7 +93,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -114,7 +114,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -135,7 +135,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -156,7 +156,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -177,7 +177,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
@@ -198,7 +198,7 @@ class NumberExtension extends \Twig_Extension
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = array(), array $textAttributes = array(), $locale = null)
+    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
         $methodArgs = array_pad(func_get_args(), 5, null);
 
