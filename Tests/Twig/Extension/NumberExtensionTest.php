@@ -11,14 +11,14 @@
 
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberExtensionTest extends PHPUnit_Framework_TestCase
+class NumberExtensionTest extends TestCase
 {
     /**
      * @dataProvider provideFormatArguments

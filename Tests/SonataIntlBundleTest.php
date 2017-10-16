@@ -11,9 +11,10 @@
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\SonataIntlBundle;
 
-class SonataIntlBundleTest extends \PHPUnit_Framework_TestCase
+class SonataIntlBundleTest extends TestCase
 {
     public function getVersions()
     {

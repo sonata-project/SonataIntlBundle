@@ -11,15 +11,15 @@
 
 namespace Sonata\IntlBundle\Tests\Locale;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 
 /**
  * Tests for the RequestStackDetector.
  *
  * @author Benjamin Lévêque <benjamin@leveque.me>
  */
-class RequestStackDetectorTest extends PHPUnit_Framework_TestCase
+class RequestStackDetectorTest extends TestCase
 {
     protected function setUp()
     {

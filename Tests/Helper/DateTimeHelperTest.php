@@ -11,8 +11,8 @@
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 
 /**
  * Tests for the DateTimeHelper.
@@ -20,7 +20,7 @@ use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-class DateTimeHelperTest extends PHPUnit_Framework_TestCase
+class DateTimeHelperTest extends TestCase
 {
     public function setUp()
     {

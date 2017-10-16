@@ -11,10 +11,10 @@
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 
-class LocaleHelperTest extends PHPUnit_Framework_TestCase
+class LocaleHelperTest extends TestCase
 {
     public function getHelper()
     {

@@ -11,13 +11,13 @@
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberHelperTest extends PHPUnit_Framework_TestCase
+class NumberHelperTest extends TestCase
 {
     public function testLocale()
     {
