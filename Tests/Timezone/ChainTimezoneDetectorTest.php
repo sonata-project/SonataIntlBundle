@@ -11,7 +11,7 @@
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 
 /**
@@ -19,7 +19,7 @@ use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class ChainTimezoneDetectorTest extends PHPUnit_Framework_TestCase
+class ChainTimezoneDetectorTest extends TestCase
 {
     public static function timezoneProvider()
     {

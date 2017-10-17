@@ -11,7 +11,7 @@
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
-use Sonata\IntlBundle\Tests\Helpers\PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
 
 /**
@@ -19,7 +19,7 @@ use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class UserBasedTimezoneDetectorTest extends PHPUnit_Framework_TestCase
+class UserBasedTimezoneDetectorTest extends TestCase
 {
     /**
      * {@inheritdoc}
