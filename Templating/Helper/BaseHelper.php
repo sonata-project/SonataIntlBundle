@@ -133,7 +133,7 @@ abstract class BaseHelper extends Helper
      */
     protected static function checkInternalClass($instance, $class, array $args = [])
     {
-        if ($instance !== null) {
+        if (null !== $instance) {
             return;
         }
 
