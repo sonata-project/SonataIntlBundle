@@ -25,11 +25,11 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         // currency
-        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR'));
-        $this->assertEquals('10,50 €', $helper->formatCurrency(10.499, 'EUR'));
-        $this->assertEquals('10 000,50 €', $helper->formatCurrency(10000.499, 'EUR'));
+        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR'));
+        $this->assertEquals('10,50 €', $helper->formatCurrency(10.499, 'EUR'));
+        $this->assertEquals('10 000,50 €', $helper->formatCurrency(10000.499, 'EUR'));
 
-        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', [
+        $this->assertEquals('10,49 €', $helper->formatCurrency(10.49, 'EUR', [
             // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
             'fraction_digits' => 0,
         ]));
@@ -37,7 +37,7 @@ class NumberHelperTest extends TestCase
         // decimal
         $this->assertEquals('10', $helper->formatDecimal(10));
         $this->assertEquals('10,155', $helper->formatDecimal(10.15459));
-        $this->assertEquals('1 000 000,155', $helper->formatDecimal(1000000.15459));
+        $this->assertEquals('1 000 000,155', $helper->formatDecimal(1000000.15459));
 
         // scientific
         $this->assertEquals('1E1', $helper->formatScientific(10));
@@ -47,7 +47,7 @@ class NumberHelperTest extends TestCase
         $this->assertEquals('1,00000015459E6', $helper->formatScientific(1000000.15459));
 
         // duration
-        $this->assertEquals('1 000 000', $helper->formatDuration(1000000));
+        $this->assertEquals('1 000 000', $helper->formatDuration(1000000));
 
         // spell out
         $this->assertEquals('un', $helper->formatSpellout(1));
@@ -60,19 +60,19 @@ class NumberHelperTest extends TestCase
         }
 
         // percent
-        $this->assertEquals('10 %', $helper->formatPercent(0.1));
-        $this->assertEquals('200 %', $helper->formatPercent(1.999));
-        $this->assertEquals('99 %', $helper->formatPercent(0.99));
+        $this->assertEquals('10 %', $helper->formatPercent(0.1));
+        $this->assertEquals('200 %', $helper->formatPercent(1.999));
+        $this->assertEquals('99 %', $helper->formatPercent(0.99));
 
         // ordinal
         if (version_compare(NumberHelper::getICUDataVersion(), '4.8.0', '>=')) {
             $this->assertEquals('1er', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
             $this->assertEquals('100e', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000e', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } elseif (version_compare(NumberHelper::getICUDataVersion(), '4.1.0', '>=')) {
             $this->assertEquals('1ᵉʳ', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
             $this->assertEquals('100ᵉ', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000ᵉ', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } else {
             $this->markTestIncomplete(sprintf('Unknown ICU DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getICUDataVersion()));
         }
@@ -92,11 +92,10 @@ class NumberHelperTest extends TestCase
         $this->assertEquals('MIN1,34', $helper->formatDecimal(-1.337, [], ['negative_prefix' => 'MIN']));
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testExceptionOnInvalidParams()
     {
+        $this->expectException(\RuntimeException::class);
+
         // https://wiki.php.net/rfc/internal_constructor_behaviour
         try {
             $formatter = new \NumberFormatter('FR', -1);
@@ -126,7 +125,7 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->setExpectedException('\InvalidArgumentException');
+            $this->expectException('\InvalidArgumentException');
         }
 
         $this->assertEquals($expectedConstant, $method->invoke($helper, $constantName));
@@ -151,7 +150,7 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->setExpectedException('\InvalidArgumentException');
+            $this->expectException('\InvalidArgumentException');
         }
 
         $this->assertEquals($expectedAttributes, $method->invoke($helper, $attributes));
@@ -190,7 +189,7 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         if ($exceptionExpected) {
-            $this->setExpectedException('\BadMethodCallException');
+            $this->expectException('\BadMethodCallException');
         }
 
         $this->assertEquals($expectedArguments, call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));

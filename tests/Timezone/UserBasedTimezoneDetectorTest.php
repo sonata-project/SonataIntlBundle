@@ -91,12 +91,13 @@ class UserBasedTimezoneDetectorTest extends TestCase
         ;
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
-        $this->assertEquals(null, $timezoneDetector->getTimezone());
+        $this->assertNull($timezoneDetector->getTimezone());
     }
 
     public function testInvalidArgumentException()
     {
-        $this->setExpectedException('\InvalidArgumentException', 'Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
 
         new UserBasedTimezoneDetector(new \stdClass());
     }

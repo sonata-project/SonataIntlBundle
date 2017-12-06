@@ -44,15 +44,15 @@ class NumberExtensionTest extends TestCase
                 [
                     [
                         [10.49, 'EUR'],
-                        '10,49 €',
+                        '10,49 €',
                     ],
                     [
                         [10.499, 'EUR'],
-                        '10,50 €',
+                        '10,50 €',
                     ],
                     [
                         [10000.499, 'EUR'],
-                        '10 000,50 €',
+                        '10 000,50 €',
                     ],
                     [
                         [
@@ -62,7 +62,7 @@ class NumberExtensionTest extends TestCase
                             [],
                             ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
                         ],
-                        '10DOT000,50 €',
+                        '10DOT000,50 €',
                     ],
                 ],
             ],
@@ -79,7 +79,7 @@ class NumberExtensionTest extends TestCase
                     ],
                     [
                         [1000000.15459],
-                        '1 000 000,155',
+                        '1 000 000,155',
                     ],
                     [
                         [
@@ -118,7 +118,7 @@ class NumberExtensionTest extends TestCase
                 [
                     [
                         [1000000],
-                        '1 000 000',
+                        '1 000 000',
                     ],
                 ],
             ],
@@ -127,15 +127,15 @@ class NumberExtensionTest extends TestCase
                 [
                     [
                         [0.1],
-                        '10 %',
+                        '10 %',
                     ],
                     [
                         [1.999],
-                        '200 %',
+                        '200 %',
                     ],
                     [
                         [0.99],
-                        '99 %',
+                        '99 %',
                     ],
                 ],
             ],
@@ -151,11 +151,11 @@ class NumberExtensionTest extends TestCase
         if (version_compare(NumberHelper::getICUDataVersion(), '4.8.0', '>=')) {
             $this->assertEquals('1er', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
             $this->assertEquals('100e', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000e', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000e', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } elseif (version_compare(NumberHelper::getICUDataVersion(), '4.1.0', '>=')) {
             $this->assertEquals('1ᵉʳ', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
             $this->assertEquals('100ᵉ', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-            $this->assertEquals('10 000ᵉ', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+            $this->assertEquals('10 000ᵉ', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
         } else {
             $this->markTestIncomplete(sprintf('Unknown ICU DATA Version, feel free to contribute ... (version: %s)', NumberHelper::getICUDataVersion()));
         }
