@@ -31,7 +31,7 @@ class DateTimeHelperTest extends TestCase
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
+            ->method('getLocale')->will($this->returnValue('en'));
 
         $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
         $timezoneDetector->expects($this->any())
@@ -59,32 +59,26 @@ class DateTimeHelperTest extends TestCase
         $this->assertEquals(1293708180, $helper->getDatetime('2010-12-30 12:23')->format('U'));
 
         // check default method
-        $this->assertEquals('30 nov. 1981', $helper->formatDate($datetimeParis));
-        $this->assertEquals('30 déc. 2010', $helper->formatDate('2010-12-30 12:23:23'));
+        $this->assertEquals('Nov 30, 1981', $helper->formatDate($datetimeParis));
+        $this->assertEquals('Dec 30, 2010', $helper->formatDate('2010-12-30 12:23:23'));
 
-        $this->assertEquals('02:00:00', $helper->formatTime($datetimeParis));
-        $this->assertEquals('30 nov. 1981 02:00:00', $helper->formatDateTime($datetimeParis));
+        $this->assertEquals('2:00:00 AM', $helper->formatTime($datetimeParis));
+        $this->assertEquals('Nov 30, 1981, 2:00:00 AM', $helper->formatDateTime($datetimeParis));
 
         // custom format
-        $this->assertEquals('30 novembre 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
+        $this->assertEquals('November 30, 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
 
-        if (version_compare(DateTimeHelper::getICUDataVersion(), '52', '>=')) {
-            $this->assertEquals('02:00:00 UTC+1', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
-        } elseif (version_compare(DateTimeHelper::getICUDataVersion(), '4.8.0', '>=')) {
-            $this->assertEquals('02:00:00 UTC+01:00', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
-        } else {
-            $this->assertEquals('02:00:00 HNEC', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
-        }
+        $this->assertEquals('2:00:00 AM GMT+1', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeHelper::getICUDataVersion());
 
-        $this->assertEquals('30 novembre 1981 02:00', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
-        $this->assertEquals('30 nov. 1981 ap. J.-C.', $helper->format($datetimeParis, 'dd MMM Y G'));
+        $this->assertEquals('November 30, 1981 at 2:00 AM', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
+        $this->assertEquals('30 Nov 1981 AD', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
 
     public function testLocaleTimezones()
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
+            ->method('getLocale')->will($this->returnValue('en'));
 
         $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
         $timezoneDetector->expects($this->any())
@@ -110,8 +104,8 @@ class DateTimeHelperTest extends TestCase
         $this->assertEquals('14:37', $helperWithMapping->format($dateLondon, 'HH:mm'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Paris.');
 
         // Test if the time is correctly correct if the timezone is given as function parameter
-        $this->assertEquals('15:37', $helper->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
-        $this->assertEquals('15:37', $helperWithMapping->format($dateLondon, 'HH:mm', 'fr', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
+        $this->assertEquals('15:37', $helper->format($dateLondon, 'HH:mm', 'en', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
+        $this->assertEquals('15:37', $helperWithMapping->format($dateLondon, 'HH:mm', 'en', 'Europe/Helsinki'), 'A date in the Europe/London timezone, should be corrected when formatted with timezone Europe/Helsinki.');
 
         // Test if the time is correctly corrected for the 'detected' timezone
         $dateParis = new \DateTime('13:37', new \DateTimeZone('Europe/Paris'));
@@ -126,7 +120,7 @@ class DateTimeHelperTest extends TestCase
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('fr'));
+            ->method('getLocale')->will($this->returnValue('en'));
 
         $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
         $timezoneDetector->expects($this->any())
