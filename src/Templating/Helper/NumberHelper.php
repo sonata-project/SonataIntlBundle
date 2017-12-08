@@ -234,16 +234,16 @@ class NumberHelper extends BaseHelper
      * @param mixed $symbols The symbols used by the formatter
      * @param mixed $locale  The locale
      *
-     * @return array Arguments list normalized to the new method signature
-     *
      * @throws \BadMethodCallException If the arguments does not match any signature
+     *
+     * @return array Arguments list normalized to the new method signature
      *
      * @internal
      */
     public function normalizeMethodSignature($symbols, $locale)
     {
-        $oldSignature = (is_null($symbols) || is_string($symbols)) && is_null($locale);
-        $newSignature = is_array($symbols) && (is_string($locale) || is_null($locale));
+        $oldSignature = (null === $symbols || is_string($symbols)) && null === $locale;
+        $newSignature = is_array($symbols) && (is_string($locale) || null === $locale);
 
         // Confirm possible signatures
         if (!$oldSignature && !$newSignature) {
@@ -311,9 +311,9 @@ class NumberHelper extends BaseHelper
      *
      * @param array $attributes The list of attributes
      *
-     * @return array List of \NumberFormatter constants
-     *
      * @throws \InvalidArgumentException If any attribute does not match any constant
+     *
+     * @return array List of \NumberFormatter constants
      */
     protected function parseAttributes(array $attributes)
     {
@@ -331,9 +331,9 @@ class NumberHelper extends BaseHelper
      *
      * @param string $attribute The constant's name
      *
-     * @return mixed The \NumberFormatter constant
-     *
      * @throws \InvalidArgumentException If the value does not match any constant
+     *
+     * @return mixed The \NumberFormatter constant
      */
     protected function parseConstantValue($attribute)
     {

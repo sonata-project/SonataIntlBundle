@@ -80,7 +80,7 @@ abstract class BaseHelper extends Helper
 
         $info = explode("\n", $content);
 
-        if ('cli' == php_sapi_name()) {
+        if ('cli' == PHP_SAPI) {
             foreach ($info as $line) {
                 $results = [];
 
@@ -101,8 +101,6 @@ abstract class BaseHelper extends Helper
                 }
             }
         }
-
-        return;
     }
 
     /**

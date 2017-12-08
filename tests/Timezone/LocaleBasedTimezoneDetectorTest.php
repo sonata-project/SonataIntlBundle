@@ -44,6 +44,6 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         ;
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
-        $this->assertEquals(null, $timezoneDetector->getTimezone());
+        $this->assertNull($timezoneDetector->getTimezone());
     }
 }
