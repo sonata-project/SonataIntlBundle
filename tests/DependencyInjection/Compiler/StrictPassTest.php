@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -20,7 +22,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class StrictPassTest extends AbstractCompilerPassTestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -29,7 +31,7 @@ class StrictPassTest extends AbstractCompilerPassTestCase
         }
     }
 
-    public function testStrictParameter()
+    public function testStrictParameter(): void
     {
         $requestDef = new Definition();
         $requestDef->addArgument(new Reference('service_container', ContainerInterface::NULL_ON_INVALID_REFERENCE, false));
@@ -47,7 +49,7 @@ class StrictPassTest extends AbstractCompilerPassTestCase
         $this->assertFalse($sessionDef->getArgument(0)->isStrict());
     }
 
-    protected function registerCompilerPass(ContainerBuilder $container)
+    protected function registerCompilerPass(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new StrictPass());
     }

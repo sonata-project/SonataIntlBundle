@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -19,7 +21,7 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
  */
 class NumberHelperTest extends TestCase
 {
-    public function testLocale()
+    public function testLocale(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -66,7 +68,7 @@ class NumberHelperTest extends TestCase
         $this->assertEquals('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
-    public function testArguments()
+    public function testArguments(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
@@ -80,7 +82,7 @@ class NumberHelperTest extends TestCase
         $this->assertEquals('MIN1.34', $helper->formatDecimal(-1.337, [], ['negative_prefix' => 'MIN']));
     }
 
-    public function testExceptionOnInvalidParams()
+    public function testExceptionOnInvalidParams(): void
     {
         $this->expectException(\RuntimeException::class);
 
@@ -105,7 +107,7 @@ class NumberHelperTest extends TestCase
     /**
      * @dataProvider provideConstantValues
      */
-    public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected)
+    public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -130,7 +132,7 @@ class NumberHelperTest extends TestCase
     /**
      * @dataProvider provideAttributeValues
      */
-    public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected)
+    public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -171,7 +173,7 @@ class NumberHelperTest extends TestCase
     /**
      * @dataProvider provideFormatMethodArguments
      */
-    public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected)
+    public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -214,7 +216,7 @@ class NumberHelperTest extends TestCase
         ];
     }
 
-    public function testFormatMethodWithDefaultArguments()
+    public function testFormatMethodWithDefaultArguments(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);

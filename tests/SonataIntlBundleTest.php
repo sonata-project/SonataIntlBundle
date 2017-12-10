@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -30,7 +32,7 @@ class SonataIntlBundleTest extends TestCase
     /**
      * @dataProvider getVersions
      */
-    public function testSymfonyVersion($currentVersion, $minVersion, $versionExpected, $versionBundle)
+    public function testSymfonyVersion($currentVersion, $minVersion, $versionExpected, $versionBundle): void
     {
         $this->assertEquals($versionExpected, version_compare($currentVersion, $minVersion, '>='));
         $this->assertEquals($versionBundle, version_compare(SonataIntlBundle::getSymfonyVersion($currentVersion), $minVersion, '>='));

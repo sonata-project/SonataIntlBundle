@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,14 +23,14 @@ use Sonata\IntlBundle\Locale\RequestStackDetector;
  */
 class RequestStackDetectorTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
             $this->markTestSkipped('Only work with Symfony > 2.4');
         }
     }
 
-    public function testGetLocale()
+    public function testGetLocale(): void
     {
         $requestStack = $this->createMock('Symfony\Component\HttpFoundation\RequestStack');
         $request = $this->createMock('Symfony\Component\HttpFoundation\Request');

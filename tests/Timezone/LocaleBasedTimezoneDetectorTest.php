@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -21,7 +23,7 @@ use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
  */
 class LocaleBasedTimezoneDetectorTest extends TestCase
 {
-    public function testDetectsTimezoneForLocale()
+    public function testDetectsTimezoneForLocale(): void
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector
@@ -34,7 +36,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         $this->assertEquals('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
-    public function testTimezoneNotDetected()
+    public function testTimezoneNotDetected(): void
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector

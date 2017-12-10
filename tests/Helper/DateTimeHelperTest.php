@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -22,12 +24,12 @@ use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
  */
 class DateTimeHelperTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         date_default_timezone_set('Europe/Paris');
     }
 
-    public function testLocale()
+    public function testLocale(): void
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
@@ -74,7 +76,7 @@ class DateTimeHelperTest extends TestCase
         $this->assertEquals('30 Nov 1981 AD', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
 
-    public function testLocaleTimezones()
+    public function testLocaleTimezones(): void
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())
@@ -116,7 +118,7 @@ class DateTimeHelperTest extends TestCase
     /**
      * @requires PHP 5.5
      */
-    public function testImmutable()
+    public function testImmutable(): void
     {
         $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
         $localeDetector->expects($this->any())

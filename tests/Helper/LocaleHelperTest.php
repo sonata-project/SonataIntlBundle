@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -30,7 +32,7 @@ class LocaleHelperTest extends TestCase
     /**
      * @group legacy
      */
-    public function testLanguage()
+    public function testLanguage(): void
     {
         $helper = $this->getHelper();
         $this->assertEquals('français', $helper->language('fr'));
@@ -40,7 +42,7 @@ class LocaleHelperTest extends TestCase
         //        $this->assertEquals('', $helper->language('fr', 'fake'));
     }
 
-    public function testCountry()
+    public function testCountry(): void
     {
         $helper = $this->getHelper();
         $this->assertEquals('France', $helper->country('FR'));
@@ -48,7 +50,7 @@ class LocaleHelperTest extends TestCase
         //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
-    public function testLocale()
+    public function testLocale(): void
     {
         $helper = $this->getHelper();
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -23,7 +25,7 @@ class NumberExtensionTest extends TestCase
     /**
      * @dataProvider provideFormatArguments
      */
-    public function testFormat($methodName, $testData)
+    public function testFormat($methodName, $testData): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -142,7 +144,7 @@ class NumberExtensionTest extends TestCase
         ];
     }
 
-    public function testFormatOrdinal()
+    public function testFormatOrdinal(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
@@ -153,7 +155,7 @@ class NumberExtensionTest extends TestCase
         $this->assertEquals('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
-    public function testFormatSpellout()
+    public function testFormatSpellout(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
         $helper = new NumberHelper('UTF-8', $localeDetector);
