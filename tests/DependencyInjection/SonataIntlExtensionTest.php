@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -16,7 +18,7 @@ use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;
 
 class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoad()
+    public function testLoad(): void
     {
         $this->setParameter('kernel.bundles', []);
         $this->setParameter('kernel.default_locale', 'en');

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -35,7 +37,7 @@ class ChainTimezoneDetectorTest extends TestCase
     /**
      * @dataProvider timezoneProvider
      */
-    public function testDetectsTimezoneForUser($detectorsTimezones, $expectedTimezone)
+    public function testDetectsTimezoneForUser($detectorsTimezones, $expectedTimezone): void
     {
         $chainTimezoneDetector = new ChainTimezoneDetector('America/Denver');
 

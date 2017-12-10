@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -29,7 +31,7 @@ class SonataIntlExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $processor = new Processor();
         $configuration = new Configuration();
@@ -46,7 +48,7 @@ class SonataIntlExtension extends Extension
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    protected function configureTimezone(ContainerBuilder $container, array $config)
+    protected function configureTimezone(ContainerBuilder $container, array $config): void
     {
         if (isset($config['timezone']['service'])) {
             $container->setAlias('sonata.intl.timezone_detector', $config['timezone']['service']);
@@ -104,7 +106,7 @@ class SonataIntlExtension extends Extension
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    protected function configureLocale(ContainerBuilder $container, array $config)
+    protected function configureLocale(ContainerBuilder $container, array $config): void
     {
         if (class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
             $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
@@ -131,7 +133,7 @@ class SonataIntlExtension extends Extension
      *
      * @throws \RuntimeException If one of the locales is invalid
      */
-    private function validateTimezones(array $timezones)
+    private function validateTimezones(array $timezones): void
     {
         try {
             foreach ($timezones as $timezone) {

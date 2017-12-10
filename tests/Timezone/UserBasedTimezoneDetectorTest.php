@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -24,7 +26,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!class_exists('Sonata\UserBundle\SonataUserBundle')) {
             $this->markTestSkipped('SonataUserBundle must be installed to run this test.');
@@ -44,7 +46,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
      *
      * @group legacy
      */
-    public function testDetectsTimezoneForUser($timezone)
+    public function testDetectsTimezoneForUser($timezone): void
     {
         $user = $this->createMock('Sonata\UserBundle\Model\User');
         $user
@@ -76,7 +78,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $this->assertEquals($timezone, $timezoneDetector->getTimezone());
     }
 
-    public function testTimezoneNotDetected()
+    public function testTimezoneNotDetected(): void
     {
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
             $storage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
@@ -94,7 +96,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $this->assertNull($timezoneDetector->getTimezone());
     }
 
-    public function testInvalidArgumentException()
+    public function testInvalidArgumentException(): void
     {
         $this->expectException('\InvalidArgumentException');
         $this->expectExceptionMessage('Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');

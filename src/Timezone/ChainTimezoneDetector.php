@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -45,7 +47,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     /**
      * @param TimezoneDetectorInterface $timezoneDetector
      */
-    public function addDetector(TimezoneDetectorInterface $timezoneDetector)
+    public function addDetector(TimezoneDetectorInterface $timezoneDetector): void
     {
         $this->timezoneDetectors[] = $timezoneDetector;
     }

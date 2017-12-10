@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -129,7 +131,7 @@ abstract class BaseHelper extends Helper
      * @param string $class
      * @param array  $args
      */
-    protected static function checkInternalClass($instance, $class, array $args = [])
+    protected static function checkInternalClass($instance, $class, array $args = []): void
     {
         if (null !== $instance) {
             return;
