@@ -13,11 +13,26 @@ The easiest way to install ``SonataIntlBundle`` is to require it with Composer:
 
 .. code-block:: bash
 
-    $ php composer.phar require sonata-project/intl-bundle
+    composer require sonata-project/intl-bundle
 
 Alternatively, you could add a dependency into your ``composer.json`` file directly.
 
-Now, enable the bundle in the kernel:
+Now, enable the bundle in ``bundles.php`` file:
+
+.. code-block:: php
+
+    <?php
+
+    // config/bundles.php
+
+    return [
+        //...
+        Sonata\IntlBundle\SonataIntlBundle => ['all' => true],
+    ];
+
+.. note::
+    If you are not using Symfony Flex, you should enable bundles in your
+    ``AppKernel.php``.
 
 .. code-block:: php
 
