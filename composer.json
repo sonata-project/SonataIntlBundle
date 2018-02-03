@@ -38,8 +38,7 @@
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
         "sonata-project/user-bundle": "^3.6 || ^4.0",
         "symfony/phpunit-bridge": "^4.0",
-        "symfony/security-core": "^2.8 || ^3.2 || ^4.0",
-        "symfony/security-acl": "^2.8 || ^3.0"
+        "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
     },
     "suggest": {
         "sonata-project/user-bundle": "For user timezone detection"
