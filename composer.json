@@ -34,7 +34,7 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "symfony/phpunit-bridge": "^3.3 || ^4.0",
+        "symfony/phpunit-bridge": "^4.0",
         "symfony/security": "^2.8 || ^3.2 || ^4.0",
         "symfony/security-acl": "^2.8 || ^3.0"
     },
