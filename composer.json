@@ -41,6 +41,9 @@
     "suggest": {
         "sonata-project/user-bundle": "For user timezone detection"
     },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "2.x-dev"
