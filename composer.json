@@ -23,7 +23,9 @@
     ],
     "require": {
         "php": "^7.1",
+        "symfony/config": "^2.8 || ^3.2 || ^4.0",
         "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
+        "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
         "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
         "symfony/intl": "^2.8 || ^3.2 || ^4.0",
         "symfony/templating": "^2.8 || ^3.2 || ^4.0",
@@ -34,12 +36,15 @@
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^1.0",
-        "symfony/phpunit-bridge": "^3.3 || ^4.0",
-        "symfony/security": "^2.8 || ^3.2 || ^4.0",
-        "symfony/security-acl": "^2.8 || ^3.0"
+        "sonata-project/user-bundle": "^3.6 || ^4.0",
+        "symfony/phpunit-bridge": "^4.0",
+        "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
     },
     "suggest": {
         "sonata-project/user-bundle": "For user timezone detection"
+    },
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
