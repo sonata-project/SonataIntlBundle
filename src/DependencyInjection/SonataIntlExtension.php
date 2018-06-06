@@ -36,6 +36,7 @@ class SonataIntlExtension extends Extension
         $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('autowire.xml');
         $loader->load('intl.xml');
 
         $this->configureTimezone($container, $config);
