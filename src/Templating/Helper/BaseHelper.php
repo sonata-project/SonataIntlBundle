@@ -80,7 +80,7 @@ abstract class BaseHelper extends Helper
 
         $info = explode("\n", $content);
 
-        if ('cli' == PHP_SAPI) {
+        if ('cli' == \PHP_SAPI) {
             foreach ($info as $line) {
                 $results = [];
 
