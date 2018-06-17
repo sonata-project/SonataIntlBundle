@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.5.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.4.1...2.5.0) - 2018-06-16
+### Added
+- Improved autowiring support for templating helpers
+
 ## [2.4.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.4.0...2.4.1) - 2018-05-05
 ### Fixed
 - Compatibilty with Symfony 4: services are now public
