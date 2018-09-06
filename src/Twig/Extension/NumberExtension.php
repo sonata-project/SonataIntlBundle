@@ -74,7 +74,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 6, null);
+        $methodArgs = array_pad(\func_get_args(), 6, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
@@ -95,7 +95,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -116,7 +116,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -137,7 +137,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -158,7 +158,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -179,7 +179,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -200,7 +200,7 @@ class NumberExtension extends \Twig_Extension
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
