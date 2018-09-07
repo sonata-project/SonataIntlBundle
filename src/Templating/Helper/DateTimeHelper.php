@@ -179,7 +179,7 @@ class DateTimeHelper extends BaseHelper
             $data = (int) $data;
         }
 
-        if (is_string($data)) {
+        if (\is_string($data)) {
             $data = strtotime($data);
         }
 
