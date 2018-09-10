@@ -60,7 +60,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
 
             foreach ($this->timezoneDetectors as $timezoneDetector) {
                 if ($timezone = $timezoneDetector->getTimezone()) {
-                    if (in_array($timezone, $availableTimezones)) {
+                    if (\in_array($timezone, $availableTimezones)) {
                         return $this->guessedTimezone = $timezone;
                     }
                 }

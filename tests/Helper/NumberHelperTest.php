@@ -180,7 +180,7 @@ class NumberHelperTest extends TestCase
             $this->expectException('\BadMethodCallException');
         }
 
-        $this->assertEquals($expectedArguments, call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
+        $this->assertEquals($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
     }
 
     public function provideFormatMethodArguments()
