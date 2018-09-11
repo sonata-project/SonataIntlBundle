@@ -68,7 +68,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -89,7 +89,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -110,7 +110,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -131,7 +131,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -153,7 +153,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 6, null);
+        $methodArgs = array_pad(\func_get_args(), 6, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
@@ -176,7 +176,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -197,7 +197,7 @@ class NumberHelper extends BaseHelper
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 5, null);
+        $methodArgs = array_pad(\func_get_args(), 5, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
@@ -219,7 +219,7 @@ class NumberHelper extends BaseHelper
      */
     public function format($number, $style, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(func_get_args(), 6, null);
+        $methodArgs = array_pad(\func_get_args(), 6, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
@@ -244,8 +244,8 @@ class NumberHelper extends BaseHelper
      */
     public function normalizeMethodSignature($symbols, $locale)
     {
-        $oldSignature = (null === $symbols || is_string($symbols)) && null === $locale;
-        $newSignature = is_array($symbols) && (is_string($locale) || null === $locale);
+        $oldSignature = (null === $symbols || \is_string($symbols)) && null === $locale;
+        $newSignature = \is_array($symbols) && (\is_string($locale) || null === $locale);
 
         // Confirm possible signatures
         if (!$oldSignature && !$newSignature) {
@@ -342,10 +342,10 @@ class NumberHelper extends BaseHelper
         $attribute = strtoupper($attribute);
         $constantName = 'NumberFormatter::'.$attribute;
 
-        if (!defined($constantName)) {
+        if (!\defined($constantName)) {
             throw new \InvalidArgumentException(sprintf('NumberFormatter has no constant "%s".', $attribute));
         }
 
-        return constant($constantName);
+        return \constant($constantName);
     }
 }

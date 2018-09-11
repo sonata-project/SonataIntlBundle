@@ -34,7 +34,7 @@ class NumberExtensionTest extends TestCase
         foreach ($testData as $data) {
             list($methodArguments, $expectedResult) = $data;
 
-            $this->assertEquals($expectedResult, call_user_func_array([$extension, $methodName], $methodArguments));
+            $this->assertEquals($expectedResult, \call_user_func_array([$extension, $methodName], $methodArguments));
         }
     }
 
