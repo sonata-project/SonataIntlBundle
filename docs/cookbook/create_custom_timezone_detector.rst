@@ -18,7 +18,7 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
 
     .. code-block:: xml
 
-        <!-- src/AppBundle/Resources/config/services.xml -->
+        <!-- config/services.xml -->
 
         <service id="app.my_custom_timezone_detector" class="AppBundle\TimezoneDetector\MyCustomTimezoneDetector">
             <tag name="sonata_intl.timezone_detector" />
@@ -26,7 +26,7 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
 
     .. code-block:: yaml
 
-        # src/AppBundle/Resources/config/services.yml
+        # config/services.yaml
 
         services:
             app.my_custom_timezone_detector:
