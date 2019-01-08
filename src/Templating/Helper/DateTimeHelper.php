@@ -49,9 +49,9 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTime|\DateTimeInterface|string|int $date
-     * @param null|string                             $locale
-     * @param null|string                             $timezone
-     * @param null|int                                $dateType See \IntlDateFormatter::getDateType
+     * @param string|null                             $locale
+     * @param string|null                             $timezone
+     * @param int|null                                $dateType See \IntlDateFormatter::getDateType
      *
      * @return string
      */
@@ -72,10 +72,10 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTime|\DateTimeInterface|string|int $datetime
-     * @param null|string                             $locale
-     * @param null|string                             $timezone
-     * @param null|int                                $dateType See \IntlDateFormatter::getDateType
-     * @param null|int                                $timeType See \IntlDateFormatter::getTimeType
+     * @param string|null                             $locale
+     * @param string|null                             $timezone
+     * @param int|null                                $dateType See \IntlDateFormatter::getDateType
+     * @param int|null                                $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -96,9 +96,9 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTime|\DateTimeInterface|string|int $time
-     * @param null|string                             $locale
-     * @param null|string                             $timezone
-     * @param null|int                                $timeType See \IntlDateFormatter::getTimeType
+     * @param string|null                             $locale
+     * @param string|null                             $timezone
+     * @param int|null                                $timeType See \IntlDateFormatter::getTimeType
      *
      * @return string
      */
@@ -120,8 +120,8 @@ class DateTimeHelper extends BaseHelper
     /**
      * @param \DateTime|\DateTimeInterface|string|int $datetime
      * @param                                         $pattern
-     * @param null|string                             $locale
-     * @param null|string                             $timezone
+     * @param string|null                             $locale
+     * @param string|null                             $timezone
      *
      * @return string
      */
@@ -160,7 +160,7 @@ class DateTimeHelper extends BaseHelper
      * Gets a date time instance by a given data and timezone.
      *
      * @param \DateTime|\DateTimeInterface|string|int $data     Value representing date
-     * @param null|string                             $timezone Timezone of the date
+     * @param string|null                             $timezone Timezone of the date
      *
      * @return \DateTime
      */
