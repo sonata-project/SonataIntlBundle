@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Sonata Project package.
  *
@@ -45,7 +47,7 @@ class LocaleHelper extends BaseHelper
 
         $name = Intl::getLanguageBundle()->getLanguageName(
             $codes[0],
-            isset($codes[1]) ? $codes[1] : null,
+            $codes[1] ?? null,
             $locale ?: $this->localeDetector->getLocale()
         );
 
