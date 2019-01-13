@@ -40,45 +40,35 @@ For a list of available values, check the PHP_ documentation.
 PHP usage
 ^^^^^^^^^
 
-When defining your Admin, you can also provide extra parameters, i.e. :
+When defining your Admin, you can also provide extra parameters::
 
-.. code-block:: php
+    // src/Admin/InvoiceAdmin.php
 
-    <?php
-    // src/AppBundle/Admin/InvoiceAdmin.php
+    namespace App\Admin;
 
-    namespace AppBundle\Admin;
-
-    use Sonata\AdminBundle\Admin\Admin;
+    use Sonata\AdminBundle\Admin\AbstractAdmin;
     use Sonata\AdminBundle\Datagrid\ListMapper;
     use Sonata\AdminBundle\Show\ShowMapper;
-    // ...
 
-    class InvoiceAdmin extends Admin
+    final class InvoiceAdmin extends AbstractAdmin
     {
-        // ...
-
         protected function configureListFields(ListMapper $listMapper)
         {
             $listMapper
-                ->add('amount', 'decimal', array(
-                    'attributes' => array('fraction_digits' => 2),
-                    'textAttributes' => array('negative_prefix' => 'MINUS'),
-                ))
-                // ...
+                ->add('amount', 'decimal', [
+                    'attributes' => ['fraction_digits' => 2],
+                    'textAttributes' => ['negative_prefix' => 'MINUS'],
+                ])
             ;
         }
 
         protected function configureShowFields(ShowMapper $showMapper)
         {
             $showMapper
-                ->add('price', 'currency', array(
+                ->add('price', 'currency', [
                     'currency' => 'EUR',
                     'locale' => 'fr',
-                ))
-                // ...
+                ])
             ;
         }
-
-        // ...
     }

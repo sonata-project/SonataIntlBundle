@@ -54,36 +54,27 @@ by providing extra parameters :
 PHP usage
 ^^^^^^^^^
 
-When defining your Admin, you can also provide extra parameters, i.e. :
+When defining your Admin, you can also provide extra parameters::
 
-.. code-block:: php
+    // src/Admin/PostAdmin.php
 
-    <?php
-    // src/AppBundle/Admin/PostAdmin.php
+    namespace App\Admin;
 
-    namespace AppBundle\Admin;
-
-    use Sonata\AdminBundle\Admin\Admin;
+    use Sonata\AdminBundle\Admin\AbstractAdmin;
     use Sonata\AdminBundle\Datagrid\ListMapper;
-    // ...
 
-    class PostAdmin extends Admin
+    final class PostAdmin extends AbstractAdmin
     {
-        // ...
-
         protected function configureListFields(ListMapper $listMapper)
         {
             $listMapper
-                ->add('createdAt', 'date', array(
+                ->add('createdAt', 'date', [
                     'pattern' => 'dd MMM y G',
                     'locale' => 'fr',
                     'timezone' => 'Europe/Paris',
-                ))
-                // ...
+                ])
             ;
         }
-
-        // ...
     }
 
 .. _here: http://userguide.icu-project.org/formatparse/datetime
