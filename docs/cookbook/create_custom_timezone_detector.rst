@@ -20,7 +20,7 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
 
         <!-- config/services.xml -->
 
-        <service id="app.my_custom_timezone_detector" class="AppBundle\TimezoneDetector\MyCustomTimezoneDetector">
+        <service id="app.my_custom_timezone_detector" class="App\TimezoneDetector\MyCustomTimezoneDetector">
             <tag name="sonata_intl.timezone_detector" />
         </service>
 
@@ -30,7 +30,7 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
 
         services:
             app.my_custom_timezone_detector:
-                class: AppBundle\TimezoneDetector\MyCustomTimezoneDetector
+                class: App\TimezoneDetector\MyCustomTimezoneDetector
                 tags:
                     - { name: sonata_intl.timezone_detector }
 
@@ -43,6 +43,8 @@ You can now use this class by configuring the ``detector`` section:
 
     .. code-block:: yaml
 
+        # config/packages/sonata_intl.yaml
+
         sonata_intl:
             timezone:
                 detectors:
@@ -50,5 +52,6 @@ You can now use this class by configuring the ``detector`` section:
                     - sonata.intl.timezone_detector.user
                     - sonata.intl.timezone_detector.locale
 
-**IMPORTANT** In order to guess the timezone, the detectors will be
-called **in the order they are declared**.
+.. important::
+
+    In order to guess the timezone, the detectors will be called **in the order they are declared**.

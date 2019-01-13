@@ -23,7 +23,7 @@ configure the locale / timezone mapping in the configuration:
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_intl.yaml
 
         sonata_intl:
             timezone:
@@ -41,7 +41,7 @@ can change the order in the configuration:
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_intl.yaml
 
         sonata_intl:
             timezone:
@@ -65,7 +65,7 @@ You can override this default timezone in the configuration:
 
     .. code-block:: yaml
 
-        # app/config/config.yml
+        # config/packages/sonata_intl.yaml
 
         sonata_intl:
             timezone:
