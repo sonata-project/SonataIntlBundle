@@ -32,12 +32,12 @@ class ConfigurationTest extends TestCase
         ]);
 
         $expected = [
-            'locale' => false,
             'timezone' => [
-                'detectors' => [],
                 'default' => 'Europe/Paris',
+                'detectors' => [],
                 'locales' => [],
             ],
+            'locale' => false,
         ];
 
         $this->assertSame($expected, $config);

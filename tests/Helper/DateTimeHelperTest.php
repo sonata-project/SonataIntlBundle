@@ -52,13 +52,13 @@ class DateTimeHelperTest extends TestCase
         $this->assertSame('Mon, 30 Nov 1981 02:00:00 +0100', $datetimeParis->format('r'));
 
         // check convertor
-        $this->assertSame(375930000, $helper->getDatetime($datetimeParis)->format('U'));
-        $this->assertSame(375930000, $helper->getDatetime($datetimeLondon)->format('U'));
+        $this->assertSame('375930000', $helper->getDatetime($datetimeParis)->format('U'));
+        $this->assertSame('375930000', $helper->getDatetime($datetimeLondon)->format('U'));
 
         // warning .. this use value php.ini's timezone configuration
-        $this->assertSame(1293708203, $helper->getDatetime('2010-12-30 12:23:23')->format('U'));
-        $this->assertSame(1293663600, $helper->getDatetime('2010-12-30')->format('U'));
-        $this->assertSame(1293708180, $helper->getDatetime('2010-12-30 12:23')->format('U'));
+        $this->assertSame('1293708203', $helper->getDatetime('2010-12-30 12:23:23')->format('U'));
+        $this->assertSame('1293663600', $helper->getDatetime('2010-12-30')->format('U'));
+        $this->assertSame('1293708180', $helper->getDatetime('2010-12-30 12:23')->format('U'));
 
         // check default method
         $this->assertSame('Nov 30, 1981', $helper->formatDate($datetimeParis));
