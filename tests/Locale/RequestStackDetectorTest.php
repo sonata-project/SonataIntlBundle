@@ -48,6 +48,6 @@ class RequestStackDetectorTest extends TestCase
         ;
 
         $detector = new RequestStackDetector($requestStack, 'America/Denver');
-        $this->assertEquals('en', $detector->getLocale());
+        $this->assertSame('en', $detector->getLocale());
     }
 }
