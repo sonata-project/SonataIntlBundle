@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
@@ -168,7 +169,7 @@ class NumberExtensionTest extends TestCase
 
     private function createLocaleDetectorMock()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'))

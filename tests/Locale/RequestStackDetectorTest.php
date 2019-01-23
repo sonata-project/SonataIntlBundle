@@ -15,25 +15,18 @@ namespace Sonata\IntlBundle\Tests\Locale;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Tests for the RequestStackDetector.
- *
  * @author Benjamin Lévêque <benjamin@leveque.me>
  */
 class RequestStackDetectorTest extends TestCase
 {
-    protected function setUp()
-    {
-        if (!class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
-            $this->markTestSkipped('Only work with Symfony > 2.4');
-        }
-    }
-
     public function testGetLocale()
     {
-        $requestStack = $this->createMock('Symfony\Component\HttpFoundation\RequestStack');
-        $request = $this->createMock('Symfony\Component\HttpFoundation\Request');
+        $requestStack = $this->createMock(RequestStack::class);
+        $request = $this->createMock(Request::class);
 
         $requestStack
             ->expects($this->any())

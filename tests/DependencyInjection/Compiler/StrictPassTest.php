@@ -34,12 +34,16 @@ class StrictPassTest extends AbstractCompilerPassTestCase
     public function testStrictParameter()
     {
         $requestDef = new Definition();
-        $requestDef->addArgument(new Reference('service_container', ContainerInterface::NULL_ON_INVALID_REFERENCE, false));
+        $requestDef->addArgument(
+            new Reference('service_container', ContainerInterface::NULL_ON_INVALID_REFERENCE, false)
+        );
 
         $this->setDefinition('sonata.intl.locale_detector.request', $requestDef);
 
         $sessionDef = new Definition();
-        $sessionDef->addArgument(new Reference('session', ContainerInterface::NULL_ON_INVALID_REFERENCE, false));
+        $sessionDef->addArgument(
+            new Reference('session', ContainerInterface::NULL_ON_INVALID_REFERENCE, false)
+        );
 
         $this->setDefinition('sonata.intl.locale_detector.session', $sessionDef);
 

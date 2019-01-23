@@ -15,17 +15,13 @@ namespace Sonata\IntlBundle\Tests\Timezone;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
- * Tests for the LocaleBasedTimezoneDetector.
- *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
 class UserBasedTimezoneDetectorTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp()
     {
         if (!class_exists('Sonata\UserBundle\SonataUserBundle')) {
@@ -55,7 +51,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
             ->will($this->returnValue($timezone))
         ;
 
-        $token = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\TokenInterface');
+        $token = $this->createMock(TokenInterface::class);
         $token
             ->expects($this->any())
             ->method('getUser')
@@ -98,7 +94,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
 
     public function testInvalidArgumentException()
     {
-        $this->expectException('\InvalidArgumentException');
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
 
         new UserBasedTimezoneDetector(new \stdClass());
