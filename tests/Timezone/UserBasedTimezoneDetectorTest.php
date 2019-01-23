@@ -75,7 +75,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
         ;
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
-        $this->assertEquals($timezone, $timezoneDetector->getTimezone());
+        $this->assertSame($timezone, $timezoneDetector->getTimezone());
     }
 
     public function testTimezoneNotDetected()
