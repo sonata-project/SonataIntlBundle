@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**
- * Tests for the DateTimeHelper.
- *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
@@ -31,11 +31,11 @@ class DateTimeHelperTest extends TestCase
 
     public function testLocale()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'));
 
-        $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
             ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
 
@@ -78,15 +78,15 @@ class DateTimeHelperTest extends TestCase
 
     public function testLocaleTimezones()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'));
 
-        $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
             ->method('getTimezone')->will($this->returnValue('Europe/London'));
 
-        $timezoneDetectorWithMapping = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetectorWithMapping = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetectorWithMapping->expects($this->any())
             ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
 
@@ -115,16 +115,13 @@ class DateTimeHelperTest extends TestCase
         $this->assertSame('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.');
     }
 
-    /**
-     * @requires PHP 5.5
-     */
     public function testImmutable()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'));
 
-        $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+        $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
             ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
 

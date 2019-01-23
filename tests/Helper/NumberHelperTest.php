@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
 /**
@@ -95,7 +96,7 @@ class NumberHelperTest extends TestCase
 
         $this->assertNull($formatter);
 
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'));
 
@@ -115,7 +116,7 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->expectException('\InvalidArgumentException');
+            $this->expectException(\InvalidArgumentException::class);
         }
 
         $this->assertSame($expectedConstant, $method->invoke($helper, $constantName));
@@ -140,7 +141,7 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->expectException('\InvalidArgumentException');
+            $this->expectException(\InvalidArgumentException::class);
         }
 
         $this->assertSame($expectedAttributes, $method->invoke($helper, $attributes));
@@ -179,7 +180,7 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         if ($exceptionExpected) {
-            $this->expectException('\BadMethodCallException');
+            $this->expectException(\BadMethodCallException::class);
         }
 
         $this->assertSame($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
@@ -230,7 +231,7 @@ class NumberHelperTest extends TestCase
 
     private function createLocaleDetectorMock()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'))

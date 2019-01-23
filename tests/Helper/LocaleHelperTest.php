@@ -14,13 +14,14 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
 
 class LocaleHelperTest extends TestCase
 {
     public function getHelper()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
