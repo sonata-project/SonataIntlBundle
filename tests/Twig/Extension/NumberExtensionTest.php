@@ -34,7 +34,7 @@ class NumberExtensionTest extends TestCase
         foreach ($testData as $data) {
             list($methodArguments, $expectedResult) = $data;
 
-            $this->assertEquals($expectedResult, \call_user_func_array([$extension, $methodName], $methodArguments));
+            $this->assertSame($expectedResult, \call_user_func_array([$extension, $methodName], $methodArguments));
         }
     }
 
@@ -150,9 +150,9 @@ class NumberExtensionTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
         $extension = new NumberExtension($helper);
 
-        $this->assertEquals('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        $this->assertEquals('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        $this->assertEquals('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
     public function testFormatSpellout()
@@ -161,9 +161,9 @@ class NumberExtensionTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
         $extension = new NumberExtension($helper);
 
-        $this->assertEquals('one', $extension->formatSpellout(1));
-        $this->assertEquals('forty-two', $extension->formatSpellout(42));
-        $this->assertEquals('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1224557.1254));
+        $this->assertSame('one', $extension->formatSpellout(1));
+        $this->assertSame('forty-two', $extension->formatSpellout(42));
+        $this->assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1224557.1254));
     }
 
     private function createLocaleDetectorMock()
