@@ -66,7 +66,7 @@ class SonataIntlExtension extends Extension
 
         $bundles = $container->getParameter('kernel.bundles');
 
-        if (0 == \count($timezoneDetectors)) { // no value define in the configuration, set one
+        if (0 === \count($timezoneDetectors)) { // no value define in the configuration, set one
             // Support Sonata User Bundle.
             if (isset($bundles['SonataUserBundle'])) {
                 $timezoneDetectors[] = 'sonata.intl.timezone_detector.user';

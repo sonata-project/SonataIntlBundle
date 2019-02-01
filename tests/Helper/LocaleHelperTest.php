@@ -14,13 +14,14 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
 
 class LocaleHelperTest extends TestCase
 {
     public function getHelper()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('fr'));
 
@@ -35,18 +36,18 @@ class LocaleHelperTest extends TestCase
     public function testLanguage(): void
     {
         $helper = $this->getHelper();
-        $this->assertEquals('français', $helper->language('fr'));
-        $this->assertEquals('français', $helper->language('fr_FR'));
-        $this->assertEquals('anglais américain', $helper->language('en_US'));
-        $this->assertEquals('French', $helper->language('fr', 'en'));
+        $this->assertSame('français', $helper->language('fr'));
+        $this->assertSame('français', $helper->language('fr_FR'));
+        $this->assertSame('anglais américain', $helper->language('en_US'));
+        $this->assertSame('French', $helper->language('fr', 'en'));
         //        $this->assertEquals('', $helper->language('fr', 'fake'));
     }
 
     public function testCountry(): void
     {
         $helper = $this->getHelper();
-        $this->assertEquals('France', $helper->country('FR'));
-        $this->assertEquals('France', $helper->country('FR', 'en'));
+        $this->assertSame('France', $helper->country('FR'));
+        $this->assertSame('France', $helper->country('FR', 'en'));
         //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
@@ -54,11 +55,11 @@ class LocaleHelperTest extends TestCase
     {
         $helper = $this->getHelper();
 
-        $this->assertEquals('français', $helper->locale('fr'));
-        $this->assertEquals('français (Canada)', $helper->locale('fr_CA'));
+        $this->assertSame('français', $helper->locale('fr'));
+        $this->assertSame('français (Canada)', $helper->locale('fr_CA'));
 
-        $this->assertEquals('French', $helper->locale('fr', 'en'));
-        $this->assertEquals('French (Canada)', $helper->locale('fr_CA', 'en'));
+        $this->assertSame('French', $helper->locale('fr', 'en'));
+        $this->assertSame('French (Canada)', $helper->locale('fr_CA', 'en'));
         //        $this->assertEquals('', $helper->locale('fr', 'fake'));
         //        $this->assertEquals('', $helper->locale('fr_CA', 'fake'));
     }

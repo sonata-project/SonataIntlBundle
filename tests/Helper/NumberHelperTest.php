@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 
 /**
@@ -27,45 +28,45 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         // currency
-        $this->assertEquals('€10.49', $helper->formatCurrency(10.49, 'EUR'));
-        $this->assertEquals('€10.50', $helper->formatCurrency(10.499, 'EUR'));
-        $this->assertEquals('€10,000.50', $helper->formatCurrency(10000.499, 'EUR'));
+        $this->assertSame('€10.49', $helper->formatCurrency(10.49, 'EUR'));
+        $this->assertSame('€10.50', $helper->formatCurrency(10.499, 'EUR'));
+        $this->assertSame('€10,000.50', $helper->formatCurrency(10000.499, 'EUR'));
 
-        $this->assertEquals('€10.49', $helper->formatCurrency(10.49, 'EUR', [
+        $this->assertSame('€10.49', $helper->formatCurrency(10.49, 'EUR', [
             // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
             'fraction_digits' => 0,
         ]));
 
         // decimal
-        $this->assertEquals('10', $helper->formatDecimal(10));
-        $this->assertEquals('10.155', $helper->formatDecimal(10.15459));
-        $this->assertEquals('1,000,000.155', $helper->formatDecimal(1000000.15459));
+        $this->assertSame('10', $helper->formatDecimal(10));
+        $this->assertSame('10.155', $helper->formatDecimal(10.15459));
+        $this->assertSame('1,000,000.155', $helper->formatDecimal(1000000.15459));
 
         // scientific
-        $this->assertEquals('1E1', $helper->formatScientific(10));
-        $this->assertEquals('1E3', $helper->formatScientific(1000));
-        $this->assertEquals('1.0001E3', $helper->formatScientific(1000.1));
-        $this->assertEquals('1.00000015459E6', $helper->formatScientific(1000000.15459));
-        $this->assertEquals('1.00000015459E6', $helper->formatScientific(1000000.15459));
+        $this->assertSame('1E1', $helper->formatScientific(10));
+        $this->assertSame('1E3', $helper->formatScientific(1000));
+        $this->assertSame('1.0001E3', $helper->formatScientific(1000.1));
+        $this->assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
+        $this->assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
 
         // duration
-        $this->assertEquals('277:46:40', $helper->formatDuration(1000000));
+        $this->assertSame('277:46:40', $helper->formatDuration(1000000));
 
         // spell out
-        $this->assertEquals('one', $helper->formatSpellout(1));
-        $this->assertEquals('forty-two', $helper->formatSpellout(42));
+        $this->assertSame('one', $helper->formatSpellout(1));
+        $this->assertSame('forty-two', $helper->formatSpellout(42));
 
-        $this->assertEquals('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $helper->formatSpellout(1224557.1254));
+        $this->assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $helper->formatSpellout(1224557.1254));
 
         // percent
-        $this->assertEquals('10%', $helper->formatPercent(0.1));
-        $this->assertEquals('200%', $helper->formatPercent(1.999));
-        $this->assertEquals('99%', $helper->formatPercent(0.99));
+        $this->assertSame('10%', $helper->formatPercent(0.1));
+        $this->assertSame('200%', $helper->formatPercent(1.999));
+        $this->assertSame('99%', $helper->formatPercent(0.99));
 
         // ordinal
-        $this->assertEquals('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        $this->assertEquals('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        $this->assertEquals('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
     public function testArguments(): void
@@ -74,12 +75,12 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
 
         // Check that the 'default' options are used
-        $this->assertEquals('1.34', $helper->formatDecimal(1.337));
-        $this->assertEquals('MINUS1.34', $helper->formatDecimal(-1.337));
+        $this->assertSame('1.34', $helper->formatDecimal(1.337));
+        $this->assertSame('MINUS1.34', $helper->formatDecimal(-1.337));
 
         // Check that the options are overwritten
-        $this->assertEquals('1.337', $helper->formatDecimal(1.337, ['fraction_digits' => 3]));
-        $this->assertEquals('MIN1.34', $helper->formatDecimal(-1.337, [], ['negative_prefix' => 'MIN']));
+        $this->assertSame('1.337', $helper->formatDecimal(1.337, ['fraction_digits' => 3]));
+        $this->assertSame('MIN1.34', $helper->formatDecimal(-1.337, [], ['negative_prefix' => 'MIN']));
     }
 
     public function testExceptionOnInvalidParams(): void
@@ -95,7 +96,7 @@ class NumberHelperTest extends TestCase
 
         $this->assertNull($formatter);
 
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'));
 
@@ -115,10 +116,10 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->expectException('\InvalidArgumentException');
+            $this->expectException(\InvalidArgumentException::class);
         }
 
-        $this->assertEquals($expectedConstant, $method->invoke($helper, $constantName));
+        $this->assertSame($expectedConstant, $method->invoke($helper, $constantName));
     }
 
     public function provideConstantValues()
@@ -140,10 +141,10 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         if ($exceptionExpected) {
-            $this->expectException('\InvalidArgumentException');
+            $this->expectException(\InvalidArgumentException::class);
         }
 
-        $this->assertEquals($expectedAttributes, $method->invoke($helper, $attributes));
+        $this->assertSame($expectedAttributes, $method->invoke($helper, $attributes));
     }
 
     public function provideAttributeValues()
@@ -179,10 +180,10 @@ class NumberHelperTest extends TestCase
         $helper = new NumberHelper('UTF-8', $localeDetector);
 
         if ($exceptionExpected) {
-            $this->expectException('\BadMethodCallException');
+            $this->expectException(\BadMethodCallException::class);
         }
 
-        $this->assertEquals($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
+        $this->assertSame($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
     }
 
     public function provideFormatMethodArguments()
@@ -223,14 +224,14 @@ class NumberHelperTest extends TestCase
         $method = new \ReflectionMethod($helper, 'format');
         $method->setAccessible(true);
 
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], 'fr'));
-        $this->assertEquals('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], []));
+        $this->assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
+        $this->assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], 'fr'));
+        $this->assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], []));
     }
 
     private function createLocaleDetectorMock()
     {
-        $localeDetector = $this->createMock('Sonata\IntlBundle\Locale\LocaleDetectorInterface');
+        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')->will($this->returnValue('en'))

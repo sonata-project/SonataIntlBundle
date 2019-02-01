@@ -15,10 +15,9 @@ namespace Sonata\IntlBundle\Tests\Timezone;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
+use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**
- * Tests for the LocaleBasedTimezoneDetector.
- *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
 class ChainTimezoneDetectorTest extends TestCase
@@ -42,7 +41,7 @@ class ChainTimezoneDetectorTest extends TestCase
         $chainTimezoneDetector = new ChainTimezoneDetector('America/Denver');
 
         foreach ($detectorsTimezones as $timezone) {
-            $timezoneDetector = $this->createMock('Sonata\IntlBundle\Timezone\TimezoneDetectorInterface');
+            $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
             $timezoneDetector
                 ->expects($this->any())
                 ->method('getTimezone')
@@ -52,6 +51,6 @@ class ChainTimezoneDetectorTest extends TestCase
             $chainTimezoneDetector->addDetector($timezoneDetector);
         }
 
-        $this->assertEquals($expectedTimezone, $chainTimezoneDetector->getTimezone());
+        $this->assertSame($expectedTimezone, $chainTimezoneDetector->getTimezone());
     }
 }
