@@ -12,15 +12,5 @@ file that was distributed with this source code.
 {% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
 
 {% block field %}
-    {%- if value is empty -%}
-        &nbsp;
-    {%- else -%}
-        {% set pattern = field_description.options.pattern|default(null) %}
-        {% set locale = field_description.options.locale|default(null) %}
-        {% set timezone = field_description.options.timezone|default(null) %}
-        {% set dateType = field_description.options.dateType|default(null) %}
-        {% set timeType = field_description.options.timeType|default(null) %}
-
-        {{ value | format_datetime(pattern, locale, timezone, dateType, timeType) }}
-    {%- endif -%}
+    {%- include '@SonataIntl/CRUD/display_datetime.html.twig' -%}
 {% endblock %}
