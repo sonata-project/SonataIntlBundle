@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.6.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.5.0...2.6.0) - 2019-05-02
+### Fixed
+- Fix deprecation for symfony/config 4.2+
+
+### Changed
+- Changed the rendering for date, datetime and time properties in order to use
+  `<time>` tags, which print the dates in UTC using `datetime` and `title`
+attributes, allowing to view the UTC date with the default browser tooltip.
+
+### Removed
+- support for php 5 and php 7.0
+
 ## [2.5.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.4.1...2.5.0) - 2018-06-16
 ### Added
 - Improved autowiring support for templating helpers
