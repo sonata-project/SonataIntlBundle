@@ -172,7 +172,7 @@ class NumberExtensionTest extends TestCase
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'))
+            ->method('getLocale')->willReturn('en')
         ;
 
         return $localeDetector;
