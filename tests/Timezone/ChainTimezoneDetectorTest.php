@@ -45,7 +45,7 @@ class ChainTimezoneDetectorTest extends TestCase
             $timezoneDetector
                 ->expects($this->any())
                 ->method('getTimezone')
-                ->will($this->returnValue($timezone))
+                ->willReturn($timezone)
             ;
 
             $chainTimezoneDetector->addDetector($timezoneDetector);
