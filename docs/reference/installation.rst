@@ -21,5 +21,5 @@ Now, enable the bundle in ``bundles.php`` file::
 
     return [
         // ...
-        Sonata\IntlBundle\SonataIntlBundle => ['all' => true],
+        Sonata\IntlBundle\SonataIntlBundle::class => ['all' => true],
     ];
