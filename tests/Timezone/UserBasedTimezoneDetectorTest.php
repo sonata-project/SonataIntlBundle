@@ -48,14 +48,14 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $user
             ->expects($this->any())
             ->method('getTimezone')
-            ->will($this->returnValue($timezone))
+            ->willReturn($timezone)
         ;
 
         $token = $this->createMock(TokenInterface::class);
         $token
             ->expects($this->any())
             ->method('getUser')
-            ->will($this->returnValue($user))
+            ->willReturn($user)
         ;
 
         if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
@@ -67,7 +67,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $storage
             ->expects($this->any())
             ->method('getToken')
-            ->will($this->returnValue($token))
+            ->willReturn($token)
         ;
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
@@ -85,7 +85,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $storage
             ->expects($this->any())
             ->method('getToken')
-            ->will($this->returnValue(null))
+            ->willReturn(null)
         ;
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);

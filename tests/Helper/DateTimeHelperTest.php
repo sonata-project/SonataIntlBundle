@@ -33,11 +33,11 @@ class DateTimeHelperTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'));
+            ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
-            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+            ->method('getTimezone')->willReturn('Europe/Paris');
 
         $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
 
@@ -80,15 +80,15 @@ class DateTimeHelperTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'));
+            ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
-            ->method('getTimezone')->will($this->returnValue('Europe/London'));
+            ->method('getTimezone')->willReturn('Europe/London');
 
         $timezoneDetectorWithMapping = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetectorWithMapping->expects($this->any())
-            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+            ->method('getTimezone')->willReturn('Europe/Paris');
 
         $this->assertSame('Europe/London', $timezoneDetector->getTimezone());
         $this->assertSame('Europe/Paris', $timezoneDetectorWithMapping->getTimezone());
@@ -119,11 +119,11 @@ class DateTimeHelperTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'));
+            ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector->expects($this->any())
-            ->method('getTimezone')->will($this->returnValue('Europe/Paris'));
+            ->method('getTimezone')->willReturn('Europe/Paris');
 
         $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
 

@@ -31,13 +31,13 @@ class RequestStackDetectorTest extends TestCase
         $requestStack
             ->expects($this->any())
             ->method('getCurrentRequest')
-            ->will($this->returnValue($request))
+            ->willReturn($request)
         ;
 
         $request
             ->expects($this->any())
             ->method('getLocale')
-            ->will($this->returnValue('en'))
+            ->willReturn('en')
         ;
 
         $detector = new RequestStackDetector($requestStack, 'America/Denver');
