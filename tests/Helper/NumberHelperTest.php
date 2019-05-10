@@ -98,7 +98,7 @@ class NumberHelperTest extends TestCase
 
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'));
+            ->method('getLocale')->willReturn('en');
 
         $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
 
@@ -234,7 +234,7 @@ class NumberHelperTest extends TestCase
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->expects($this->any())
-            ->method('getLocale')->will($this->returnValue('en'))
+            ->method('getLocale')->willReturn('en')
         ;
 
         return $localeDetector;

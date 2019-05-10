@@ -28,7 +28,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')
-            ->will($this->returnValue('fr'))
+            ->willReturn('fr')
         ;
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
@@ -41,7 +41,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         $localeDetector
             ->expects($this->any())
             ->method('getLocale')
-            ->will($this->returnValue('de'))
+            ->willReturn('de')
         ;
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
