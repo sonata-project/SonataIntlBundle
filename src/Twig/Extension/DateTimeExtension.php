@@ -14,13 +14,15 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * DateTimeExtension extends Twig with localized date/time capabilities.
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class DateTimeExtension extends \Twig_Extension
+class DateTimeExtension extends AbstractExtension
 {
     /**
      * @var DateTimeHelper
@@ -41,9 +43,9 @@ class DateTimeExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('format_date', [$this, 'formatDate'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('format_time', [$this, 'formatTime'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('format_datetime', [$this, 'formatDatetime'], ['is_safe' => ['html']]),
+            new TwigFunction('format_date', [$this, 'formatDate'], ['is_safe' => ['html']]),
+            new TwigFunction('format_time', [$this, 'formatTime'], ['is_safe' => ['html']]),
+            new TwigFunction('format_datetime', [$this, 'formatDatetime'], ['is_safe' => ['html']]),
         ];
     }
 

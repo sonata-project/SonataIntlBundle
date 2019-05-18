@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * NumberExtension extends Twig with some filters to format numbers according
@@ -22,7 +24,7 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberExtension extends \Twig_Extension
+class NumberExtension extends AbstractExtension
 {
     /**
      * @var NumberHelper The instance of the NumberHelper helper
@@ -43,13 +45,13 @@ class NumberExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
         ];
     }
 

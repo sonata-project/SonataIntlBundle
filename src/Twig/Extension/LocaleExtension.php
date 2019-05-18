@@ -14,13 +14,15 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * LocaleExtension extends Twig with local capabilities.
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class LocaleExtension extends \Twig_Extension
+class LocaleExtension extends AbstractExtension
 {
     /**
      * @var LocaleHelper
@@ -41,9 +43,9 @@ class LocaleExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('country', [$this, 'country'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('locale', [$this, 'locale'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFilter('language', [$this, 'language'], ['is_safe' => ['html']]),
+            new TwigFilter('country', [$this, 'country'], ['is_safe' => ['html']]),
+            new TwigFilter('locale', [$this, 'locale'], ['is_safe' => ['html']]),
+            new TwigFilter('language', [$this, 'language'], ['is_safe' => ['html']]),
         ];
     }
 
