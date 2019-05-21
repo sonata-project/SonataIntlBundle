@@ -32,6 +32,9 @@ class NumberHelperTest extends TestCase
         $this->assertSame('€10.50', $helper->formatCurrency(10.499, 'EUR'));
         $this->assertSame('€10,000.50', $helper->formatCurrency(10000.499, 'EUR'));
 
+        // test compatibility with Doctrine's decimal type (fixed-point number represented as string)
+        $this->assertSame('€10.49', $helper->formatCurrency('10.49', 'EUR'));
+
         $this->assertSame('€10.49', $helper->formatCurrency(10.49, 'EUR', [
             // the fraction_digits is not supported by the currency lib, https://bugs.php.net/bug.php?id=63140
             'fraction_digits' => 0,

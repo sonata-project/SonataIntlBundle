@@ -153,6 +153,11 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
+        if (\is_string($number) && is_numeric($number)) {
+            $number = (float) $number;
+        }
+
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
         list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
