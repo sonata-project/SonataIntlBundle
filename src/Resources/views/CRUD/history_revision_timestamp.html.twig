@@ -9,4 +9,4 @@ file that was distributed with this source code.
 
 #}
 
-{{ revision.timestamp | format_datetime }}
+{%- include '@SonataIntl/CRUD/display_datetime.html.twig' with { value: revision.timestamp } -%}
