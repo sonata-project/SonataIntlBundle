@@ -9,7 +9,7 @@ file that was distributed with this source code.
 
 #}
 
-{%- spaceless %}
+{%- apply spaceless %}
     {%- if value is empty -%}
         &nbsp;
     {%- else -%}
@@ -20,4 +20,4 @@ file that was distributed with this source code.
 
         <time datetime="{{ value|date('Y-m-d', 'UTC') }}" title="{{ value|date('Y-m-d', 'UTC') }}">{{ value | format_date(pattern, locale, timezone, dateType) }}</time>
     {%- endif -%}
-{% endspaceless -%}
+{% endapply -%}
