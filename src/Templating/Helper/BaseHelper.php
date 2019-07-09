@@ -36,8 +36,7 @@ abstract class BaseHelper extends Helper
     protected $localeDetector;
 
     /**
-     * @param string                  $charset        The output charset of the helper
-     * @param LocaleDetectorInterface $localeDetector
+     * @param string $charset The output charset of the helper
      */
     public function __construct($charset, LocaleDetectorInterface $localeDetector)
     {
@@ -129,7 +128,6 @@ abstract class BaseHelper extends Helper
      *
      * @param mixed  $instance
      * @param string $class
-     * @param array  $args
      */
     protected static function checkInternalClass($instance, $class, array $args = [])
     {

@@ -28,8 +28,7 @@ class RequestDetector implements LocaleDetectorInterface
     protected $defaultLocale;
 
     /**
-     * @param ContainerInterface $container
-     * @param string             $defaultLocale
+     * @param string $defaultLocale
      */
     public function __construct(ContainerInterface $container, $defaultLocale)
     {
