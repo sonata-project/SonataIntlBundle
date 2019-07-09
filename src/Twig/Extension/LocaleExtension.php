@@ -29,9 +29,6 @@ class LocaleExtension extends AbstractExtension
      */
     protected $helper;
 
-    /**
-     * @param LocaleHelper $helper
-     */
     public function __construct(LocaleHelper $helper)
     {
         $this->helper = $helper;

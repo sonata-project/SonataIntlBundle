@@ -45,10 +45,6 @@ class SonataIntlExtension extends Extension
         $this->configureLocale($container, $config);
     }
 
-    /**
-     * @param ContainerBuilder $container
-     * @param array            $config
-     */
     protected function configureTimezone(ContainerBuilder $container, array $config)
     {
         if (isset($config['timezone']['service'])) {
@@ -103,10 +99,6 @@ class SonataIntlExtension extends Extension
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
     }
 
-    /**
-     * @param ContainerBuilder $container
-     * @param array            $config
-     */
     protected function configureLocale(ContainerBuilder $container, array $config)
     {
         if (class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
@@ -130,7 +122,6 @@ class SonataIntlExtension extends Extension
     /**
      * Validate timezones.
      *
-     * @param array $timezones
      *
      * @throws \RuntimeException If one of the locales is invalid
      */

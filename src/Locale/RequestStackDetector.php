@@ -28,8 +28,7 @@ class RequestStackDetector implements LocaleDetectorInterface
     protected $defaultLocale;
 
     /**
-     * @param RequestStack $requestStack
-     * @param string       $defaultLocale
+     * @param string $defaultLocale
      */
     public function __construct(RequestStack $requestStack, $defaultLocale)
     {
