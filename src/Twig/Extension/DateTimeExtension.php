@@ -29,9 +29,6 @@ class DateTimeExtension extends AbstractExtension
      */
     protected $helper;
 
-    /**
-     * @param DateTimeHelper $helper
-     */
     public function __construct(DateTimeHelper $helper)
     {
         $this->helper = $helper;

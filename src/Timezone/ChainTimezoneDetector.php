@@ -44,9 +44,6 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
         $this->timezoneDetectors = [];
     }
 
-    /**
-     * @param TimezoneDetectorInterface $timezoneDetector
-     */
     public function addDetector(TimezoneDetectorInterface $timezoneDetector)
     {
         $this->timezoneDetectors[] = $timezoneDetector;
