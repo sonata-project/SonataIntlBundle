@@ -61,7 +61,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -82,7 +81,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -103,7 +101,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -124,7 +121,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -146,7 +142,6 @@ class NumberHelper extends BaseHelper
      * @param string           $currency       The currency in which format the number
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -174,7 +169,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -195,7 +189,6 @@ class NumberHelper extends BaseHelper
      * @param string|float|int $number         The number to format
      * @param array            $attributes     The attributes used by \NumberFormatter
      * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string The formatted number
@@ -217,7 +210,6 @@ class NumberHelper extends BaseHelper
      * @param                  $style
      * @param array            $attributes     The attributes used by the formatter
      * @param array            $textAttributes The text attributes used by the formatter
-     * @param array            $symbols        The symbols used by the formatter
      * @param string|null      $locale         The locale used to format the number
      *
      * @return string

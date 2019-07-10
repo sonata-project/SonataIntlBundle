@@ -38,9 +38,7 @@ class DateTimeHelper extends BaseHelper
     protected static $reflection;
 
     /**
-     * @param TimezoneDetectorInterface $timezoneDetector
-     * @param string                    $charset
-     * @param LocaleDetectorInterface   $localeDetector
+     * @param string $charset
      */
     public function __construct(TimezoneDetectorInterface $timezoneDetector, $charset, LocaleDetectorInterface $localeDetector)
     {
@@ -146,8 +144,6 @@ class DateTimeHelper extends BaseHelper
     /**
      * NEXT_MAJOR: Change to $date to \DateTimeInterface.
      *
-     * @param \IntlDateFormatter $formatter
-     * @param \DateTime          $date
      *
      * @return string
      */
@@ -201,8 +197,6 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @param array $args
-     *
      * @return \IntlDateFormatter
      */
     protected static function createInstance(array $args = [])

@@ -40,8 +40,7 @@ final class StrictPass implements CompilerPassInterface
     }
 
     /**
-     * @param Reference $reference
-     * @param string    $serviceId
+     * @param string $serviceId
      *
      * @return Reference
      */
