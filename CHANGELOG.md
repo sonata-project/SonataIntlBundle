@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.7.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.6.0...2.7.0) - 2019-08-08
+
+### Fixed
+- Restore backward compatibility by accepting currency values represented as string.
+- deprecation notice about using namespaced classes from `\Twig\`
+
+### Changed
+
+- Bumped "twig/twig" dependency to "^2.9";
+- Changed usages of `{% spaceless %}` tag, which is deprecated as of Twig 1.38 with `{% apply spaceless %}` filter;
+- Changed the rendering for the audit revision timestamp in order to use
+  `<time>` tags, which print the dates in UTC using `datetime` and `title`
+attributes, allowing to view the UTC date with the default browser tooltip.
+
 ## [2.6.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.5.0...2.6.0) - 2019-05-02
 ### Fixed
 - Fix deprecation for symfony/config 4.2+
