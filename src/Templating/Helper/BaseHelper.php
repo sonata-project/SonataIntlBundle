@@ -140,10 +140,6 @@ abstract class BaseHelper extends Helper
             $messages[] = sprintf('%s => %s', $name, $value);
         }
 
-        throw new \RuntimeException(sprintf(
-            'Unable to create internal class: %s, with params: %s',
-            $class,
-            implode(', ', $messages)
-        ));
+        throw new \RuntimeException(sprintf('Unable to create internal class: %s, with params: %s', $class, implode(', ', $messages)));
     }
 }
