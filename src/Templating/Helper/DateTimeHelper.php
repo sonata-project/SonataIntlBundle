@@ -144,7 +144,6 @@ class DateTimeHelper extends BaseHelper
     /**
      * NEXT_MAJOR: Change to $date to \DateTimeInterface.
      *
-     *
      * @return string
      */
     public function process(\IntlDateFormatter $formatter, \DateTime $date)
