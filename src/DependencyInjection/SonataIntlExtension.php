@@ -122,7 +122,6 @@ class SonataIntlExtension extends Extension
     /**
      * Validate timezones.
      *
-     *
      * @throws \RuntimeException If one of the locales is invalid
      */
     private function validateTimezones(array $timezones): void
