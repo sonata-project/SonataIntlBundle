@@ -148,9 +148,7 @@ class DateTimeHelper extends BaseHelper
      */
     public function process(\IntlDateFormatter $formatter, \DateTime $date)
     {
-        // strange bug with PHP 5.3.3-7+squeeze14 with Suhosin-Patch
-        // getTimestamp() method alters the object...
-        return $this->fixCharset($formatter->format((int) $date->format('U')));
+        return $this->fixCharset($formatter->format($date->getTimestamp()));
     }
 
     /**
