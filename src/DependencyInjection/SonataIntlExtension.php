@@ -89,11 +89,6 @@ class SonataIntlExtension extends Extension
 
         if (!isset($bundles['SonataUserBundle'])) {
             $container->removeDefinition('sonata.intl.timezone_detector.user');
-        } else {
-            // support Symfony2.6+
-            $container->getDefinition('sonata.intl.timezone_detector.user')
-                ->replaceArgument(0, new Reference(interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')
-                    ? 'security.token_storage' : 'security.context'));
         }
 
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
@@ -101,22 +96,8 @@ class SonataIntlExtension extends Extension
 
     protected function configureLocale(ContainerBuilder $container, array $config)
     {
-        if (class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
-            $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
-            $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
-            $container->removeDefinition('sonata.intl.locale_detector.session');
-            $container->removeDefinition('sonata.intl.locale_detector.request');
-        } elseif (method_exists('Symfony\Component\HttpFoundation\Request', 'getLocale')) {
-            $container->getDefinition('sonata.intl.locale_detector.request')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
-            $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request');
-            $container->removeDefinition('sonata.intl.locale_detector.session');
-            $container->removeDefinition('sonata.intl.locale_detector.request_stack');
-        } else {
-            $container->getDefinition('sonata.intl.locale_detector.session')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('session.default_locale'));
-            $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.session');
-            $container->removeDefinition('sonata.intl.locale_detector.request');
-            $container->removeDefinition('sonata.intl.locale_detector.request_stack');
-        }
+        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?: $container->getParameter('kernel.default_locale'));
+        $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
     /**

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle;
 
-use Sonata\IntlBundle\DependencyInjection\Compiler\StrictPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -40,6 +39,5 @@ class SonataIntlBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new StrictPass());
     }
 }

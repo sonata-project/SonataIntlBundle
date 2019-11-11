@@ -56,7 +56,9 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * NEXT_MAJOR: remove this method.
+     *
+     * @deprecated since sonata-project/intl-bundle 2.x, to be removed in version 3.0.
      */
     public function getName()
     {

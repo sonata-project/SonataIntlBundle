@@ -24,16 +24,10 @@ class SonataIntlExtensionTest extends AbstractExtensionTestCase
         $this->setParameter('kernel.default_locale', 'en');
         $this->load();
 
-        if (class_exists('Symfony\Component\HttpFoundation\RequestStack')) {
-            $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
-        } elseif (method_exists('Symfony\Component\HttpFoundation\Request', 'getLocale')) {
-            $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request');
-        } else {
-            $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.session');
-        }
+        $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
-    protected function getContainerExtensions()
+    protected function getContainerExtensions(): array
     {
         return [
             new SonataIntlExtension(),
