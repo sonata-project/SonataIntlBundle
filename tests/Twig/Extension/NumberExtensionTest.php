@@ -33,7 +33,7 @@ class NumberExtensionTest extends TestCase
         $extension = new NumberExtension($helper);
 
         foreach ($testData as $data) {
-            list($methodArguments, $expectedResult) = $data;
+            [$methodArguments, $expectedResult] = $data;
 
             $this->assertSame($expectedResult, \call_user_func_array([$extension, $methodName], $methodArguments));
         }
@@ -171,7 +171,6 @@ class NumberExtensionTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
-            ->expects($this->any())
             ->method('getLocale')->willReturn('en')
         ;
 

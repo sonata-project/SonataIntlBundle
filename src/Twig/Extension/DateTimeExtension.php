@@ -47,7 +47,7 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
-     * @param \Datetime|string|int $date
+     * @param \DateTime|string|int $date
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone
@@ -65,7 +65,7 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
-     * @param \Datetime|string|int $time
+     * @param \DateTime|string|int $time
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone
@@ -83,7 +83,7 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
-     * @param \Datetime|string|int $time
+     * @param \DateTime|string|int $time
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone

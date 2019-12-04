@@ -29,13 +29,11 @@ class RequestStackDetectorTest extends TestCase
         $request = $this->createMock(Request::class);
 
         $requestStack
-            ->expects($this->any())
             ->method('getCurrentRequest')
             ->willReturn($request)
         ;
 
         $request
-            ->expects($this->any())
             ->method('getLocale')
             ->willReturn('en')
         ;
