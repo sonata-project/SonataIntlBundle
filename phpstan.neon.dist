@@ -1,0 +1,14 @@
+parameters:
+    level: 1
+
+    paths:
+        - src
+# Uncomment this, when phpstan extensions are allowed
+#        - tests
+
+    excludes_analyse:
+        - src/Test/AbstractWidgetTestCase.php
+        - tests/bootstrap.php
+
+    autoload_files:
+        - vendor/autoload.php
