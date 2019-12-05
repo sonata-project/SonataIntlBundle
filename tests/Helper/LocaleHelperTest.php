@@ -25,9 +25,7 @@ class LocaleHelperTest extends TestCase
         $localeDetector->expects($this->any())
             ->method('getLocale')->willReturn('fr');
 
-        $helper = new LocaleHelper('UTF-8', $localeDetector);
-
-        return $helper;
+        return new LocaleHelper('UTF-8', $localeDetector);
     }
 
     /**
@@ -40,7 +38,6 @@ class LocaleHelperTest extends TestCase
         $this->assertSame('français', $helper->language('fr_FR'));
         $this->assertSame('anglais américain', $helper->language('en_US'));
         $this->assertSame('French', $helper->language('fr', 'en'));
-        //        $this->assertEquals('', $helper->language('fr', 'fake'));
     }
 
     public function testCountry(): void

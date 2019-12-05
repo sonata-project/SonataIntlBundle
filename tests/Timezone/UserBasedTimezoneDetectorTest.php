@@ -15,6 +15,7 @@ namespace Sonata\IntlBundle\Tests\Timezone;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
@@ -58,11 +59,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
             ->willReturn($user)
         ;
 
-        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
-            $storage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
-        } else {
-            $storage = $this->createMock('Symfony\Component\Security\Core\SecurityContextInterface');
-        }
+        $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
             ->expects($this->any())
@@ -76,11 +73,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
 
     public function testTimezoneNotDetected(): void
     {
-        if (interface_exists('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface')) {
-            $storage = $this->createMock('Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface');
-        } else {
-            $storage = $this->createMock('Symfony\Component\Security\Core\SecurityContextInterface');
-        }
+        $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
             ->expects($this->any())
@@ -90,13 +83,5 @@ class UserBasedTimezoneDetectorTest extends TestCase
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertNull($timezoneDetector->getTimezone());
-    }
-
-    public function testInvalidArgumentException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Argument 1 should be an instance of Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface or Symfony\Component\Security\Core\SecurityContextInterface');
-
-        new UserBasedTimezoneDetector(new \stdClass());
     }
 }

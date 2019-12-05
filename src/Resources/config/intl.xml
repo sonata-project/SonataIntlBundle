@@ -2,7 +2,6 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
         <parameter key="sonata.intl.locale_detector.request.class">Sonata\IntlBundle\Locale\RequestDetector</parameter>
-        <parameter key="sonata.intl.locale_detector.session.class">Sonata\IntlBundle\Locale\SessionDetector</parameter>
         <parameter key="sonata.intl.templating.helper.locale.class">Sonata\IntlBundle\Templating\Helper\LocaleHelper</parameter>
         <parameter key="sonata.intl.templating.helper.number.class">Sonata\IntlBundle\Templating\Helper\NumberHelper</parameter>
         <parameter key="sonata.intl.templating.helper.datetime.class">Sonata\IntlBundle\Templating\Helper\DateTimeHelper</parameter>
@@ -15,15 +14,12 @@
     </parameters>
     <services>
         <service id="sonata.intl.locale_detector.request" class="%sonata.intl.locale_detector.request.class%" public="true">
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.x and will be removed in 3.0.</deprecated>
             <argument type="service" id="service_container"/>
             <argument/>
         </service>
         <service id="sonata.intl.locale_detector.request_stack" class="Sonata\IntlBundle\Locale\RequestStackDetector" public="true">
             <argument type="service" id="request_stack"/>
-            <argument/>
-        </service>
-        <service id="sonata.intl.locale_detector.session" class="%sonata.intl.locale_detector.session.class%" public="true">
-            <argument type="service" id="session"/>
             <argument/>
         </service>
         <service id="sonata.intl.templating.helper.locale" class="%sonata.intl.templating.helper.locale.class%" public="true">
@@ -59,12 +55,12 @@
         </service>
         <service id="sonata.intl.timezone_detector.user" class="%sonata.intl.timezone_detector.user.class%" public="true">
             <tag name="sonata_intl.timezone_detector" alias="user"/>
-            <argument/>
+            <argument type="service" id="security.token_storage"/>
         </service>
         <service id="sonata.intl.timezone_detector.locale" class="%sonata.intl.timezone_detector.locale.class%" public="true">
             <tag name="sonata_intl.timezone_detector" alias="locale"/>
             <argument type="service" id="sonata.intl.locale_detector"/>
-            <argument/>
+            <argument type="service" id="security.token_storage"/>
         </service>
     </services>
 </container>

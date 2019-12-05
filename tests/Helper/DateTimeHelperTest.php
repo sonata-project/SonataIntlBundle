@@ -24,7 +24,7 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  */
 class DateTimeHelperTest extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         date_default_timezone_set('Europe/Paris');
     }
