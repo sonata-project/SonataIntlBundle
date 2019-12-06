@@ -12,3 +12,19 @@ parameters:
 
     autoload_files:
         - vendor/autoload.php
+
+    ignoreErrors:
+        -
+            message: "#^Call to an undefined static method Symfony\\\\Component\\\\Intl\\\\Intl\\:\\:getRegionBundle\\(\\)\\.$#"
+            count: 1
+            path: src/Templating/Helper/LocaleHelper.php
+
+        -
+            message: "#^Call to an undefined static method Symfony\\\\Component\\\\Intl\\\\Intl\\:\\:getLanguageBundle\\(\\)\\.$#"
+            count: 1
+            path: src/Templating/Helper/LocaleHelper.php
+
+        -
+            message: "#^Call to an undefined static method Symfony\\\\Component\\\\Intl\\\\Intl\\:\\:getLocaleBundle\\(\\)\\.$#"
+            count: 1
+            path: src/Templating/Helper/LocaleHelper.php
