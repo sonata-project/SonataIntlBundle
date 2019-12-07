@@ -51,11 +51,6 @@ final class StrictPass implements CompilerPassInterface
      */
     private function changeReference(Reference $reference, $serviceId)
     {
-        // Stay compatible with Symfony 2
-        if (method_exists($reference, 'isStrict')) {
-            return new Reference($serviceId, $reference->getInvalidBehavior(), $reference->isStrict(false));
-        }
-
         return new Reference($serviceId, $reference->getInvalidBehavior());
     }
 }

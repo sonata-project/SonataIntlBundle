@@ -69,7 +69,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -89,7 +89,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -109,7 +109,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -129,7 +129,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -155,7 +155,7 @@ class NumberHelper extends BaseHelper
 
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
 
@@ -177,7 +177,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -197,7 +197,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -207,7 +207,7 @@ class NumberHelper extends BaseHelper
      * attributes.
      *
      * @param string|float|int $number         The number to format
-     * @param                  $style
+     * @param string           $style
      * @param array            $attributes     The attributes used by the formatter
      * @param array            $textAttributes The text attributes used by the formatter
      * @param string|null      $locale         The locale used to format the number
@@ -218,7 +218,7 @@ class NumberHelper extends BaseHelper
     {
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
-        list($locale, $symbols) = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
 

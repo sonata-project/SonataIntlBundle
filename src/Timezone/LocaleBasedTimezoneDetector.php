@@ -45,6 +45,6 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
     {
         $locale = $this->localeDetector->getLocale();
 
-        return isset($this->timezoneMap[$locale]) ? $this->timezoneMap[$locale] : null;
+        return $this->timezoneMap[$locale] ?? null;
     }
 }

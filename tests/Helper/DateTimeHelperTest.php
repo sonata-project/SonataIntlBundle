@@ -32,11 +32,11 @@ class DateTimeHelperTest extends TestCase
     public function testLocale(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector->expects($this->any())
+        $localeDetector
             ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
-        $timezoneDetector->expects($this->any())
+        $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/Paris');
 
         $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
@@ -79,15 +79,15 @@ class DateTimeHelperTest extends TestCase
     public function testLocaleTimezones(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector->expects($this->any())
+        $localeDetector
             ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
-        $timezoneDetector->expects($this->any())
+        $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/London');
 
         $timezoneDetectorWithMapping = $this->createMock(TimezoneDetectorInterface::class);
-        $timezoneDetectorWithMapping->expects($this->any())
+        $timezoneDetectorWithMapping
             ->method('getTimezone')->willReturn('Europe/Paris');
 
         $this->assertSame('Europe/London', $timezoneDetector->getTimezone());
@@ -118,11 +118,11 @@ class DateTimeHelperTest extends TestCase
     public function testImmutable(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector->expects($this->any())
+        $localeDetector
             ->method('getLocale')->willReturn('en');
 
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
-        $timezoneDetector->expects($this->any())
+        $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/Paris');
 
         $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);

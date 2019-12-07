@@ -23,7 +23,7 @@ class SonataIntlBundle extends Bundle
      *
      * @static
      *
-     * @param $version
+     * @param string $version
      *
      * @return string
      */

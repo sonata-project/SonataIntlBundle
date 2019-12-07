@@ -61,7 +61,7 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
+            'datetype' => $dateType ?? \IntlDateFormatter::MEDIUM,
             'timetype' => \IntlDateFormatter::NONE,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
@@ -85,8 +85,8 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => null === $dateType ? \IntlDateFormatter::MEDIUM : $dateType,
-            'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
+            'datetype' => $dateType ?? \IntlDateFormatter::MEDIUM,
+            'timetype' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
@@ -109,7 +109,7 @@ class DateTimeHelper extends BaseHelper
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
             'datetype' => \IntlDateFormatter::NONE,
-            'timetype' => null === $timeType ? \IntlDateFormatter::MEDIUM : $timeType,
+            'timetype' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
@@ -119,7 +119,7 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTime|\DateTimeInterface|string|int $datetime
-     * @param                                         $pattern
+     * @param string                                  $pattern
      * @param string|null                             $locale
      * @param string|null                             $timezone
      *

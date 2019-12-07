@@ -26,7 +26,6 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
-            ->expects($this->any())
             ->method('getLocale')
             ->willReturn('fr')
         ;
@@ -39,7 +38,6 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
-            ->expects($this->any())
             ->method('getLocale')
             ->willReturn('de')
         ;

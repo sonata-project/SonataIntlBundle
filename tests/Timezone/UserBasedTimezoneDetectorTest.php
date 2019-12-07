@@ -15,6 +15,8 @@ namespace Sonata\IntlBundle\Tests\Timezone;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
+use Sonata\UserBundle\Model\User;
+use Sonata\UserBundle\SonataUserBundle;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
@@ -25,7 +27,7 @@ class UserBasedTimezoneDetectorTest extends TestCase
 {
     protected function setUp(): void
     {
-        if (!class_exists('Sonata\UserBundle\SonataUserBundle')) {
+        if (!class_exists(SonataUserBundle::class)) {
             $this->markTestSkipped('SonataUserBundle must be installed to run this test.');
         }
     }
@@ -45,16 +47,14 @@ class UserBasedTimezoneDetectorTest extends TestCase
      */
     public function testDetectsTimezoneForUser($timezone): void
     {
-        $user = $this->createMock('Sonata\UserBundle\Model\User');
+        $user = $this->createMock(User::class);
         $user
-            ->expects($this->any())
             ->method('getTimezone')
             ->willReturn($timezone)
         ;
 
         $token = $this->createMock(TokenInterface::class);
         $token
-            ->expects($this->any())
             ->method('getUser')
             ->willReturn($user)
         ;
@@ -62,7 +62,6 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
-            ->expects($this->any())
             ->method('getToken')
             ->willReturn($token)
         ;
@@ -76,7 +75,6 @@ class UserBasedTimezoneDetectorTest extends TestCase
         $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
-            ->expects($this->any())
             ->method('getToken')
             ->willReturn(null)
         ;

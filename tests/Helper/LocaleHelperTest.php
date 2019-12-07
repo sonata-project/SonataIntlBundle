@@ -22,7 +22,7 @@ class LocaleHelperTest extends TestCase
     public function getHelper()
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector->expects($this->any())
+        $localeDetector
             ->method('getLocale')->willReturn('fr');
 
         return new LocaleHelper('UTF-8', $localeDetector);

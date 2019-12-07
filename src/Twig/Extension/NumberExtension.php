@@ -81,7 +81,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -101,7 +101,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -121,7 +121,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -141,7 +141,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -161,7 +161,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -181,7 +181,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -201,7 +201,7 @@ class NumberExtension extends AbstractExtension
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
-        list($locale, $symbols) = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
     }

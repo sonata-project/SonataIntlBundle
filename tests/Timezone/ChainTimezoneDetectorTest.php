@@ -43,7 +43,6 @@ class ChainTimezoneDetectorTest extends TestCase
         foreach ($detectorsTimezones as $timezone) {
             $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
             $timezoneDetector
-                ->expects($this->any())
                 ->method('getTimezone')
                 ->willReturn($timezone)
             ;

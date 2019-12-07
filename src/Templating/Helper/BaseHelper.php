@@ -76,8 +76,7 @@ abstract class BaseHelper extends Helper
 
         ob_start();
         phpinfo();
-        $content = ob_get_contents();
-        ob_end_clean();
+        $content = ob_get_clean();
 
         $info = explode("\n", $content);
 
