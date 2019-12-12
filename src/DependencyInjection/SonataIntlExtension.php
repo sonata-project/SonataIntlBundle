@@ -96,7 +96,7 @@ class SonataIntlExtension extends Extension
 
     protected function configureLocale(ContainerBuilder $container, array $config): void
     {
-        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?: $container->getParameter('kernel.default_locale'));
+        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?: '%kernel.default_locale%');
         $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
