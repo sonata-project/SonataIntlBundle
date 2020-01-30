@@ -23,22 +23,22 @@
     ],
     "require": {
         "php": "^7.1",
-        "symfony/config": "^3.4 || ^4.2",
-        "symfony/dependency-injection": "^3.4 || ^4.2",
-        "symfony/http-foundation": "^3.4 || ^4.2",
-        "symfony/http-kernel": "^3.4 || ^4.2",
-        "symfony/intl": "^3.4 || ^4.2",
-        "symfony/templating": "^3.4 || ^4.2",
+        "symfony/config": "^4.4",
+        "symfony/dependency-injection": "^4.4",
+        "symfony/http-foundation": "^4.4",
+        "symfony/http-kernel": "^4.4",
+        "symfony/intl": "^4.4",
+        "symfony/templating": "^4.4",
         "twig/twig": "^2.9"
     },
     "conflict": {
         "sonata-project/user-bundle": "<2.0 || >=5.0"
     },
     "require-dev": {
-        "matthiasnoback/symfony-dependency-injection-test": "^3.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "sonata-project/user-bundle": "^3.6 || ^4.0",
         "symfony/phpunit-bridge": "^5.0",
-        "symfony/security-core": "^3.4 || ^4.2"
+        "symfony/security-core": "^4.4"
     },
     "suggest": {
         "sonata-project/user-bundle": "For user timezone detection"
