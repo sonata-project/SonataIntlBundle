@@ -16,14 +16,6 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
 
 .. configuration-block::
 
-    .. code-block:: xml
-
-        <!-- config/services.xml -->
-
-        <service id="app.my_custom_timezone_detector" class="App\TimezoneDetector\MyCustomTimezoneDetector">
-            <tag name="sonata_intl.timezone_detector" />
-        </service>
-
     .. code-block:: yaml
 
         # config/services.yaml
@@ -33,6 +25,14 @@ Create a service with the ``sonata_intl.timezone_detector`` tag with a custom al
                 class: App\TimezoneDetector\MyCustomTimezoneDetector
                 tags:
                     - { name: sonata_intl.timezone_detector }
+
+    .. code-block:: xml
+
+        <!-- config/services.xml -->
+
+        <service id="app.my_custom_timezone_detector" class="App\TimezoneDetector\MyCustomTimezoneDetector">
+            <tag name="sonata_intl.timezone_detector"/>
+        </service>
 
 Add the detector to the Configuration
 -------------------------------------
