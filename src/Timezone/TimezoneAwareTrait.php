@@ -14,16 +14,19 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Timezone;
 
 /**
- * Interfaces for services that are able to detect a timezone.
+ * Basic Implementation of TimezoneAwareInterface.
  *
- * @author Alexander <iam.asm89@gmail.com>
+ * @author Javier Spagnoletti <phansys@gmail.com>
  */
-interface TimezoneDetectorInterface
+trait TimezoneAwareTrait
 {
     /**
-     * Get the appropriate timezone.
-     *
-     * @return string|null
+     * @var string|null
      */
-    public function getTimezone();
+    private $timezone;
+
+    final public function getTimezone(): ?string
+    {
+        return $this->timezone;
+    }
 }

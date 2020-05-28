@@ -36,15 +36,29 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
     public function getTimezone()
     {
         if (!$token = $this->securityContext->getToken()) {
-            return;
+            return null;
         }
 
         if (!$user = $token->getUser()) {
-            return;
+            return null;
         }
 
-        if ($user instanceof User) {
+        if ($user instanceof TimezoneAwareInterface) {
             return $user->getTimezone();
         }
+
+        // NEXT_MAJOR: Remove this check and the related documentation at `docs/reference/configuration.rst`.
+        if ($user instanceof User) {
+            @trigger_error(sprintf(
+                'Timezone inference based on the "%s" class is deprecated since sonata-project/intl-bundle 2.x and will be dropped in 3.0 version.'
+                .' Implement "%s" explicitly in your user class instead.',
+                User::class,
+                TimezoneAwareInterface::class
+            ), E_USER_DEPRECATED);
+
+            return $user->getTimezone();
+        }
+
+        return null;
     }
 }
