@@ -40,9 +40,6 @@
         "symfony/phpunit-bridge": "^5.0",
         "symfony/security-core": "^4.4"
     },
-    "suggest": {
-        "sonata-project/user-bundle": "For user timezone detection"
-    },
     "config": {
         "sort-packages": true
     },
