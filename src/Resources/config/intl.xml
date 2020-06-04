@@ -26,11 +26,16 @@
             <tag name="templating.helper" alias="locale"/>
             <argument>%kernel.charset%</argument>
             <argument type="service" id="sonata.intl.locale_detector"/>
+            <argument type="service" id="twig.extension.intl"/>
         </service>
         <service id="sonata.intl.templating.helper.number" class="%sonata.intl.templating.helper.number.class%" public="true">
             <tag name="templating.helper" alias="number"/>
             <argument>%kernel.charset%</argument>
             <argument type="service" id="sonata.intl.locale_detector"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="collection"/>
+            <argument type="service" id="twig.extension.intl"/>
         </service>
         <service id="sonata.intl.templating.helper.datetime" class="%sonata.intl.templating.helper.datetime.class%" public="true">
             <tag name="templating.helper" alias="datetime"/>

@@ -16,48 +16,97 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Symfony\Component\Templating\Helper\HelperInterface;
+use Twig\Extra\Intl\IntlExtension;
 
-class LocaleHelperTest extends TestCase
+final class LocaleHelperTest extends TestCase
 {
-    public function getHelper()
+    /**
+     * NEXT_MAJOR: Remove this property.
+     *
+     * @var HelperInterface
+     */
+    private $legacyLocaleHelper;
+
+    /**
+     * @var HelperInterface
+     */
+    private $localeHelper;
+
+    protected function setUp(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->method('getLocale')->willReturn('fr');
 
-        return new LocaleHelper('UTF-8', $localeDetector);
+        $this->localeHelper = new LocaleHelper('UTF-8', $localeDetector, new IntlExtension());
+        $this->legacyLocaleHelper = new LocaleHelper('UTF-8', $localeDetector);
     }
 
     /**
      * @group legacy
      */
-    public function testLanguage()
+    public function testLanguage(): void
     {
-        $helper = $this->getHelper();
-        $this->assertSame('français', $helper->language('fr'));
-        $this->assertSame('français', $helper->language('fr_FR'));
-        $this->assertSame('anglais américain', $helper->language('en_US'));
-        $this->assertSame('French', $helper->language('fr', 'en'));
+        $this->assertSame('français', $this->localeHelper->language('fr'));
+        $this->assertSame('français', $this->localeHelper->language('fr_FR'));
+        $this->assertSame('anglais américain', $this->localeHelper->language('en_US'));
+        $this->assertSame('French', $this->localeHelper->language('fr', 'en'));
     }
 
-    public function testCountry()
+    public function testCountry(): void
     {
-        $helper = $this->getHelper();
-        $this->assertSame('France', $helper->country('FR'));
-        $this->assertSame('France', $helper->country('FR', 'en'));
-        //        $this->assertEquals('', $helper->country('FR', 'fake'));
+        $this->assertSame('France', $this->localeHelper->country('FR'));
+        $this->assertSame('France', $this->localeHelper->country('FR', 'en'));
+        //        $this->assertEquals('', $this->localeHelper->country('FR', 'fake'));
     }
 
-    public function testLocale()
+    public function testLocale(): void
     {
-        $helper = $this->getHelper();
+        $this->assertSame('français', $this->localeHelper->locale('fr'));
+        $this->assertSame('français (Canada)', $this->localeHelper->locale('fr_CA'));
 
-        $this->assertSame('français', $helper->locale('fr'));
-        $this->assertSame('français (Canada)', $helper->locale('fr_CA'));
+        $this->assertSame('French', $this->localeHelper->locale('fr', 'en'));
+        $this->assertSame('French (Canada)', $this->localeHelper->locale('fr_CA', 'en'));
+        //        $this->assertEquals('', $this->localeHelper->locale('fr', 'fake'));
+        //        $this->assertEquals('', $this->localeHelper->locale('fr_CA', 'fake'));
+    }
 
-        $this->assertSame('French', $helper->locale('fr', 'en'));
-        $this->assertSame('French (Canada)', $helper->locale('fr_CA', 'en'));
-        //        $this->assertEquals('', $helper->locale('fr', 'fake'));
-        //        $this->assertEquals('', $helper->locale('fr_CA', 'fake'));
+    /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @group legacy
+     */
+    public function testLegacyLanguage(): void
+    {
+        $this->assertSame('français', $this->legacyLocaleHelper->language('fr'));
+        $this->assertSame('français', $this->legacyLocaleHelper->language('fr_FR'));
+        $this->assertSame('anglais américain', $this->legacyLocaleHelper->language('en_US'));
+        $this->assertSame('French', $this->legacyLocaleHelper->language('fr', 'en'));
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @group legacy
+     */
+    public function testLegacyCountry(): void
+    {
+        $this->assertSame('France', $this->legacyLocaleHelper->country('FR'));
+        $this->assertSame('France', $this->legacyLocaleHelper->country('FR', 'en'));
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * @group legacy
+     */
+    public function testLegacyLocale(): void
+    {
+        $this->assertSame('français', $this->legacyLocaleHelper->locale('fr'));
+        $this->assertSame('français (Canada)', $this->legacyLocaleHelper->locale('fr_CA'));
+
+        $this->assertSame('French', $this->legacyLocaleHelper->locale('fr', 'en'));
+        $this->assertSame('French (Canada)', $this->legacyLocaleHelper->locale('fr_CA', 'en'));
     }
 }

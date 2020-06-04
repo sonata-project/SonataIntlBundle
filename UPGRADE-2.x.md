@@ -4,6 +4,22 @@ UPGRADE 2.x
 UPGRADE FROM 2.7 to 2.8
 =======================
 
+### Locale helper
+
+``Sonata\IntlBundle\Templating\Helper\LocaleHelper`` is marked as final, you must
+not inherit this class.
+
+``Sonata\IntlBundle\Templating\Helper\LocaleHelper::__construct()`` expects ``Twig\Extra\Intl\IntlExtension``
+in argument 3.
+
+### Number helper
+
+``Sonata\IntlBundle\Templating\Helper\NumberHelper`` is marked as final, you must
+not inherit this class.
+
+``Sonata\IntlBundle\Templating\Helper\LocaleHelper::__construct()`` expects ``Twig\Extra\Intl\IntlExtension``
+in argument 6.
+
 ### Timezone detector
 
 ``Sonata\IntlBundle\Timezone\TimezoneAwareInterface`` was added in order to provide
