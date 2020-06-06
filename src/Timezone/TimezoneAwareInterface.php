@@ -14,16 +14,9 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Timezone;
 
 /**
- * Interfaces for services that are able to detect a timezone.
- *
- * @author Alexander <iam.asm89@gmail.com>
+ * @author Javier Spagnoletti <phansys@gmail.com>
  */
-interface TimezoneDetectorInterface
+interface TimezoneAwareInterface
 {
-    /**
-     * Get the appropriate timezone.
-     *
-     * @return string|null
-     */
-    public function getTimezone();
+    public function getTimezone(): ?string;
 }

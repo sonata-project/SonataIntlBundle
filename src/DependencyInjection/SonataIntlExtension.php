@@ -60,15 +60,12 @@ class SonataIntlExtension extends Extension
 
         $timezoneDetectors = $config['timezone']['detectors'];
 
-        $bundles = $container->getParameter('kernel.bundles');
-
-        if (0 === \count($timezoneDetectors)) { // no value define in the configuration, set one
-            // Support Sonata User Bundle.
-            if (isset($bundles['SonataUserBundle'])) {
-                $timezoneDetectors[] = 'sonata.intl.timezone_detector.user';
-            }
-
-            $timezoneDetectors[] = 'sonata.intl.timezone_detector.locale';
+        if (0 === \count($timezoneDetectors)) {
+            // define default values if there is no value defined in configuration.
+            $timezoneDetectors = [
+                'sonata.intl.timezone_detector.user',
+                'sonata.intl.timezone_detector.locale',
+            ];
         }
 
         foreach ($timezoneDetectors as $id) {
@@ -86,10 +83,6 @@ class SonataIntlExtension extends Extension
             ->getDefinition('sonata.intl.timezone_detector.chain')
             ->replaceArgument(0, $config['timezone']['default'])
         ;
-
-        if (!isset($bundles['SonataUserBundle'])) {
-            $container->removeDefinition('sonata.intl.timezone_detector.user');
-        }
 
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
     }
