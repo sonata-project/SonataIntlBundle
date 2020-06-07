@@ -76,6 +76,7 @@ final class NumberHelperTest extends TestCase
 
         // percent
         $this->assertSame('10%', $helper->formatPercent(0.1));
+        $this->assertSame('+ 10%', $helper->formatPercent(0.1, [], ['positive_prefix' => '+ ']));
         $this->assertSame('200%', $helper->formatPercent(1.999));
         $this->assertSame('99%', $helper->formatPercent(0.99));
 
@@ -130,6 +131,7 @@ final class NumberHelperTest extends TestCase
 
         // percent
         $this->assertSame('10%', $helper->formatPercent(0.1));
+        $this->assertSame('+ 10%', $helper->formatPercent(0.1, [], ['positive_prefix' => '+ ']));
         $this->assertSame('200%', $helper->formatPercent(1.999));
         $this->assertSame('99%', $helper->formatPercent(0.99));
 

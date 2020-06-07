@@ -78,8 +78,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::PERCENT, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('percent', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('percent', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -113,8 +114,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DURATION, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('duration', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('duration', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -148,8 +150,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DECIMAL, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('decimal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('decimal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -183,8 +186,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SPELLOUT, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('spellout', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('spellout', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -219,8 +223,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::CURRENCY, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -261,8 +266,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SCIENTIFIC, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('scientific', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('scientific', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -296,8 +302,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::ORDINAL, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumberStyle('ordinal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle('ordinal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -332,8 +339,9 @@ class NumberHelper extends BaseHelper
     {
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, $style, $textAttributes);
 
-            return $this->fixCharset($this->intlExtension->formatNumber($number, $attributes, $style, 'default', $locale ?: $this->localeDetector->getLocale()));
+            return $this->fixCharset($intlExtension->formatNumberStyle($style, $number, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
 
         // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
@@ -406,12 +414,8 @@ class NumberHelper extends BaseHelper
     }
 
     /**
-     * NEXT_MAJOR: Remove this method.
-     *
      * Gets an instance of \NumberFormatter set with the given attributes and
      * style.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.x
      *
      * @param string $culture        The culture used by \NumberFormatter
      * @param string $style          The style used by \NumberFormatter
@@ -423,12 +427,6 @@ class NumberHelper extends BaseHelper
      */
     protected function getFormatter($culture, $style, $attributes = [], $textAttributes = [], $symbols = [])
     {
-        @trigger_error(sprintf(
-            'Method "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will be removed in version 3.x.',
-            __METHOD__
-        ));
-
         $attributes = $this->parseAttributes(array_merge($this->attributes, $attributes));
         $textAttributes = $this->parseAttributes(array_merge($this->textAttributes, $textAttributes));
         $symbols = $this->parseAttributes(array_merge($this->symbols, $symbols));
@@ -528,5 +526,16 @@ class NumberHelper extends BaseHelper
         }
 
         return $attributes;
+    }
+
+    private function getIntlExtension(?string $locale = null, int $style, array $textAttributes): IntlExtension
+    {
+        if (empty($textAttributes)) {
+            return $this->intlExtension;
+        }
+
+        $numberFormatterProto = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, [], $textAttributes);
+
+        return new IntlExtension(null, $numberFormatterProto);
     }
 }
