@@ -76,6 +76,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::PERCENT, $textAttributes);
@@ -91,10 +95,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -112,6 +112,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DURATION, $textAttributes);
@@ -127,10 +131,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -148,6 +148,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DECIMAL, $textAttributes);
@@ -163,10 +167,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -184,6 +184,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SPELLOUT, $textAttributes);
@@ -199,10 +203,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -221,6 +221,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 6, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::CURRENCY, $textAttributes);
@@ -242,10 +246,6 @@ class NumberHelper extends BaseHelper
             $number = (float) $number;
         }
 
-        $methodArgs = array_pad(\func_get_args(), 6, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
-
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
@@ -264,6 +264,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SCIENTIFIC, $textAttributes);
@@ -279,10 +283,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -300,6 +300,10 @@ class NumberHelper extends BaseHelper
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 5, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::ORDINAL, $textAttributes);
@@ -315,10 +319,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 5, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -337,6 +337,10 @@ class NumberHelper extends BaseHelper
      */
     public function format($number, $style, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 6, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
             $intlExtension = $this->getIntlExtension($locale, $style, $textAttributes);
@@ -352,10 +356,6 @@ class NumberHelper extends BaseHelper
             IntlExtension::class,
             __CLASS__
         ));
-
-        $methodArgs = array_pad(\func_get_args(), 6, null);
-
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
 
