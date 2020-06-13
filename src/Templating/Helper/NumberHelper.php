@@ -61,6 +61,16 @@ class NumberHelper extends BaseHelper
         $this->textAttributes = $textAttributes;
         $this->symbols = $symbols;
         $this->intlExtension = $intlExtension;
+
+        // NEXT_MAJOR: Remove the ability to allow null values at argument 6 and remove the following lines in this method.
+        if (null === $intlExtension) {
+            @trigger_error(sprintf(
+                'Not passing an instance of "%s" as argument 6 for "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
+                .' and will throw an exception in version 3.x.',
+                IntlExtension::class,
+                __METHOD__
+            ));
+        }
     }
 
     /**
@@ -86,15 +96,6 @@ class NumberHelper extends BaseHelper
 
             return $this->fixCharset($intlExtension->formatNumberStyle('percent', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -123,15 +124,6 @@ class NumberHelper extends BaseHelper
             return $this->fixCharset($intlExtension->formatNumberStyle('duration', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
-
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -158,15 +150,6 @@ class NumberHelper extends BaseHelper
 
             return $this->fixCharset($intlExtension->formatNumberStyle('decimal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -195,15 +178,6 @@ class NumberHelper extends BaseHelper
             return $this->fixCharset($intlExtension->formatNumberStyle('spellout', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
-
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -231,15 +205,6 @@ class NumberHelper extends BaseHelper
 
             return $this->fixCharset($intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
         if (\is_string($number) && is_numeric($number)) {
@@ -275,15 +240,6 @@ class NumberHelper extends BaseHelper
             return $this->fixCharset($intlExtension->formatNumberStyle('scientific', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
 
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
-
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -310,15 +266,6 @@ class NumberHelper extends BaseHelper
 
             return $this->fixCharset($intlExtension->formatNumberStyle('ordinal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -347,15 +294,6 @@ class NumberHelper extends BaseHelper
 
             return $this->fixCharset($intlExtension->formatNumberStyle($style, $number, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 6 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception in version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
 

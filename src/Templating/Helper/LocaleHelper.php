@@ -41,6 +41,16 @@ class LocaleHelper extends BaseHelper
         parent::__construct($charset, $localeDetector);
 
         $this->intlExtension = $intlExtension;
+
+        // NEXT_MAJOR: Remove the ability to allow null values at argument 3 and remove the following lines in this method.
+        if (null === $intlExtension) {
+            @trigger_error(sprintf(
+                'Not passing an instance of "%s" as argument 3 for "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
+                .' and will throw an exception since version 3.x.',
+                IntlExtension::class,
+                __METHOD__
+            ));
+        }
     }
 
     /**
@@ -54,15 +64,6 @@ class LocaleHelper extends BaseHelper
         if ($this->intlExtension) {
             return $this->fixCharset($this->intlExtension->getCountryName($code, $locale ?: $this->localeDetector->getLocale()));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 3 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception since version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         return $this->fixCharset(Countries::getName($code, $locale ?: $this->localeDetector->getLocale()));
     }
@@ -79,15 +80,6 @@ class LocaleHelper extends BaseHelper
             $this->fixCharset($this->intlExtension->getLanguageName($code, $locale));
         }
 
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 3 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception since version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
-
         return $this->fixCharset(Languages::getName($code, $locale ?: $this->localeDetector->getLocale()));
     }
 
@@ -102,15 +94,6 @@ class LocaleHelper extends BaseHelper
         if ($this->intlExtension) {
             $this->fixCharset($this->intlExtension->getLocaleName($code, $locale));
         }
-
-        // NEXT_MAJOR: Execute the previous block unconditionally and remove following lines in this method.
-
-        @trigger_error(sprintf(
-            'Not passing an instance of "%s" as argument 3 for %s::__construct() is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception since version 3.x.',
-            IntlExtension::class,
-            __CLASS__
-        ));
 
         return $this->fixCharset(Locales::getName($code, $locale ?: $this->localeDetector->getLocale()));
     }
