@@ -37,7 +37,7 @@
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "sonata-project/user-bundle": "^3.6 || ^4.0",
-        "symfony/phpunit-bridge": "^5.0",
+        "symfony/phpunit-bridge": "^5.1",
         "symfony/security-core": "^4.4"
     },
     "config": {
