@@ -16,11 +16,14 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Symfony\Component\Templating\Helper\HelperInterface;
 use Twig\Extra\Intl\IntlExtension;
 
 final class LocaleHelperTest extends TestCase
 {
+    use ExpectDeprecationTrait;
+
     /**
      * NEXT_MAJOR: Remove this property.
      *
@@ -79,6 +82,13 @@ final class LocaleHelperTest extends TestCase
      */
     public function testLegacyLanguage(): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x.'
+            .' and will throw an exception since version 3.x.',
+            IntlExtension::class,
+            LocaleHelper::class
+        ));
+
         $this->assertSame('français', $this->legacyLocaleHelper->language('fr'));
         $this->assertSame('français', $this->legacyLocaleHelper->language('fr_FR'));
         $this->assertSame('anglais américain', $this->legacyLocaleHelper->language('en_US'));

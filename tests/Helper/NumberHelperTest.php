@@ -16,6 +16,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 use Twig\Extra\Intl\IntlExtension;
 
 /**
@@ -23,6 +24,8 @@ use Twig\Extra\Intl\IntlExtension;
  */
 final class NumberHelperTest extends TestCase
 {
+    use ExpectDeprecationTrait;
+
     /**
      * @var LocaleDetectorInterface
      */
@@ -95,6 +98,13 @@ final class NumberHelperTest extends TestCase
      */
     public function testLegacyLocale(): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s::__construct()" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x.'
+            .' and will throw an exception since version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector);
 
         // currency
