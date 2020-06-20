@@ -45,11 +45,11 @@ class LocaleHelper extends BaseHelper
         // NEXT_MAJOR: Remove the ability to allow null values at argument 3 and remove the following lines in this method.
         if (null === $intlExtension) {
             @trigger_error(sprintf(
-                'Not passing an instance of "%s" as argument 3 for "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
-                .' and will throw an exception since version 3.x.',
+                'Not passing an instance of "%s" as argument 3 for "%s()" is deprecated since sonata-project/intl-bundle 2.x'
+                .' and will throw an exception in version 3.x.',
                 IntlExtension::class,
                 __METHOD__
-            ));
+            ), E_USER_DEPRECATED);
         }
     }
 

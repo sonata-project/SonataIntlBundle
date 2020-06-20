@@ -27,9 +27,9 @@ final class LocaleHelperTest extends TestCase
     /**
      * NEXT_MAJOR: Remove this property.
      *
-     * @var HelperInterface
+     * @var LocaleDetectorInterface
      */
-    private $legacyLocaleHelper;
+    private $localeDetector;
 
     /**
      * @var HelperInterface
@@ -43,12 +43,10 @@ final class LocaleHelperTest extends TestCase
             ->method('getLocale')->willReturn('fr');
 
         $this->localeHelper = new LocaleHelper('UTF-8', $localeDetector, new IntlExtension());
-        $this->legacyLocaleHelper = new LocaleHelper('UTF-8', $localeDetector);
+        // NEXT_MAJOR: Remove the following assignment.
+        $this->localeDetector = $localeDetector;
     }
 
-    /**
-     * @group legacy
-     */
     public function testLanguage(): void
     {
         $this->assertSame('français', $this->localeHelper->language('fr'));
@@ -83,16 +81,18 @@ final class LocaleHelperTest extends TestCase
     public function testLegacyLanguage(): void
     {
         $this->expectDeprecation(sprintf(
-            'Not passing an instance of "%s" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception since version 3.x.',
+            'Not passing an instance of "%s" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
             IntlExtension::class,
             LocaleHelper::class
         ));
 
-        $this->assertSame('français', $this->legacyLocaleHelper->language('fr'));
-        $this->assertSame('français', $this->legacyLocaleHelper->language('fr_FR'));
-        $this->assertSame('anglais américain', $this->legacyLocaleHelper->language('en_US'));
-        $this->assertSame('French', $this->legacyLocaleHelper->language('fr', 'en'));
+        $localeHelper = $this->createLegacyLocaleHelper();
+
+        $this->assertSame('français', $localeHelper->language('fr'));
+        $this->assertSame('français', $localeHelper->language('fr_FR'));
+        $this->assertSame('anglais américain', $localeHelper->language('en_US'));
+        $this->assertSame('French', $localeHelper->language('fr', 'en'));
     }
 
     /**
@@ -102,8 +102,17 @@ final class LocaleHelperTest extends TestCase
      */
     public function testLegacyCountry(): void
     {
-        $this->assertSame('France', $this->legacyLocaleHelper->country('FR'));
-        $this->assertSame('France', $this->legacyLocaleHelper->country('FR', 'en'));
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            LocaleHelper::class
+        ));
+
+        $localeHelper = $this->createLegacyLocaleHelper();
+
+        $this->assertSame('France', $localeHelper->country('FR'));
+        $this->assertSame('France', $localeHelper->country('FR', 'en'));
     }
 
     /**
@@ -113,10 +122,27 @@ final class LocaleHelperTest extends TestCase
      */
     public function testLegacyLocale(): void
     {
-        $this->assertSame('français', $this->legacyLocaleHelper->locale('fr'));
-        $this->assertSame('français (Canada)', $this->legacyLocaleHelper->locale('fr_CA'));
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            LocaleHelper::class
+        ));
 
-        $this->assertSame('French', $this->legacyLocaleHelper->locale('fr', 'en'));
-        $this->assertSame('French (Canada)', $this->legacyLocaleHelper->locale('fr_CA', 'en'));
+        $localeHelper = $this->createLegacyLocaleHelper();
+
+        $this->assertSame('français', $localeHelper->locale('fr'));
+        $this->assertSame('français (Canada)', $localeHelper->locale('fr_CA'));
+
+        $this->assertSame('French', $localeHelper->locale('fr', 'en'));
+        $this->assertSame('French (Canada)', $localeHelper->locale('fr_CA', 'en'));
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method.
+     */
+    private function createLegacyLocaleHelper(): LocaleHelper
+    {
+        return new LocaleHelper('UTF-8', $this->localeDetector);
     }
 }

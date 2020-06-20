@@ -99,8 +99,8 @@ final class NumberHelperTest extends TestCase
     public function testLegacyLocale(): void
     {
         $this->expectDeprecation(sprintf(
-            'Not passing an instance of "%s::__construct()" as argument 3 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x.'
-            .' and will throw an exception since version 3.x.',
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
             IntlExtension::class,
             NumberHelper::class
         ));
@@ -155,8 +155,18 @@ final class NumberHelperTest extends TestCase
         $this->assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
+    /**
+     * @group legacy
+     */
     public function testArguments(): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
 
         // Check that the 'default' options are used
@@ -177,10 +187,19 @@ final class NumberHelperTest extends TestCase
     }
 
     /**
+     * @group legacy
+     *
      * @dataProvider provideConstantValues
      */
     public function testParseConstantValue(string $constantName, int $expectedConstant, bool $exceptionExpected): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector);
         $method = new \ReflectionMethod($helper, 'parseConstantValue');
         $method->setAccessible(true);
@@ -201,10 +220,19 @@ final class NumberHelperTest extends TestCase
     }
 
     /**
+     * @group legacy
+     *
      * @dataProvider provideAttributeValues
      */
     public function testParseAttributes(array $attributes, array $expectedAttributes, bool $exceptionExpected): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector);
         $method = new \ReflectionMethod($helper, 'parseAttributes');
         $method->setAccessible(true);
@@ -241,10 +269,19 @@ final class NumberHelperTest extends TestCase
     }
 
     /**
+     * @group legacy
+     *
      * @dataProvider provideFormatMethodArguments
      */
     public function testFormatMethodSignatures(array $arguments, array $expectedArguments, bool $exceptionExpected): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector);
 
         if ($exceptionExpected) {
@@ -285,8 +322,18 @@ final class NumberHelperTest extends TestCase
         ];
     }
 
+    /**
+     * @group legacy
+     */
     public function testFormatMethodWithDefaultArguments(): void
     {
+        $this->expectDeprecation(sprintf(
+            'Not passing an instance of "%s" as argument 6 for "%s::__construct()" is deprecated since sonata-project/intl-bundle 2.x'
+            .' and will throw an exception in version 3.x.',
+            IntlExtension::class,
+            NumberHelper::class
+        ));
+
         $helper = new NumberHelper('UTF-8', $this->localeDetector);
         $method = new \ReflectionMethod($helper, 'format');
         $method->setAccessible(true);
