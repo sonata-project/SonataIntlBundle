@@ -33,6 +33,8 @@ final class NumberHelperTest extends TestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->localeDetector = $this->createStub(LocaleDetectorInterface::class);
         $this->localeDetector
             ->method('getLocale')

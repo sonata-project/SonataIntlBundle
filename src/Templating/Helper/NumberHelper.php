@@ -92,7 +92,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::PERCENT, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::PERCENT, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('percent', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -119,7 +119,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DURATION, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DURATION, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('duration', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -146,7 +146,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DECIMAL, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DECIMAL, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('decimal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -173,7 +173,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SPELLOUT, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SPELLOUT, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('spellout', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -199,16 +199,16 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
-        if ($this->intlExtension) {
-            $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::CURRENCY, $textAttributes);
-
-            return $this->fixCharset($intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
-        }
-
         // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
         if (\is_string($number) && is_numeric($number)) {
             $number = (float) $number;
+        }
+
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::CURRENCY, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
@@ -235,7 +235,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SCIENTIFIC, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SCIENTIFIC, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('scientific', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -262,7 +262,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::ORDINAL, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::ORDINAL, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle('ordinal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
         }
@@ -290,7 +290,7 @@ class NumberHelper extends BaseHelper
 
         if ($this->intlExtension) {
             $attributes = self::processLegacyAttributes($attributes);
-            $intlExtension = $this->getIntlExtension($locale, $style, $textAttributes);
+            $intlExtension = $this->getIntlExtension($locale, $style, $textAttributes, $symbols);
 
             return $this->fixCharset($intlExtension->formatNumberStyle($style, $number, $attributes, $locale ?: $this->localeDetector->getLocale()));
         }
@@ -466,13 +466,13 @@ class NumberHelper extends BaseHelper
         return $attributes;
     }
 
-    private function getIntlExtension(?string $locale = null, int $style, array $textAttributes): IntlExtension
+    private function getIntlExtension(?string $locale = null, int $style, array $textAttributes = [], array $symbols = []): IntlExtension
     {
-        if (empty($textAttributes)) {
+        if (empty($textAttributes) && empty($symbols)) {
             return $this->intlExtension;
         }
 
-        $numberFormatterProto = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, [], $textAttributes);
+        $numberFormatterProto = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, [], $textAttributes, $symbols);
 
         return new IntlExtension(null, $numberFormatterProto);
     }

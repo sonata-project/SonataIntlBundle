@@ -38,6 +38,8 @@ final class LocaleHelperTest extends TestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->method('getLocale')->willReturn('fr');
