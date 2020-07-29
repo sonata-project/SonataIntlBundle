@@ -37,10 +37,15 @@ matrix:
     - php: '7.3'
       env: SYMFONY='dev-master as 4.4.x-dev'
     - php: '7.3'
+      env: SONATA_USER=4.*
+    - php: '7.3'
+      env: SONATA_USER='dev-master as 4.x-dev'
+    - php: '7.3'
       env: SYMFONY_DEPRECATIONS_HELPER=0
   allow_failures:
     - php: nightly
     - env: SYMFONY_DEPRECATIONS_HELPER=0
+    - env: SONATA_USER='dev-master as 4.x-dev'
     - env: SYMFONY='dev-master as 4.4.x-dev'
 
 before_install:
