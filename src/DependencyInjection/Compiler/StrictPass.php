@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * NEXT_MAJOR: remove this class.
  *
- * @deprecated since sonata-project/intl-bundle 2.x, to be removed in version 3.0.
+ * @deprecated since sonata-project/intl-bundle 2.8, to be removed in version 3.0.
  */
 final class StrictPass implements CompilerPassInterface
 {

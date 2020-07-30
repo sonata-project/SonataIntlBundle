@@ -72,7 +72,7 @@ final class UserBasedTimezoneDetectorTest extends TestCase
      *
      * @group legacy
      *
-     * @expectedDeprecation Timezone inference based on the "Sonata\UserBundle\Model\User" class is deprecated since sonata-project/intl-bundle 2.x and will be dropped in 3.0 version. Implement "Sonata\IntlBundle\Timezone\TimezoneAwareInterface" explicitly in your user class instead.
+     * @expectedDeprecation Timezone inference based on the "Sonata\UserBundle\Model\User" class is deprecated since sonata-project/intl-bundle 2.8 and will be dropped in 3.0 version. Implement "Sonata\IntlBundle\Timezone\TimezoneAwareInterface" explicitly in your user class instead.
      */
     public function testDetectsTimezoneForUser(?string $timezone): void
     {

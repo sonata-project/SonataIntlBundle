@@ -14,7 +14,7 @@
     </parameters>
     <services>
         <service id="sonata.intl.locale_detector.request" class="%sonata.intl.locale_detector.request.class%" public="true">
-            <deprecated>The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.x and will be removed in 3.0.</deprecated>
+            <deprecated>The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.8 and will be removed in 3.0.</deprecated>
             <argument type="service" id="service_container"/>
             <argument/>
         </service>
