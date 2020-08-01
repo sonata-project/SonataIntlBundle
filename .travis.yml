@@ -45,8 +45,8 @@ matrix:
   allow_failures:
     - php: nightly
     - env: SYMFONY_DEPRECATIONS_HELPER=0
-    - env: SONATA_USER='dev-master as 4.x-dev'
     - env: SYMFONY='dev-master as 4.4.x-dev'
+    - env: SONATA_USER='dev-master as 4.x-dev'
 
 before_install:
   - git remote add upstream ${UPSTREAM_URL} && git fetch --all
