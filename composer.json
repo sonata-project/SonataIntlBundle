@@ -28,7 +28,7 @@
         "symfony/http-foundation": "^4.4 || ^5.1",
         "symfony/http-kernel": "^4.4 || ^5.1",
         "symfony/intl": "^4.4 || ^5.1",
-        "symfony/templating": "^4.4",
+        "symfony/templating": "^4.4 || ^5.1",
         "twig/twig": "^2.9 || ^3.0"
     },
     "conflict": {
