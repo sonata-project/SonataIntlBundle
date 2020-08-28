@@ -35,7 +35,7 @@ For a list of available values, check the PHP_ documentation.
     {{ 42|number_format_spellout }} {# => quarante-deux #}
     {{ 1.999|number_format_percent }} {# => 200 % #}
     {{ 1|number_format_ordinal }} {# => 1ᵉʳ #}
-    {{ (-1.1337)|number_format_decimal({'fraction_digits': 2}, {'negative_prefix': 'MINUS'}) }} {# => MINUS1,34 #}
+    {{ (-1.1337)|number_format_decimal({'fraction_digit': 2}, {'negative_prefix': 'MINUS'}) }} {# => MINUS1,34 #}
 
 PHP usage
 ^^^^^^^^^
@@ -56,7 +56,7 @@ When defining your Admin, you can also provide extra parameters::
         {
             $listMapper
                 ->add('amount', 'decimal', [
-                    'attributes' => ['fraction_digits' => 2],
+                    'attributes' => ['fraction_digit' => 2],
                     'textAttributes' => ['negative_prefix' => 'MINUS'],
                 ])
             ;

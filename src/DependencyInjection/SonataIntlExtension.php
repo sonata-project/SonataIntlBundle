@@ -16,9 +16,11 @@ namespace Sonata\IntlBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Twig\Extra\Intl\IntlExtension;
 
 /**
  * SonataIntlExtension.
@@ -43,6 +45,7 @@ class SonataIntlExtension extends Extension
 
         $this->configureTimezone($container, $config);
         $this->configureLocale($container, $config);
+        $this->configureTwigIntlExtension($container);
     }
 
     protected function configureTimezone(ContainerBuilder $container, array $config)
@@ -109,6 +112,27 @@ class SonataIntlExtension extends Extension
                     $timezone
                 ));
             }
+        }
+    }
+
+    /**
+     * Configures the `IntlExtension` requirement in the service that depend on
+     * it if the service "twig.extension.intl" is not properly registered.
+     */
+    private function configureTwigIntlExtension(ContainerBuilder $container): void
+    {
+        if (!$container->hasDefinition('twig.extension.intl') || !is_a($container->getDefinition('twig.extension.intl')->getClass(), IntlExtension::class)) {
+            $intlTwigExtensionDefinition = new Definition(IntlExtension::class);
+
+            $container
+                ->getDefinition('sonata.intl.templating.helper.locale')
+                ->replaceArgument(2, $intlTwigExtensionDefinition)
+            ;
+
+            $container
+                ->getDefinition('sonata.intl.templating.helper.number')
+                ->replaceArgument(5, $intlTwigExtensionDefinition)
+            ;
         }
     }
 }

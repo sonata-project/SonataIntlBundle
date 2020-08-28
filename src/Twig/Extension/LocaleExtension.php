@@ -20,6 +20,8 @@ use Twig\TwigFilter;
 /**
  * LocaleExtension extends Twig with local capabilities.
  *
+ * @final since sonata-project/intl-bundle 2.x
+ *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
 class LocaleExtension extends AbstractExtension

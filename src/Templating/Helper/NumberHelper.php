@@ -14,9 +14,12 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Templating\Helper;
 
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
+use Twig\Extra\Intl\IntlExtension;
 
 /**
  * NumberHelper displays culture information.
+ *
+ * @final since sonata-project/intl-bundle 2.x
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
@@ -39,19 +42,35 @@ class NumberHelper extends BaseHelper
     protected $symbols = [];
 
     /**
+     * @var IntlExtension|null
+     */
+    private $intlExtension;
+
+    /**
      * @param string                  $charset        The output charset of the helper
      * @param LocaleDetectorInterface $localeDetector A locale detector instance
      * @param array                   $attributes     The default attributes to apply to the \NumberFormatter instance
      * @param array                   $textAttributes The default text attributes to apply to the \NumberFormatter instance
      * @param array                   $symbols        The default symbols to apply to the \NumberFormatter instance
      */
-    public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = [], array $textAttributes = [], array $symbols = [])
+    public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = [], array $textAttributes = [], array $symbols = [], ?IntlExtension $intlExtension = null)
     {
         parent::__construct($charset, $localeDetector);
 
         $this->attributes = $attributes;
         $this->textAttributes = $textAttributes;
         $this->symbols = $symbols;
+        $this->intlExtension = $intlExtension;
+
+        // NEXT_MAJOR: Remove the ability to allow null values at argument 6 and remove the following lines in this method.
+        if (null === $intlExtension) {
+            @trigger_error(sprintf(
+                'Not passing an instance of "%s" as argument 6 for "%s()" is deprecated since sonata-project/intl-bundle 2.x'
+                .' and will throw an exception in version 3.x.',
+                IntlExtension::class,
+                __METHOD__
+            ), E_USER_DEPRECATED);
+        }
     }
 
     /**
@@ -70,6 +89,13 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::PERCENT, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('percent', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -91,6 +117,13 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DURATION, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('duration', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
+
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -110,6 +143,13 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::DECIMAL, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('decimal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -131,6 +171,13 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SPELLOUT, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('spellout', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
+
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -148,14 +195,21 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
+        $methodArgs = array_pad(\func_get_args(), 6, null);
+
+        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+
         // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
         if (\is_string($number) && is_numeric($number)) {
             $number = (float) $number;
         }
 
-        $methodArgs = array_pad(\func_get_args(), 6, null);
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::CURRENCY, $textAttributes, $symbols);
 
-        [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
+            return $this->fixCharset($intlExtension->formatCurrency($number, $currency, $attributes, $locale ?: $this->localeDetector->getLocale()));
+        }
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
 
@@ -179,6 +233,13 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::SCIENTIFIC, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('scientific', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
+
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -198,6 +259,13 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, \NumberFormatter::ORDINAL, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle('ordinal', $number, $attributes, 'default', $locale ?: $this->localeDetector->getLocale()));
+        }
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -220,15 +288,26 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
+        if ($this->intlExtension) {
+            $attributes = self::processLegacyAttributes($attributes);
+            $intlExtension = $this->getIntlExtension($locale, $style, $textAttributes, $symbols);
+
+            return $this->fixCharset($intlExtension->formatNumberStyle($style, $number, $attributes, $locale ?: $this->localeDetector->getLocale()));
+        }
+
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
 
         return $this->fixCharset($formatter->format($number));
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Normalizes the given arguments according to the new function signature.
      * It asserts if neither the new nor old signature matches. This function
      * is public just to prevent code duplication inside the Twig Extension.
+     *
+     * @deprecated since sonata-project/intl-bundle 2.x
      *
      * @param mixed $symbols The symbols used by the formatter
      * @param mixed $locale  The locale
@@ -241,6 +320,12 @@ class NumberHelper extends BaseHelper
      */
     public function normalizeMethodSignature($symbols, $locale)
     {
+        @trigger_error(sprintf(
+            'Method "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
+            .' and will be removed in version 3.x.',
+            __METHOD__
+        ));
+
         $oldSignature = (null === $symbols || \is_string($symbols)) && null === $locale;
         $newSignature = \is_array($symbols) && (\is_string($locale) || null === $locale);
 
@@ -306,7 +391,11 @@ class NumberHelper extends BaseHelper
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Converts keys of attributes array to values of \NumberFormatter constants.
+     *
+     * @deprecated since sonata-project/intl-bundle 2.x
      *
      * @param array $attributes The list of attributes
      *
@@ -316,6 +405,12 @@ class NumberHelper extends BaseHelper
      */
     protected function parseAttributes(array $attributes)
     {
+        @trigger_error(sprintf(
+            'Method "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
+            .' and will be removed in version 3.x.',
+            __METHOD__
+        ));
+
         $result = [];
 
         foreach ($attributes as $attribute => $value) {
@@ -326,7 +421,11 @@ class NumberHelper extends BaseHelper
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Parse the given value trying to get a match with a \NumberFormatter constant.
+     *
+     * @deprecated since sonata-project/intl-bundle 2.x
      *
      * @param string $attribute The constant's name
      *
@@ -336,6 +435,12 @@ class NumberHelper extends BaseHelper
      */
     protected function parseConstantValue($attribute)
     {
+        @trigger_error(sprintf(
+            'Method "%s()" is deprecated since sonata-project/intl-bundle 2.x.'
+            .' and will be removed in version 3.x.',
+            __METHOD__
+        ));
+
         $attribute = strtoupper($attribute);
         $constantName = 'NumberFormatter::'.$attribute;
 
@@ -344,5 +449,31 @@ class NumberHelper extends BaseHelper
         }
 
         return \constant($constantName);
+    }
+
+    /**
+     * NEXT_MAJOR: Remove this method.
+     *
+     * Replaces legacy attribute names with its new variants.
+     */
+    private static function processLegacyAttributes(array $attributes): array
+    {
+        if (isset($attributes['fraction_digits'])) {
+            $curatedAttributes['fraction_digit'] = $attributes['fraction_digits'];
+            unset($attributes['fraction_digits']);
+        }
+
+        return $attributes;
+    }
+
+    private function getIntlExtension(?string $locale = null, int $style, array $textAttributes = [], array $symbols = []): IntlExtension
+    {
+        if (empty($textAttributes) && empty($symbols)) {
+            return $this->intlExtension;
+        }
+
+        $numberFormatterProto = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, [], $textAttributes, $symbols);
+
+        return new IntlExtension(null, $numberFormatterProto);
     }
 }
