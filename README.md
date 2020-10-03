@@ -16,8 +16,8 @@ Symfony SonataIntlBundle
 [![Monthly Downloads](https://poser.pugx.org/sonata-project/intl-bundle/d/monthly)](https://packagist.org/packages/sonata-project/intl-bundle)
 [![Daily Downloads](https://poser.pugx.org/sonata-project/intl-bundle/d/daily)](https://packagist.org/packages/sonata-project/intl-bundle)
 
-Branch | Github Actions | Coverage |
------- | -------------- | -------- |
+Branch | Github Actions | Code Coverage |
+------ | -------------- | ------------- |
 2.x    | [![Test][test_stable_badge]][test_stable_link]     | [![Coverage Status][coverage_stable_badge]][coverage_stable_link]     |
 master | [![Test][test_unstable_badge]][test_unstable_link] | [![Coverage Status][coverage_unstable_badge]][coverage_unstable_link] |
 
