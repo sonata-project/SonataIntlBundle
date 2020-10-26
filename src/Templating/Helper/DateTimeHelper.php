@@ -61,8 +61,8 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => $dateType ?? \IntlDateFormatter::MEDIUM,
-            'timetype' => \IntlDateFormatter::NONE,
+            'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
+            'timeType' => \IntlDateFormatter::NONE,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
@@ -85,8 +85,8 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => $dateType ?? \IntlDateFormatter::MEDIUM,
-            'timetype' => $timeType ?? \IntlDateFormatter::MEDIUM,
+            'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
+            'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
@@ -108,8 +108,8 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => \IntlDateFormatter::NONE,
-            'timetype' => $timeType ?? \IntlDateFormatter::MEDIUM,
+            'dateType' => \IntlDateFormatter::NONE,
+            'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
@@ -131,8 +131,8 @@ class DateTimeHelper extends BaseHelper
 
         $formatter = self::createInstance([
             'locale' => $locale ?: $this->localeDetector->getLocale(),
-            'datetype' => \IntlDateFormatter::FULL,
-            'timetype' => \IntlDateFormatter::FULL,
+            'dateType' => \IntlDateFormatter::FULL,
+            'timeType' => \IntlDateFormatter::FULL,
             'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
             'pattern' => $pattern,
