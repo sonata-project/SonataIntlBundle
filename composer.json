@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "symfony/config": "^4.4 || ^5.1",
         "symfony/dependency-injection": "^4.4 || ^5.1",
         "symfony/http-foundation": "^4.4 || ^5.1",
@@ -35,8 +35,9 @@
         "sonata-project/user-bundle": "<3.6"
     },
     "require-dev": {
+        "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-        "symfony/phpunit-bridge": "^5.1",
+        "symfony/phpunit-bridge": "^5.1.8",
         "symfony/security-core": "^4.4 || ^5.1"
     },
     "config": {
