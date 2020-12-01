@@ -33,15 +33,15 @@ jobs:
                       dependencies: lowest
                       allowed-to-fail: false
                       variant: normal
-                    - php-version: '7.4'
+                    - php-version: '8.0'
                       dependencies: highest
                       allowed-to-fail: false
                       variant: 'symfony/symfony:"4.4.*"'
-                    - php-version: '7.4'
+                    - php-version: '8.0'
                       dependencies: highest
                       allowed-to-fail: false
                       variant: 'symfony/symfony:"5.1.*"'
-                    - php-version: '7.4'
+                    - php-version: '8.0'
                       dependencies: highest
                       allowed-to-fail: false
                       variant: 'sonata-project/user-bundle:"4.*"'
@@ -59,6 +59,7 @@ jobs:
 
             - name: Add PHPUnit matcher
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
 
             - name: Install variant
               if: matrix.variant != 'normal'
