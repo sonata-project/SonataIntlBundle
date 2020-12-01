@@ -60,7 +60,6 @@ jobs:
             - name: Add PHPUnit matcher
               run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-
             - name: Install variant
               if: matrix.variant != 'normal'
               run: composer require ${{ matrix.variant }} --no-update
