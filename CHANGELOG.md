@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.9.0...2.10.0) - 2020-12-01
+### Added
+- [[#367](https://github.com/sonata-project/SonataIntlBundle/pull/367)] Added support for PHP 8. ([@franmomu](https://github.com/franmomu))
+
 ## [2.9.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.8.0...2.9.0) - 2020-08-09
 ### Added
 - [[#312](https://github.com/sonata-project/SonataIntlBundle/pull/312)] Added support for symfony/template 5.1 ([@franmomu](https://github.com/franmomu))
