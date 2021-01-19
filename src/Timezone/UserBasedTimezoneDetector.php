@@ -54,7 +54,7 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
                 .' Implement "%s" explicitly in your user class instead.',
                 User::class,
                 TimezoneAwareInterface::class
-            ), E_USER_DEPRECATED);
+            ), \E_USER_DEPRECATED);
 
             return $user->getTimezone();
         }
