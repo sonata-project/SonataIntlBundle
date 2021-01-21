@@ -57,7 +57,7 @@ abstract class BaseHelper extends Helper
         @trigger_error(
             'The '.__METHOD__.' method is deprecated since 2.2 and will be removed on 3.0. '.
             'Use '.__CLASS__.'::getICUDataVersion instead.',
-            E_USER_DEPRECATED
+            \E_USER_DEPRECATED
         );
 
         return self::getICUDataVersion();
