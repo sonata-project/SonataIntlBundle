@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.0...2.10.1) - 2021-02-15
+### Changed
+- [[#397](https://github.com/sonata-project/SonataIntlBundle/pull/397)] Use existing `get_admin_template` twig method to get parent templates ([@toooni](https://github.com/toooni))
+
+### Fixed
+- [[#397](https://github.com/sonata-project/SonataIntlBundle/pull/397)] Fixes compatibility with the 4.x branch of SonataAdminBundle ([@toooni](https://github.com/toooni))
+
 ## [2.10.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.9.0...2.10.0) - 2020-12-01
 ### Added
 - [[#367](https://github.com/sonata-project/SonataIntlBundle/pull/367)] Added support for PHP 8. ([@franmomu](https://github.com/franmomu))
