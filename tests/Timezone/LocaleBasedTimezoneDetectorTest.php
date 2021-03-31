@@ -27,8 +27,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->method('getLocale')
-            ->willReturn('fr')
-        ;
+            ->willReturn('fr');
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
         $this->assertSame('Europe/Paris', $timezoneDetector->getTimezone());
@@ -39,8 +38,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->method('getLocale')
-            ->willReturn('de')
-        ;
+            ->willReturn('de');
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
         $this->assertNull($timezoneDetector->getTimezone());
