@@ -30,13 +30,11 @@ class RequestStackDetectorTest extends TestCase
 
         $requestStack
             ->method('getCurrentRequest')
-            ->willReturn($request)
-        ;
+            ->willReturn($request);
 
         $request
             ->method('getLocale')
-            ->willReturn('en')
-        ;
+            ->willReturn('en');
 
         $detector = new RequestStackDetector($requestStack, 'America/Denver');
         $this->assertSame('en', $detector->getLocale());
