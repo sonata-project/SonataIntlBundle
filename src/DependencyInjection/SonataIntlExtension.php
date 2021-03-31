@@ -76,13 +76,11 @@ class SonataIntlExtension extends Extension
 
         $container
             ->getDefinition('sonata.intl.timezone_detector.locale')
-            ->replaceArgument(1, $config['timezone']['locales'])
-        ;
+            ->replaceArgument(1, $config['timezone']['locales']);
 
         $container
             ->getDefinition('sonata.intl.timezone_detector.chain')
-            ->replaceArgument(0, $config['timezone']['default'])
-        ;
+            ->replaceArgument(0, $config['timezone']['default']);
 
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
     }

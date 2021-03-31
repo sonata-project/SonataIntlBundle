@@ -52,16 +52,14 @@ final class UserBasedTimezoneDetectorTest extends TestCase
         $token
             ->expects($this->once())
             ->method('getUser')
-            ->willReturn($user)
-        ;
+            ->willReturn($user);
 
         $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
             ->expects($this->once())
             ->method('getToken')
-            ->willReturn($token)
-        ;
+            ->willReturn($token);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertSame($timezone, $timezoneDetector->getTimezone());
@@ -86,21 +84,18 @@ final class UserBasedTimezoneDetectorTest extends TestCase
         $user = $this->createMock(User::class);
         $user
             ->method('getTimezone')
-            ->willReturn($timezone)
-        ;
+            ->willReturn($timezone);
 
         $token = $this->createMock(TokenInterface::class);
         $token
             ->method('getUser')
-            ->willReturn($user)
-        ;
+            ->willReturn($user);
 
         $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
             ->method('getToken')
-            ->willReturn($token)
-        ;
+            ->willReturn($token);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertSame($timezone, $timezoneDetector->getTimezone());
@@ -112,8 +107,7 @@ final class UserBasedTimezoneDetectorTest extends TestCase
 
         $storage
             ->method('getToken')
-            ->willReturn(null)
-        ;
+            ->willReturn(null);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
         $this->assertNull($timezoneDetector->getTimezone());
