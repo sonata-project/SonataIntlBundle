@@ -10,19 +10,10 @@ Timezone detectors
 User timezone detector
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. versionadded:: 2.7
-
-    If the model class for the authenticated user implements ``Sonata\IntlBundle\Timezone\TimezoneAwareInterface``,
-    it returns the timezone from its ``getTimezone()`` method.
-    For convenience, the ``Sonata\IntlBundle\Timezone\TimezoneAwareTrait`` is available,
-    which provides a basic implementation.
-
-**DEPRECATED**
-Relying on ``Sonata\UserBundle\Model\User`` is deprecated since 2.x in favor of
-explicit implementation of ``Sonata\IntlBundle\Timezone\TimezoneAwareInterface``.
-
-If the SonataUserBundle_ is enabled, it returns the timezone from the
-``Sonata\UserBundle\Model\User::getTimezone()`` method.
+If the model class for the authenticated user implements ``Sonata\IntlBundle\Timezone\TimezoneAwareInterface``,
+it returns the timezone from its ``getTimezone()`` method.
+For convenience, the ``Sonata\IntlBundle\Timezone\TimezoneAwareTrait`` is available,
+which provides a basic implementation.
 
 Locale timezone detector
 ^^^^^^^^^^^^^^^^^^^^^^^^

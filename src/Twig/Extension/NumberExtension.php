@@ -56,16 +56,6 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.8, to be removed in version 3.0.
-     */
-    public function getName()
-    {
-        return 'sonata_intl_number';
-    }
-
-    /**
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
