@@ -84,14 +84,4 @@ class LocaleExtension extends AbstractExtension
     {
         return $this->helper->language($code, $locale);
     }
-
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.8, to be removed in version 3.0.
-     */
-    public function getName()
-    {
-        return 'sonata_intl_locale';
-    }
 }

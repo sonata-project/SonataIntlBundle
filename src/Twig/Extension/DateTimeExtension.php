@@ -100,14 +100,4 @@ class DateTimeExtension extends AbstractExtension
 
         return $this->helper->formatDateTime($time, $locale, $timezone, $dateType, $timeType);
     }
-
-    /**
-     * NEXT_MAJOR: remove this method.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.8, to be removed in version 3.0.
-     */
-    public function getName()
-    {
-        return 'sonata_intl_datetime';
-    }
 }
