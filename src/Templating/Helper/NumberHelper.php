@@ -343,20 +343,22 @@ class NumberHelper extends BaseHelper
         return \constant($constantName);
     }
 
+    /**
+     * @param string|int|float $number
+     *
+     * @return int|float
+     **/
     private function parseNumericValue($number)
     {
-        if (!\is_scalar($number)) {
-            throw new \TypeError('Number must be a scalar value');
+        if (\is_float($number) || \is_int($number)) {
+            return $number;
         }
 
-        if (\is_string($number)) {
-            if (!\is_numeric($number)) {
-                throw new \typeError('Number must be a numeric string')
-            }
-
-            $number = (float) $number;
+        if (\is_numeric($number)) {
+            return (float) $number;
         }
 
-        return $number;
+
+        throw \TypeError('Number must be either a float, an integer or a string');
     }
 }
