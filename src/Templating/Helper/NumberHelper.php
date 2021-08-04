@@ -148,16 +148,12 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
-        if (\is_string($number) && is_numeric($number)) {
-            $number = (float) $number;
-        }
-
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
+        $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
     }
@@ -221,6 +217,7 @@ class NumberHelper extends BaseHelper
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
+        $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->format($number));
     }
@@ -344,5 +341,22 @@ class NumberHelper extends BaseHelper
         }
 
         return \constant($constantName);
+    }
+
+    private function parseNumericValue($number)
+    {
+        if (!\is_scalar($number)) {
+            throw new \TypeError('Number must be a scalar value');
+        }
+
+        if (\is_string($number)) {
+            if (!\is_numeric($number)) {
+                throw new \typeError('Number must be a numeric string')
+            }
+
+            $number = (float) $number;
+        }
+
+        return $number;
     }
 }
