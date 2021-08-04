@@ -351,7 +351,7 @@ class NumberHelper extends BaseHelper
      * @param string|int|float $number
      *
      * @return int|float
-     **/
+     */
     private function parseNumericValue($number)
     {
         if (\is_float($number) || \is_int($number)) {
@@ -362,6 +362,6 @@ class NumberHelper extends BaseHelper
             return (float) $number;
         }
 
-        throw new \TypeError('Number must be either a float, an integer or a string');
+        throw new \TypeError('Number must be either a float, an integer or a numeric string');
     }
 }
