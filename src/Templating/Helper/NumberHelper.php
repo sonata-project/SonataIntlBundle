@@ -358,10 +358,9 @@ class NumberHelper extends BaseHelper
             return $number;
         }
 
-        if (\is_numeric($number)) {
+        if (is_numeric($number)) {
             return (float) $number;
         }
-
 
         throw new \TypeError('Number must be either a float, an integer or a string');
     }
