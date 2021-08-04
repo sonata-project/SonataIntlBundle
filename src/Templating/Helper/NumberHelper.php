@@ -70,6 +70,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -90,6 +91,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -110,6 +112,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -174,6 +177,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -194,6 +198,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -217,7 +222,6 @@ class NumberHelper extends BaseHelper
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
-        $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->format($number));
     }
@@ -359,6 +363,6 @@ class NumberHelper extends BaseHelper
         }
 
 
-        throw \TypeError('Number must be either a float, an integer or a string');
+        throw new \TypeError('Number must be either a float, an integer or a string');
     }
 }
