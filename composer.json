@@ -23,12 +23,12 @@
     ],
     "require": {
         "php": "^7.3 || ^8.0",
-        "symfony/config": "^4.4 || ^5.1",
-        "symfony/dependency-injection": "^4.4 || ^5.1",
-        "symfony/http-foundation": "^4.4 || ^5.1",
-        "symfony/http-kernel": "^4.4 || ^5.1",
-        "symfony/intl": "^4.4 || ^5.1",
-        "symfony/templating": "^4.4 || ^5.1",
+        "symfony/config": "^4.4 || ^5.3",
+        "symfony/dependency-injection": "^4.4 || ^5.3",
+        "symfony/http-foundation": "^4.4 || ^5.3",
+        "symfony/http-kernel": "^4.4.13 || ^5.3",
+        "symfony/intl": "^4.4 || ^5.3",
+        "symfony/templating": "^4.4 || ^5.3",
         "twig/twig": "^2.9 || ^3.0"
     },
     "conflict": {
@@ -37,8 +37,8 @@
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-        "symfony/phpunit-bridge": "^5.1.8",
-        "symfony/security-core": "^4.4 || ^5.1"
+        "symfony/phpunit-bridge": "^5.3",
+        "symfony/security-core": "^4.4.23 || ^5.3"
     },
     "config": {
         "sort-packages": true
