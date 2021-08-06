@@ -70,6 +70,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -90,6 +91,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -110,6 +112,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -148,16 +151,12 @@ class NumberHelper extends BaseHelper
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        // convert Doctrine's decimal type (fixed-point number represented as string) to float for backward compatibility
-        if (\is_string($number) && is_numeric($number)) {
-            $number = (float) $number;
-        }
-
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
         $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
+        $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
     }
@@ -178,6 +177,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -198,6 +198,7 @@ class NumberHelper extends BaseHelper
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
+        $number = $this->parseNumericValue($number);
 
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -344,5 +345,23 @@ class NumberHelper extends BaseHelper
         }
 
         return \constant($constantName);
+    }
+
+    /**
+     * @param string|int|float $number
+     *
+     * @return int|float
+     */
+    private function parseNumericValue($number)
+    {
+        if (\is_float($number) || \is_int($number)) {
+            return $number;
+        }
+
+        if (is_numeric($number)) {
+            return (float) $number;
+        }
+
+        throw new \TypeError('Number must be either a float, an integer or a numeric string');
     }
 }

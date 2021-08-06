@@ -31,10 +31,7 @@ class NumberHelperTest extends TestCase
         $this->assertSame('€10.49', $helper->formatCurrency(10.49, 'EUR'));
         $this->assertSame('€10.50', $helper->formatCurrency(10.499, 'EUR'));
         $this->assertSame('€10,000.50', $helper->formatCurrency(10000.499, 'EUR'));
-
-        // test compatibility with Doctrine's decimal type (fixed-point number represented as string)
         $this->assertSame('€10.49', $helper->formatCurrency('10.49', 'EUR'));
-
         $this->assertSame('€10', $helper->formatCurrency(10.49, 'EUR', [
             'fraction_digits' => 0,
         ]));
@@ -43,6 +40,7 @@ class NumberHelperTest extends TestCase
         $this->assertSame('10', $helper->formatDecimal(10));
         $this->assertSame('10.155', $helper->formatDecimal(10.15459));
         $this->assertSame('1,000,000.155', $helper->formatDecimal(1000000.15459));
+        $this->assertSame('1,000,000.155', $helper->formatDecimal('1000000.15459'));
 
         // scientific
         $this->assertSame('1E1', $helper->formatScientific(10));
@@ -50,6 +48,7 @@ class NumberHelperTest extends TestCase
         $this->assertSame('1.0001E3', $helper->formatScientific(1000.1));
         $this->assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
         $this->assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
+        $this->assertSame('1.00000015459E6', $helper->formatScientific('1000000.15459'));
 
         // duration
         $this->assertSame('277:46:40', $helper->formatDuration(1000000));
@@ -57,18 +56,19 @@ class NumberHelperTest extends TestCase
         // spell out
         $this->assertSame('one', $helper->formatSpellout(1));
         $this->assertSame('forty-two', $helper->formatSpellout(42));
-
         $this->assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $helper->formatSpellout(1224557.1254));
 
         // percent
         $this->assertSame('10%', $helper->formatPercent(0.1));
         $this->assertSame('200%', $helper->formatPercent(1.999));
         $this->assertSame('99%', $helper->formatPercent(0.99));
+        $this->assertSame('99%', $helper->formatPercent('0.99'));
 
         // ordinal
         $this->assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
         $this->assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
         $this->assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        $this->assertSame('10,000th', $helper->formatOrdinal('10000'), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
     public function testArguments(): void

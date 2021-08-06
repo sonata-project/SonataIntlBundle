@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.2](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.1...2.10.2) - 2021-08-05
+### Fixed
+- [[#430](https://github.com/sonata-project/SonataIntlBundle/pull/430)] Fixed `NumberFormatter::format(): Argument #1 ($num) must be of type int|float, string given`. ([@nocive](https://github.com/nocive))
+
 ## [2.10.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.0...2.10.1) - 2021-02-15
 ### Changed
 - [[#397](https://github.com/sonata-project/SonataIntlBundle/pull/397)] Use existing `get_admin_template` twig method to get parent templates ([@toooni](https://github.com/toooni))

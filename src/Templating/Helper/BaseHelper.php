@@ -83,6 +83,8 @@ abstract class BaseHelper extends Helper
                 }
             }
         }
+
+        throw new \RuntimeException('Could not extract ICU data version information');
     }
 
     /**
