@@ -73,4 +73,4 @@ You can override this default timezone in the configuration:
             timezone:
                 default: Europe/Paris
 
-.. _SonataUserBundle: https://sonata-project.org/bundles/user/2-2/doc/index.html
+.. _SonataUserBundle: https://docs.sonata-project.org/projects/SonataUserBundle/en/4.x/reference/installation/#enable-the-bundle
