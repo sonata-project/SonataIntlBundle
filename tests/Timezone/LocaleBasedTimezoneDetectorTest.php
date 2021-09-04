@@ -30,7 +30,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
             ->willReturn('fr');
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
-        $this->assertSame('Europe/Paris', $timezoneDetector->getTimezone());
+        static::assertSame('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
     public function testTimezoneNotDetected(): void
@@ -41,6 +41,6 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
             ->willReturn('de');
 
         $timezoneDetector = new LocaleBasedTimezoneDetector($localeDetector, ['fr' => 'Europe/Paris']);
-        $this->assertNull($timezoneDetector->getTimezone());
+        static::assertNull($timezoneDetector->getTimezone());
     }
 }

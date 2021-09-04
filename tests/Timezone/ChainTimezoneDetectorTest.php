@@ -49,6 +49,6 @@ class ChainTimezoneDetectorTest extends TestCase
             $chainTimezoneDetector->addDetector($timezoneDetector);
         }
 
-        $this->assertSame($expectedTimezone, $chainTimezoneDetector->getTimezone());
+        static::assertSame($expectedTimezone, $chainTimezoneDetector->getTimezone());
     }
 }

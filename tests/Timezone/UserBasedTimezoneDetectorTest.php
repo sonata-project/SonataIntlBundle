@@ -50,19 +50,19 @@ final class UserBasedTimezoneDetectorTest extends TestCase
 
         $token = $this->createMock(TokenInterface::class);
         $token
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('getUser')
             ->willReturn($user);
 
         $storage = $this->createMock(TokenStorageInterface::class);
 
         $storage
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('getToken')
             ->willReturn($token);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
-        $this->assertSame($timezone, $timezoneDetector->getTimezone());
+        static::assertSame($timezone, $timezoneDetector->getTimezone());
     }
 
     /**
@@ -75,7 +75,7 @@ final class UserBasedTimezoneDetectorTest extends TestCase
     public function testDetectsTimezoneForUser(?string $timezone): void
     {
         if (!class_exists(User::class)) {
-            $this->markTestSkipped(sprintf(
+            static::markTestSkipped(sprintf(
                 '"%s" class must be available to run this test. You should install sonata-project/user-bundle.',
                 User::class
             ));
@@ -98,7 +98,7 @@ final class UserBasedTimezoneDetectorTest extends TestCase
             ->willReturn($token);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
-        $this->assertSame($timezone, $timezoneDetector->getTimezone());
+        static::assertSame($timezone, $timezoneDetector->getTimezone());
     }
 
     public function testTimezoneNotDetected(): void
@@ -110,6 +110,6 @@ final class UserBasedTimezoneDetectorTest extends TestCase
             ->willReturn(null);
 
         $timezoneDetector = new UserBasedTimezoneDetector($storage);
-        $this->assertNull($timezoneDetector->getTimezone());
+        static::assertNull($timezoneDetector->getTimezone());
     }
 }
