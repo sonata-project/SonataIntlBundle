@@ -40,6 +40,6 @@ class ConfigurationTest extends TestCase
             'locale' => false,
         ];
 
-        $this->assertSame($expected, $config);
+        static::assertSame($expected, $config);
     }
 }

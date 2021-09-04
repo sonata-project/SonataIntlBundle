@@ -34,17 +34,17 @@ class LocaleHelperTest extends TestCase
     public function testLanguage()
     {
         $helper = $this->getHelper();
-        $this->assertSame('français', $helper->language('fr'));
-        $this->assertSame('français', $helper->language('fr_FR'));
-        $this->assertSame('anglais américain', $helper->language('en_US'));
-        $this->assertSame('French', $helper->language('fr', 'en'));
+        static::assertSame('français', $helper->language('fr'));
+        static::assertSame('français', $helper->language('fr_FR'));
+        static::assertSame('anglais américain', $helper->language('en_US'));
+        static::assertSame('French', $helper->language('fr', 'en'));
     }
 
     public function testCountry()
     {
         $helper = $this->getHelper();
-        $this->assertSame('France', $helper->country('FR'));
-        $this->assertSame('France', $helper->country('FR', 'en'));
+        static::assertSame('France', $helper->country('FR'));
+        static::assertSame('France', $helper->country('FR', 'en'));
         //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
@@ -52,11 +52,11 @@ class LocaleHelperTest extends TestCase
     {
         $helper = $this->getHelper();
 
-        $this->assertSame('français', $helper->locale('fr'));
-        $this->assertSame('français (Canada)', $helper->locale('fr_CA'));
+        static::assertSame('français', $helper->locale('fr'));
+        static::assertSame('français (Canada)', $helper->locale('fr_CA'));
 
-        $this->assertSame('French', $helper->locale('fr', 'en'));
-        $this->assertSame('French (Canada)', $helper->locale('fr_CA', 'en'));
+        static::assertSame('French', $helper->locale('fr', 'en'));
+        static::assertSame('French (Canada)', $helper->locale('fr_CA', 'en'));
         //        $this->assertEquals('', $helper->locale('fr', 'fake'));
         //        $this->assertEquals('', $helper->locale('fr_CA', 'fake'));
     }
