@@ -34,12 +34,12 @@ class SonataIntlBundleTest extends TestCase
      */
     public function testSymfonyVersion($currentVersion, $minVersion, $versionExpected, $versionBundle)
     {
-        $this->assertSame(
+        static::assertSame(
             $versionExpected,
             version_compare($currentVersion, $minVersion, '>=')
         );
 
-        $this->assertSame(
+        static::assertSame(
             $versionBundle,
             version_compare(SonataIntlBundle::getSymfonyVersion($currentVersion), $minVersion, '>=')
         );
