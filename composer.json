@@ -9,7 +9,7 @@
         "time",
         "number"
     ],
-    "homepage": "https://sonata-project.org/bundles/intl",
+    "homepage": "https://docs.sonata-project.org/projects/SonataIntlBundle",
     "license": "MIT",
     "authors": [
         {
