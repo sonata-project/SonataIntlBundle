@@ -37,6 +37,7 @@
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+        "phpunit/phpunit": "^9.5",
         "symfony/phpunit-bridge": "^5.3",
         "symfony/security-core": "^4.4.23 || ^5.3"
     },
