@@ -188,7 +188,7 @@ class DateTimeHelper extends BaseHelper
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_intl_datetime';
     }

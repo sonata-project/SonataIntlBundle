@@ -60,7 +60,7 @@ class LocaleHelper extends BaseHelper
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_intl_locale';
     }

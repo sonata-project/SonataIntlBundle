@@ -42,7 +42,7 @@ class NumberExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
