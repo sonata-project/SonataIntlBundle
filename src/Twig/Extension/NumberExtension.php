@@ -40,7 +40,7 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFilter[]
      */
     public function getFilters()
     {

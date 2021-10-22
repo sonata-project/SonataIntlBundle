@@ -186,7 +186,7 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getName()
     {
