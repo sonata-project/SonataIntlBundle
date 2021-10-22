@@ -40,9 +40,9 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFilter[]
      */
-    public function getFilters(): array
+    public function getFilters()
     {
         return [
             new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),

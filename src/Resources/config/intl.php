@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Sonata\IntlBundle\Locale\RequestDetector;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
@@ -30,8 +41,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.timezone_detector.locale.class', LocaleBasedTimezoneDetector::class)
         ->set('sonata.intl.twig.helper.locale.class', LocaleExtension::class)
         ->set('sonata.intl.twig.helper.number.class', NumberExtension::class)
-        ->set('sonata.intl.twig.helper.datetime.class', DateTimeExtension::class)
-    ;
+        ->set('sonata.intl.twig.helper.datetime.class', DateTimeExtension::class);
 
     $containerConfigurator->services()
 
@@ -43,20 +53,20 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ))
             ->args([
                 new ReferenceConfigurator('service_container'),
-                ''
+                '',
             ])
 
         ->set('sonata.intl.locale_detector.request_stack', RequestStackDetector::class)
             ->public()
             ->args([
                 new ReferenceConfigurator('request_stack'),
-                ''
+                '',
             ])
 
         ->set('sonata.intl.templating.helper.locale', '%sonata.intl.templating.helper.locale.class%')
             ->public()
             ->tag('templating.helper', [
-                'alias' => 'datetime'
+                'alias' => 'datetime',
             ])
             ->args([
                 new ReferenceConfigurator('sonata.intl.timezone_detector'),
@@ -65,21 +75,21 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
 
         ->set('sonata.intl.twig.extension.locale', '%sonata.intl.twig.helper.locale.class%')
-            ->public()
+            ->private()
             ->tag('twig.extension')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.locale'),
             ])
 
         ->set('sonata.intl.twig.extension.number', '%sonata.intl.twig.helper.number.class%')
-            ->public()
+            ->private()
             ->tag('twig.extension')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.number'),
             ])
 
         ->set('sonata.intl.twig.extension.datetime', '%sonata.intl.twig.helper.datetime.class%')
-            ->public()
+            ->private()
             ->tag('twig.extension')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
@@ -88,27 +98,25 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.timezone_detector.chain', '%sonata.intl.timezone_detector.chain.class%')
             ->public()
             ->args([
-                ''
+                '',
             ])
 
         ->set('sonata.intl.timezone_detector.user', '%sonata.intl.timezone_detector.user.class%')
             ->public()
             ->tag('sonata_intl.timezone_detector', [
-                'alias' => 'user'
+                'alias' => 'user',
             ])
             ->args([
-                ''
+                '',
             ])
 
         ->set('sonata.intl.timezone_detector.locale', '%sonata.intl.timezone_detector.locale.class%')
             ->public()
             ->tag('sonata_intl.timezone_detector', [
-                'alias' => 'locale'
+                'alias' => 'locale',
             ])
             ->args([
                 new ReferenceConfigurator('sonata.intl.locale_detector'),
                 new ReferenceConfigurator('security.token_storage'),
-            ])
-
-    ;
+            ]);
 };
