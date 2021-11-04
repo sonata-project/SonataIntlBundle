@@ -87,22 +87,13 @@ class NumberHelperTest extends TestCase
 
     public function testExceptionOnInvalidParams()
     {
-        $this->expectException(\RuntimeException::class);
-
-        // https://wiki.php.net/rfc/internal_constructor_behaviour
-        try {
-            $formatter = new \NumberFormatter('EN', -1);
-        } catch (\IntlException $e) {
-            throw new \RuntimeException($e->getMessage());
-        }
-
-        static::assertNull($formatter);
-
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
             ->method('getLocale')->willReturn('en');
 
         $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+
+        $this->expectException(\IntlException::class);
 
         $helper->format(10.49, -1);
     }

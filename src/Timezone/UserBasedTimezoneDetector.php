@@ -47,7 +47,11 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
             return $user->getTimezone();
         }
 
-        // NEXT_MAJOR: Remove this check and the related documentation at `docs/reference/configuration.rst`.
+        /**
+         * NEXT_MAJOR: Remove this check and the related documentation at `docs/reference/configuration.rst`.
+         *
+         * @psalm-suppress UndefinedClass
+         */
         if ($user instanceof User) {
             @trigger_error(sprintf(
                 'Timezone inference based on the "%s" class is deprecated since sonata-project/intl-bundle 2.8 and will be dropped in 3.0 version.'
@@ -56,6 +60,9 @@ class UserBasedTimezoneDetector implements TimezoneDetectorInterface
                 TimezoneAwareInterface::class
             ), \E_USER_DEPRECATED);
 
+            /**
+             * @psalm-suppress UndefinedInterfaceMethod
+             */
             return $user->getTimezone();
         }
 

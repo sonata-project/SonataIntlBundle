@@ -2,13 +2,14 @@ includes:
     - phpstan-baseline.neon
 
 parameters:
-    level: 1
-
+    level: 5
     paths:
         - src
-# Uncomment this, when phpstan extensions are allowed
-#        - tests
-
-    excludes_analyse:
-        - src/Test/AbstractWidgetTestCase.php
-        - tests/bootstrap.php
+        - tests
+    treatPhpDocTypesAsCertain: false
+    checkGenericClassInNonGenericObjectType: true
+    checkInternalClassCaseSensitivity: true
+    checkMissingIterableValueType: true
+    checkMissingVarTagTypehint: true
+    checkMissingTypehints: true
+    checkUninitializedProperties: true

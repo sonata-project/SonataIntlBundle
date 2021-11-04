@@ -32,7 +32,7 @@ class LocaleHelper extends BaseHelper
      */
     public function country($code, $locale = null)
     {
-        return $this->fixCharset(Countries::getName($code, $locale ?: $this->localeDetector->getLocale()));
+        return $this->fixCharset(Countries::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
 
     /**
@@ -43,7 +43,7 @@ class LocaleHelper extends BaseHelper
      */
     public function language($code, $locale = null)
     {
-        return $this->fixCharset(Languages::getName($code, $locale ?: $this->localeDetector->getLocale()));
+        return $this->fixCharset(Languages::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
 
     /**
@@ -54,7 +54,7 @@ class LocaleHelper extends BaseHelper
      */
     public function locale($code, $locale = null)
     {
-        return $this->fixCharset(Locales::getName($code, $locale ?: $this->localeDetector->getLocale()));
+        return $this->fixCharset(Locales::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
 
     /**

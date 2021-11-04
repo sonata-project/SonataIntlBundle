@@ -33,9 +33,9 @@ class DateTimeHelper extends BaseHelper
     protected $timezoneDetector;
 
     /**
-     * @var \ReflectionClass
+     * @var \ReflectionClass|null
      */
-    protected static $reflection;
+    protected static $reflection = null;
 
     /**
      * @param string $charset
@@ -60,10 +60,10 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->localeDetector->getLocale(),
             'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
             'timeType' => \IntlDateFormatter::NONE,
-            'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
+            'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
 
@@ -84,10 +84,10 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->localeDetector->getLocale(),
             'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
             'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
-            'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
+            'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
 
@@ -107,10 +107,10 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->localeDetector->getLocale(),
             'dateType' => \IntlDateFormatter::NONE,
             'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
-            'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
+            'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
         ]);
 
@@ -130,10 +130,10 @@ class DateTimeHelper extends BaseHelper
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?: $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->localeDetector->getLocale(),
             'dateType' => \IntlDateFormatter::FULL,
             'timeType' => \IntlDateFormatter::FULL,
-            'timezone' => $timezone ?: $this->timezoneDetector->getTimezone(),
+            'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
             'calendar' => \IntlDateFormatter::GREGORIAN,
             'pattern' => $pattern,
         ]);
@@ -180,7 +180,7 @@ class DateTimeHelper extends BaseHelper
 
         $date = new \DateTime();
         $date->setTimestamp($data);
-        $date->setTimezone(new \DateTimeZone($timezone ?: $this->timezoneDetector->getTimezone()));
+        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone()));
 
         return $date;
     }
@@ -198,7 +198,7 @@ class DateTimeHelper extends BaseHelper
      */
     protected static function createInstance(array $args = [])
     {
-        if (!self::$reflection) {
+        if (null === self::$reflection) {
             self::$reflection = new \ReflectionClass('IntlDateFormatter');
         }
 

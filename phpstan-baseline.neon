@@ -1,6 +1,26 @@
 parameters:
-	ignoreErrors:
-		-
-			message: "#^Class Sonata\\\\UserBundle\\\\Model\\\\User not found\\.$#"
-			count: 2
-			path: src/Timezone/UserBasedTimezoneDetector.php
+    ignoreErrors:
+        - # NEXT_MAJOR: Remove this, UserBundle is not included as a dependency because it is only used on deprecated code.
+            message: "#^Call to method getTimezone\\(\\) on an unknown class Sonata\\\\UserBundle\\\\Model\\\\User\\.$#"
+            count: 1
+            path: src/Timezone/UserBasedTimezoneDetector.php
+
+        - # NEXT_MAJOR: Remove this, UserBundle is not included as a dependency because it is only used on deprecated code.
+            message: "#^Class Sonata\\\\UserBundle\\\\Model\\\\User not found\\.$#"
+            count: 2
+            path: src/Timezone/UserBasedTimezoneDetector.php
+
+        - # NEXT_MAJOR: Remove this, UserBundle is not included as a dependency because it is only used on deprecated code.
+            message: "#^Class Sonata\\\\UserBundle\\\\Model\\\\User not found\\.$#"
+            count: 1
+            path: tests/Timezone/UserBasedTimezoneDetectorTest.php
+
+        - # NEXT_MAJOR: Remove this, UserBundle is not included as a dependency because it is only used on deprecated code.
+            message: "#^Parameter \\#1 \\$originalClassName of method PHPUnit\\\\Framework\\\\TestCase\\:\\:createMock\\(\\) expects class\\-string\\<Sonata\\\\UserBundle\\\\Model\\\\User\\>, string given\\.$#"
+            count: 1
+            path: tests/Timezone/UserBasedTimezoneDetectorTest.php
+
+        - # NEXT_MAJOR: Remove this, UserBundle is not included as a dependency because it is only used on deprecated code.
+            message: "#^Trying to mock an undefined method getTimezone\\(\\) on class Sonata\\\\UserBundle\\\\Model\\\\User\\.$#"
+            count: 1
+            path: tests/Timezone/UserBasedTimezoneDetectorTest.php

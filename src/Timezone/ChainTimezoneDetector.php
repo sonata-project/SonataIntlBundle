@@ -33,7 +33,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     /**
      * @var string|null
      */
-    protected $guessedTimezone;
+    protected $guessedTimezone = null;
 
     /**
      * @param string $defaultTimezone
@@ -54,14 +54,14 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
      */
     public function getTimezone()
     {
-        if (!$this->guessedTimezone) {
+        if (null === $this->guessedTimezone) {
             $availableTimezones = \DateTimeZone::listIdentifiers();
 
             foreach ($this->timezoneDetectors as $timezoneDetector) {
-                if ($timezone = $timezoneDetector->getTimezone()) {
-                    if (\in_array($timezone, $availableTimezones, true)) {
-                        return $this->guessedTimezone = $timezone;
-                    }
+                $timezone = $timezoneDetector->getTimezone();
+
+                if (null !== $timezone && \in_array($timezone, $availableTimezones, true)) {
+                    return $this->guessedTimezone = $timezone;
                 }
             }
 
