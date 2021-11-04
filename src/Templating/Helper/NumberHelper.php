@@ -155,7 +155,7 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
-        $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
+        $formatter = $this->getFormatter($locale ?? $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
         $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
@@ -208,7 +208,7 @@ class NumberHelper extends BaseHelper
      * attributes.
      *
      * @param string|float|int $number         The number to format
-     * @param string           $style
+     * @param int              $style
      * @param array            $attributes     The attributes used by the formatter
      * @param array            $textAttributes The text attributes used by the formatter
      * @param string|null      $locale         The locale used to format the number
@@ -221,7 +221,7 @@ class NumberHelper extends BaseHelper
 
         [$locale, $symbols] = $this->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
-        $formatter = $this->getFormatter($locale ?: $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
+        $formatter = $this->getFormatter($locale ?? $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
 
         return $this->fixCharset($formatter->format($number));
     }
@@ -272,7 +272,7 @@ class NumberHelper extends BaseHelper
      * style.
      *
      * @param string $culture        The culture used by \NumberFormatter
-     * @param string $style          The style used by \NumberFormatter
+     * @param int    $style          The style used by \NumberFormatter
      * @param array  $attributes     The attributes used by \NumberFormatter
      * @param array  $textAttributes The text attributes used by \NumberFormatter
      * @param array  $symbols        The symbols used by \NumberFormatter
