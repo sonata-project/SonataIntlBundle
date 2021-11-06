@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.11.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.11.0...2.11.1) - 2021-11-06
+### Fixed
+- [[#482](https://github.com/sonata-project/SonataIntlBundle/pull/482)] Fixed service registration ([@core23](https://github.com/core23))
+
 ## [2.11.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.2...2.11.0) - 2021-11-06
 ### Added
 - [[#477](https://github.com/sonata-project/SonataIntlBundle/pull/477)] Added PHPStan and Psalm ([@jordisala1991](https://github.com/jordisala1991))
