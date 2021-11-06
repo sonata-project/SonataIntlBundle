@@ -10,6 +10,7 @@ Symfony SonataIntlBundle
 
 [![Latest Stable Version](https://poser.pugx.org/sonata-project/intl-bundle/v/stable)](https://packagist.org/packages/sonata-project/intl-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/sonata-project/intl-bundle/v/unstable)](https://packagist.org/packages/sonata-project/intl-bundle)
+[![Psalm Type Coverage][shepherd_stable_badge]][shepherd_stable_link]
 [![License](https://poser.pugx.org/sonata-project/intl-bundle/license)](https://packagist.org/packages/sonata-project/intl-bundle)
 
 [![Total Downloads](https://poser.pugx.org/sonata-project/intl-bundle/downloads)](https://packagist.org/packages/sonata-project/intl-bundle)
@@ -44,6 +45,8 @@ This package is available under the [MIT license](LICENSE).
 [coverage_stable_link]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/2.x
 [coverage_unstable_badge]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/3.x/graph/badge.svg
 [coverage_unstable_link]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/3.x
+[shepherd_stable_badge]: https://shepherd.dev/github/sonata-project/SonataIntlBundle/coverage.svg
+[shepherd_stable_link]: https://shepherd.dev/github/sonata-project/SonataIntlBundle
 [documentation_stable_badge]: https://readthedocs.org/projects/sonataintlbundle/badge/?version=2.x
 [documentation_stable_link]: https://docs.sonata-project.org/projects/SonataIntlBundle/en/2.x/?badge=2.x
 [documentation_unstable_badge]: https://readthedocs.org/projects/sonataintlbundle/badge/?version=3.x
