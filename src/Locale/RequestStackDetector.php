@@ -41,7 +41,9 @@ class RequestStackDetector implements LocaleDetectorInterface
      */
     public function getLocale()
     {
-        if ($request = $this->requestStack->getCurrentRequest()) {
+        $request = $this->requestStack->getCurrentRequest();
+
+        if (null !== $request) {
             return $request->getLocale();
         }
 

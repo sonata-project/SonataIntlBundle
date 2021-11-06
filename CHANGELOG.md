@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.11.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.2...2.11.0) - 2021-11-06
+### Added
+- [[#477](https://github.com/sonata-project/SonataIntlBundle/pull/477)] Added PHPStan and Psalm ([@jordisala1991](https://github.com/jordisala1991))
+- [[#475](https://github.com/sonata-project/SonataIntlBundle/pull/475)] Added some Symfony 6 support ([@Kocal](https://github.com/Kocal))
+
 ## [2.10.2](https://github.com/sonata-project/SonataIntlBundle/compare/2.10.1...2.10.2) - 2021-08-05
 ### Fixed
 - [[#430](https://github.com/sonata-project/SonataIntlBundle/pull/430)] Fixed `NumberFormatter::format(): Argument #1 ($num) must be of type int|float, string given`. ([@nocive](https://github.com/nocive))

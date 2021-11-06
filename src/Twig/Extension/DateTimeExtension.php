@@ -35,7 +35,7 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
-     * {@inheritdoc}
+     * @return TwigFilter[]
      */
     public function getFilters()
     {
@@ -51,13 +51,13 @@ class DateTimeExtension extends AbstractExtension
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone
-     * @param string|null          $dateType
+     * @param int|null             $dateType
      *
      * @return string
      */
     public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
-        if ($pattern) {
+        if (null !== $pattern) {
             return $this->helper->format($date, $pattern, $locale, $timezone);
         }
 
@@ -69,13 +69,13 @@ class DateTimeExtension extends AbstractExtension
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone
-     * @param string|null          $timeType
+     * @param int|null             $timeType
      *
      * @return string
      */
     public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
-        if ($pattern) {
+        if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 
@@ -87,14 +87,14 @@ class DateTimeExtension extends AbstractExtension
      * @param string|null          $pattern
      * @param string|null          $locale
      * @param string|null          $timezone
-     * @param string|null          $dateType
-     * @param string|null          $timeType
+     * @param int|null             $dateType
+     * @param int|null             $timeType
      *
      * @return string
      */
     public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
-        if ($pattern) {
+        if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }
 

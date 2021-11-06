@@ -16,7 +16,7 @@ namespace Sonata\IntlBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -37,9 +37,9 @@ class SonataIntlExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('autowire.xml');
-        $loader->load('intl.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('autowire.php');
+        $loader->load('intl.php');
 
         $this->configureTimezone($container, $config);
         $this->configureLocale($container, $config);
@@ -87,7 +87,7 @@ class SonataIntlExtension extends Extension
 
     protected function configureLocale(ContainerBuilder $container, array $config): void
     {
-        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?: '%kernel.default_locale%');
+        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?? '%kernel.default_locale%');
         $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
