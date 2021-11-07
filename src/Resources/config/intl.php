@@ -66,6 +66,26 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.templating.helper.locale', '%sonata.intl.templating.helper.locale.class%')
             ->public()
             ->tag('templating.helper', [
+                'alias' => 'locale',
+            ])
+            ->args([
+                '%kernel.charset%',
+                new ReferenceConfigurator('sonata.intl.locale_detector'),
+            ])
+
+        ->set('sonata.intl.templating.helper.number', '%sonata.intl.templating.helper.number.class%')
+            ->public()
+            ->tag('templating.helper', [
+                'alias' => 'number',
+            ])
+            ->args([
+                '%kernel.charset%',
+                new ReferenceConfigurator('sonata.intl.locale_detector'),
+            ])
+
+        ->set('sonata.intl.templating.helper.datetime', '%sonata.intl.templating.helper.datetime.class%')
+            ->public()
+            ->tag('templating.helper', [
                 'alias' => 'datetime',
             ])
             ->args([
@@ -107,7 +127,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'alias' => 'user',
             ])
             ->args([
-                '',
+                new ReferenceConfigurator('security.token_storage'),
             ])
 
         ->set('sonata.intl.timezone_detector.locale', '%sonata.intl.timezone_detector.locale.class%')
