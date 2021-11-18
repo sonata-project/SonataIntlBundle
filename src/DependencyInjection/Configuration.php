@@ -40,7 +40,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('locale')->defaultValue(false)->end()
+                ->scalarNode('locale')->defaultValue(null)->end()
                 ->arrayNode('timezone')
                     ->addDefaultsIfNotSet()
                     ->children()
