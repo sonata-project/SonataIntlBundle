@@ -11,7 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\IntlBundle\Locale\RequestDetector;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
@@ -32,7 +31,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $containerConfigurator->parameters()
 
-        ->set('sonata.intl.locale_detector.request.class', RequestDetector::class)
         ->set('sonata.intl.templating.helper.locale.class', LocaleHelper::class)
         ->set('sonata.intl.templating.helper.number.class', NumberHelper::class)
         ->set('sonata.intl.templating.helper.datetime.class', DateTimeHelper::class)
