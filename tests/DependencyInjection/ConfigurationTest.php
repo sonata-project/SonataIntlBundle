@@ -37,7 +37,7 @@ class ConfigurationTest extends TestCase
                 'detectors' => [],
                 'locales' => [],
             ],
-            'locale' => false,
+            'locale' => null,
         ];
 
         static::assertSame($expected, $config);
