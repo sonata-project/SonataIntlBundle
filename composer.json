@@ -1,7 +1,8 @@
 {
     "name": "sonata-project/intl-bundle",
-    "type": "symfony-bundle",
     "description": "Symfony SonataIntlBundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
     "keywords": [
         "sonata",
         "intl",
@@ -9,8 +10,6 @@
         "time",
         "number"
     ],
-    "homepage": "https://docs.sonata-project.org/projects/SonataIntlBundle",
-    "license": "MIT",
     "authors": [
         {
             "name": "Thomas Rabaix",
@@ -21,6 +20,7 @@
             "homepage": "https://github.com/sonata-project/SonataIntlBundle/contributors"
         }
     ],
+    "homepage": "https://docs.sonata-project.org/projects/SonataIntlBundle",
     "require": {
         "php": "^7.3 || ^8.0",
         "symfony/config": "^4.4 || ^5.3 || ^6.0",
@@ -30,9 +30,6 @@
         "symfony/intl": "^4.4 || ^5.3 || ^6.0",
         "symfony/templating": "^4.4 || ^5.3 || ^6.0",
         "twig/twig": "^2.9 || ^3.0"
-    },
-    "conflict": {
-        "sonata-project/user-bundle": "<3.6"
     },
     "require-dev": {
         "matthiasnoback/symfony-config-test": "^4.2",
@@ -49,8 +46,8 @@
         "symfony/security-core": "^4.4.23 || ^5.3 || ^6.0",
         "vimeo/psalm": "^4.7.2"
     },
-    "config": {
-        "sort-packages": true
+    "conflict": {
+        "sonata-project/user-bundle": "<3.6"
     },
     "autoload": {
         "psr-4": {
@@ -61,5 +58,8 @@
         "psr-4": {
             "Sonata\\IntlBundle\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "sort-packages": true
     }
 }
