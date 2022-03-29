@@ -32,6 +32,7 @@
         "twig/twig": "^2.9 || ^3.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4",
         "matthiasnoback/symfony-config-test": "^4.2",
         "matthiasnoback/symfony-dependency-injection-test": "^4.0",
         "phpstan/extension-installer": "^1.0",
@@ -60,6 +61,10 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "phpstan/extension-installer": true
+        },
         "sort-packages": true
     }
 }
