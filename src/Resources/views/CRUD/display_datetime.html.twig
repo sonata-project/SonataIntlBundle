@@ -19,6 +19,6 @@ file that was distributed with this source code.
         {% set dateType = field_description.options.dateType|default(null) %}
         {% set timeType = field_description.options.timeType|default(null) %}
 
-        <time datetime="{{ value|date('c', 'UTC') }}" title="{{ value|date('c', 'UTC') }}">{{ value | format_datetime(pattern, locale, timezone, dateType, timeType) }}</time>
+        <time datetime="{{ value|date('c', 'UTC') }}" title="{{ value|date('c', 'UTC') }}">{{ value | sonata_format_datetime(pattern, locale, timezone, dateType, timeType) }}</time>
     {%- endif -%}
 {% endapply -%}

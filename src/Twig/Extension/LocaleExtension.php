@@ -40,9 +40,12 @@ class LocaleExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('country', [$this, 'country'], ['is_safe' => ['html']]),
-            new TwigFilter('locale', [$this, 'locale'], ['is_safe' => ['html']]),
-            new TwigFilter('language', [$this, 'language'], ['is_safe' => ['html']]),
+            new TwigFilter('country', [$this, 'country'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_country', [$this, 'country'], ['is_safe' => ['html']]),
+            new TwigFilter('locale', [$this, 'locale'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_locale', [$this, 'locale'], ['is_safe' => ['html']]),
+            new TwigFilter('language', [$this, 'language'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_language', [$this, 'language'], ['is_safe' => ['html']]),
         ];
     }
 

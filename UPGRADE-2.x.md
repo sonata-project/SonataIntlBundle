@@ -1,6 +1,19 @@
 UPGRADE 2.x
 ===========
 
+UPGRADE FROM 2.11 to 2.12
+=========================
+
+### Every twig filter is prefixed by `sonata_`
+
+- `format_date` is deprecated in favor of `sonata_format_date`.
+- `format_time` is deprecated in favor of `sonata_format_time`.
+- `format_datetime` is deprecated in favor of `sonata_format_datetime`.
+- `number_format_*` is deprecated in favor of `sonata_number_format_*`.
+- `country` is deprecated in favor of `sonata_country`.
+- `locale` is deprecated in favor of `sonata_locale`.
+- `language` is deprecated in favor of `sonata_language`.
+
 UPGRADE FROM 2.7 to 2.8
 =======================
 

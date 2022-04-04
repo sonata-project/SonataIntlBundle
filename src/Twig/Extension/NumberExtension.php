@@ -45,13 +45,20 @@ class NumberExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
         ];
     }
 
