@@ -51,11 +51,11 @@ class DateTimeExtension extends AbstractExtension
     {
         return [
             new TwigFilter('format_date', [$this, 'formatDate'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
-            new TwigFilter('sonata_format_date', [$this, 'formatDate'], ['is_safe' => ['html']]),
+            new TwigFilter('sonata_format_date', [DateTimeRuntime::class, 'formatDate'], ['is_safe' => ['html']]),
             new TwigFilter('format_time', [$this, 'formatTime'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
-            new TwigFilter('sonata_format_time', [$this, 'formatTime'], ['is_safe' => ['html']]),
+            new TwigFilter('sonata_format_time', [DateTimeRuntime::class, 'formatTime'], ['is_safe' => ['html']]),
             new TwigFilter('format_datetime', [$this, 'formatDatetime'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
-            new TwigFilter('sonata_format_datetime', [$this, 'formatDatetime'], ['is_safe' => ['html']]),
+            new TwigFilter('sonata_format_datetime', [DateTimeRuntime::class, 'formatDatetime'], ['is_safe' => ['html']]),
         ];
     }
 
