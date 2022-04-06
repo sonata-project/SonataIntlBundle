@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Twig\NumberRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -32,11 +33,17 @@ class NumberExtension extends AbstractExtension
     protected $helper;
 
     /**
-     * @param NumberHelper $helper A NumberHelper helper instance
+     * @var NumberRuntime
+     */
+    private $numberRuntime;
+
+    /**
+     * NEXT_MAJOR: Remove this constructor.
      */
     public function __construct(NumberHelper $helper)
     {
         $this->helper = $helper;
+        $this->numberRuntime = new NumberRuntime($this->helper);
     }
 
     /**
@@ -73,6 +80,8 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -86,14 +95,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 6, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
-
-        return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatCurrency(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -106,14 +121,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatDecimal(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
@@ -126,14 +147,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatScientific(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -146,14 +173,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatSpellout(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -166,14 +199,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatPercent(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -186,14 +225,20 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatDuration(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -206,10 +251,14 @@ class NumberExtension extends AbstractExtension
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            NumberRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatOrdinal(...\func_get_args());
     }
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -29,9 +30,18 @@ class LocaleExtension extends AbstractExtension
      */
     protected $helper;
 
+    /**
+     * @var LocaleRuntime
+     */
+    private $localeRuntime;
+
+    /**
+     * NEXT_MAJOR: Remove this constructor.
+     */
     public function __construct(LocaleHelper $helper)
     {
         $this->helper = $helper;
+        $this->localeRuntime = new LocaleRuntime($this->helper);
     }
 
     /**
@@ -50,6 +60,8 @@ class LocaleExtension extends AbstractExtension
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Returns the localized country name from the provided code.
      *
      * @param string      $code
@@ -59,10 +71,20 @@ class LocaleExtension extends AbstractExtension
      */
     public function country($code, $locale = null)
     {
-        return $this->helper->country($code, $locale);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            LocaleRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
+
+        return $this->localeRuntime->country($code, $locale);
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Returns the localized locale name from the provided code.
      *
      * @param string      $code
@@ -72,10 +94,20 @@ class LocaleExtension extends AbstractExtension
      */
     public function locale($code, $locale = null)
     {
-        return $this->helper->locale($code, $locale);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            LocaleRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
+
+        return $this->localeRuntime->locale($code, $locale);
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * Returns the localized language name from the provided code.
      *
      * @param string      $code
@@ -85,7 +117,15 @@ class LocaleExtension extends AbstractExtension
      */
     public function language($code, $locale = null)
     {
-        return $this->helper->language($code, $locale);
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            LocaleRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
+
+        return $this->localeRuntime->language($code, $locale);
     }
 
     /**

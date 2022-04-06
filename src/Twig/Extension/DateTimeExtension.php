@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -29,9 +30,18 @@ class DateTimeExtension extends AbstractExtension
      */
     protected $helper;
 
+    /**
+     * @var DateTimeRuntime
+     */
+    private $dateTimeRuntime;
+
+    /**
+     * NEXT_MAJOR: Remove this constructor.
+     */
     public function __construct(DateTimeHelper $helper)
     {
         $this->helper = $helper;
+        $this->dateTimeRuntime = new DateTimeRuntime($helper);
     }
 
     /**
@@ -50,6 +60,8 @@ class DateTimeExtension extends AbstractExtension
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * @param \DateTime|string|int $date
      * @param string|null          $pattern
      * @param string|null          $locale
@@ -60,14 +72,20 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
-        if (null !== $pattern) {
-            return $this->helper->format($date, $pattern, $locale, $timezone);
-        }
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            DateTimeRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        return $this->helper->formatDate($date, $locale, $timezone, $dateType);
+        return $this->dateTimeRuntime->formatDate($date, $pattern, $locale, $timezone, $dateType);
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * @param \DateTime|string|int $time
      * @param string|null          $pattern
      * @param string|null          $locale
@@ -78,14 +96,20 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
-        if (null !== $pattern) {
-            return $this->helper->format($time, $pattern, $locale, $timezone);
-        }
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            DateTimeRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        return $this->helper->formatTime($time, $locale, $timezone, $timeType);
+        return $this->dateTimeRuntime->formatTime($time, $pattern, $locale, $timezone, $timeType);
     }
 
     /**
+     * NEXT_MAJOR: Remove this method.
+     *
      * @param \DateTime|string|int $time
      * @param string|null          $pattern
      * @param string|null          $locale
@@ -97,11 +121,15 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
-        if (null !== $pattern) {
-            return $this->helper->format($time, $pattern, $locale, $timezone);
-        }
+        @trigger_error(sprintf(
+            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
+            'Use %s::%s instead.',
+            __METHOD__,
+            DateTimeRuntime::class,
+            __METHOD__,
+        ), \E_USER_DEPRECATED);
 
-        return $this->helper->formatDateTime($time, $locale, $timezone, $dateType, $timeType);
+        return $this->dateTimeRuntime->formatDatetime($time, $pattern, $locale, $timezone, $timeType);
     }
 
     /**
