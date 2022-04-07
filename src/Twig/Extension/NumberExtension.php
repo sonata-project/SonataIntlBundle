@@ -95,13 +95,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_currency filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_currency instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatCurrency(...\func_get_args());
     }
@@ -121,13 +119,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_decimal filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_decimal instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatDecimal(...\func_get_args());
     }
@@ -147,13 +143,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_scientific filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_decimal instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatScientific(...\func_get_args());
     }
@@ -173,13 +167,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_spellout filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_spellout instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatSpellout(...\func_get_args());
     }
@@ -199,13 +191,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_percent filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_percent instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatPercent(...\func_get_args());
     }
@@ -225,13 +215,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_duration filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_duration instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatDuration(...\func_get_args());
     }
@@ -251,13 +239,11 @@ class NumberExtension extends AbstractExtension
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            NumberRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The number_format_ordinal filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_ordinal instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->numberRuntime->formatOrdinal(...\func_get_args());
     }

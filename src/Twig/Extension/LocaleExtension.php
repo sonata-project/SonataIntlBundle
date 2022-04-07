@@ -71,13 +71,11 @@ class LocaleExtension extends AbstractExtension
      */
     public function country($code, $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            LocaleRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The country filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_country instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->localeRuntime->country($code, $locale);
     }
@@ -94,13 +92,11 @@ class LocaleExtension extends AbstractExtension
      */
     public function locale($code, $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            LocaleRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The locale filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_locale instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->localeRuntime->locale($code, $locale);
     }
@@ -117,13 +113,11 @@ class LocaleExtension extends AbstractExtension
      */
     public function language($code, $locale = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            LocaleRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The language filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_language instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->localeRuntime->language($code, $locale);
     }

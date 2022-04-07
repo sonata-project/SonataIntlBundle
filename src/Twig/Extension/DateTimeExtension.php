@@ -72,13 +72,11 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            DateTimeRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The format_date filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_format_date instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->dateTimeRuntime->formatDate($date, $pattern, $locale, $timezone, $dateType);
     }
@@ -96,13 +94,11 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            DateTimeRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The format_time filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_format_time instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->dateTimeRuntime->formatTime($time, $pattern, $locale, $timezone, $timeType);
     }
@@ -121,13 +117,11 @@ class DateTimeExtension extends AbstractExtension
      */
     public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
-        @trigger_error(sprintf(
-            'The %s method is deprecated since 2.x and will be removed on 3.0. '.
-            'Use %s::%s instead.',
-            __METHOD__,
-            DateTimeRuntime::class,
-            __METHOD__,
-        ), \E_USER_DEPRECATED);
+        @trigger_error(
+            'The format_date_time filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_format_date_time instead.',
+            \E_USER_DEPRECATED
+        );
 
         return $this->dateTimeRuntime->formatDatetime($time, $pattern, $locale, $timezone, $timeType);
     }
