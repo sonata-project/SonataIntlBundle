@@ -20,6 +20,6 @@ file that was distributed with this source code.
         {% set textAttributes = field_description.options.textAttributes|default({}) %}
         {% set locale = field_description.options.locale|default(null) %}
 
-        {{ value | number_format_currency(currency, attributes, textAttributes, locale) }}
+        {{ value | sonata_number_format_currency(currency, attributes, textAttributes, locale) }}
     {%- endif -%}
 {% endblock %}

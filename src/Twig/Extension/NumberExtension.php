@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Twig\NumberRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
@@ -32,11 +33,17 @@ class NumberExtension extends AbstractExtension
     protected $helper;
 
     /**
-     * @param NumberHelper $helper A NumberHelper helper instance
+     * @var NumberRuntime
+     */
+    private $numberRuntime;
+
+    /**
+     * NEXT_MAJOR: Remove this constructor.
      */
     public function __construct(NumberHelper $helper)
     {
         $this->helper = $helper;
+        $this->numberRuntime = new NumberRuntime($this->helper);
     }
 
     /**
@@ -45,13 +52,20 @@ class NumberExtension extends AbstractExtension
     public function getFilters()
     {
         return [
-            new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]),
-            new TwigFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_currency', [$this, 'formatCurrency'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_currency', [NumberRuntime::class, 'formatCurrency'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_decimal', [$this, 'formatDecimal'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_decimal', [NumberRuntime::class, 'formatDecimal'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_scientific', [$this, 'formatScientific'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_scientific', [NumberRuntime::class, 'formatScientific'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_spellout', [$this, 'formatSpellout'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_spellout', [NumberRuntime::class, 'formatSpellout'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_percent', [$this, 'formatPercent'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_percent', [NumberRuntime::class, 'formatPercent'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_duration', [$this, 'formatDuration'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_duration', [NumberRuntime::class, 'formatDuration'], ['is_safe' => ['html']]),
+            new TwigFilter('number_format_ordinal', [$this, 'formatOrdinal'], ['is_safe' => ['html']]), // NEXT_MAJOR: Remove this line
+            new TwigFilter('sonata_number_format_ordinal', [NumberRuntime::class, 'formatOrdinal'], ['is_safe' => ['html']]),
         ];
     }
 
@@ -66,6 +80,8 @@ class NumberExtension extends AbstractExtension
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -79,14 +95,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 6, null);
+        @trigger_error(
+            'The number_format_currency filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_currency instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
-
-        return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatCurrency(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -99,14 +119,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_decimal filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_decimal instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatDecimal(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
@@ -119,14 +143,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_scientific filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_decimal instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatScientific(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -139,14 +167,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_spellout filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_spellout instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatSpellout(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -159,14 +191,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_percent filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_percent instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatPercent(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -179,14 +215,18 @@ class NumberExtension extends AbstractExtension
      */
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_duration filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_duration instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatDuration(...\func_get_args());
     }
 
     /**
+     * NEXT_MAJOR: remove this method.
+     *
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
@@ -199,10 +239,12 @@ class NumberExtension extends AbstractExtension
      */
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
     {
-        $methodArgs = array_pad(\func_get_args(), 5, null);
+        @trigger_error(
+            'The number_format_ordinal filter is deprecated since 2.x and will be removed on 3.0. '.
+            'Use sonata_number_format_ordinal instead.',
+            \E_USER_DEPRECATED
+        );
 
-        [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
-
-        return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
+        return $this->numberRuntime->formatOrdinal(...\func_get_args());
     }
 }
