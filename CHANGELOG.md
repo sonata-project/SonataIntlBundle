@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.12.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.12.0...2.12.1) - 2022-04-11
+### Fixed
+- [[#514](https://github.com/sonata-project/SonataIntlBundle/pull/514)] Missing service declarations for Runtime services ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [2.12.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.11.2...2.12.0) - 2022-04-09
 ### Added
 - [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_format_date` filter ([@VincentLanglet](https://github.com/VincentLanglet))
