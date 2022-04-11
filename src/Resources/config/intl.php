@@ -119,21 +119,18 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
 
         ->set('sonata.intl.twig.runtime.locale', LocaleRuntime::class)
-            ->private()
             ->tag('twig.runtime')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.locale'),
             ])
 
         ->set('sonata.intl.twig.runtime.number', NumberRuntime::class)
-            ->private()
             ->tag('twig.runtime')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.number'),
             ])
 
         ->set('sonata.intl.twig.runtime.datetime', DateTimeRuntime::class)
-            ->private()
             ->tag('twig.runtime')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
