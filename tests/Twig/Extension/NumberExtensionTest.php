@@ -24,6 +24,8 @@ use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 class NumberExtensionTest extends TestCase
 {
     /**
+     * @group legacy
+     *
      * @dataProvider provideFormatArguments
      */
     public function testFormat($methodName, $testData): void
@@ -145,6 +147,9 @@ class NumberExtensionTest extends TestCase
         ];
     }
 
+    /**
+     * @group legacy
+     */
     public function testFormatOrdinal(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();
@@ -156,6 +161,9 @@ class NumberExtensionTest extends TestCase
         static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
     }
 
+    /**
+     * @group legacy
+     */
     public function testFormatSpellout(): void
     {
         $localeDetector = $this->createLocaleDetectorMock();

@@ -18,9 +18,12 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
+use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Sonata\IntlBundle\Twig\Extension\DateTimeExtension;
 use Sonata\IntlBundle\Twig\Extension\LocaleExtension;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
+use Sonata\IntlBundle\Twig\LocaleRuntime;
+use Sonata\IntlBundle\Twig\NumberRuntime;
 use Sonata\IntlBundle\Util\BCDeprecationParameters;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
@@ -109,6 +112,24 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.twig.extension.datetime', '%sonata.intl.twig.helper.datetime.class%')
             ->private()
             ->tag('twig.extension')
+            ->args([
+                new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
+            ])
+
+        ->set('sonata.intl.twig.runtime.locale', LocaleRuntime::class)
+            ->tag('twig.runtime')
+            ->args([
+                new ReferenceConfigurator('sonata.intl.templating.helper.locale'),
+            ])
+
+        ->set('sonata.intl.twig.runtime.number', NumberRuntime::class)
+            ->tag('twig.runtime')
+            ->args([
+                new ReferenceConfigurator('sonata.intl.templating.helper.number'),
+            ])
+
+        ->set('sonata.intl.twig.runtime.datetime', DateTimeRuntime::class)
+            ->tag('twig.runtime')
             ->args([
                 new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
             ])

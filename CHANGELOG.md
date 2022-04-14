@@ -2,6 +2,29 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.12.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.12.0...2.12.1) - 2022-04-11
+### Fixed
+- [[#514](https://github.com/sonata-project/SonataIntlBundle/pull/514)] Missing service declarations for Runtime services ([@VincentLanglet](https://github.com/VincentLanglet))
+
+## [2.12.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.11.2...2.12.0) - 2022-04-09
+### Added
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_format_date` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_format_time` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_format_datetime` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_number_format_*` filters ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_country` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_locale` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`sonata_language` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+
+### Deprecated
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`format_date` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`format_time` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`format_datetime` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`number_format_*` filters ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`country` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`locale` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#512](https://github.com/sonata-project/SonataIntlBundle/pull/512)] -`language` filter ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [2.11.2](https://github.com/sonata-project/SonataIntlBundle/compare/2.11.1...2.11.2) - 2021-11-20
 ### Fixed
 - [[#488](https://github.com/sonata-project/SonataIntlBundle/pull/488)] Correctly default to the kernel default locale when no locale is provided. ([@VincentLanglet](https://github.com/VincentLanglet))
