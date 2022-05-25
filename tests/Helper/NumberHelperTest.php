@@ -15,7 +15,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig;
 
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\DateTimeHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface

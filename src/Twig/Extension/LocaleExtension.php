@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Sonata\IntlBundle\Helper\LocaleHelper;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

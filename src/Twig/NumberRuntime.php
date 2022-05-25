@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig;
 
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class NumberRuntime implements RuntimeExtensionInterface

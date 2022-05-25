@@ -20,6 +20,8 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
+use Symfony\Component\Templating\Helper\HelperInterface;
+
 /**
  * SonataIntlExtension.
  *
@@ -40,6 +42,11 @@ class SonataIntlExtension extends Extension
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('autowire.php');
         $loader->load('intl.php');
+
+
+        if (interface_exists(HelperInterface::class)) {
+            $loader->load('templating.php');
+        }
 
         $this->configureTimezone($container, $config);
         $this->configureLocale($container, $config);

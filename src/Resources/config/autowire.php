@@ -11,14 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\LocaleHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
-        ->alias(DateTimeHelper::class, 'sonata.intl.templating.helper.datetime')
-        ->alias(LocaleHelper::class, 'sonata.intl.templating.helper.locale')
-        ->alias(NumberHelper::class, 'sonata.intl.templating.helper.number');
+        ->alias(DateTimeHelper::class, 'sonata.intl.helper.datetime')
+        ->alias(LocaleHelper::class, 'sonata.intl.helper.locale')
+        ->alias(NumberHelper::class, 'sonata.intl.helper.number');
 };

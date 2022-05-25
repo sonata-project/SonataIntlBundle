@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 use Sonata\IntlBundle\Locale\RequestDetector;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\LocaleHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
@@ -36,9 +36,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->parameters()
 
         ->set('sonata.intl.locale_detector.request.class', RequestDetector::class)
-        ->set('sonata.intl.templating.helper.locale.class', LocaleHelper::class)
-        ->set('sonata.intl.templating.helper.number.class', NumberHelper::class)
-        ->set('sonata.intl.templating.helper.datetime.class', DateTimeHelper::class)
+        ->set('sonata.intl.helper.locale.class', LocaleHelper::class)
+        ->set('sonata.intl.helper.number.class', NumberHelper::class)
+        ->set('sonata.intl.helper.datetime.class', DateTimeHelper::class)
         ->set('sonata.intl.timezone_detector.chain.class', ChainTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.user.class', UserBasedTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.locale.class', LocaleBasedTimezoneDetector::class)
@@ -66,31 +66,22 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 '',
             ])
 
-        ->set('sonata.intl.templating.helper.locale', '%sonata.intl.templating.helper.locale.class%')
+        ->set('sonata.intl.helper.locale', '%sonata.intl.helper.locale.class%')
             ->public()
-            ->tag('templating.helper', [
-                'alias' => 'locale',
-            ])
             ->args([
                 '%kernel.charset%',
                 new ReferenceConfigurator('sonata.intl.locale_detector'),
             ])
 
-        ->set('sonata.intl.templating.helper.number', '%sonata.intl.templating.helper.number.class%')
+        ->set('sonata.intl.helper.number', '%sonata.intl.helper.number.class%')
             ->public()
-            ->tag('templating.helper', [
-                'alias' => 'number',
-            ])
             ->args([
                 '%kernel.charset%',
                 new ReferenceConfigurator('sonata.intl.locale_detector'),
             ])
 
-        ->set('sonata.intl.templating.helper.datetime', '%sonata.intl.templating.helper.datetime.class%')
+        ->set('sonata.intl.helper.datetime', '%sonata.intl.helper.datetime.class%')
             ->public()
-            ->tag('templating.helper', [
-                'alias' => 'datetime',
-            ])
             ->args([
                 new ReferenceConfigurator('sonata.intl.timezone_detector'),
                 '%kernel.charset%',
@@ -101,39 +92,39 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.locale'),
+                new ReferenceConfigurator('sonata.intl.helper.locale'),
             ])
 
         ->set('sonata.intl.twig.extension.number', '%sonata.intl.twig.helper.number.class%')
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.number'),
+                new ReferenceConfigurator('sonata.intl.helper.number'),
             ])
 
         ->set('sonata.intl.twig.extension.datetime', '%sonata.intl.twig.helper.datetime.class%')
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
+                new ReferenceConfigurator('sonata.intl.helper.datetime'),
             ])
 
         ->set('sonata.intl.twig.runtime.locale', LocaleRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.locale'),
+                new ReferenceConfigurator('sonata.intl.helper.locale'),
             ])
 
         ->set('sonata.intl.twig.runtime.number', NumberRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.number'),
+                new ReferenceConfigurator('sonata.intl.helper.number'),
             ])
 
         ->set('sonata.intl.twig.runtime.datetime', DateTimeRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.templating.helper.datetime'),
+                new ReferenceConfigurator('sonata.intl.helper.datetime'),
             ])
 
         ->set('sonata.intl.timezone_detector.chain', '%sonata.intl.timezone_detector.chain.class%')

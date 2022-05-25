@@ -15,7 +15,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\DateTimeHelper;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**

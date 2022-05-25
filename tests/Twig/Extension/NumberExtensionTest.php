@@ -15,7 +15,7 @@ namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**

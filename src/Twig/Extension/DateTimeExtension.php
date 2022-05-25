@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\DateTimeHelper;
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

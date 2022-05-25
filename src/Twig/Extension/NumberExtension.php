@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberHelper;
 use Sonata\IntlBundle\Twig\NumberRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

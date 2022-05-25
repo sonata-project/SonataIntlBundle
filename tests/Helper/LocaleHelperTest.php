@@ -15,7 +15,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Sonata\IntlBundle\Helper\LocaleHelper;
 
 class LocaleHelperTest extends TestCase
 {
