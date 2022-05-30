@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>

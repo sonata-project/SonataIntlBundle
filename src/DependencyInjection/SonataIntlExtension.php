@@ -43,7 +43,6 @@ class SonataIntlExtension extends Extension
         $loader->load('autowire.php');
         $loader->load('intl.php');
 
-
         if (interface_exists(HelperInterface::class)) {
             $loader->load('templating.php');
         }

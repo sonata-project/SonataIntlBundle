@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**

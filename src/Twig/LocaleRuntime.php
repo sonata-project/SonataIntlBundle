@@ -14,13 +14,20 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig;
 
 use Sonata\IntlBundle\Helper\LocaleHelper;
+use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class LocaleRuntime implements RuntimeExtensionInterface
 {
-    private LocaleHelper $helper;
+    /**
+     * @var LocaleHelper|TemplatingLocaleHelper
+     */
+    private $helper;
 
-    public function __construct(LocaleHelper $helper)
+    /**
+     * @param LocaleHelper|TemplatingLocaleHelper $helper
+     */
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
     }

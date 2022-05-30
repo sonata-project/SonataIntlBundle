@@ -11,11 +11,11 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\IntlBundle\Locale\RequestDetector;
-use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Helper\DateTimeHelper;
 use Sonata\IntlBundle\Helper\LocaleHelper;
 use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Locale\RequestDetector;
+use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;

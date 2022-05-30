@@ -29,7 +29,6 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  */
 abstract class BaseHelper
 {
-
     protected $charset = 'UTF-8';
 
     /**
@@ -64,7 +63,6 @@ abstract class BaseHelper
     {
         return $this->charset;
     }
-
 
     /**
      * Typo in the method name.

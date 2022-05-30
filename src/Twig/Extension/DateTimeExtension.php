@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelper;
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -26,7 +27,7 @@ use Twig\TwigFilter;
 class DateTimeExtension extends AbstractExtension
 {
     /**
-     * @var DateTimeHelper
+     * @var DateTimeHelper|TemplatingDateTimeHelper
      */
     protected $helper;
 
@@ -34,8 +35,10 @@ class DateTimeExtension extends AbstractExtension
 
     /**
      * NEXT_MAJOR: Remove this constructor.
+     *
+     * @param DateTimeHelper|TemplatingDateTimeHelper $helper
      */
-    public function __construct(DateTimeHelper $helper)
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
         $this->dateTimeRuntime = new DateTimeRuntime($helper);

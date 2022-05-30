@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Helper\LocaleHelper;
+use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -26,7 +27,7 @@ use Twig\TwigFilter;
 class LocaleExtension extends AbstractExtension
 {
     /**
-     * @var LocaleHelper
+     * @var LocaleHelper|TemplatingLocaleHelper
      */
     protected $helper;
 
@@ -34,8 +35,10 @@ class LocaleExtension extends AbstractExtension
 
     /**
      * NEXT_MAJOR: Remove this constructor.
+     *
+     * @param LocaleHelper|TemplatingLocaleHelper $helper
      */
-    public function __construct(LocaleHelper $helper)
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
         $this->localeRuntime = new LocaleRuntime($this->helper);

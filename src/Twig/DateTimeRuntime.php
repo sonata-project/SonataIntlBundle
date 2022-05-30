@@ -14,13 +14,20 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig;
 
 use Sonata\IntlBundle\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface
 {
-    private DateTimeHelper $helper;
+    /**
+     * @var DateTimeHelper|TemplatingDateTimeHelper
+     */
+    private $helper;
 
-    public function __construct(DateTimeHelper $helper)
+    /**
+     * @param DateTimeHelper|TemplatingDateTimeHelper $helper
+     */
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
     }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig\Extension;
 
 use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Sonata\IntlBundle\Twig\NumberRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -28,7 +29,7 @@ use Twig\TwigFilter;
 class NumberExtension extends AbstractExtension
 {
     /**
-     * @var NumberHelper The instance of the NumberHelper helper
+     * @var NumberHelper|TemplatingNumberHelper The instance of the NumberHelper helper
      */
     protected $helper;
 
@@ -36,8 +37,10 @@ class NumberExtension extends AbstractExtension
 
     /**
      * NEXT_MAJOR: Remove this constructor.
+     *
+     * @param NumberHelper|TemplatingNumberHelper $helper
      */
-    public function __construct(NumberHelper $helper)
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
         $this->numberRuntime = new NumberRuntime($this->helper);

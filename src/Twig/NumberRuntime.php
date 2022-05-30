@@ -14,19 +14,20 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig;
 
 use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class NumberRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @var NumberHelper The instance of the NumberHelper helper
+     * @var NumberHelper|TemplatingNumberHelper The instance of the NumberHelper helper
      */
     private NumberHelper $helper;
 
     /**
-     * @param NumberHelper $helper A NumberHelper helper instance
+     * @param NumberHelper|TemplatingNumberHelper $helper A NumberHelper helper instance
      */
-    public function __construct(NumberHelper $helper)
+    public function __construct(object $helper)
     {
         $this->helper = $helper;
     }
