@@ -83,12 +83,12 @@ class NumberExtensionTest extends TestCase
                         '10.155',
                     ],
                     [
-                        [1000000.15459],
+                        [1_000_000.15459],
                         '1,000,000.155',
                     ],
                     [
                         [
-                            1000000.15459,
+                            1_000_000.15459,
                             [],
                             [],
                             ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
@@ -113,7 +113,7 @@ class NumberExtensionTest extends TestCase
                         '1.0001E3',
                     ],
                     [
-                        [1000000.15459],
+                        [1_000_000.15459],
                         '1.00000015459E6',
                     ],
                 ],
@@ -122,7 +122,7 @@ class NumberExtensionTest extends TestCase
                 'formatDuration',
                 [
                     [
-                        [1000000],
+                        [1_000_000],
                         '277:46:40',
                     ],
                 ],
@@ -172,7 +172,7 @@ class NumberExtensionTest extends TestCase
 
         static::assertSame('one', $extension->formatSpellout(1));
         static::assertSame('forty-two', $extension->formatSpellout(42));
-        static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1224557.1254));
+        static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1_224_557.1254));
     }
 
     private function createLocaleDetectorMock()

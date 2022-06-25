@@ -30,10 +30,7 @@ class LocaleExtension extends AbstractExtension
      */
     protected $helper;
 
-    /**
-     * @var LocaleRuntime
-     */
-    private $localeRuntime;
+    private LocaleRuntime $localeRuntime;
 
     /**
      * NEXT_MAJOR: Remove this constructor.
