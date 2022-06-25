@@ -39,7 +39,7 @@ jobs:
                 symfony-require: ['']
                 variant: [normal]
                 include:
-                    - php-version: '7.3'
+                    - php-version: '7.4'
                       dependencies: lowest
                       allowed-to-fail: false
                       variant: normal
