@@ -39,24 +39,24 @@ class NumberHelperTest extends TestCase
         // decimal
         static::assertSame('10', $helper->formatDecimal(10));
         static::assertSame('10.155', $helper->formatDecimal(10.15459));
-        static::assertSame('1,000,000.155', $helper->formatDecimal(1000000.15459));
+        static::assertSame('1,000,000.155', $helper->formatDecimal(1_000_000.15459));
         static::assertSame('1,000,000.155', $helper->formatDecimal('1000000.15459'));
 
         // scientific
         static::assertSame('1E1', $helper->formatScientific(10));
         static::assertSame('1E3', $helper->formatScientific(1000));
         static::assertSame('1.0001E3', $helper->formatScientific(1000.1));
-        static::assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
-        static::assertSame('1.00000015459E6', $helper->formatScientific(1000000.15459));
+        static::assertSame('1.00000015459E6', $helper->formatScientific(1_000_000.15459));
+        static::assertSame('1.00000015459E6', $helper->formatScientific(1_000_000.15459));
         static::assertSame('1.00000015459E6', $helper->formatScientific('1000000.15459'));
 
         // duration
-        static::assertSame('277:46:40', $helper->formatDuration(1000000));
+        static::assertSame('277:46:40', $helper->formatDuration(1_000_000));
 
         // spell out
         static::assertSame('one', $helper->formatSpellout(1));
         static::assertSame('forty-two', $helper->formatSpellout(42));
-        static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $helper->formatSpellout(1224557.1254));
+        static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $helper->formatSpellout(1_224_557.1254));
 
         // percent
         static::assertSame('10%', $helper->formatPercent(0.1));

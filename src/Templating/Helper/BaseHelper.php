@@ -56,7 +56,7 @@ abstract class BaseHelper extends Helper
     {
         @trigger_error(
             'The '.__METHOD__.' method is deprecated since 2.2 and will be removed on 3.0. '.
-            'Use '.__CLASS__.'::getICUDataVersion instead.',
+            'Use '.self::class.'::getICUDataVersion instead.',
             \E_USER_DEPRECATED
         );
 
@@ -71,7 +71,7 @@ abstract class BaseHelper extends Helper
     public static function getICUDataVersion()
     {
         if (\defined('INTL_ICU_VERSION')) {
-            return \INTL_ICU_VERSION;
+            return INTL_ICU_VERSION;
         }
 
         ob_start();
