@@ -71,7 +71,7 @@ abstract class BaseHelper extends Helper
     public static function getICUDataVersion()
     {
         if (\defined('INTL_ICU_VERSION')) {
-            return INTL_ICU_VERSION;
+            return \INTL_ICU_VERSION;
         }
 
         ob_start();
