@@ -30,10 +30,7 @@ class DateTimeExtension extends AbstractExtension
      */
     protected $helper;
 
-    /**
-     * @var DateTimeRuntime
-     */
-    private $dateTimeRuntime;
+    private DateTimeRuntime $dateTimeRuntime;
 
     /**
      * NEXT_MAJOR: Remove this constructor.

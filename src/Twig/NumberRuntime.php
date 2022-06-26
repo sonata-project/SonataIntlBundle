@@ -21,7 +21,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
     /**
      * @var NumberHelper The instance of the NumberHelper helper
      */
-    private $helper;
+    private NumberHelper $helper;
 
     /**
      * @param NumberHelper $helper A NumberHelper helper instance

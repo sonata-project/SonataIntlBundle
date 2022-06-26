@@ -18,10 +18,7 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var DateTimeHelper
-     */
-    private $helper;
+    private DateTimeHelper $helper;
 
     public function __construct(DateTimeHelper $helper)
     {

@@ -32,10 +32,7 @@ class NumberExtension extends AbstractExtension
      */
     protected $helper;
 
-    /**
-     * @var NumberRuntime
-     */
-    private $numberRuntime;
+    private NumberRuntime $numberRuntime;
 
     /**
      * NEXT_MAJOR: Remove this constructor.
