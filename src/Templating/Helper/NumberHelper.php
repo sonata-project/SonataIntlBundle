@@ -20,6 +20,8 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class NumberHelper extends BaseHelper
 {

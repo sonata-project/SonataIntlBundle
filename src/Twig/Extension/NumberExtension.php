@@ -18,6 +18,7 @@ use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Sonata\IntlBundle\Twig\NumberRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use TypeError;
 
 /**
  * NumberExtension extends Twig with some filters to format numbers according
@@ -42,6 +43,14 @@ class NumberExtension extends AbstractExtension
      */
     public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingNumberHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingNumberHelper::class, NumberHelper::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof NumberHelper) {
+            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberHelper::class, get_class($helper)));
+        }
         $this->helper = $helper;
         $this->numberRuntime = new NumberRuntime($this->helper);
     }

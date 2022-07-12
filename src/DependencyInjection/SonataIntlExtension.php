@@ -19,7 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-
 use Symfony\Component\Templating\Helper\HelperInterface;
 
 /**
@@ -43,6 +42,7 @@ class SonataIntlExtension extends Extension
         $loader->load('autowire.php');
         $loader->load('intl.php');
 
+        // NEXT_MAJOR: Remove this code
         if (interface_exists(HelperInterface::class)) {
             $loader->load('templating.php');
         }

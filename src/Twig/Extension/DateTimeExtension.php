@@ -18,6 +18,7 @@ use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelp
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
+use TypeError;
 
 /**
  * DateTimeExtension extends Twig with localized date/time capabilities.
@@ -40,6 +41,14 @@ class DateTimeExtension extends AbstractExtension
      */
     public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingDateTimeHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingDateTimeHelper::class, DateTimeHelper::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof DateTimeHelper) {
+            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeHelper::class, get_class($helper)));
+        }
         $this->helper = $helper;
         $this->dateTimeRuntime = new DateTimeRuntime($helper);
     }

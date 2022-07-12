@@ -24,6 +24,8 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class DateTimeHelper extends BaseHelper
 {

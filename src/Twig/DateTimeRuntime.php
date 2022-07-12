@@ -16,6 +16,7 @@ namespace Sonata\IntlBundle\Twig;
 use Sonata\IntlBundle\Helper\DateTimeHelper;
 use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelper;
 use Twig\Extension\RuntimeExtensionInterface;
+use TypeError;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface
 {
@@ -29,6 +30,15 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
      */
     public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingDateTimeHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingDateTimeHelper::class, DateTimeHelper::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof DateTimeHelper) {
+            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeHelper::class, get_class($helper)));
+        }
+
         $this->helper = $helper;
     }
 

@@ -16,6 +16,7 @@ namespace Sonata\IntlBundle\Twig;
 use Sonata\IntlBundle\Helper\LocaleHelper;
 use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Twig\Extension\RuntimeExtensionInterface;
+use TypeError;
 
 final class LocaleRuntime implements RuntimeExtensionInterface
 {
@@ -29,6 +30,14 @@ final class LocaleRuntime implements RuntimeExtensionInterface
      */
     public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingLocaleHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingLocaleHelper::class, LocaleHelper::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof LocaleHelper) {
+            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocaleHelper::class, get_class($helper)));
+        }
         $this->helper = $helper;
     }
 

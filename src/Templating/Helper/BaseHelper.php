@@ -27,6 +27,8 @@ use Symfony\Component\Templating\Helper\Helper;
  * [1] http://www.php.net/manual/en/intl.examples.basic.php
  *
  * @author Alexander <iam.asm89@gmail.com>
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 abstract class BaseHelper extends Helper
 {
