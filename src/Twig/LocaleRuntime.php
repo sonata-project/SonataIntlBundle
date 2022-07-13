@@ -35,7 +35,7 @@ final class LocaleRuntime implements RuntimeExtensionInterface
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof LocaleHelper) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocaleHelper::class, get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocaleHelper::class, \get_class($helper)));
         }
         $this->helper = $helper;
     }

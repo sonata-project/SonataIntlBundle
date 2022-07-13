@@ -35,7 +35,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof NumberHelper) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberHelper::class, get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberHelper::class, \get_class($helper)));
         }
         $this->helper = $helper;
     }

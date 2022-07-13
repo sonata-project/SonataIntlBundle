@@ -46,7 +46,7 @@ class DateTimeExtension extends AbstractExtension
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof DateTimeHelper) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeHelper::class, get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeHelper::class, \get_class($helper)));
         }
         $this->helper = $helper;
         $this->dateTimeRuntime = new DateTimeRuntime($helper);
