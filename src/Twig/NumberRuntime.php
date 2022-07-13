@@ -16,7 +16,6 @@ namespace Sonata\IntlBundle\Twig;
 use Sonata\IntlBundle\Helper\NumberHelper;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Twig\Extension\RuntimeExtensionInterface;
-use TypeError;
 
 final class NumberRuntime implements RuntimeExtensionInterface
 {
@@ -32,11 +31,11 @@ final class NumberRuntime implements RuntimeExtensionInterface
     {
         if ($helper instanceof TemplatingNumberHelper) {
             @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingNumberHelper::class, NumberHelper::class),
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberHelper::class),
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof NumberHelper) {
-            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberHelper::class, get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberHelper::class, get_class($helper)));
         }
         $this->helper = $helper;
     }

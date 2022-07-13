@@ -18,7 +18,6 @@ use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use TypeError;
 
 /**
  * LocaleExtension extends Twig with local capabilities.
@@ -43,11 +42,11 @@ class LocaleExtension extends AbstractExtension
     {
         if ($helper instanceof TemplatingLocaleHelper) {
             @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.',TemplatingLocaleHelper::class, LocaleHelper::class),
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingLocaleHelper::class, LocaleHelper::class),
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof LocaleHelper) {
-            throw new TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocaleHelper::class, get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocaleHelper::class, get_class($helper)));
         }
         $this->helper = $helper;
         $this->localeRuntime = new LocaleRuntime($this->helper);
