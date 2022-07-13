@@ -286,7 +286,7 @@ class NumberHelper extends BaseHelper
         $symbols = $this->parseAttributes(array_merge($this->symbols, $symbols));
         $formatter = new \NumberFormatter($culture, $style);
 
-        self::checkInternalClass($formatter, '\NumberFormatter', [
+        self::checkInternalClass($formatter, \NumberFormatter::class, [
             'culture' => $culture,
             'style' => $style,
         ]);

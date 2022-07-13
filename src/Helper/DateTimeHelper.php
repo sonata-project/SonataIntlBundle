@@ -199,12 +199,12 @@ class DateTimeHelper extends BaseHelper
     protected static function createInstance(array $args = [])
     {
         if (null === self::$reflection) {
-            self::$reflection = new \ReflectionClass('IntlDateFormatter');
+            self::$reflection = new \ReflectionClass(\IntlDateFormatter::class);
         }
 
         $instance = self::$reflection->newInstanceArgs($args);
 
-        self::checkInternalClass($instance, '\IntlDateFormatter', $args);
+        self::checkInternalClass($instance, \IntlDateFormatter::class, $args);
 
         return $instance;
     }
