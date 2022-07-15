@@ -126,8 +126,6 @@ abstract class BaseHelper
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
      * @param mixed $instance
-     * @param string $class
-     * @param array $args
      */
     protected static function checkInternalClass($instance, string $class, array $args = [])
     {

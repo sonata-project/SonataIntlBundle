@@ -24,35 +24,17 @@ use Symfony\Component\Intl\Locales;
  */
 final class LocaleHelper extends BaseHelper
 {
-    /**
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function country(string $code, string $locale = null): string
+    public function country(string $code, ?string $locale = null): string
     {
         return $this->fixCharset(Countries::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
 
-    /**
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function language(string $code, string $locale = null): string
+    public function language(string $code, ?string $locale = null): string
     {
         return $this->fixCharset(Languages::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
 
-    /**
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
-     */
-    public function locale($code, $locale = null): string
+    public function locale(string $code, ?string $locale = null): string
     {
         return $this->fixCharset(Locales::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
