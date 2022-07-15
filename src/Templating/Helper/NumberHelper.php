@@ -230,7 +230,7 @@ class NumberHelper extends BaseHelper
      *
      * @throws \BadMethodCallException If the arguments does not match any signature
      *
-     * @psalm-return array{0: string, 1: array}
+     * @psalm-return array{0: ?string, 1: array}
      *
      * @return array Arguments list normalized to the new method signature
      *
