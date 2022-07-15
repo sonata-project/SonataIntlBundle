@@ -58,7 +58,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[4], $methodArgs[5]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -79,7 +78,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -100,7 +98,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -121,7 +118,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -142,7 +138,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -163,7 +158,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -184,7 +178,6 @@ final class NumberRuntime implements RuntimeExtensionInterface
 
         [$locale, $symbols] = $this->helper->normalizeMethodSignature($methodArgs[3], $methodArgs[4]);
 
-        /** @psalm-suppress InvalidArgument */
         return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
     }
 }
