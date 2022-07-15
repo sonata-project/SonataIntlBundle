@@ -22,7 +22,7 @@ use Symfony\Component\Intl\Locales;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class LocaleHelper extends BaseHelper
+final class LocaleHelper extends BaseHelper
 {
     /**
      * @param string      $code
@@ -30,7 +30,7 @@ class LocaleHelper extends BaseHelper
      *
      * @return string
      */
-    public function country($code, $locale = null)
+    public function country(string $code, string $locale = null): string
     {
         return $this->fixCharset(Countries::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
@@ -41,7 +41,7 @@ class LocaleHelper extends BaseHelper
      *
      * @return string
      */
-    public function language($code, $locale = null)
+    public function language(string $code, string $locale = null): string
     {
         return $this->fixCharset(Languages::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
@@ -52,7 +52,7 @@ class LocaleHelper extends BaseHelper
      *
      * @return string
      */
-    public function locale($code, $locale = null)
+    public function locale($code, $locale = null): string
     {
         return $this->fixCharset(Locales::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }

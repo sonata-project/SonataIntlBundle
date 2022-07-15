@@ -29,17 +29,14 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  */
 abstract class BaseHelper
 {
-    protected $charset = 'UTF-8';
+    protected string $charset = 'UTF-8';
 
-    /**
-     * @var LocaleDetectorInterface
-     */
-    protected $localeDetector;
+    protected LocaleDetectorInterface $localeDetector;
 
     /**
      * @param string $charset The output charset of the helper
      */
-    public function __construct($charset, LocaleDetectorInterface $localeDetector)
+    public function __construct(string $charset, LocaleDetectorInterface $localeDetector)
     {
         $this->setCharset($charset);
 
@@ -62,24 +59,6 @@ abstract class BaseHelper
     public function getCharset()
     {
         return $this->charset;
-    }
-
-    /**
-     * Typo in the method name.
-     *
-     * NEXT_MAJOR: remove this method
-     *
-     * @deprecated
-     */
-    public static function getUCIDataVersion()
-    {
-        @trigger_error(
-            'The '.__METHOD__.' method is deprecated since 2.2 and will be removed on 3.0. '.
-            'Use '.self::class.'::getICUDataVersion instead.',
-            \E_USER_DEPRECATED
-        );
-
-        return self::getICUDataVersion();
     }
 
     /**
@@ -134,7 +113,7 @@ abstract class BaseHelper
      *
      * @return string A string with the %kernel.charset% encoding
      */
-    protected function fixCharset($string)
+    protected function fixCharset(string $string): string
     {
         if ('UTF-8' !== $this->getCharset()) {
             $string = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
@@ -146,10 +125,11 @@ abstract class BaseHelper
     /**
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
-     * @param mixed  $instance
+     * @param mixed $instance
      * @param string $class
+     * @param array $args
      */
-    protected static function checkInternalClass($instance, $class, array $args = [])
+    protected static function checkInternalClass($instance, string $class, array $args = [])
     {
         if (null !== $instance) {
             return;

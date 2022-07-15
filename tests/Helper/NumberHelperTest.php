@@ -218,7 +218,7 @@ class NumberHelperTest extends TestCase
         $method->setAccessible(true);
 
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
-        static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], 'fr'));
+        static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], [], 'fr'));
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], []));
     }
 
