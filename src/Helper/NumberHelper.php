@@ -128,6 +128,7 @@ final class NumberHelper extends BaseHelper
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         $number = $this->parseNumericValue($number);
+
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -200,8 +201,6 @@ final class NumberHelper extends BaseHelper
      * @param array            $textAttributes The text attributes used by the formatter
      * @param array            $symbols        The symbols used by \NumberFormatter
      * @param string|null      $locale         The locale used to format the number
-     *
-     * @return string
      */
     public function format($number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {

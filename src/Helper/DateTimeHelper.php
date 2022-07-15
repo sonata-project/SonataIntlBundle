@@ -27,10 +27,7 @@ final class DateTimeHelper extends BaseHelper
 {
     protected TimezoneDetectorInterface $timezoneDetector;
 
-    /**
-     * @var \ReflectionClass|null
-     */
-    protected static $reflection = null;
+    protected static ?\ReflectionClass $reflection = null;
 
     public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset, LocaleDetectorInterface $localeDetector)
     {
@@ -127,7 +124,7 @@ final class DateTimeHelper extends BaseHelper
      * @param \DateTimeInterface|string|int $data     Value representing date
      * @param string|null                   $timezone Timezone of the date
      */
-    public function getDatetime($data, string $timezone = null): \DateTime
+    public function getDatetime($data, ?string $timezone = null): \DateTime
     {
         if ($data instanceof \DateTime) {
             return $data;
