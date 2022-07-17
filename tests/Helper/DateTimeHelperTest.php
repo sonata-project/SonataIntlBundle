@@ -15,7 +15,6 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**
@@ -31,15 +30,12 @@ class DateTimeHelperTest extends TestCase
 
     public function testLocale()
     {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/Paris');
 
-        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8');
+        $helper->setLocale('en');
 
         $datetimeLondon = new \DateTime();
         $datetimeLondon->setDate(1981, 11, 30);
@@ -78,10 +74,6 @@ class DateTimeHelperTest extends TestCase
 
     public function testLocaleTimezones()
     {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/London');
@@ -94,10 +86,12 @@ class DateTimeHelperTest extends TestCase
         static::assertSame('Europe/Paris', $timezoneDetectorWithMapping->getTimezone());
 
         // One helper without a locale mapping (current default)
-        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8');
+        $helper->setLocale('en');
 
         // Helper with a mapping for the detected locale
-        $helperWithMapping = new DateTimeHelper($timezoneDetectorWithMapping, 'UTF-8', $localeDetector);
+        $helperWithMapping = new DateTimeHelper($timezoneDetectorWithMapping, 'UTF-8');
+        $helperWithMapping->setLocale('en');
 
         $dateLondon = new \DateTime('13:37', new \DateTimeZone('Europe/London'));
 
@@ -117,15 +111,12 @@ class DateTimeHelperTest extends TestCase
 
     public function testImmutable()
     {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector
             ->method('getTimezone')->willReturn('Europe/Paris');
 
-        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8', $localeDetector);
+        $helper = new DateTimeHelper($timezoneDetector, 'UTF-8');
+        $helper->setLocale('en');
 
         $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s T', '2009-02-15 15:16:17 HKT');
 

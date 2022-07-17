@@ -28,6 +28,7 @@
         "symfony/http-foundation": "^4.4 || ^5.4 || ^6.0",
         "symfony/http-kernel": "^4.4.13 || ^5.4 || ^6.0",
         "symfony/intl": "^4.4 || ^5.4 || ^6.0",
+        "symfony/translation-contracts": "^2.5",
         "twig/twig": "^2.9 || ^3.0"
     },
     "require-dev": {

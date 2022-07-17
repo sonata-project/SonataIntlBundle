@@ -17,6 +17,7 @@ use Sonata\IntlBundle\Helper\NumberHelper;
 use Sonata\IntlBundle\Locale\RequestDetector;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
+use Sonata\IntlBundle\Timezone\LocaleAwareBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
@@ -42,6 +43,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.timezone_detector.chain.class', ChainTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.user.class', UserBasedTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.locale.class', LocaleBasedTimezoneDetector::class)
+        ->set('sonata.intl.timezone_detector.locale_aware.class', LocaleAwareBasedTimezoneDetector::class)
         ->set('sonata.intl.twig.helper.locale.class', LocaleExtension::class)
         ->set('sonata.intl.twig.helper.number.class', NumberExtension::class)
         ->set('sonata.intl.twig.helper.datetime.class', DateTimeExtension::class);
@@ -70,14 +72,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->public()
             ->args([
                 '%kernel.charset%',
-                new ReferenceConfigurator('sonata.intl.locale_detector'),
             ])
 
         ->set('sonata.intl.helper.number', '%sonata.intl.helper.number.class%')
             ->public()
             ->args([
                 '%kernel.charset%',
-                new ReferenceConfigurator('sonata.intl.locale_detector'),
             ])
 
         ->set('sonata.intl.helper.datetime', '%sonata.intl.helper.datetime.class%')
@@ -85,7 +85,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->args([
                 new ReferenceConfigurator('sonata.intl.timezone_detector'),
                 '%kernel.charset%',
-                new ReferenceConfigurator('sonata.intl.locale_detector'),
             ])
 
         ->set('sonata.intl.twig.extension.locale', '%sonata.intl.twig.helper.locale.class%')
@@ -149,6 +148,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
             ->args([
                 new ReferenceConfigurator('sonata.intl.locale_detector'),
+                '',
+            ])
+
+        ->set('sonata.intl.timezone_detector.locale_aware', '%sonata.intl.timezone_detector.locale_aware.class%')
+            ->public()
+            ->tag('sonata_intl.timezone_detector', [
+                'alias' => 'locale_aware',
+            ])
+            ->args([
                 new ReferenceConfigurator('security.token_storage'),
             ]);
 };

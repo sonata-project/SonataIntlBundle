@@ -15,17 +15,15 @@ namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\LocaleHelper;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 
 class LocaleHelperTest extends TestCase
 {
     public function getHelper()
     {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('fr');
+        $helper = new LocaleHelper('UTF-8');
+        $helper->setLocale('fr');
 
-        return new LocaleHelper('UTF-8', $localeDetector);
+        return $helper;
     }
 
     /**

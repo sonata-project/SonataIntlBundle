@@ -26,16 +26,16 @@ final class LocaleHelper extends BaseHelper implements LocaleHelperInterface
 {
     public function country(string $code, ?string $locale = null): string
     {
-        return $this->fixCharset(Countries::getName($code, $locale ?? $this->localeDetector->getLocale()));
+        return $this->fixCharset(Countries::getName($code, $locale ?? $this->getLocale()));
     }
 
     public function language(string $code, ?string $locale = null): string
     {
-        return $this->fixCharset(Languages::getName($code, $locale ?? $this->localeDetector->getLocale()));
+        return $this->fixCharset(Languages::getName($code, $locale ?? $this->getLocale()));
     }
 
     public function locale(string $code, ?string $locale = null): string
     {
-        return $this->fixCharset(Locales::getName($code, $locale ?? $this->localeDetector->getLocale()));
+        return $this->fixCharset(Locales::getName($code, $locale ?? $this->getLocale()));
     }
 }

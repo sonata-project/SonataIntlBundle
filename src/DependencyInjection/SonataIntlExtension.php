@@ -70,6 +70,7 @@ class SonataIntlExtension extends Extension
             // define default values if there is no value defined in configuration.
             $timezoneDetectors = [
                 'sonata.intl.timezone_detector.user',
+                'sonata.intl.timezone_detector.locale_aware',
                 'sonata.intl.timezone_detector.locale',
             ];
         }
@@ -83,6 +84,10 @@ class SonataIntlExtension extends Extension
         $container
             ->getDefinition('sonata.intl.timezone_detector.locale')
             ->replaceArgument(1, $config['timezone']['locales']);
+
+        $container
+            ->getDefinition('sonata.intl.timezone_detector.locale_aware')
+            ->replaceArgument(0, $config['timezone']['locales']);
 
         $container
             ->getDefinition('sonata.intl.timezone_detector.chain')

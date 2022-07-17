@@ -15,7 +15,6 @@ namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\NumberHelper;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**
@@ -30,8 +29,8 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormat($methodName, $testData)
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberHelper('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
         foreach ($testData as $data) {
@@ -152,8 +151,8 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatOrdinal()
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberHelper('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
         static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
@@ -166,21 +165,12 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatSpellout()
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberHelper('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
         static::assertSame('one', $extension->formatSpellout(1));
         static::assertSame('forty-two', $extension->formatSpellout(42));
         static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1_224_557.1254));
-    }
-
-    private function createLocaleDetectorMock()
-    {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
-        return $localeDetector;
     }
 }

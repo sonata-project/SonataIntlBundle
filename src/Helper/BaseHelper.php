@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Helper;
 
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
+use Symfony\Contracts\Translation\LocaleAwareInterface;
 
 /**
  * BaseHelper provides charset conversion.
@@ -27,20 +27,20 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-abstract class BaseHelper
+abstract class BaseHelper implements LocaleAwareInterface
 {
     protected string $charset = 'UTF-8';
-
-    protected LocaleDetectorInterface $localeDetector;
+    /**
+     * @var string
+     */
+    protected $locale;
 
     /**
      * @param string $charset The output charset of the helper
      */
-    public function __construct(string $charset, LocaleDetectorInterface $localeDetector)
+    public function __construct(string $charset)
     {
         $this->setCharset($charset);
-
-        $this->localeDetector = $localeDetector;
     }
 
     /**
@@ -59,6 +59,16 @@ abstract class BaseHelper
     public function getCharset()
     {
         return $this->charset;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale)
+    {
+        $this->locale = $locale;
     }
 
     /**

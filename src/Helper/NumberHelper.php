@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Helper;
 
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-
 /**
  * NumberHelper displays culture information.
  *
@@ -39,15 +37,14 @@ final class NumberHelper extends BaseHelper implements NumberHelperInterface
     private array $symbols;
 
     /**
-     * @param string                  $charset        The output charset of the helper
-     * @param LocaleDetectorInterface $localeDetector A locale detector instance
-     * @param array                   $attributes     The default attributes to apply to the \NumberFormatter instance
-     * @param array                   $textAttributes The default text attributes to apply to the \NumberFormatter instance
-     * @param array                   $symbols        The default symbols to apply to the \NumberFormatter instance
+     * @param string $charset        The output charset of the helper
+     * @param array  $attributes     The default attributes to apply to the \NumberFormatter instance
+     * @param array  $textAttributes The default text attributes to apply to the \NumberFormatter instance
+     * @param array  $symbols        The default symbols to apply to the \NumberFormatter instance
      */
-    public function __construct(string $charset, LocaleDetectorInterface $localeDetector, array $attributes = [], array $textAttributes = [], array $symbols = [])
+    public function __construct(string $charset, array $attributes = [], array $textAttributes = [], array $symbols = [])
     {
-        parent::__construct($charset, $localeDetector);
+        parent::__construct($charset);
 
         $this->attributes = $attributes;
         $this->textAttributes = $textAttributes;
@@ -147,7 +144,7 @@ final class NumberHelper extends BaseHelper implements NumberHelperInterface
      */
     public function formatCurrency($number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $formatter = $this->getFormatter($locale ?? $this->localeDetector->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
+        $formatter = $this->getFormatter($locale ?? $this->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
         $number = $this->parseNumericValue($number);
 
         return $this->fixCharset($formatter->formatCurrency($number, $currency));
@@ -204,7 +201,7 @@ final class NumberHelper extends BaseHelper implements NumberHelperInterface
      */
     public function format($number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $formatter = $this->getFormatter($locale ?? $this->localeDetector->getLocale(), $style, $attributes, $textAttributes, $symbols);
+        $formatter = $this->getFormatter($locale ?? $this->getLocale(), $style, $attributes, $textAttributes, $symbols);
 
         return $this->fixCharset($formatter->format($number));
     }
