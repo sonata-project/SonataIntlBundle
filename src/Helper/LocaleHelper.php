@@ -38,12 +38,4 @@ final class LocaleHelper extends BaseHelper
     {
         return $this->fixCharset(Locales::getName($code, $locale ?? $this->localeDetector->getLocale()));
     }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'sonata_intl_locale';
-    }
 }

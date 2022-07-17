@@ -26,17 +26,17 @@ final class NumberHelper extends BaseHelper
     /**
      * @var array The default attributes to apply to the \NumberFormatter instance
      */
-    protected array $attributes = [];
+    private array $attributes;
 
     /**
      * @var array The default text attributes to apply to the \NumberFormatter instance
      */
-    protected array $textAttributes = [];
+    private array $textAttributes;
 
     /**
      * @var array The symbols used by \NumberFormatter
      */
-    protected array $symbols = [];
+    private array $symbols;
 
     /**
      * @param string                  $charset        The output charset of the helper
@@ -240,14 +240,6 @@ final class NumberHelper extends BaseHelper
         }
 
         return [$locale, $symbols];
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'sonata_intl_number';
     }
 
     /**

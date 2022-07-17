@@ -25,9 +25,9 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  */
 final class DateTimeHelper extends BaseHelper
 {
-    protected TimezoneDetectorInterface $timezoneDetector;
+    private TimezoneDetectorInterface $timezoneDetector;
 
-    protected static ?\ReflectionClass $reflection = null;
+    private static ?\ReflectionClass $reflection = null;
 
     public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset, LocaleDetectorInterface $localeDetector)
     {
@@ -148,14 +148,6 @@ final class DateTimeHelper extends BaseHelper
         $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone()));
 
         return $date;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'sonata_intl_datetime';
     }
 
     /**
