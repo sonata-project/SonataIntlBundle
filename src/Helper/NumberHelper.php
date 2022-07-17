@@ -21,7 +21,7 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-final class NumberHelper extends BaseHelper
+final class NumberHelper extends BaseHelper implements NumberHelperInterface
 {
     /**
      * @var array The default attributes to apply to the \NumberFormatter instance

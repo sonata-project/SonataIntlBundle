@@ -23,7 +23,7 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-final class DateTimeHelper extends BaseHelper
+final class DateTimeHelper extends BaseHelper implements DateTimeHelperInterface
 {
     private TimezoneDetectorInterface $timezoneDetector;
 
@@ -113,7 +113,7 @@ final class DateTimeHelper extends BaseHelper
         return $this->process($formatter, $date);
     }
 
-    public function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
+    private function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
     {
         return $this->fixCharset($formatter->format($date->getTimestamp()));
     }
