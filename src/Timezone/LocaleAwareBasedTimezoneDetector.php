@@ -49,7 +49,7 @@ class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterface, Loc
         return $this->timezoneMap[$this->locale] ?? null;
     }
 
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
