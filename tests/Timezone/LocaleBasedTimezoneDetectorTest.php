@@ -19,6 +19,10 @@ use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 
 /**
  * @author Alexander <iam.asm89@gmail.com>
+ *
+ * NEXT_MAJOR: remove this class.
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class LocaleBasedTimezoneDetectorTest extends TestCase
 {

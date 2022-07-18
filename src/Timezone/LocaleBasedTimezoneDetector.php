@@ -19,6 +19,10 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  * Detects timezones based on the detected locale.
  *
  * @author Alexander <iam.asm89@gmail.com>
+ *
+ * NEXT_MAJOR: remove this class.
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
 {

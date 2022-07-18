@@ -13,6 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Locale;
 
+/**
+ * NEXT_MAJOR: remove this interface.
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
+ */
 interface LocaleDetectorInterface
 {
     /**

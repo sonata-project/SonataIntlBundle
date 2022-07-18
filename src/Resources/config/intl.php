@@ -63,6 +63,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.intl.locale_detector.request_stack', RequestStackDetector::class)
             ->public()
+            ->deprecate(...BCDeprecationParameters::forConfig(
+                'The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.13 and will be removed in 3.0.',
+                '2.13'
+            ))
             ->args([
                 new ReferenceConfigurator('request_stack'),
                 '',
@@ -143,6 +147,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.intl.timezone_detector.locale', '%sonata.intl.timezone_detector.locale.class%')
             ->public()
+            ->deprecate(...BCDeprecationParameters::forConfig(
+                'The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.13 and will be removed in 3.0.',
+                '2.13'
+            ))
             ->tag('sonata_intl.timezone_detector', [
                 'alias' => 'locale',
             ])
@@ -157,6 +165,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'alias' => 'locale_aware',
             ])
             ->args([
-                new ReferenceConfigurator('security.token_storage'),
+                '',
             ]);
 };
