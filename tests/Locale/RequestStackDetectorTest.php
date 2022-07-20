@@ -25,9 +25,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-class RequestStackDetectorTest extends TestCase
+final class RequestStackDetectorTest extends TestCase
 {
-    public function testGetLocale()
+    public function testGetLocale(): void
     {
         $requestStack = $this->createMock(RequestStack::class);
         $request = $this->createMock(Request::class);

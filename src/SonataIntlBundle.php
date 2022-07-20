@@ -36,7 +36,7 @@ class SonataIntlBundle extends Bundle
     }
 
     /**
-     * {@inheritdoc}
+     * @return void
      */
     public function build(ContainerBuilder $container)
     {

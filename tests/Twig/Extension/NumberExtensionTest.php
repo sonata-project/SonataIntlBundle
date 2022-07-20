@@ -23,11 +23,13 @@ use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 class NumberExtensionTest extends TestCase
 {
     /**
+     * @param array<array{array<mixed>, string}> $testData
+     *
      * @group legacy
      *
      * @dataProvider provideFormatArguments
      */
-    public function testFormat($methodName, $testData)
+    public function testFormat(string $methodName, array $testData): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -40,7 +42,10 @@ class NumberExtensionTest extends TestCase
         }
     }
 
-    public function provideFormatArguments()
+    /**
+     * @return array<array{string, array<array{array<mixed>, string}>}>
+     */
+    public function provideFormatArguments(): array
     {
         return [
             [
@@ -149,7 +154,7 @@ class NumberExtensionTest extends TestCase
     /**
      * @group legacy
      */
-    public function testFormatOrdinal()
+    public function testFormatOrdinal(): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -163,7 +168,7 @@ class NumberExtensionTest extends TestCase
     /**
      * @group legacy
      */
-    public function testFormatSpellout()
+    public function testFormatSpellout(): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');

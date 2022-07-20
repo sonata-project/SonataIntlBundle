@@ -16,9 +16,9 @@ namespace Sonata\IntlBundle\Tests\DependencyInjection;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;
 
-class SonataIntlExtensionTest extends AbstractExtensionTestCase
+final class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
-    public function testLoad()
+    public function testLoad(): void
     {
         $this->setParameter('kernel.bundles', []);
         $this->setParameter('kernel.default_locale', 'en');

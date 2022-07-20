@@ -19,16 +19,16 @@ use Sonata\IntlBundle\Timezone\LocaleAwareBasedTimezoneDetector;
 /**
  * @author Alexander <iam.asm89@gmail.com>
  */
-class LocaleAwareBasedTimezoneDetectorTest extends TestCase
+final class LocaleAwareBasedTimezoneDetectorTest extends TestCase
 {
-    public function testDetectsTimezoneForLocale()
+    public function testDetectsTimezoneForLocale(): void
     {
         $timezoneDetector = new LocaleAwareBasedTimezoneDetector(['fr' => 'Europe/Paris']);
         $timezoneDetector->setLocale('fr');
         static::assertSame('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
-    public function testTimezoneNotDetected()
+    public function testTimezoneNotDetected(): void
     {
         $timezoneDetector = new LocaleAwareBasedTimezoneDetector(['fr' => 'Europe/Paris']);
         $timezoneDetector->setLocale('de');

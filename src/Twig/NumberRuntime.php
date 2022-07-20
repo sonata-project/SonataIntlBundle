@@ -25,6 +25,8 @@ final class NumberRuntime implements RuntimeExtensionInterface
     private $helper;
 
     /**
+     * NEXT_MAJOR: Restrict to NumberFormatterInterface.
+     *
      * @param NumberFormatterInterface|TemplatingNumberHelper $helper A NumberHelper helper instance
      */
     public function __construct(object $helper)
@@ -41,18 +43,20 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param string           $currency       The currency in which format the number
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param string                            $currency        The currency in which format the number
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
@@ -62,17 +66,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -82,17 +88,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -102,17 +110,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -122,17 +132,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -142,17 +154,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -162,17 +176,19 @@ final class NumberRuntime implements RuntimeExtensionInterface
     }
 
     /**
+     * NEXT_MAJOR: Update the method signature.
+     *
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
