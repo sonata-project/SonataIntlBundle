@@ -22,7 +22,7 @@ use Symfony\Component\Intl\Locales;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-final class LocaleHelper extends BaseHelper implements LocaleHelperInterface
+final class Localizer extends BaseHelper implements LocalizerInterface
 {
     public function country(string $code, ?string $locale = null): string
     {

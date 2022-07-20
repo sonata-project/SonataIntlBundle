@@ -19,7 +19,7 @@ namespace Sonata\IntlBundle\Helper;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-interface NumberHelperInterface
+interface NumberFormatterInterface
 {
     /**
      * Formats a number as percent according to the specified locale and

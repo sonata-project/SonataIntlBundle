@@ -11,14 +11,21 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\IntlBundle\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Helper\LocaleHelper;
-use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\DateTimeFormatter;
+use Sonata\IntlBundle\Helper\DateTimeFormatterInterface;
+use Sonata\IntlBundle\Helper\Localizer;
+use Sonata\IntlBundle\Helper\LocalizerInterface;
+use Sonata\IntlBundle\Helper\NumberFormatter;
+use Sonata\IntlBundle\Helper\NumberFormatterInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
-        ->alias(DateTimeHelper::class, 'sonata.intl.helper.datetime')
-        ->alias(LocaleHelper::class, 'sonata.intl.helper.locale')
-        ->alias(NumberHelper::class, 'sonata.intl.helper.number');
+        ->alias(DateTimeFormatter::class, 'sonata.intl.helper.datetime')
+        ->alias(Localizer::class, 'sonata.intl.helper.locale')
+        ->alias(NumberFormatter::class, 'sonata.intl.helper.number')
+
+        ->alias(DateTimeFormatterInterface::class, 'sonata.intl.helper.datetime')
+        ->alias(LocalizerInterface::class, 'sonata.intl.helper.locale')
+        ->alias(NumberFormatterInterface::class, 'sonata.intl.helper.number');
 };

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberFormatter;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
@@ -23,7 +23,7 @@ class NumberHelperTest extends TestCase
 {
     public function testLocale()
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
 
         // currency
@@ -64,15 +64,15 @@ class NumberHelperTest extends TestCase
         static::assertSame('99%', $helper->formatPercent('0.99'));
 
         // ordinal
-        static::assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $helper->formatOrdinal('10000'), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        static::assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $helper->formatOrdinal('10000'), 'ICU Version: '.NumberFormatter::getICUDataVersion());
     }
 
     public function testArguments()
     {
-        $helper = new NumberHelper('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper = new NumberFormatter('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
         $helper->setLocale('en');
 
         // Check that the 'default' options are used
@@ -86,7 +86,7 @@ class NumberHelperTest extends TestCase
 
     public function testExceptionOnInvalidParams()
     {
-        $helper = new NumberHelper('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper = new NumberFormatter('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
         $helper->setLocale('en');
 
         $this->expectException(\IntlException::class);
@@ -99,7 +99,7 @@ class NumberHelperTest extends TestCase
      */
     public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected)
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseConstantValue');
         $method->setAccessible(true);
@@ -124,7 +124,7 @@ class NumberHelperTest extends TestCase
      */
     public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected)
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseAttributes');
         $method->setAccessible(true);
@@ -165,7 +165,7 @@ class NumberHelperTest extends TestCase
      */
     public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected)
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
 
         if ($exceptionExpected) {
@@ -208,7 +208,7 @@ class NumberHelperTest extends TestCase
 
     public function testFormatMethodWithDefaultArguments()
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'format');
         $method->setAccessible(true);

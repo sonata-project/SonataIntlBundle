@@ -19,7 +19,7 @@ namespace Sonata\IntlBundle\Helper;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-final class NumberHelper extends BaseHelper implements NumberHelperInterface
+final class NumberFormatter extends BaseHelper implements NumberFormatterInterface
 {
     /**
      * @var array The default attributes to apply to the \NumberFormatter instance

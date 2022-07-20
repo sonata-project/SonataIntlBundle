@@ -18,7 +18,7 @@ namespace Sonata\IntlBundle\Helper;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-interface LocaleHelperInterface
+interface LocalizerInterface
 {
     public function country(string $code, ?string $locale = null): string;
 

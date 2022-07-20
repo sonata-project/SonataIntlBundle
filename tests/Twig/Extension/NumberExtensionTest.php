@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberFormatter;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**
@@ -29,7 +29,7 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormat($methodName, $testData)
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
@@ -151,13 +151,13 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatOrdinal()
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
-        static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberFormatter::getICUDataVersion());
     }
 
     /**
@@ -165,7 +165,7 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatSpellout()
     {
-        $helper = new NumberHelper('UTF-8');
+        $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 

@@ -22,7 +22,7 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-final class DateTimeHelper extends BaseHelper implements DateTimeHelperInterface
+final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInterface
 {
     private TimezoneDetectorInterface $timezoneDetector;
 

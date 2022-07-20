@@ -20,7 +20,7 @@ namespace Sonata\IntlBundle\Helper;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-interface DateTimeHelperInterface
+interface DateTimeFormatterInterface
 {
     /**
      * @param \DateTimeInterface|string|int $date

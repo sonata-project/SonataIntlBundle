@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Sonata\IntlBundle\Helper\DateTimeHelper;
-use Sonata\IntlBundle\Helper\LocaleHelper;
-use Sonata\IntlBundle\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\DateTimeFormatter;
+use Sonata\IntlBundle\Helper\Localizer;
+use Sonata\IntlBundle\Helper\NumberFormatter;
 use Sonata\IntlBundle\Locale\RequestDetector;
 use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
@@ -37,9 +37,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->parameters()
 
         ->set('sonata.intl.locale_detector.request.class', RequestDetector::class)
-        ->set('sonata.intl.helper.locale.class', LocaleHelper::class)
-        ->set('sonata.intl.helper.number.class', NumberHelper::class)
-        ->set('sonata.intl.helper.datetime.class', DateTimeHelper::class)
+        ->set('sonata.intl.helper.locale.class', Localizer::class)
+        ->set('sonata.intl.helper.number.class', NumberFormatter::class)
+        ->set('sonata.intl.helper.datetime.class', DateTimeFormatter::class)
         ->set('sonata.intl.timezone_detector.chain.class', ChainTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.user.class', UserBasedTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.locale.class', LocaleBasedTimezoneDetector::class)
