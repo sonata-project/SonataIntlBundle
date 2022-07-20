@@ -14,8 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Helper;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberFormatter;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
@@ -24,8 +23,8 @@ class NumberHelperTest extends TestCase
 {
     public function testLocale()
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
 
         // currency
         static::assertSame('€10.49', $helper->formatCurrency(10.49, 'EUR'));
@@ -65,16 +64,16 @@ class NumberHelperTest extends TestCase
         static::assertSame('99%', $helper->formatPercent('0.99'));
 
         // ordinal
-        static::assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $helper->formatOrdinal('10000'), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        static::assertSame('1st', $helper->formatOrdinal(1), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('100th', $helper->formatOrdinal(100), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $helper->formatOrdinal(10000), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $helper->formatOrdinal('10000'), 'ICU Version: '.NumberFormatter::getICUDataVersion());
     }
 
     public function testArguments()
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper = new NumberFormatter('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper->setLocale('en');
 
         // Check that the 'default' options are used
         static::assertSame('1.34', $helper->formatDecimal(1.337));
@@ -87,11 +86,8 @@ class NumberHelperTest extends TestCase
 
     public function testExceptionOnInvalidParams()
     {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
-        $helper = new NumberHelper('UTF-8', $localeDetector, ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper = new NumberFormatter('UTF-8', ['fraction_digits' => 2], ['negative_prefix' => 'MINUS']);
+        $helper->setLocale('en');
 
         $this->expectException(\IntlException::class);
 
@@ -103,8 +99,8 @@ class NumberHelperTest extends TestCase
      */
     public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected)
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseConstantValue');
         $method->setAccessible(true);
 
@@ -128,8 +124,8 @@ class NumberHelperTest extends TestCase
      */
     public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected)
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseAttributes');
         $method->setAccessible(true);
 
@@ -169,8 +165,8 @@ class NumberHelperTest extends TestCase
      */
     public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected)
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
 
         if ($exceptionExpected) {
             $this->expectException(\BadMethodCallException::class);
@@ -212,22 +208,13 @@ class NumberHelperTest extends TestCase
 
     public function testFormatMethodWithDefaultArguments()
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'format');
         $method->setAccessible(true);
 
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
-        static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], 'fr'));
+        static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], [], 'fr'));
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], []));
-    }
-
-    private function createLocaleDetectorMock()
-    {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
-        return $localeDetector;
     }
 }

@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper;
+use Sonata\IntlBundle\Helper\LocalizerInterface;
+use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -26,7 +27,7 @@ use Twig\TwigFilter;
 class LocaleExtension extends AbstractExtension
 {
     /**
-     * @var LocaleHelper
+     * @var LocalizerInterface|TemplatingLocaleHelper
      */
     protected $helper;
 
@@ -34,9 +35,19 @@ class LocaleExtension extends AbstractExtension
 
     /**
      * NEXT_MAJOR: Remove this constructor.
+     *
+     * @param LocalizerInterface|TemplatingLocaleHelper $helper
      */
-    public function __construct(LocaleHelper $helper)
+    public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingLocaleHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingLocaleHelper::class, LocalizerInterface::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof LocalizerInterface) {
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocalizerInterface::class, \get_class($helper)));
+        }
         $this->helper = $helper;
         $this->localeRuntime = new LocaleRuntime($this->helper);
     }

@@ -15,6 +15,11 @@ namespace Sonata\IntlBundle\Locale;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 
+/**
+ * NEXT_MAJOR: remove this class.
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
+ */
 class RequestStackDetector implements LocaleDetectorInterface
 {
     /**
