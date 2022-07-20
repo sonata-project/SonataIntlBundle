@@ -21,6 +21,8 @@ use Symfony\Component\Intl\Locales;
  * LocaleHelper displays culture information.
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
+ *
+ * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class LocaleHelper extends BaseHelper
 {

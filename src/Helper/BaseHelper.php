@@ -11,10 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\IntlBundle\Templating\Helper;
+namespace Sonata\IntlBundle\Helper;
 
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Symfony\Component\Templating\Helper\Helper;
+use Symfony\Contracts\Translation\LocaleAwareInterface;
 
 /**
  * BaseHelper provides charset conversion.
@@ -27,24 +26,49 @@ use Symfony\Component\Templating\Helper\Helper;
  * [1] http://www.php.net/manual/en/intl.examples.basic.php
  *
  * @author Alexander <iam.asm89@gmail.com>
- *
- * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-abstract class BaseHelper extends Helper
+abstract class BaseHelper implements LocaleAwareInterface
 {
+    protected string $charset = 'UTF-8';
     /**
-     * @var LocaleDetectorInterface
+     * @var string
      */
-    protected $localeDetector;
+    protected $locale;
 
     /**
      * @param string $charset The output charset of the helper
      */
-    public function __construct($charset, LocaleDetectorInterface $localeDetector)
+    public function __construct(string $charset)
     {
         $this->setCharset($charset);
+    }
 
-        $this->localeDetector = $localeDetector;
+    /**
+     * Sets the default charset.
+     */
+    public function setCharset(string $charset)
+    {
+        $this->charset = $charset;
+    }
+
+    /**
+     * Gets the default charset.
+     *
+     * @return string
+     */
+    public function getCharset()
+    {
+        return $this->charset;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale)
+    {
+        $this->locale = $locale;
     }
 
     /**
@@ -99,7 +123,7 @@ abstract class BaseHelper extends Helper
      *
      * @return string A string with the %kernel.charset% encoding
      */
-    protected function fixCharset($string)
+    protected function fixCharset(string $string): string
     {
         if ('UTF-8' !== $this->getCharset()) {
             $string = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
@@ -111,10 +135,9 @@ abstract class BaseHelper extends Helper
     /**
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
-     * @param mixed  $instance
-     * @param string $class
+     * @param mixed $instance
      */
-    protected static function checkInternalClass($instance, $class, array $args = []): void
+    protected static function checkInternalClass($instance, string $class, array $args = [])
     {
         if (null !== $instance) {
             return;

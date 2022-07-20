@@ -11,9 +11,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\IntlBundle\Templating\Helper;
+namespace Sonata\IntlBundle\Helper;
 
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 
 /**
@@ -22,45 +21,30 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
- *
- * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-class DateTimeHelper extends BaseHelper
+final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInterface
 {
-    /**
-     * @var TimezoneDetectorInterface
-     */
-    protected $timezoneDetector;
+    private TimezoneDetectorInterface $timezoneDetector;
 
-    /**
-     * @var \ReflectionClass|null
-     */
-    protected static $reflection = null;
+    private static ?\ReflectionClass $reflection = null;
 
-    /**
-     * @param string $charset
-     */
-    public function __construct(TimezoneDetectorInterface $timezoneDetector, $charset, LocaleDetectorInterface $localeDetector)
+    public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset)
     {
-        parent::__construct($charset, $localeDetector);
+        parent::__construct($charset);
 
         $this->timezoneDetector = $timezoneDetector;
     }
 
     /**
      * @param \DateTimeInterface|string|int $date
-     * @param string|null                   $locale
-     * @param string|null                   $timezone
      * @param int|null                      $dateType See \IntlDateFormatter::getDateType
-     *
-     * @return string
      */
-    public function formatDate($date, $locale = null, $timezone = null, $dateType = null)
+    public function formatDate($date, ?string $locale = null, ?string $timezone = null, ?int $dateType = null): string
     {
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?? $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->getLocale(),
             'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
             'timeType' => \IntlDateFormatter::NONE,
             'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
@@ -72,19 +56,15 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTimeInterface|string|int $datetime
-     * @param string|null                   $locale
-     * @param string|null                   $timezone
      * @param int|null                      $dateType See \IntlDateFormatter::getDateType
      * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
-     *
-     * @return string
      */
-    public function formatDateTime($datetime, $locale = null, $timezone = null, $dateType = null, $timeType = null)
+    public function formatDateTime($datetime, ?string $locale = null, ?string $timezone = null, ?int $dateType = null, ?int $timeType = null): string
     {
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?? $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->getLocale(),
             'dateType' => $dateType ?? \IntlDateFormatter::MEDIUM,
             'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
@@ -96,18 +76,14 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTimeInterface|string|int $time
-     * @param string|null                   $locale
-     * @param string|null                   $timezone
      * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
-     *
-     * @return string
      */
-    public function formatTime($time, $locale = null, $timezone = null, $timeType = null)
+    public function formatTime($time, ?string $locale = null, ?string $timezone = null, ?int $timeType = null): string
     {
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?? $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->getLocale(),
             'dateType' => \IntlDateFormatter::NONE,
             'timeType' => $timeType ?? \IntlDateFormatter::MEDIUM,
             'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
@@ -119,18 +95,13 @@ class DateTimeHelper extends BaseHelper
 
     /**
      * @param \DateTimeInterface|string|int $datetime
-     * @param string                        $pattern
-     * @param string|null                   $locale
-     * @param string|null                   $timezone
-     *
-     * @return string
      */
-    public function format($datetime, $pattern, $locale = null, $timezone = null)
+    public function format($datetime, string $pattern, ?string $locale = null, ?string $timezone = null): string
     {
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
-            'locale' => $locale ?? $this->localeDetector->getLocale(),
+            'locale' => $locale ?? $this->getLocale(),
             'dateType' => \IntlDateFormatter::FULL,
             'timeType' => \IntlDateFormatter::FULL,
             'timezone' => $timezone ?? $this->timezoneDetector->getTimezone(),
@@ -142,22 +113,12 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @return string
-     */
-    public function process(\IntlDateFormatter $formatter, \DateTimeInterface $date)
-    {
-        return $this->fixCharset($formatter->format($date->getTimestamp()));
-    }
-
-    /**
      * Gets a date time instance by a given data and timezone.
      *
      * @param \DateTimeInterface|string|int $data     Value representing date
      * @param string|null                   $timezone Timezone of the date
-     *
-     * @return \DateTime
      */
-    public function getDatetime($data, $timezone = null)
+    public function getDatetime($data, ?string $timezone = null): \DateTime
     {
         if ($data instanceof \DateTime) {
             return $data;
@@ -184,14 +145,6 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'sonata_intl_datetime';
-    }
-
-    /**
      * @return \IntlDateFormatter
      */
     protected static function createInstance(array $args = [])
@@ -200,10 +153,18 @@ class DateTimeHelper extends BaseHelper
             self::$reflection = new \ReflectionClass(\IntlDateFormatter::class);
         }
 
+        /**
+         * @var \IntlDateFormatter $instance
+         */
         $instance = self::$reflection->newInstanceArgs($args);
 
         self::checkInternalClass($instance, \IntlDateFormatter::class, $args);
 
         return $instance;
+    }
+
+    private function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
+    {
+        return $this->fixCharset($formatter->format($date->getTimestamp()));
     }
 }

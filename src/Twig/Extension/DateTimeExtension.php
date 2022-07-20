@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig\Extension;
 
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper;
+use Sonata\IntlBundle\Helper\DateTimeFormatterInterface;
+use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelper;
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -26,7 +27,7 @@ use Twig\TwigFilter;
 class DateTimeExtension extends AbstractExtension
 {
     /**
-     * @var DateTimeHelper
+     * @var DateTimeFormatterInterface|TemplatingDateTimeHelper
      */
     protected $helper;
 
@@ -34,9 +35,19 @@ class DateTimeExtension extends AbstractExtension
 
     /**
      * NEXT_MAJOR: Remove this constructor.
+     *
+     * @param DateTimeFormatterInterface|TemplatingDateTimeHelper $helper
      */
-    public function __construct(DateTimeHelper $helper)
+    public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingDateTimeHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingDateTimeHelper::class, DateTimeFormatterInterface::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof DateTimeFormatterInterface) {
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeFormatterInterface::class, \get_class($helper)));
+        }
         $this->helper = $helper;
         $this->dateTimeRuntime = new DateTimeRuntime($helper);
     }

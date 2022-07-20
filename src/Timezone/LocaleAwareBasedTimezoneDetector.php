@@ -13,32 +13,27 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Timezone;
 
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
+use Symfony\Contracts\Translation\LocaleAwareInterface;
 
 /**
  * Detects timezones based on the detected locale.
  *
  * @author Alexander <iam.asm89@gmail.com>
- *
- * NEXT_MAJOR: remove this class.
- *
- * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
+class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleAwareInterface
 {
     /**
-     * @var LocaleDetectorInterface
+     * @var string
      */
-    protected $localeDetector;
+    protected $locale;
 
     /**
      * @var array
      */
     protected $timezoneMap;
 
-    public function __construct(LocaleDetectorInterface $localeDetector, array $timezoneMap = [])
+    public function __construct(array $timezoneMap = [])
     {
-        $this->localeDetector = $localeDetector;
         $this->timezoneMap = $timezoneMap;
     }
 
@@ -47,8 +42,20 @@ class LocaleBasedTimezoneDetector implements TimezoneDetectorInterface
      */
     public function getTimezone()
     {
-        $locale = $this->localeDetector->getLocale();
+        if (null === $this->locale) {
+            return null;
+        }
 
-        return $this->timezoneMap[$locale] ?? null;
+        return $this->timezoneMap[$this->locale] ?? null;
+    }
+
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(string $locale)
+    {
+        $this->locale = $locale;
     }
 }

@@ -13,21 +13,30 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig;
 
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberFormatterInterface;
+use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class NumberRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @var NumberHelper The instance of the NumberHelper helper
+     * @var NumberFormatterInterface|TemplatingNumberHelper The instance of the NumberHelper helper
      */
-    private NumberHelper $helper;
+    private $helper;
 
     /**
-     * @param NumberHelper $helper A NumberHelper helper instance
+     * @param NumberFormatterInterface|TemplatingNumberHelper $helper A NumberHelper helper instance
      */
-    public function __construct(NumberHelper $helper)
+    public function __construct(object $helper)
     {
+        if ($helper instanceof TemplatingNumberHelper) {
+            @trigger_error(
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberFormatterInterface::class),
+                \E_USER_DEPRECATED
+            );
+        } elseif (!$helper instanceof NumberFormatterInterface) {
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberFormatterInterface::class, \get_class($helper)));
+        }
         $this->helper = $helper;
     }
 

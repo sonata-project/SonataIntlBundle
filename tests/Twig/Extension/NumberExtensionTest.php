@@ -14,8 +14,7 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
-use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
-use Sonata\IntlBundle\Templating\Helper\NumberHelper;
+use Sonata\IntlBundle\Helper\NumberFormatter;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 
 /**
@@ -30,8 +29,8 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormat($methodName, $testData): void
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
         foreach ($testData as $data) {
@@ -152,13 +151,13 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatOrdinal(): void
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
-        static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberHelper::getICUDataVersion());
-        static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberHelper::getICUDataVersion());
+        static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberFormatter::getICUDataVersion());
+        static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberFormatter::getICUDataVersion());
     }
 
     /**
@@ -166,21 +165,12 @@ class NumberExtensionTest extends TestCase
      */
     public function testFormatSpellout(): void
     {
-        $localeDetector = $this->createLocaleDetectorMock();
-        $helper = new NumberHelper('UTF-8', $localeDetector);
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
         static::assertSame('one', $extension->formatSpellout(1));
         static::assertSame('forty-two', $extension->formatSpellout(42));
         static::assertSame('one million two hundred twenty-four thousand five hundred fifty-seven point one two five four', $extension->formatSpellout(1_224_557.1254));
-    }
-
-    private function createLocaleDetectorMock()
-    {
-        $localeDetector = $this->createMock(LocaleDetectorInterface::class);
-        $localeDetector
-            ->method('getLocale')->willReturn('en');
-
-        return $localeDetector;
     }
 }
