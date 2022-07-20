@@ -44,11 +44,11 @@ class NumberExtension extends AbstractExtension
     {
         if ($helper instanceof TemplatingNumberHelper) {
             @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberFormatter::class),
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberFormatterInterface::class),
                 \E_USER_DEPRECATED
             );
         } elseif (!$helper instanceof NumberFormatterInterface) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberFormatter::class, \get_class($helper)));
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberFormatterInterface::class, \get_class($helper)));
         }
         $this->helper = $helper;
         $this->numberRuntime = new NumberRuntime($this->helper);
