@@ -13,29 +13,29 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Twig;
 
-use Sonata\IntlBundle\Helper\NumberFormatter;
+use Sonata\IntlBundle\Helper\NumberFormatterInterface;
 use Sonata\IntlBundle\Templating\Helper\NumberHelper as TemplatingNumberHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class NumberRuntime implements RuntimeExtensionInterface
 {
     /**
-     * @var NumberFormatter|TemplatingNumberHelper The instance of the NumberHelper helper
+     * @var NumberFormatterInterface|TemplatingNumberHelper The instance of the NumberHelper helper
      */
     private $helper;
 
     /**
-     * @param NumberFormatter|TemplatingNumberHelper $helper A NumberHelper helper instance
+     * @param NumberFormatterInterface|TemplatingNumberHelper $helper A NumberHelper helper instance
      */
     public function __construct(object $helper)
     {
         if ($helper instanceof TemplatingNumberHelper) {
             @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberFormatter::class),
+                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingNumberHelper::class, NumberFormatterInterface::class),
                 \E_USER_DEPRECATED
             );
-        } elseif (!$helper instanceof NumberFormatter) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberFormatter::class, \get_class($helper)));
+        } elseif (!$helper instanceof NumberFormatterInterface) {
+            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', NumberFormatterInterface::class, \get_class($helper)));
         }
         $this->helper = $helper;
     }
