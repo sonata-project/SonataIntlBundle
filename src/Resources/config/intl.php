@@ -14,10 +14,8 @@ declare(strict_types=1);
 use Sonata\IntlBundle\Helper\DateTimeFormatter;
 use Sonata\IntlBundle\Helper\Localizer;
 use Sonata\IntlBundle\Helper\NumberFormatter;
-use Sonata\IntlBundle\Locale\RequestStackDetector;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 use Sonata\IntlBundle\Timezone\LocaleAwareBasedTimezoneDetector;
-use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
 use Sonata\IntlBundle\Timezone\UserBasedTimezoneDetector;
 use Sonata\IntlBundle\Twig\DateTimeRuntime;
 use Sonata\IntlBundle\Twig\Extension\DateTimeExtension;
@@ -25,7 +23,6 @@ use Sonata\IntlBundle\Twig\Extension\LocaleExtension;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Sonata\IntlBundle\Twig\NumberRuntime;
-use Sonata\IntlBundle\Util\BCDeprecationParameters;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
@@ -40,35 +37,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->set('sonata.intl.helper.datetime.class', DateTimeFormatter::class)
         ->set('sonata.intl.timezone_detector.chain.class', ChainTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.user.class', UserBasedTimezoneDetector::class)
-        ->set('sonata.intl.timezone_detector.locale.class', LocaleBasedTimezoneDetector::class)
         ->set('sonata.intl.timezone_detector.locale_aware.class', LocaleAwareBasedTimezoneDetector::class)
         ->set('sonata.intl.twig.helper.locale.class', LocaleExtension::class)
         ->set('sonata.intl.twig.helper.number.class', NumberExtension::class)
         ->set('sonata.intl.twig.helper.datetime.class', DateTimeExtension::class);
 
     $containerConfigurator->services()
-
-        ->set('sonata.intl.locale_detector.request', '%sonata.intl.locale_detector.request.class%')
-            ->public()
-            ->deprecate(...BCDeprecationParameters::forConfig(
-                'The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.8 and will be removed in 3.0.',
-                '2.8'
-            ))
-            ->args([
-                new ReferenceConfigurator('service_container'),
-                '',
-            ])
-
-        ->set('sonata.intl.locale_detector.request_stack', RequestStackDetector::class)
-            ->public()
-            ->deprecate(...BCDeprecationParameters::forConfig(
-                'The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.13 and will be removed in 3.0.',
-                '2.13'
-            ))
-            ->args([
-                new ReferenceConfigurator('request_stack'),
-                '',
-            ])
 
         ->set('sonata.intl.helper.locale', '%sonata.intl.helper.locale.class%')
             ->public()
@@ -141,20 +115,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ])
             ->args([
                 new ReferenceConfigurator('security.token_storage'),
-            ])
-
-        ->set('sonata.intl.timezone_detector.locale', '%sonata.intl.timezone_detector.locale.class%')
-            ->public()
-            ->deprecate(...BCDeprecationParameters::forConfig(
-                'The "%service_id%" service is deprecated since sonata-project/intl-bundle 2.13 and will be removed in 3.0.',
-                '2.13'
-            ))
-            ->tag('sonata_intl.timezone_detector', [
-                'alias' => 'locale',
-            ])
-            ->args([
-                new ReferenceConfigurator('sonata.intl.locale_detector'),
-                '',
             ])
 
         ->set('sonata.intl.timezone_detector.locale_aware', '%sonata.intl.timezone_detector.locale_aware.class%')

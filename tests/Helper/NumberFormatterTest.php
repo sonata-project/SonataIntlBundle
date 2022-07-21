@@ -169,58 +169,6 @@ final class NumberFormatterTest extends TestCase
         ];
     }
 
-    /**
-     * @param array<mixed> $arguments
-     * @param array<mixed> $expectedArguments
-     *
-     * @dataProvider provideFormatMethodArguments
-     */
-    public function testFormatMethodSignatures(array $arguments, array $expectedArguments, bool $exceptionExpected): void
-    {
-        $helper = new NumberFormatter('UTF-8');
-        $helper->setLocale('en');
-
-        if ($exceptionExpected) {
-            $this->expectException(\BadMethodCallException::class);
-        }
-
-        static::assertSame($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
-    }
-
-    /**
-     * @return array<array{array<mixed>, array<mixed>, bool}>
-     */
-    public function provideFormatMethodArguments(): array
-    {
-        return [
-            [
-                [null, null],
-                [null, []],
-                false,
-            ],
-            [
-                [null, 'en'],
-                ['en', []],
-                true,
-            ],
-            [
-                [[], null],
-                [null, []],
-                false,
-            ],
-            [
-                [[], 'en'],
-                ['en', []],
-                false,
-            ],
-            [
-                ['en', null],
-                ['en', []],
-                false,
-            ],
-        ];
-    }
-
     public function testFormatMethodWithDefaultArguments(): void
     {
         $helper = new NumberFormatter('UTF-8');

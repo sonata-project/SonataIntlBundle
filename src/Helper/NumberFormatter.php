@@ -109,41 +109,6 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
     }
 
     /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * Normalizes the given arguments according to the new function signature.
-     * It asserts if neither the new nor old signature matches. This function
-     * is public just to prevent code duplication inside the Twig Extension.
-     *
-     * @param mixed $symbols The symbols used by the formatter
-     * @param mixed $locale  The locale
-     *
-     * @throws \BadMethodCallException If the arguments does not match any signature
-     *
-     * @return array{string|null, array<string, string>} Arguments list normalized to the new method signature
-     *
-     * @internal
-     */
-    public function normalizeMethodSignature($symbols, $locale)
-    {
-        $oldSignature = (null === $symbols || \is_string($symbols)) && null === $locale;
-        $newSignature = \is_array($symbols) && (\is_string($locale) || null === $locale);
-
-        // Confirm possible signatures
-        if (!$oldSignature && !$newSignature) {
-            throw new \BadMethodCallException('Neither new nor old signature matches, please provide the correct arguments');
-        }
-
-        if ($oldSignature) {
-            // If the old signature matches, we pass an empty array as symbols
-            // argument and the symbols value as the locale argument.
-            return [$symbols, []];
-        }
-
-        return [$locale, $symbols];
-    }
-
-    /**
      * Gets an instance of \NumberFormatter set with the given attributes and
      * style.
      *
