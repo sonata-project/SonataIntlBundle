@@ -24,9 +24,9 @@ use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
  *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-class LocaleBasedTimezoneDetectorTest extends TestCase
+final class LocaleBasedTimezoneDetectorTest extends TestCase
 {
-    public function testDetectsTimezoneForLocale()
+    public function testDetectsTimezoneForLocale(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector
@@ -37,7 +37,7 @@ class LocaleBasedTimezoneDetectorTest extends TestCase
         static::assertSame('Europe/Paris', $timezoneDetector->getTimezone());
     }
 
-    public function testTimezoneNotDetected()
+    public function testTimezoneNotDetected(): void
     {
         $localeDetector = $this->createMock(LocaleDetectorInterface::class);
         $localeDetector

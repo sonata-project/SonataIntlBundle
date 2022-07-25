@@ -25,6 +25,8 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
     private $helper;
 
     /**
+     * NEXT_MAJOR: Restrict to DateTimeFormatterInterface.
+     *
      * @param DateTimeFormatterInterface|TemplatingDateTimeHelper $helper
      */
     public function __construct(object $helper)

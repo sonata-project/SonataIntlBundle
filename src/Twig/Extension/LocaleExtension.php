@@ -134,6 +134,8 @@ class LocaleExtension extends AbstractExtension
      * NEXT_MAJOR: remove this method.
      *
      * @deprecated since sonata-project/intl-bundle 2.8, to be removed in version 3.0.
+     *
+     * @return string
      */
     public function getName()
     {

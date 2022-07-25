@@ -16,9 +16,9 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\Localizer;
 
-class LocaleHelperTest extends TestCase
+final class LocalizerTest extends TestCase
 {
-    public function getHelper()
+    public function getHelper(): Localizer
     {
         $helper = new Localizer('UTF-8');
         $helper->setLocale('fr');
@@ -29,7 +29,7 @@ class LocaleHelperTest extends TestCase
     /**
      * @group legacy
      */
-    public function testLanguage()
+    public function testLanguage(): void
     {
         $helper = $this->getHelper();
         static::assertSame('français', $helper->language('fr'));
@@ -38,7 +38,7 @@ class LocaleHelperTest extends TestCase
         static::assertSame('French', $helper->language('fr', 'en'));
     }
 
-    public function testCountry()
+    public function testCountry(): void
     {
         $helper = $this->getHelper();
         static::assertSame('France', $helper->country('FR'));
@@ -46,7 +46,7 @@ class LocaleHelperTest extends TestCase
         //        $this->assertEquals('', $helper->country('FR', 'fake'));
     }
 
-    public function testLocale()
+    public function testLocale(): void
     {
         $helper = $this->getHelper();
 

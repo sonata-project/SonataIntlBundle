@@ -26,6 +26,9 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 {
     private TimezoneDetectorInterface $timezoneDetector;
 
+    /**
+     * @var \ReflectionClass<\IntlDateFormatter>|null
+     */
     private static ?\ReflectionClass $reflection = null;
 
     public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset)
@@ -35,10 +38,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         $this->timezoneDetector = $timezoneDetector;
     }
 
-    /**
-     * @param \DateTimeInterface|string|int $date
-     * @param int|null                      $dateType See \IntlDateFormatter::getDateType
-     */
     public function formatDate($date, ?string $locale = null, ?string $timezone = null, ?int $dateType = null): string
     {
         $date = $this->getDatetime($date, $timezone);
@@ -54,11 +53,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    /**
-     * @param \DateTimeInterface|string|int $datetime
-     * @param int|null                      $dateType See \IntlDateFormatter::getDateType
-     * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
-     */
     public function formatDateTime($datetime, ?string $locale = null, ?string $timezone = null, ?int $dateType = null, ?int $timeType = null): string
     {
         $date = $this->getDatetime($datetime, $timezone);
@@ -74,10 +68,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    /**
-     * @param \DateTimeInterface|string|int $time
-     * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
-     */
     public function formatTime($time, ?string $locale = null, ?string $timezone = null, ?int $timeType = null): string
     {
         $date = $this->getDatetime($time, $timezone);
@@ -93,9 +83,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    /**
-     * @param \DateTimeInterface|string|int $datetime
-     */
     public function format($datetime, string $pattern, ?string $locale = null, ?string $timezone = null): string
     {
         $date = $this->getDatetime($datetime, $timezone);
@@ -112,12 +99,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    /**
-     * Gets a date time instance by a given data and timezone.
-     *
-     * @param \DateTimeInterface|string|int $data     Value representing date
-     * @param string|null                   $timezone Timezone of the date
-     */
     public function getDatetime($data, ?string $timezone = null): \DateTime
     {
         if ($data instanceof \DateTime) {
@@ -145,6 +126,8 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
     }
 
     /**
+     * @param mixed[] $args
+     *
      * @return \IntlDateFormatter
      */
     protected static function createInstance(array $args = [])

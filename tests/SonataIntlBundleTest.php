@@ -18,7 +18,10 @@ use Sonata\IntlBundle\SonataIntlBundle;
 
 class SonataIntlBundleTest extends TestCase
 {
-    public function getVersions()
+    /**
+     * @return array<array{string, string, bool, bool}>
+     */
+    public function getVersions(): array
     {
         return [
             ['2.0.1', '2.0.1', true, true],
@@ -32,7 +35,7 @@ class SonataIntlBundleTest extends TestCase
     /**
      * @dataProvider getVersions
      */
-    public function testSymfonyVersion($currentVersion, $minVersion, $versionExpected, $versionBundle)
+    public function testSymfonyVersion(string $currentVersion, string $minVersion, bool $versionExpected, bool $versionBundle): void
     {
         static::assertSame(
             $versionExpected,

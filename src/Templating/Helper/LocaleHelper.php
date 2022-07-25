@@ -22,6 +22,8 @@ use Symfony\Component\Intl\Locales;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  *
+ * NEXT_MAJOR: Remove this class.
+ *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class LocaleHelper extends BaseHelper

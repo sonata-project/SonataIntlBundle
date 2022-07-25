@@ -17,9 +17,9 @@ use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\DependencyInjection\Configuration;
 use Symfony\Component\Config\Definition\Processor;
 
-class ConfigurationTest extends TestCase
+final class ConfigurationTest extends TestCase
 {
-    public function testOptions()
+    public function testOptions(): void
     {
         $processor = new Processor();
 

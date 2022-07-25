@@ -21,14 +21,14 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-class DateTimeHelperTest extends TestCase
+final class DateTimeFormatterTest extends TestCase
 {
     protected function setUp(): void
     {
         date_default_timezone_set('Europe/Paris');
     }
 
-    public function testLocale()
+    public function testLocale(): void
     {
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector
@@ -72,7 +72,7 @@ class DateTimeHelperTest extends TestCase
         static::assertSame('30 Nov 1981 AD', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
 
-    public function testLocaleTimezones()
+    public function testLocaleTimezones(): void
     {
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector
@@ -109,7 +109,7 @@ class DateTimeHelperTest extends TestCase
         static::assertSame('13:37', $helperWithMapping->format($dateParis, 'HH:mm'), 'A date in the Europe/Paris timezone, should be corrected when formatted with timezone Europe/Paris.');
     }
 
-    public function testImmutable()
+    public function testImmutable(): void
     {
         $timezoneDetector = $this->createMock(TimezoneDetectorInterface::class);
         $timezoneDetector

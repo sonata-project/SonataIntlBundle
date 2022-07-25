@@ -43,9 +43,6 @@ class RequestDetector implements LocaleDetectorInterface
         $this->defaultLocale = $defaultLocale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLocale()
     {
         if ($request = $this->container->get('request', ContainerInterface::NULL_ON_INVALID_REFERENCE)) {

@@ -25,6 +25,8 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  *
+ * NEXT_MAJOR: Remove this class.
+ *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class DateTimeHelper extends BaseHelper
@@ -35,7 +37,7 @@ class DateTimeHelper extends BaseHelper
     protected $timezoneDetector;
 
     /**
-     * @var \ReflectionClass|null
+     * @var \ReflectionClass<\IntlDateFormatter>|null
      */
     protected static $reflection = null;
 
@@ -196,6 +198,8 @@ class DateTimeHelper extends BaseHelper
     }
 
     /**
+     * @param mixed[] $args
+     *
      * @return \IntlDateFormatter
      */
     protected static function createInstance(array $args = [])

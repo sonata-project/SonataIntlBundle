@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\Reference;
 final class StrictPass implements CompilerPassInterface
 {
     /**
-     * {@inheritdoc}
+     * @return void
      */
     public function process(ContainerBuilder $container)
     {
