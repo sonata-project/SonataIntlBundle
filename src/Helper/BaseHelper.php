@@ -30,6 +30,7 @@ use Symfony\Contracts\Translation\LocaleAwareInterface;
 abstract class BaseHelper implements LocaleAwareInterface
 {
     protected string $charset = 'UTF-8';
+
     /**
      * @var string
      */
@@ -46,17 +47,15 @@ abstract class BaseHelper implements LocaleAwareInterface
     /**
      * Sets the default charset.
      */
-    public function setCharset(string $charset)
+    public function setCharset(string $charset): void
     {
         $this->charset = $charset;
     }
 
     /**
      * Gets the default charset.
-     *
-     * @return string
      */
-    public function getCharset()
+    public function getCharset(): string
     {
         return $this->charset;
     }
@@ -66,17 +65,15 @@ abstract class BaseHelper implements LocaleAwareInterface
         return $this->locale;
     }
 
-    public function setLocale(string $locale)
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }
 
     /**
      * @static
-     *
-     * @return string
      */
-    public static function getICUDataVersion()
+    public static function getICUDataVersion(): string
     {
         if (\defined('INTL_ICU_VERSION')) {
             return \INTL_ICU_VERSION;
@@ -135,9 +132,10 @@ abstract class BaseHelper implements LocaleAwareInterface
     /**
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
-     * @param mixed $instance
+     * @param mixed   $instance
+     * @param mixed[] $args
      */
-    protected static function checkInternalClass($instance, string $class, array $args = [])
+    protected static function checkInternalClass($instance, string $class, array $args = []): void
     {
         if (null !== $instance) {
             return;

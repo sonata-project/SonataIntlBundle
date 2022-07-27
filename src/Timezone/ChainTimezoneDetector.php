@@ -49,9 +49,6 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
         $this->timezoneDetectors[] = $timezoneDetector;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getTimezone()
     {
         if (null === $this->guessedTimezone) {

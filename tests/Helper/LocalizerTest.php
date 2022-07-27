@@ -16,9 +16,9 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\Localizer;
 
-class LocaleHelperTest extends TestCase
+final class LocalizerTest extends TestCase
 {
-    public function getHelper()
+    public function getHelper(): Localizer
     {
         $helper = new Localizer('UTF-8');
         $helper->setLocale('fr');

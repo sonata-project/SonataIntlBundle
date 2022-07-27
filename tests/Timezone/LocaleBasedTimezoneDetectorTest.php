@@ -24,7 +24,7 @@ use Sonata\IntlBundle\Timezone\LocaleBasedTimezoneDetector;
  *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
-class LocaleBasedTimezoneDetectorTest extends TestCase
+final class LocaleBasedTimezoneDetectorTest extends TestCase
 {
     public function testDetectsTimezoneForLocale(): void
     {

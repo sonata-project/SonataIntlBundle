@@ -30,7 +30,9 @@ use Symfony\Component\Templating\Helper\HelperInterface;
 class SonataIntlExtension extends Extension
 {
     /**
-     * {@inheritdoc}
+     * @param array<mixed> $configs
+     *
+     * @return void
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -53,6 +55,9 @@ class SonataIntlExtension extends Extension
         $this->configureLocale($container, $config);
     }
 
+    /**
+     * @param mixed[] $config
+     */
     protected function configureTimezone(ContainerBuilder $container, array $config): void
     {
         if (isset($config['timezone']['service'])) {
@@ -102,6 +107,10 @@ class SonataIntlExtension extends Extension
      * NEXT_MAJOR: remove this.
      *
      * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
+     *
+     * @param mixed[] $config
+     *
+     * @return void
      */
     protected function configureLocale(ContainerBuilder $container, array $config): void
     {
@@ -111,6 +120,8 @@ class SonataIntlExtension extends Extension
 
     /**
      * Validate timezones.
+     *
+     * @param array<string> $timezones
      *
      * @throws \RuntimeException If one of the locales is invalid
      */

@@ -21,7 +21,7 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Alexander <iam.asm89@gmail.com>
  */
-class DateTimeHelperTest extends TestCase
+final class DateTimeFormatterTest extends TestCase
 {
     protected function setUp(): void
     {

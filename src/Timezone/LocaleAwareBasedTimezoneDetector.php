@@ -20,27 +20,24 @@ use Symfony\Contracts\Translation\LocaleAwareInterface;
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleAwareInterface
+final class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterface, LocaleAwareInterface
 {
-    /**
-     * @var string
-     */
-    protected $locale;
+    private ?string $locale = null;
 
     /**
-     * @var array
+     * @var array<string, string>
      */
-    protected $timezoneMap;
+    private array $timezoneMap;
 
+    /**
+     * @param array<string, string> $timezoneMap
+     */
     public function __construct(array $timezoneMap = [])
     {
         $this->timezoneMap = $timezoneMap;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getTimezone()
+    public function getTimezone(): ?string
     {
         if (null === $this->locale) {
             return null;
@@ -51,10 +48,14 @@ class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterface, Loc
 
     public function getLocale(): string
     {
+        if (null === $this->locale) {
+            throw new \LogicException('No locale was set');
+        }
+
         return $this->locale;
     }
 
-    public function setLocale(string $locale)
+    public function setLocale(string $locale): void
     {
         $this->locale = $locale;
     }

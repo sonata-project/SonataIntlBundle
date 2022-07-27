@@ -16,7 +16,7 @@ namespace Sonata\IntlBundle\Tests\DependencyInjection;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;
 
-class SonataIntlExtensionTest extends AbstractExtensionTestCase
+final class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
     public function testLoad(): void
     {

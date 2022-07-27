@@ -25,6 +25,8 @@ final class LocaleRuntime implements RuntimeExtensionInterface
     private $helper;
 
     /**
+     * NEXT_MAJOR: Restrict to LocalizerInterface.
+     *
      * @param LocalizerInterface|TemplatingLocaleHelper $helper
      */
     public function __construct(object $helper)

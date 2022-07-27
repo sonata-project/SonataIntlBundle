@@ -28,6 +28,8 @@ use Symfony\Component\Templating\Helper\Helper;
  *
  * @author Alexander <iam.asm89@gmail.com>
  *
+ * NEXT_MAJOR: Remove this class.
+ *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 abstract class BaseHelper extends Helper
@@ -111,8 +113,11 @@ abstract class BaseHelper extends Helper
     /**
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
-     * @param mixed  $instance
-     * @param string $class
+     * @param mixed   $instance
+     * @param string  $class
+     * @param mixed[] $args
+     *
+     * @return void
      */
     protected static function checkInternalClass($instance, $class, array $args = []): void
     {

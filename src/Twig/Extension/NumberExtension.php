@@ -83,15 +83,15 @@ class NumberExtension extends AbstractExtension
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param string           $currency       The currency in which format the number
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param string                            $currency        The currency in which format the number
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_currency filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -108,14 +108,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_decimal filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -132,14 +132,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_scientific filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -156,14 +156,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_spellout filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -180,14 +180,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_percent filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -204,14 +204,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_duration filter is deprecated since 2.12 and will be removed on 3.0. '.
@@ -228,14 +228,14 @@ class NumberExtension extends AbstractExtension
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
-     * @param string|null      $locale         The locale used to format the number
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         @trigger_error(
             'The number_format_ordinal filter is deprecated since 2.12 and will be removed on 3.0. '.

@@ -26,6 +26,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 final class UserBasedTimezoneDetectorTest extends TestCase
 {
+    /**
+     * @return iterable<array{string|null}>
+     */
     public static function timezoneProvider(): iterable
     {
         return [

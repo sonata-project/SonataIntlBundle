@@ -21,31 +21,33 @@ use Sonata\IntlBundle\Locale\LocaleDetectorInterface;
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  * @author Stefano Arlandini <sarlandini@alice.it>
  *
+ * NEXT_MAJOR: Remove this class.
+ *
  * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
  */
 class NumberHelper extends BaseHelper
 {
     /**
-     * @var array The default attributes to apply to the \NumberFormatter instance
+     * @var array<string, int|float> The default attributes to apply to the \NumberFormatter instance
      */
     protected $attributes = [];
 
     /**
-     * @var array The default text attributes to apply to the \NumberFormatter instance
+     * @var array<string, string> The default text attributes to apply to the \NumberFormatter instance
      */
     protected $textAttributes = [];
 
     /**
-     * @var array The symbols used by \NumberFormatter
+     * @var array<string, string> The symbols used by \NumberFormatter
      */
     protected $symbols = [];
 
     /**
-     * @param string                  $charset        The output charset of the helper
-     * @param LocaleDetectorInterface $localeDetector A locale detector instance
-     * @param array                   $attributes     The default attributes to apply to the \NumberFormatter instance
-     * @param array                   $textAttributes The default text attributes to apply to the \NumberFormatter instance
-     * @param array                   $symbols        The default symbols to apply to the \NumberFormatter instance
+     * @param string                   $charset        The output charset of the helper
+     * @param LocaleDetectorInterface  $localeDetector A locale detector instance
+     * @param array<string, int|float> $attributes     The default attributes to apply to the \NumberFormatter instance
+     * @param array<string, string>    $textAttributes The default text attributes to apply to the \NumberFormatter instance
+     * @param array<string, string>    $symbols        The default symbols to apply to the \NumberFormatter instance
      */
     public function __construct($charset, LocaleDetectorInterface $localeDetector, array $attributes = [], array $textAttributes = [], array $symbols = [])
     {
@@ -60,13 +62,14 @@ class NumberHelper extends BaseHelper
      * Formats a number as percent according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatPercent($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -80,13 +83,14 @@ class NumberHelper extends BaseHelper
      * Formats a number as duration according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDuration($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -100,13 +104,14 @@ class NumberHelper extends BaseHelper
      * Formats a number as decimal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -120,13 +125,14 @@ class NumberHelper extends BaseHelper
      * Formats a number as spellout according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -139,14 +145,15 @@ class NumberHelper extends BaseHelper
      * Formats a number as currency according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param string           $currency       The currency in which format the number
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param string                            $currency        The currency in which format the number
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatCurrency($number, $currency, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
@@ -162,13 +169,14 @@ class NumberHelper extends BaseHelper
      * Formats a number in scientific notation according to the specified
      * locale and \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatScientific($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -182,13 +190,14 @@ class NumberHelper extends BaseHelper
      * Formats a number as ordinal according to the specified locale and
      * \NumberFormatter attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param array            $attributes     The attributes used by \NumberFormatter
-     * @param array            $textAttributes The text attributes used by \NumberFormatter
+     * @param string|float|int                  $number          The number to format
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 5, null);
 
@@ -202,14 +211,15 @@ class NumberHelper extends BaseHelper
      * Formats a number according to the specified locale and \NumberFormatter
      * attributes.
      *
-     * @param string|float|int $number         The number to format
-     * @param int              $style
-     * @param array            $attributes     The attributes used by the formatter
-     * @param array            $textAttributes The text attributes used by the formatter
+     * @param string|float|int                  $number          The number to format
+     * @param int                               $style
+     * @param array<string, int|float>          $attributes      The attributes used by \NumberFormatter
+     * @param array<string, string>             $textAttributes  The text attributes used by \NumberFormatter
+     * @param array<string, string>|string|null $symbolsOrLocale
      *
      * @return string
      */
-    public function format($number, $style, array $attributes = [], array $textAttributes = [], $locale = null)
+    public function format($number, $style, array $attributes = [], array $textAttributes = [], $symbolsOrLocale = null)
     {
         $methodArgs = array_pad(\func_get_args(), 6, null);
 
@@ -230,9 +240,7 @@ class NumberHelper extends BaseHelper
      *
      * @throws \BadMethodCallException If the arguments does not match any signature
      *
-     * @psalm-return array{0: ?string, 1: array}
-     *
-     * @return array Arguments list normalized to the new method signature
+     * @return array{string|null, array<string, string>} Arguments list normalized to the new method signature
      *
      * @internal
      */
@@ -267,11 +275,11 @@ class NumberHelper extends BaseHelper
      * Gets an instance of \NumberFormatter set with the given attributes and
      * style.
      *
-     * @param string $culture        The culture used by \NumberFormatter
-     * @param int    $style          The style used by \NumberFormatter
-     * @param array  $attributes     The attributes used by \NumberFormatter
-     * @param array  $textAttributes The text attributes used by \NumberFormatter
-     * @param array  $symbols        The symbols used by \NumberFormatter
+     * @param string                   $culture        The culture used by \NumberFormatter
+     * @param int                      $style          The style used by \NumberFormatter
+     * @param array<string, int|float> $attributes     The attributes used by \NumberFormatter
+     * @param array<string, string>    $textAttributes The text attributes used by \NumberFormatter
+     * @param array<string, string>    $symbols        The symbols used by \NumberFormatter
      *
      * @return \NumberFormatter
      */
@@ -305,11 +313,15 @@ class NumberHelper extends BaseHelper
     /**
      * Converts keys of attributes array to values of \NumberFormatter constants.
      *
-     * @param array $attributes The list of attributes
+     * @param array<string, mixed> $attributes The list of attributes
      *
      * @throws \InvalidArgumentException If any attribute does not match any constant
      *
-     * @return array List of \NumberFormatter constants
+     * @return array<int, mixed> List of \NumberFormatter constants
+     *
+     * @phpstan-template T of mixed
+     * @phpstan-param array<string, T> $attributes
+     * @phpstan-return array<int, T>
      */
     protected function parseAttributes(array $attributes)
     {
@@ -329,7 +341,7 @@ class NumberHelper extends BaseHelper
      *
      * @throws \InvalidArgumentException If the value does not match any constant
      *
-     * @return mixed The \NumberFormatter constant
+     * @return int The \NumberFormatter constant
      */
     protected function parseConstantValue($attribute)
     {

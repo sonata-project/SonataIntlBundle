@@ -41,9 +41,6 @@ class RequestStackDetector implements LocaleDetectorInterface
         $this->defaultLocale = $defaultLocale;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getLocale()
     {
         $request = $this->requestStack->getCurrentRequest();

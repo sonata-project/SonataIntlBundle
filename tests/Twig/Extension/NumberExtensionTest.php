@@ -23,125 +23,241 @@ use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 class NumberExtensionTest extends TestCase
 {
     /**
+     * @param string|float|int         $number
+     * @param array<string, int|float> $attributes
+     * @param array<string, string>    $textAttributes
+     * @param array<string, string>    $symbols
+     *
      * @group legacy
      *
-     * @dataProvider provideFormatArguments
+     * @dataProvider provideFormatCurrencyArguments
      */
-    public function testFormat($methodName, $testData): void
-    {
+    public function testFormatCurrency(
+        string $expectedResult,
+        $number,
+        string $currency,
+        array $attributes = [],
+        array $textAttributes = [],
+        array $symbols = []
+    ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $extension = new NumberExtension($helper);
 
-        foreach ($testData as $data) {
-            [$methodArguments, $expectedResult] = $data;
-
-            static::assertSame($expectedResult, \call_user_func_array([$extension, $methodName], $methodArguments));
-        }
+        static::assertSame($expectedResult, $extension->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols));
     }
 
-    public function provideFormatArguments()
+    /**
+     * @return array<array{0: string, 1: string|float|int, 2: string, 3?: array<string, int|float>, 4?: array<string, string>, 5?: array<string, string>}>
+     */
+    public function provideFormatCurrencyArguments(): array
     {
         return [
             [
-                'formatCurrency',
-                [
-                    [
-                        [10.49, 'EUR'],
-                        '€10.49',
-                    ],
-                    [
-                        [10.499, 'EUR'],
-                        '€10.50',
-                    ],
-                    [
-                        [10000.499, 'EUR'],
-                        '€10,000.50',
-                    ],
-                    [
-                        [
-                            10000.499,
-                            'EUR',
-                            [],
-                            [],
-                            ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
-                        ],
-                        '€10DOT000.50',
-                    ],
-                ],
+                '€10.49',
+                10.49,
+                'EUR',
             ],
             [
-                'formatDecimal',
-                [
-                    [
-                        [10],
-                        '10',
-                    ],
-                    [
-                        [10.15459],
-                        '10.155',
-                    ],
-                    [
-                        [1_000_000.15459],
-                        '1,000,000.155',
-                    ],
-                    [
-                        [
-                            1_000_000.15459,
-                            [],
-                            [],
-                            ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
-                        ],
-                        '1DOT000DOT000.155',
-                    ],
-                ],
+                '€10.50',
+                10.499,
+                'EUR',
             ],
             [
-                'formatScientific',
-                [
-                    [
-                        [10],
-                        '1E1',
-                    ],
-                    [
-                        [1000],
-                        '1E3',
-                    ],
-                    [
-                        [1000.1],
-                        '1.0001E3',
-                    ],
-                    [
-                        [1_000_000.15459],
-                        '1.00000015459E6',
-                    ],
-                ],
+                '€10,000.50',
+                10000.499,
+                'EUR',
             ],
             [
-                'formatDuration',
-                [
-                    [
-                        [1_000_000],
-                        '277:46:40',
-                    ],
-                ],
+                '€10DOT000.50',
+                10000.499,
+                'EUR',
+                [],
+                [],
+                ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
+            ],
+        ];
+    }
+
+    /**
+     * @param string|float|int         $number
+     * @param array<string, int|float> $attributes
+     * @param array<string, string>    $textAttributes
+     * @param array<string, string>    $symbols
+     *
+     * @group legacy
+     *
+     * @dataProvider provideFormatDecimalArguments
+     */
+    public function testFormatDecimal(
+        string $expectedResult,
+        $number,
+        array $attributes = [],
+        array $textAttributes = [],
+        array $symbols = []
+    ): void {
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
+        $extension = new NumberExtension($helper);
+
+        static::assertSame($expectedResult, $extension->formatDecimal($number, $attributes, $textAttributes, $symbols));
+    }
+
+    /**
+     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     */
+    public function provideFormatDecimalArguments(): array
+    {
+        return [
+            [
+                '10',
+                10,
             ],
             [
-                'formatPercent',
-                [
-                    [
-                        [0.1],
-                        '10%',
-                    ],
-                    [
-                        [1.999],
-                        '200%',
-                    ],
-                    [
-                        [0.99],
-                        '99%',
-                    ],
-                ],
+                '10.155',
+                10.15459,
+            ],
+            [
+                '1,000,000.155',
+                1_000_000.15459,
+            ],
+            [
+                '1DOT000DOT000.155',
+                1_000_000.15459,
+                [],
+                [],
+                ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
+            ],
+        ];
+    }
+
+    /**
+     * @param string|float|int         $number
+     * @param array<string, int|float> $attributes
+     * @param array<string, string>    $textAttributes
+     * @param array<string, string>    $symbols
+     *
+     * @group legacy
+     *
+     * @dataProvider provideFormatScientificArguments
+     */
+    public function testFormatScientific(
+        string $expectedResult,
+        $number,
+        array $attributes = [],
+        array $textAttributes = [],
+        array $symbols = []
+    ): void {
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
+        $extension = new NumberExtension($helper);
+
+        static::assertSame($expectedResult, $extension->formatScientific($number, $attributes, $textAttributes, $symbols));
+    }
+
+    /**
+     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     */
+    public function provideFormatScientificArguments(): array
+    {
+        return [
+            [
+                '1E1',
+                10,
+            ],
+            [
+                '1E3',
+                1000,
+            ],
+            [
+                '1.0001E3',
+                1000.1,
+            ],
+            [
+                '1.00000015459E6',
+                1_000_000.15459,
+            ],
+        ];
+    }
+
+    /**
+     * @param string|float|int         $number
+     * @param array<string, int|float> $attributes
+     * @param array<string, string>    $textAttributes
+     * @param array<string, string>    $symbols
+     *
+     * @group legacy
+     *
+     * @dataProvider provideFormatDurationArguments
+     */
+    public function testFormatDuration(
+        string $expectedResult,
+        $number,
+        array $attributes = [],
+        array $textAttributes = [],
+        array $symbols = []
+    ): void {
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
+        $extension = new NumberExtension($helper);
+
+        static::assertSame($expectedResult, $extension->formatDuration($number, $attributes, $textAttributes, $symbols));
+    }
+
+    /**
+     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     */
+    public function provideFormatDurationArguments(): array
+    {
+        return [
+            [
+                '277:46:40',
+                1_000_000,
+            ],
+        ];
+    }
+
+    /**
+     * @param string|float|int         $number
+     * @param array<string, int|float> $attributes
+     * @param array<string, string>    $textAttributes
+     * @param array<string, string>    $symbols
+     *
+     * @group legacy
+     *
+     * @dataProvider provideFormatPercentArguments
+     */
+    public function testFormatPercent(
+        string $expectedResult,
+        $number,
+        array $attributes = [],
+        array $textAttributes = [],
+        array $symbols = []
+    ): void {
+        $helper = new NumberFormatter('UTF-8');
+        $helper->setLocale('en');
+        $extension = new NumberExtension($helper);
+
+        static::assertSame($expectedResult, $extension->formatPercent($number, $attributes, $textAttributes, $symbols));
+    }
+
+    /**
+     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     */
+    public function provideFormatPercentArguments(): array
+    {
+        return [
+            [
+                '10%',
+                0.1,
+            ],
+            [
+                '200%',
+                1.999,
+            ],
+            [
+                '99%',
+                0.99,
             ],
         ];
     }

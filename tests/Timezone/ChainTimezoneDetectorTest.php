@@ -20,9 +20,12 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 /**
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class ChainTimezoneDetectorTest extends TestCase
+final class ChainTimezoneDetectorTest extends TestCase
 {
-    public static function timezoneProvider()
+    /**
+     * @return array<array{array<string|null>, string}>
+     */
+    public static function timezoneProvider(): array
     {
         return [
             [['Europe/Paris', 'Europe/London'], 'Europe/Paris'],
@@ -34,9 +37,11 @@ class ChainTimezoneDetectorTest extends TestCase
     }
 
     /**
+     * @param array<string|null> $detectorsTimezones
+     *
      * @dataProvider timezoneProvider
      */
-    public function testDetectsTimezoneForUser($detectorsTimezones, $expectedTimezone): void
+    public function testDetectsTimezoneForUser(array $detectorsTimezones, string $expectedTimezone): void
     {
         $chainTimezoneDetector = new ChainTimezoneDetector('America/Denver');
 

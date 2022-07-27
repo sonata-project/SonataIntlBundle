@@ -19,7 +19,7 @@ use Sonata\IntlBundle\Helper\NumberFormatter;
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberHelperTest extends TestCase
+final class NumberFormatterTest extends TestCase
 {
     public function testLocale(): void
     {
@@ -97,7 +97,7 @@ class NumberHelperTest extends TestCase
     /**
      * @dataProvider provideConstantValues
      */
-    public function testParseConstantValue($constantName, $expectedConstant, $exceptionExpected): void
+    public function testParseConstantValue(string $constantName, int $expectedConstant, bool $exceptionExpected): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -111,7 +111,10 @@ class NumberHelperTest extends TestCase
         static::assertSame($expectedConstant, $method->invoke($helper, $constantName));
     }
 
-    public function provideConstantValues()
+    /**
+     * @return array<array{string, int, bool}>
+     */
+    public function provideConstantValues(): array
     {
         return [
             ['positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false],
@@ -120,9 +123,12 @@ class NumberHelperTest extends TestCase
     }
 
     /**
+     * @param array<string, string> $attributes
+     * @param array<int, string>    $expectedAttributes
+     *
      * @dataProvider provideAttributeValues
      */
-    public function testParseAttributes($attributes, $expectedAttributes, $exceptionExpected): void
+    public function testParseAttributes(array $attributes, array $expectedAttributes, bool $exceptionExpected): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -136,7 +142,10 @@ class NumberHelperTest extends TestCase
         static::assertSame($expectedAttributes, $method->invoke($helper, $attributes));
     }
 
-    public function provideAttributeValues()
+    /**
+     * @return array<array{array<string, string>, array<int, string>, bool}>
+     */
+    public function provideAttributeValues(): array
     {
         return [
             [
@@ -161,9 +170,12 @@ class NumberHelperTest extends TestCase
     }
 
     /**
+     * @param array<mixed> $arguments
+     * @param array<mixed> $expectedArguments
+     *
      * @dataProvider provideFormatMethodArguments
      */
-    public function testFormatMethodSignatures($arguments, $expectedArguments, $exceptionExpected): void
+    public function testFormatMethodSignatures(array $arguments, array $expectedArguments, bool $exceptionExpected): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -175,7 +187,10 @@ class NumberHelperTest extends TestCase
         static::assertSame($expectedArguments, \call_user_func_array([$helper, 'normalizeMethodSignature'], $arguments));
     }
 
-    public function provideFormatMethodArguments()
+    /**
+     * @return array<array{array<mixed>, array<mixed>, bool}>
+     */
+    public function provideFormatMethodArguments(): array
     {
         return [
             [
