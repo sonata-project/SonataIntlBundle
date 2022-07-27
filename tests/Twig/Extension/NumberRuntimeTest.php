@@ -20,7 +20,7 @@ use Sonata\IntlBundle\Twig\NumberRuntime;
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberExtensionTest extends TestCase
+class NumberRuntimeTest extends TestCase
 {
     /**
      * @param string|float|int         $number
