@@ -116,8 +116,6 @@ abstract class BaseHelper extends Helper
      * @param mixed   $instance
      * @param string  $class
      * @param mixed[] $args
-     *
-     * @return void
      */
     protected static function checkInternalClass($instance, $class, array $args = []): void
     {

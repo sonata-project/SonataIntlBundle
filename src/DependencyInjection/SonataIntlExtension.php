@@ -31,8 +31,6 @@ class SonataIntlExtension extends Extension
 {
     /**
      * @param array<mixed> $configs
-     *
-     * @return void
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -109,8 +107,6 @@ class SonataIntlExtension extends Extension
      * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
      *
      * @param mixed[] $config
-     *
-     * @return void
      */
     protected function configureLocale(ContainerBuilder $container, array $config): void
     {

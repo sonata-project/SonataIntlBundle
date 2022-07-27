@@ -35,9 +35,6 @@ class SonataIntlBundle extends Bundle
         ), 0, 3));
     }
 
-    /**
-     * @return void
-     */
     public function build(ContainerBuilder $container): void
     {
     }
