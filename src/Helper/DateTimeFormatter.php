@@ -126,7 +126,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
         $date = new \DateTime();
         $date->setTimestamp($data);
-        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone()));
+        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone() ?? ''));
 
         return $date;
     }
