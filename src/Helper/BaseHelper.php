@@ -32,7 +32,7 @@ abstract class BaseHelper implements LocaleAwareInterface
     protected string $charset = 'UTF-8';
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $locale;
 
@@ -62,6 +62,10 @@ abstract class BaseHelper implements LocaleAwareInterface
 
     public function getLocale(): string
     {
+        if (null === $this->locale) {
+            throw new \LogicException('No locale was set.');
+        }
+
         return $this->locale;
     }
 
