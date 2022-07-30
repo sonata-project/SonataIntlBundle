@@ -15,6 +15,7 @@ namespace Sonata\IntlBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sonata\IntlBundle\DependencyInjection\SonataIntlExtension;
+use Sonata\IntlBundle\Helper\DateTimeFormatterInterface;
 
 final class SonataIntlExtensionTest extends AbstractExtensionTestCase
 {
@@ -24,7 +25,7 @@ final class SonataIntlExtensionTest extends AbstractExtensionTestCase
         $this->setParameter('kernel.default_locale', 'en');
         $this->load();
 
-        $this->assertContainerBuilderHasAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
+        $this->assertContainerBuilderHasAlias(DateTimeFormatterInterface::class, 'sonata.intl.helper.datetime');
     }
 
     protected function getContainerExtensions(): array

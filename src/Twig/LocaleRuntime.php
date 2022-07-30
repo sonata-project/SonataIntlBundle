@@ -14,31 +14,14 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig;
 
 use Sonata\IntlBundle\Helper\LocalizerInterface;
-use Sonata\IntlBundle\Templating\Helper\LocaleHelper as TemplatingLocaleHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class LocaleRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var LocalizerInterface|TemplatingLocaleHelper
-     */
-    private $helper;
+    private LocalizerInterface $helper;
 
-    /**
-     * NEXT_MAJOR: Restrict to LocalizerInterface.
-     *
-     * @param LocalizerInterface|TemplatingLocaleHelper $helper
-     */
-    public function __construct(object $helper)
+    public function __construct(LocalizerInterface $helper)
     {
-        if ($helper instanceof TemplatingLocaleHelper) {
-            @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingLocaleHelper::class, LocalizerInterface::class),
-                \E_USER_DEPRECATED
-            );
-        } elseif (!$helper instanceof LocalizerInterface) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', LocalizerInterface::class, \get_class($helper)));
-        }
         $this->helper = $helper;
     }
 

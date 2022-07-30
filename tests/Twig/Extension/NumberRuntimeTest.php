@@ -15,12 +15,12 @@ namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\NumberFormatter;
-use Sonata\IntlBundle\Twig\Extension\NumberExtension;
+use Sonata\IntlBundle\Twig\NumberRuntime;
 
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberExtensionTest extends TestCase
+class NumberRuntimeTest extends TestCase
 {
     /**
      * @param string|float|int         $number
@@ -42,7 +42,7 @@ class NumberExtensionTest extends TestCase
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame($expectedResult, $extension->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols));
     }
@@ -98,7 +98,7 @@ class NumberExtensionTest extends TestCase
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame($expectedResult, $extension->formatDecimal($number, $attributes, $textAttributes, $symbols));
     }
@@ -150,7 +150,7 @@ class NumberExtensionTest extends TestCase
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame($expectedResult, $extension->formatScientific($number, $attributes, $textAttributes, $symbols));
     }
@@ -199,7 +199,7 @@ class NumberExtensionTest extends TestCase
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame($expectedResult, $extension->formatDuration($number, $attributes, $textAttributes, $symbols));
     }
@@ -236,7 +236,7 @@ class NumberExtensionTest extends TestCase
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame($expectedResult, $extension->formatPercent($number, $attributes, $textAttributes, $symbols));
     }
@@ -269,7 +269,7 @@ class NumberExtensionTest extends TestCase
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame('1st', $extension->formatOrdinal(1), 'ICU Version: '.NumberFormatter::getICUDataVersion());
         static::assertSame('100th', $extension->formatOrdinal(100), 'ICU Version: '.NumberFormatter::getICUDataVersion());
@@ -283,7 +283,7 @@ class NumberExtensionTest extends TestCase
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
-        $extension = new NumberExtension($helper);
+        $extension = new NumberRuntime($helper);
 
         static::assertSame('one', $extension->formatSpellout(1));
         static::assertSame('forty-two', $extension->formatSpellout(42));

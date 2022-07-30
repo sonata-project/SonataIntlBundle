@@ -19,7 +19,6 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Symfony\Component\Templating\Helper\HelperInterface;
 
 /**
  * SonataIntlExtension.
@@ -42,15 +41,7 @@ class SonataIntlExtension extends Extension
         $loader->load('autowire.php');
         $loader->load('intl.php');
 
-        // NEXT_MAJOR: Remove this code
-        if (interface_exists(HelperInterface::class)) {
-            $loader->load('templating.php');
-        }
-
         $this->configureTimezone($container, $config);
-
-        // NEXT_MAJOR: Remove this code
-        $this->configureLocale($container, $config);
     }
 
     /**
@@ -76,7 +67,6 @@ class SonataIntlExtension extends Extension
             $timezoneDetectors = [
                 'sonata.intl.timezone_detector.user',
                 'sonata.intl.timezone_detector.locale_aware',
-                'sonata.intl.timezone_detector.locale',
             ];
         }
 
@@ -87,10 +77,6 @@ class SonataIntlExtension extends Extension
         }
 
         $container
-            ->getDefinition('sonata.intl.timezone_detector.locale')
-            ->replaceArgument(1, $config['timezone']['locales']);
-
-        $container
             ->getDefinition('sonata.intl.timezone_detector.locale_aware')
             ->replaceArgument(0, $config['timezone']['locales']);
 
@@ -99,19 +85,6 @@ class SonataIntlExtension extends Extension
             ->replaceArgument(0, $config['timezone']['default']);
 
         $container->setParameter('sonata_intl.timezone.detectors', $timezoneDetectors);
-    }
-
-    /**
-     * NEXT_MAJOR: remove this.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
-     *
-     * @param mixed[] $config
-     */
-    protected function configureLocale(ContainerBuilder $container, array $config): void
-    {
-        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?? '%kernel.default_locale%');
-        $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
     /**

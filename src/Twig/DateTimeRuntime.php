@@ -14,32 +14,14 @@ declare(strict_types=1);
 namespace Sonata\IntlBundle\Twig;
 
 use Sonata\IntlBundle\Helper\DateTimeFormatterInterface;
-use Sonata\IntlBundle\Templating\Helper\DateTimeHelper as TemplatingDateTimeHelper;
 use Twig\Extension\RuntimeExtensionInterface;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface
 {
-    /**
-     * @var DateTimeFormatterInterface|TemplatingDateTimeHelper
-     */
-    private $helper;
+    private DateTimeFormatterInterface $helper;
 
-    /**
-     * NEXT_MAJOR: Restrict to DateTimeFormatterInterface.
-     *
-     * @param DateTimeFormatterInterface|TemplatingDateTimeHelper $helper
-     */
-    public function __construct(object $helper)
+    public function __construct(DateTimeFormatterInterface $helper)
     {
-        if ($helper instanceof TemplatingDateTimeHelper) {
-            @trigger_error(
-                sprintf('The use of %s is deprecated since 2.13, use %s instead.', TemplatingDateTimeHelper::class, DateTimeFormatterInterface::class),
-                \E_USER_DEPRECATED
-            );
-        } elseif (!$helper instanceof DateTimeFormatterInterface) {
-            throw new \TypeError(sprintf('Helper must be an instanceof %s, instanceof %s given', DateTimeFormatterInterface::class, \get_class($helper)));
-        }
-
         $this->helper = $helper;
     }
 
