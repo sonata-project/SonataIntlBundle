@@ -118,7 +118,7 @@ final class DateTimeFormatterTest extends TestCase
         $helper = new DateTimeFormatter($timezoneDetector, 'UTF-8');
         $helper->setLocale('en');
 
-        $date = \DateTimeImmutable::createFromFormat('Y-m-d H:i:s T', '2009-02-15 15:16:17 HKT');
+        $date = new \DateTimeImmutable('2009-02-15 15:16:17 HKT');
 
         static::assertSame('08:16', $helper->format($date, 'HH:mm'));
     }

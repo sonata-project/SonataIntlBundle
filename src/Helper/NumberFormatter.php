@@ -53,29 +53,21 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
 
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
 
     public function formatDuration($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
 
     public function formatDecimal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
 
     public function formatSpellout($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
@@ -84,28 +76,37 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         $formatter = $this->getFormatter($locale ?? $this->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
         $number = $this->parseNumericValue($number);
 
-        return $this->fixCharset($formatter->formatCurrency($number, $currency));
+        $result = $formatter->formatCurrency($number, $currency);
+        if (false === $result) {
+            throw new \InvalidArgumentException(
+                sprintf('Cannot format the value %s with the currency %s.', $number, $currency)
+            );
+        }
+
+        return $this->fixCharset($result);
     }
 
     public function formatScientific($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
 
     public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
-        $number = $this->parseNumericValue($number);
-
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
 
     public function format($number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
+        $number = $this->parseNumericValue($number);
         $formatter = $this->getFormatter($locale ?? $this->getLocale(), $style, $attributes, $textAttributes, $symbols);
 
-        return $this->fixCharset($formatter->format($number));
+        $result = $formatter->format($number);
+        if (false === $result) {
+            throw new \InvalidArgumentException(sprintf('Cannot format the value %s', $number));
+        }
+
+        return $this->fixCharset($result);
     }
 
     /**
@@ -175,10 +176,8 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      * @param string $attribute The constant's name
      *
      * @throws \InvalidArgumentException If the value does not match any constant
-     *
-     * @return mixed The \NumberFormatter constant
      */
-    protected function parseConstantValue(string $attribute)
+    protected function parseConstantValue(string $attribute): int
     {
         $attribute = strtoupper($attribute);
         $constantName = 'NumberFormatter::'.$attribute;
