@@ -32,7 +32,7 @@ abstract class BaseHelper implements LocaleAwareInterface
     protected string $charset = 'UTF-8';
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $locale;
 
@@ -62,6 +62,10 @@ abstract class BaseHelper implements LocaleAwareInterface
 
     public function getLocale(): string
     {
+        if (null === $this->locale) {
+            throw new \LogicException('No locale was set.');
+        }
+
         return $this->locale;
     }
 
@@ -82,6 +86,9 @@ abstract class BaseHelper implements LocaleAwareInterface
         ob_start();
         phpinfo();
         $content = ob_get_clean();
+        if (false === $content) {
+            throw new \RuntimeException('Could not access to php information');
+        }
 
         $info = explode("\n", $content);
 
@@ -89,7 +96,7 @@ abstract class BaseHelper implements LocaleAwareInterface
             foreach ($info as $line) {
                 $results = [];
 
-                if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
+                if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results) > 0) {
                     return $results[2];
                 }
             }
@@ -97,11 +104,11 @@ abstract class BaseHelper implements LocaleAwareInterface
             foreach ($info as $line) {
                 $results = [];
 
-                if (preg_match('/(ICU Data version).*/', $line, $results)) {
+                if (preg_match('/(ICU Data version).*/', $line, $results) > 0) {
                     return trim(strtolower(strip_tags($results[0])), 'ICU Data version');
                 }
 
-                if (preg_match('/(ICU version).*/', $line, $results)) {
+                if (preg_match('/(ICU version).*/', $line, $results) > 0) {
                     return trim(strtolower(strip_tags($results[0])), 'icu version');
                 }
             }

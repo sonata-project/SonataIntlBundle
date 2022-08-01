@@ -11,6 +11,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\DependencyInjection\Loader\Configurator;
+
 use Sonata\IntlBundle\Helper\DateTimeFormatter;
 use Sonata\IntlBundle\Helper\Localizer;
 use Sonata\IntlBundle\Helper\NumberFormatter;
@@ -23,106 +25,89 @@ use Sonata\IntlBundle\Twig\Extension\LocaleExtension;
 use Sonata\IntlBundle\Twig\Extension\NumberExtension;
 use Sonata\IntlBundle\Twig\LocaleRuntime;
 use Sonata\IntlBundle\Twig\NumberRuntime;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ReferenceConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
-    // Use "service" function for creating references to services when dropping support for Symfony 4.4
-    // Use "param" function for creating references to parameters when dropping support for Symfony 5.1
-
-    $containerConfigurator->parameters()
-
-        ->set('sonata.intl.helper.locale.class', Localizer::class)
-        ->set('sonata.intl.helper.number.class', NumberFormatter::class)
-        ->set('sonata.intl.helper.datetime.class', DateTimeFormatter::class)
-        ->set('sonata.intl.timezone_detector.chain.class', ChainTimezoneDetector::class)
-        ->set('sonata.intl.timezone_detector.user.class', UserBasedTimezoneDetector::class)
-        ->set('sonata.intl.timezone_detector.locale_aware.class', LocaleAwareBasedTimezoneDetector::class)
-        ->set('sonata.intl.twig.helper.locale.class', LocaleExtension::class)
-        ->set('sonata.intl.twig.helper.number.class', NumberExtension::class)
-        ->set('sonata.intl.twig.helper.datetime.class', DateTimeExtension::class);
-
     $containerConfigurator->services()
 
-        ->set('sonata.intl.helper.locale', '%sonata.intl.helper.locale.class%')
+        ->set('sonata.intl.helper.locale', Localizer::class)
             ->public()
             ->args([
-                '%kernel.charset%',
+                param('kernel.charset'),
             ])
 
-        ->set('sonata.intl.helper.number', '%sonata.intl.helper.number.class%')
+        ->set('sonata.intl.helper.number', NumberFormatter::class)
             ->public()
             ->args([
-                '%kernel.charset%',
+                param('kernel.charset'),
             ])
 
-        ->set('sonata.intl.helper.datetime', '%sonata.intl.helper.datetime.class%')
+        ->set('sonata.intl.helper.datetime', DateTimeFormatter::class)
             ->public()
             ->args([
-                new ReferenceConfigurator('sonata.intl.timezone_detector'),
-                '%kernel.charset%',
+                service('sonata.intl.timezone_detector'),
+                param('kernel.charset'),
             ])
 
-        ->set('sonata.intl.twig.extension.locale', '%sonata.intl.twig.helper.locale.class%')
+        ->set('sonata.intl.twig.extension.locale', LocaleExtension::class)
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.locale'),
+                service('sonata.intl.helper.locale'),
             ])
 
-        ->set('sonata.intl.twig.extension.number', '%sonata.intl.twig.helper.number.class%')
+        ->set('sonata.intl.twig.extension.number', NumberExtension::class)
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.number'),
+                service('sonata.intl.helper.number'),
             ])
 
-        ->set('sonata.intl.twig.extension.datetime', '%sonata.intl.twig.helper.datetime.class%')
+        ->set('sonata.intl.twig.extension.datetime', DateTimeExtension::class)
             ->private()
             ->tag('twig.extension')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.datetime'),
+                service('sonata.intl.helper.datetime'),
             ])
 
         ->set('sonata.intl.twig.runtime.locale', LocaleRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.locale'),
+                service('sonata.intl.helper.locale'),
             ])
 
         ->set('sonata.intl.twig.runtime.number', NumberRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.number'),
+                service('sonata.intl.helper.number'),
             ])
 
         ->set('sonata.intl.twig.runtime.datetime', DateTimeRuntime::class)
             ->tag('twig.runtime')
             ->args([
-                new ReferenceConfigurator('sonata.intl.helper.datetime'),
+                service('sonata.intl.helper.datetime'),
             ])
 
-        ->set('sonata.intl.timezone_detector.chain', '%sonata.intl.timezone_detector.chain.class%')
+        ->set('sonata.intl.timezone_detector.chain', ChainTimezoneDetector::class)
             ->public()
             ->args([
-                '',
+                abstract_arg('default timzone'),
             ])
 
-        ->set('sonata.intl.timezone_detector.user', '%sonata.intl.timezone_detector.user.class%')
+        ->set('sonata.intl.timezone_detector.user', UserBasedTimezoneDetector::class)
             ->public()
             ->tag('sonata_intl.timezone_detector', [
                 'alias' => 'user',
             ])
             ->args([
-                new ReferenceConfigurator('security.token_storage'),
+                service('security.token_storage'),
             ])
 
-        ->set('sonata.intl.timezone_detector.locale_aware', '%sonata.intl.timezone_detector.locale_aware.class%')
+        ->set('sonata.intl.timezone_detector.locale_aware', LocaleAwareBasedTimezoneDetector::class)
             ->public()
             ->tag('sonata_intl.timezone_detector', [
                 'alias' => 'locale_aware',
             ])
             ->args([
-                '',
+                abstract_arg('timezone map'),
             ]);
 };

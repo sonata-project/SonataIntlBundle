@@ -106,7 +106,10 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         }
 
         if ($data instanceof \DateTimeImmutable) {
-            return \DateTime::createFromFormat(\DateTime::ATOM, $data->format(\DateTime::ATOM));
+            $dateTime = \DateTime::createFromFormat(\DateTime::ATOM, $data->format(\DateTime::ATOM));
+            \assert(false !== $dateTime);
+
+            return $dateTime;
         }
 
         // the format method accept array or integer
@@ -116,11 +119,14 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
         if (\is_string($data)) {
             $data = strtotime($data);
+            if (false === $data) {
+                throw new \InvalidArgumentException('Invalid timestamp provided');
+            }
         }
 
         $date = new \DateTime();
         $date->setTimestamp($data);
-        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone()));
+        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone() ?? ''));
 
         return $date;
     }
@@ -148,6 +154,9 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
     private function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
     {
-        return $this->fixCharset($formatter->format($date->getTimestamp()));
+        $result = $formatter->format($date->getTimestamp());
+        \assert(false !== $result);
+
+        return $this->fixCharset($result);
     }
 }
