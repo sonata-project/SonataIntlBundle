@@ -99,14 +99,10 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    public function getDatetime($data, ?string $timezone = null): \DateTime
+    public function getDatetime($data, ?string $timezone = null): \DateTimeInterface
     {
-        if ($data instanceof \DateTime) {
+        if ($data instanceof \DateTimeInterface) {
             return $data;
-        }
-
-        if ($data instanceof \DateTimeImmutable) {
-            return \DateTime::createFromFormat(\DateTime::ATOM, $data->format(\DateTime::ATOM));
         }
 
         // the format method accept array or integer
@@ -148,6 +144,6 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
     private function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
     {
-        return $this->fixCharset($formatter->format($date->getTimestamp()));
+        return $this->fixCharset($formatter->format($date));
     }
 }

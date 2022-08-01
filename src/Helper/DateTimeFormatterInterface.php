@@ -52,5 +52,5 @@ interface DateTimeFormatterInterface
      * @param \DateTimeInterface|string|int $data     Value representing date
      * @param string|null                   $timezone Timezone of the date
      */
-    public function getDatetime($data, ?string $timezone = null): \DateTime;
+    public function getDatetime($data, ?string $timezone = null): \DateTimeInterface;
 }
