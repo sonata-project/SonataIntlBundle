@@ -71,9 +71,6 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    /**
-     * @psalm-suppress TypeDoesNotContainType https://github.com/vimeo/psalm/pull/8349
-     */
     public function formatCurrency($number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         $formatter = $this->getFormatter($locale ?? $this->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
