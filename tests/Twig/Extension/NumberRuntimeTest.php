@@ -27,7 +27,6 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @group legacy
      * @dataProvider provideFormatCurrencyArguments
      */
     public function testFormatCurrency(
@@ -82,7 +81,6 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @group legacy
      * @dataProvider provideFormatDecimalArguments
      */
     public function testFormatDecimal(
@@ -132,7 +130,6 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @group legacy
      * @dataProvider provideFormatScientificArguments
      */
     public function testFormatScientific(
@@ -179,7 +176,6 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @group legacy
      * @dataProvider provideFormatDurationArguments
      */
     public function testFormatDuration(
@@ -214,7 +210,6 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @group legacy
      * @dataProvider provideFormatPercentArguments
      */
     public function testFormatPercent(
@@ -252,9 +247,6 @@ class NumberRuntimeTest extends TestCase
         ];
     }
 
-    /**
-     * @group legacy
-     */
     public function testFormatOrdinal(): void
     {
         $helper = new NumberFormatter('UTF-8');
@@ -266,9 +258,6 @@ class NumberRuntimeTest extends TestCase
         static::assertSame('10,000th', $extension->formatOrdinal(10000), 'ICU Version: '.NumberFormatter::getICUDataVersion());
     }
 
-    /**
-     * @group legacy
-     */
     public function testFormatSpellout(): void
     {
         $helper = new NumberFormatter('UTF-8');

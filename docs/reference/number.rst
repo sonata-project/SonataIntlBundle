@@ -52,9 +52,9 @@ When defining your Admin, you can also provide extra parameters::
 
     final class InvoiceAdmin extends AbstractAdmin
     {
-        protected function configureListFields(ListMapper $listMapper)
+        protected function configureListFields(ListMapper $list): void
         {
-            $listMapper
+            $list
                 ->add('amount', 'decimal', [
                     'attributes' => ['fraction_digits' => 2],
                     'textAttributes' => ['negative_prefix' => 'MINUS'],
@@ -62,9 +62,9 @@ When defining your Admin, you can also provide extra parameters::
             ;
         }
 
-        protected function configureShowFields(ShowMapper $showMapper)
+        protected function configureShowFields(ShowMapper $show): void
         {
-            $showMapper
+            $show
                 ->add('price', 'currency', [
                     'currency' => 'EUR',
                     'locale' => 'fr',
