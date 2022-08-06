@@ -21,12 +21,10 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
- * SonataIntlExtension.
- *
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  * @author Alexander <iam.asm89@gmail.com>
  */
-class SonataIntlExtension extends Extension
+final class SonataIntlExtension extends Extension
 {
     /**
      * @param array<mixed> $configs
@@ -47,7 +45,7 @@ class SonataIntlExtension extends Extension
     /**
      * @param mixed[] $config
      */
-    protected function configureTimezone(ContainerBuilder $container, array $config): void
+    private function configureTimezone(ContainerBuilder $container, array $config): void
     {
         if (isset($config['timezone']['service'])) {
             $container->setAlias('sonata.intl.timezone_detector', $config['timezone']['service']);
@@ -88,8 +86,6 @@ class SonataIntlExtension extends Extension
     }
 
     /**
-     * Validate timezones.
-     *
      * @param array<string> $timezones
      *
      * @throws \RuntimeException If one of the locales is invalid

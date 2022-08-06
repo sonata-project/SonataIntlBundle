@@ -24,39 +24,24 @@ final class LocaleRuntime implements RuntimeExtensionInterface
 
     /**
      * Returns the localized country name from the provided code.
-     *
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
      */
-    public function country($code, $locale = null)
+    public function country(string $code, ?string $locale = null): string
     {
         return $this->helper->country($code, $locale);
     }
 
     /**
      * Returns the localized locale name from the provided code.
-     *
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
      */
-    public function locale($code, $locale = null)
+    public function locale(string $code, ?string $locale = null): string
     {
         return $this->helper->locale($code, $locale);
     }
 
     /**
      * Returns the localized language name from the provided code.
-     *
-     * @param string      $code
-     * @param string|null $locale
-     *
-     * @return string
      */
-    public function language($code, $locale = null)
+    public function language(string $code, ?string $locale = null): string
     {
         return $this->helper->language($code, $locale);
     }

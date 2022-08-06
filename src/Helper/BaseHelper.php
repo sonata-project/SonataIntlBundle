@@ -29,32 +29,20 @@ use Symfony\Contracts\Translation\LocaleAwareInterface;
  */
 abstract class BaseHelper implements LocaleAwareInterface
 {
-    protected string $charset = 'UTF-8';
+    private string $charset = 'UTF-8';
 
-    /**
-     * @var string|null
-     */
-    protected $locale;
+    private ?string $locale = null;
 
-    /**
-     * @param string $charset The output charset of the helper
-     */
     public function __construct(string $charset)
     {
         $this->setCharset($charset);
     }
 
-    /**
-     * Sets the default charset.
-     */
     public function setCharset(string $charset): void
     {
         $this->charset = $charset;
     }
 
-    /**
-     * Gets the default charset.
-     */
     public function getCharset(): string
     {
         return $this->charset;
@@ -74,9 +62,6 @@ abstract class BaseHelper implements LocaleAwareInterface
         $this->locale = $locale;
     }
 
-    /**
-     * @static
-     */
     public static function getICUDataVersion(): string
     {
         if (\defined('INTL_ICU_VERSION')) {
@@ -122,10 +107,6 @@ abstract class BaseHelper implements LocaleAwareInterface
      * charset of the kernel.
      *
      * Precondition: the kernel charset is not UTF-8
-     *
-     * @param string $string The string to fix
-     *
-     * @return string A string with the %kernel.charset% encoding
      */
     protected function fixCharset(string $string): string
     {

@@ -20,13 +20,13 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class UserBasedTimezoneDetector implements TimezoneDetectorInterface
+final class UserBasedTimezoneDetector implements TimezoneDetectorInterface
 {
-    public function __construct(protected TokenStorageInterface $securityContext)
+    public function __construct(private TokenStorageInterface $securityContext)
     {
     }
 
-    public function getTimezone()
+    public function getTimezone(): ?string
     {
         $token = $this->securityContext->getToken();
         if (null === $token) {

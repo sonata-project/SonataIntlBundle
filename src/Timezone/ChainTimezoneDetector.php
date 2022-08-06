@@ -18,22 +18,16 @@ namespace Sonata\IntlBundle\Timezone;
  *
  * @author Emmanuel Vella <vella.emmanuel@gmail.com>
  */
-class ChainTimezoneDetector implements TimezoneDetectorInterface
+final class ChainTimezoneDetector implements TimezoneDetectorInterface
 {
     /**
      * @var TimezoneDetectorInterface[]
      */
-    protected $timezoneDetectors = [];
+    private array $timezoneDetectors = [];
 
-    /**
-     * @var string|null
-     */
-    protected $guessedTimezone = null;
+    private ?string $guessedTimezone = null;
 
-    /**
-     * @param string $defaultTimezone
-     */
-    public function __construct(protected $defaultTimezone)
+    public function __construct(private string $defaultTimezone)
     {
     }
 
@@ -42,7 +36,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
         $this->timezoneDetectors[] = $timezoneDetector;
     }
 
-    public function getTimezone()
+    public function getTimezone(): string
     {
         if (null === $this->guessedTimezone) {
             $availableTimezones = \DateTimeZone::listIdentifiers();

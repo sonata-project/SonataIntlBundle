@@ -36,27 +36,27 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         parent::__construct($charset);
     }
 
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatPercent(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::PERCENT, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatDuration(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::DURATION, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatDecimal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::DECIMAL, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatSpellout(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::SPELLOUT, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function formatCurrency($number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatCurrency(string|float|int $number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         $formatter = $this->getFormatter($locale ?? $this->getLocale(), \NumberFormatter::CURRENCY, $attributes, $textAttributes, $symbols);
         $number = $this->parseNumericValue($number);
@@ -71,17 +71,17 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         return $this->fixCharset($result);
     }
 
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatScientific(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::SCIENTIFIC, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatOrdinal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->format($number, \NumberFormatter::ORDINAL, $attributes, $textAttributes, $symbols, $locale);
     }
 
-    public function format($number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function format(string|float|int $number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         $number = $this->parseNumericValue($number);
         $formatter = $this->getFormatter($locale ?? $this->getLocale(), $style, $attributes, $textAttributes, $symbols);
@@ -104,7 +104,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      * @param array<string, string>    $textAttributes The text attributes used by \NumberFormatter
      * @param array<string, string>    $symbols        The symbols used by \NumberFormatter
      */
-    protected function getFormatter(string $culture, int $style, array $attributes = [], array $textAttributes = [], array $symbols = []): \NumberFormatter
+    private function getFormatter(string $culture, int $style, array $attributes = [], array $textAttributes = [], array $symbols = []): \NumberFormatter
     {
         $attributes = $this->parseAttributes(array_merge($this->attributes, $attributes));
         $textAttributes = $this->parseAttributes(array_merge($this->textAttributes, $textAttributes));
@@ -144,7 +144,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      * @phpstan-param array<string, T> $attributes
      * @phpstan-return array<int, T>
      */
-    protected function parseAttributes(array $attributes)
+    private function parseAttributes(array $attributes): array
     {
         $result = [];
 
@@ -158,11 +158,9 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
     /**
      * Parse the given value trying to get a match with a \NumberFormatter constant.
      *
-     * @param string $attribute The constant's name
-     *
      * @throws \InvalidArgumentException If the value does not match any constant
      */
-    protected function parseConstantValue(string $attribute): int
+    private function parseConstantValue(string $attribute): int
     {
         $attribute = strtoupper($attribute);
         $constantName = 'NumberFormatter::'.$attribute;

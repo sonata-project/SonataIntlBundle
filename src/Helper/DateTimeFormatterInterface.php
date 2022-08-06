@@ -23,34 +23,49 @@ namespace Sonata\IntlBundle\Helper;
 interface DateTimeFormatterInterface
 {
     /**
-     * @param \DateTimeInterface|string|int $date
-     * @param int|null                      $dateType See \IntlDateFormatter::getDateType
+     * @param int|null $dateType See \IntlDateFormatter::getDateType
      */
-    public function formatDate($date, ?string $locale = null, ?string $timezone = null, ?int $dateType = null): string;
+    public function formatDate(
+        \DateTimeInterface|string|int $date,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null
+    ): string;
 
     /**
-     * @param \DateTimeInterface|string|int $datetime
-     * @param int|null                      $dateType See \IntlDateFormatter::getDateType
-     * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
+     * @param int|null $dateType See \IntlDateFormatter::getDateType
+     * @param int|null $timeType See \IntlDateFormatter::getTimeType
      */
-    public function formatDateTime($datetime, ?string $locale = null, ?string $timezone = null, ?int $dateType = null, ?int $timeType = null): string;
+    public function formatDateTime(
+        \DateTimeInterface|string|int $datetime,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null,
+        ?int $timeType = null
+    ): string;
 
     /**
-     * @param \DateTimeInterface|string|int $time
-     * @param int|null                      $timeType See \IntlDateFormatter::getTimeType
+     * @param int|null $timeType See \IntlDateFormatter::getTimeType
      */
-    public function formatTime($time, ?string $locale = null, ?string $timezone = null, ?int $timeType = null): string;
+    public function formatTime(
+        \DateTimeInterface|string|int $time,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $timeType = null
+    ): string;
 
-    /**
-     * @param \DateTimeInterface|string|int $datetime
-     */
-    public function format($datetime, string $pattern, ?string $locale = null, ?string $timezone = null): string;
+    public function format(
+        \DateTimeInterface|string|int $datetime,
+        string $pattern,
+        ?string $locale = null,
+        ?string $timezone = null
+    ): string;
 
     /**
      * Gets a date time instance by a given data and timezone.
-     *
-     * @param \DateTimeInterface|string|int $data     Value representing date
-     * @param string|null                   $timezone Timezone of the date
      */
-    public function getDatetime($data, ?string $timezone = null): \DateTimeInterface;
+    public function getDatetime(
+        \DateTimeInterface|string|int $data,
+        ?string $timezone = null
+    ): \DateTimeInterface;
 }

@@ -22,12 +22,12 @@ use Twig\TwigFilter;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class DateTimeExtension extends AbstractExtension
+final class DateTimeExtension extends AbstractExtension
 {
     /**
      * @return TwigFilter[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('sonata_format_date', [DateTimeRuntime::class, 'formatDate'], ['is_safe' => ['html']]),

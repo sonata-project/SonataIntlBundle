@@ -24,16 +24,14 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  * @author Alexander <iam.asm89@gmail.com>
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     /**
      * @psalm-suppress PossiblyNullReference, PossiblyUndefinedMethod
      *
      * @see https://github.com/psalm/psalm-plugin-symfony/issues/174
-     *
-     * @return TreeBuilder
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('sonata_intl');
         $rootNode = $treeBuilder->getRootNode();

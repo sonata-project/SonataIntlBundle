@@ -20,10 +20,7 @@ namespace Sonata\IntlBundle\Timezone;
  */
 trait TimezoneAwareTrait
 {
-    /**
-     * @var string|null
-     */
-    private $timezone;
+    private ?string $timezone = null;
 
     final public function getTimezone(): ?string
     {

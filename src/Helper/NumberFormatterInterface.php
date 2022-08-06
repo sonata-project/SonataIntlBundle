@@ -33,7 +33,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatPercent(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number as duration according to the specified locale and
@@ -47,7 +47,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatDuration(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number as decimal according to the specified locale and
@@ -61,7 +61,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatDecimal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number as spellout according to the specified locale and
@@ -75,7 +75,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatSpellout(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number as currency according to the specified locale and
@@ -90,7 +90,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatCurrency(string|float|int $number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number in scientific notation according to the specified
@@ -104,7 +104,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatScientific(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number as ordinal according to the specified locale and
@@ -118,7 +118,7 @@ interface NumberFormatterInterface
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function formatOrdinal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 
     /**
      * Formats a number according to the specified locale and \NumberFormatter
@@ -131,5 +131,5 @@ interface NumberFormatterInterface
      * @param array<string, string>    $symbols        The symbols used by \NumberFormatter
      * @param string|null              $locale         The locale used to format the number
      */
-    public function format($number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
+    public function format(string|float|int $number, int $style, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string;
 }

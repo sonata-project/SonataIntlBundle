@@ -16,18 +16,12 @@ namespace Sonata\IntlBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SonataIntlBundle extends Bundle
+final class SonataIntlBundle extends Bundle
 {
     /**
      * Returns a cleaned version number.
-     *
-     * @static
-     *
-     * @param string $version
-     *
-     * @return string
      */
-    public static function getSymfonyVersion($version)
+    public static function getSymfonyVersion(string $version): string
     {
         return implode('.', \array_slice(array_map(
             static fn ($val) => (int) $val,
