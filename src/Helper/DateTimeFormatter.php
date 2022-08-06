@@ -147,6 +147,9 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
     private function process(\IntlDateFormatter $formatter, \DateTimeInterface $date): string
     {
-        return $this->fixCharset($formatter->format($date));
+        $result = $formatter->format($date);
+        \assert(false !== $result);
+
+        return $this->fixCharset($result);
     }
 }
