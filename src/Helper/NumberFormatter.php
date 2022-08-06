@@ -22,33 +22,18 @@ namespace Sonata\IntlBundle\Helper;
 final class NumberFormatter extends BaseHelper implements NumberFormatterInterface
 {
     /**
-     * @var array<string, int|float> The default attributes to apply to the \NumberFormatter instance
-     */
-    private array $attributes;
-
-    /**
-     * @var array<string, string> The default text attributes to apply to the \NumberFormatter instance
-     */
-    private array $textAttributes;
-
-    /**
-     * @var array<string, string> The symbols used by \NumberFormatter
-     */
-    private array $symbols;
-
-    /**
      * @param string                   $charset        The output charset of the helper
      * @param array<string, int|float> $attributes     The default attributes to apply to the \NumberFormatter instance
      * @param array<string, string>    $textAttributes The default text attributes to apply to the \NumberFormatter instance
      * @param array<string, string>    $symbols        The default symbols to apply to the \NumberFormatter instance
      */
-    public function __construct(string $charset, array $attributes = [], array $textAttributes = [], array $symbols = [])
-    {
+    public function __construct(
+        string $charset,
+        private array $attributes = [],
+        private array $textAttributes = [],
+        private array $symbols = []
+    ) {
         parent::__construct($charset);
-
-        $this->attributes = $attributes;
-        $this->textAttributes = $textAttributes;
-        $this->symbols = $symbols;
     }
 
     public function formatPercent($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
@@ -189,12 +174,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         return \constant($constantName);
     }
 
-    /**
-     * @param string|int|float $number
-     *
-     * @return int|float
-     */
-    private function parseNumericValue($number)
+    private function parseNumericValue(string|int|float $number): int|float
     {
         if (\is_float($number) || \is_int($number)) {
             return $number;

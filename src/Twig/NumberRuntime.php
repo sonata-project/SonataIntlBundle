@@ -18,11 +18,8 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class NumberRuntime implements RuntimeExtensionInterface
 {
-    private NumberFormatterInterface $helper;
-
-    public function __construct(NumberFormatterInterface $helper)
+    public function __construct(private NumberFormatterInterface $helper)
     {
-        $this->helper = $helper;
     }
 
     /**
@@ -37,7 +34,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatCurrency($number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatCurrency(string|float|int $number, string $currency, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -53,7 +50,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatDecimal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatDecimal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -69,7 +66,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatScientific($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatScientific(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -85,7 +82,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatSpellout($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatSpellout(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -101,7 +98,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatPercent($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatPercent(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -117,7 +114,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatDuration($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatDuration(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -133,7 +130,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
      *
      * @return string The formatted number
      */
-    public function formatOrdinal($number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
+    public function formatOrdinal(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string
     {
         return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
     }

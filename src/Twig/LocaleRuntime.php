@@ -18,11 +18,8 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class LocaleRuntime implements RuntimeExtensionInterface
 {
-    private LocalizerInterface $helper;
-
-    public function __construct(LocalizerInterface $helper)
+    public function __construct(private LocalizerInterface $helper)
     {
-        $this->helper = $helper;
     }
 
     /**

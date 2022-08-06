@@ -139,10 +139,9 @@ abstract class BaseHelper implements LocaleAwareInterface
     /**
      * https://wiki.php.net/rfc/internal_constructor_behaviour.
      *
-     * @param mixed   $instance
      * @param mixed[] $args
      */
-    protected static function checkInternalClass($instance, string $class, array $args = []): void
+    protected static function checkInternalClass(mixed $instance, string $class, array $args = []): void
     {
         if (null !== $instance) {
             return;
