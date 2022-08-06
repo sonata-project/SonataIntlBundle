@@ -22,16 +22,13 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
     {
     }
 
-    /**
-     * @param string|null $pattern
-     * @param string|null $locale
-     * @param string|null $timezone
-     * @param int|null    $dateType
-     *
-     * @return string
-     */
-    public function formatDate(\DateTime|string|int $date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
-    {
+    public function formatDate(
+        \DateTimeInterface|string|int $date,
+        ?string $pattern = null,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null
+    ): string {
         if (null !== $pattern) {
             return $this->helper->format($date, $pattern, $locale, $timezone);
         }
@@ -39,16 +36,13 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         return $this->helper->formatDate($date, $locale, $timezone, $dateType);
     }
 
-    /**
-     * @param string|null $pattern
-     * @param string|null $locale
-     * @param string|null $timezone
-     * @param int|null    $timeType
-     *
-     * @return string
-     */
-    public function formatTime(\DateTime|string|int $time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
-    {
+    public function formatTime(
+        \DateTimeInterface|string|int $time,
+        ?string $pattern = null,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $timeType = null
+    ): string {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }
@@ -56,17 +50,14 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         return $this->helper->formatTime($time, $locale, $timezone, $timeType);
     }
 
-    /**
-     * @param string|null $pattern
-     * @param string|null $locale
-     * @param string|null $timezone
-     * @param int|null    $dateType
-     * @param int|null    $timeType
-     *
-     * @return string
-     */
-    public function formatDatetime(\DateTime|string|int $time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
-    {
+    public function formatDatetime(
+        \DateTimeInterface|string|int $time,
+        ?string $pattern = null,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null,
+        ?int $timeType = null
+    ): string {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
         }

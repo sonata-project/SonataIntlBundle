@@ -22,12 +22,12 @@ use Twig\TwigFilter;
  *
  * @author Thomas Rabaix <thomas.rabaix@ekino.com>
  */
-class LocaleExtension extends AbstractExtension
+final class LocaleExtension extends AbstractExtension
 {
     /**
      * @return TwigFilter[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('sonata_country', [LocaleRuntime::class, 'country'], ['is_safe' => ['html']]),

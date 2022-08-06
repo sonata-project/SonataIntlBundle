@@ -22,8 +22,6 @@ interface TimezoneDetectorInterface
 {
     /**
      * Get the appropriate timezone.
-     *
-     * @return string|null
      */
-    public function getTimezone();
+    public function getTimezone(): ?string;
 }

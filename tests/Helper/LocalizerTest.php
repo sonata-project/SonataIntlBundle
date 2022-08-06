@@ -26,9 +26,6 @@ final class LocalizerTest extends TestCase
         return $helper;
     }
 
-    /**
-     * @group legacy
-     */
     public function testLanguage(): void
     {
         $helper = $this->getHelper();

@@ -36,8 +36,12 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         parent::__construct($charset);
     }
 
-    public function formatDate($date, ?string $locale = null, ?string $timezone = null, ?int $dateType = null): string
-    {
+    public function formatDate(
+        \DateTimeInterface|string|int $date,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null
+    ): string {
         $date = $this->getDatetime($date, $timezone);
 
         $formatter = self::createInstance([
@@ -51,8 +55,13 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    public function formatDateTime($datetime, ?string $locale = null, ?string $timezone = null, ?int $dateType = null, ?int $timeType = null): string
-    {
+    public function formatDateTime(
+        \DateTimeInterface|string|int $datetime,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $dateType = null,
+        ?int $timeType = null
+    ): string {
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
@@ -66,8 +75,12 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    public function formatTime($time, ?string $locale = null, ?string $timezone = null, ?int $timeType = null): string
-    {
+    public function formatTime(
+        \DateTimeInterface|string|int $time,
+        ?string $locale = null,
+        ?string $timezone = null,
+        ?int $timeType = null
+    ): string {
         $date = $this->getDatetime($time, $timezone);
 
         $formatter = self::createInstance([
@@ -81,8 +94,12 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    public function format($datetime, string $pattern, ?string $locale = null, ?string $timezone = null): string
-    {
+    public function format(
+        \DateTimeInterface|string|int $datetime,
+        string $pattern,
+        ?string $locale = null,
+        ?string $timezone = null
+    ): string {
         $date = $this->getDatetime($datetime, $timezone);
 
         $formatter = self::createInstance([
@@ -97,8 +114,10 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         return $this->process($formatter, $date);
     }
 
-    public function getDatetime($data, ?string $timezone = null): \DateTimeInterface
-    {
+    public function getDatetime(
+        \DateTimeInterface|string|int $data,
+        ?string $timezone = null
+    ): \DateTimeInterface {
         if ($data instanceof \DateTimeInterface) {
             return $data;
         }
@@ -124,10 +143,8 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
     /**
      * @param mixed[] $args
-     *
-     * @return \IntlDateFormatter
      */
-    protected static function createInstance(array $args = [])
+    private static function createInstance(array $args = []): \IntlDateFormatter
     {
         if (null === self::$reflection) {
             self::$reflection = new \ReflectionClass(\IntlDateFormatter::class);
