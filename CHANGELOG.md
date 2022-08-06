@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.13.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.12.1...2.13.0) - 2022-08-05
+### Changed
+- [[#520](https://github.com/sonata-project/SonataIntlBundle/pull/520)] Make `Symfony/Templating` Component optional ([@Hanmac](https://github.com/Hanmac))
+
+### Deprecated
+- [[#520](https://github.com/sonata-project/SonataIntlBundle/pull/520)] Deprecated the Templating\Helper classes ([@Hanmac](https://github.com/Hanmac))
+- [[#520](https://github.com/sonata-project/SonataIntlBundle/pull/520)] Deprecated the use of the Templating\Helper classes inside the Twig Runtime and Extensions ([@Hanmac](https://github.com/Hanmac))
+- [[#520](https://github.com/sonata-project/SonataIntlBundle/pull/520)] Deprecated uses of LocaleDetectorInterface in favor of Symfony\Contracts\Translation\LocaleAwareInterface ([@Hanmac](https://github.com/Hanmac))
+
+### Removed
+- [[#525](https://github.com/sonata-project/SonataIntlBundle/pull/525)] Remove support for PHP 7.3 ([@jordisala1991](https://github.com/jordisala1991))
+- [[#524](https://github.com/sonata-project/SonataIntlBundle/pull/524)] Support of Symfony 5.3 ([@franmomu](https://github.com/franmomu))
+
 ## [2.12.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.12.0...2.12.1) - 2022-04-11
 ### Fixed
 - [[#514](https://github.com/sonata-project/SonataIntlBundle/pull/514)] Missing service declarations for Runtime services ([@VincentLanglet](https://github.com/VincentLanglet))
