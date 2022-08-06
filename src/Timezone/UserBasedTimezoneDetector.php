@@ -22,14 +22,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class UserBasedTimezoneDetector implements TimezoneDetectorInterface
 {
-    /**
-     * @var TokenStorageInterface
-     */
-    protected $securityContext;
-
-    public function __construct(TokenStorageInterface $securityContext)
+    public function __construct(protected TokenStorageInterface $securityContext)
     {
-        $this->securityContext = $securityContext;
     }
 
     public function getTimezone()

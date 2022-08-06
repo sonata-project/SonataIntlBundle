@@ -23,12 +23,7 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     /**
      * @var TimezoneDetectorInterface[]
      */
-    protected $timezoneDetectors;
-
-    /**
-     * @var string
-     */
-    protected $defaultTimezone;
+    protected $timezoneDetectors = [];
 
     /**
      * @var string|null
@@ -38,10 +33,8 @@ class ChainTimezoneDetector implements TimezoneDetectorInterface
     /**
      * @param string $defaultTimezone
      */
-    public function __construct($defaultTimezone)
+    public function __construct(protected $defaultTimezone)
     {
-        $this->defaultTimezone = $defaultTimezone;
-        $this->timezoneDetectors = [];
     }
 
     public function addDetector(TimezoneDetectorInterface $timezoneDetector): void

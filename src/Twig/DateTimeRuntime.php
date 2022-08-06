@@ -18,23 +18,19 @@ use Twig\Extension\RuntimeExtensionInterface;
 
 final class DateTimeRuntime implements RuntimeExtensionInterface
 {
-    private DateTimeFormatterInterface $helper;
-
-    public function __construct(DateTimeFormatterInterface $helper)
+    public function __construct(private DateTimeFormatterInterface $helper)
     {
-        $this->helper = $helper;
     }
 
     /**
-     * @param \DateTime|string|int $date
-     * @param string|null          $pattern
-     * @param string|null          $locale
-     * @param string|null          $timezone
-     * @param int|null             $dateType
+     * @param string|null $pattern
+     * @param string|null $locale
+     * @param string|null $timezone
+     * @param int|null    $dateType
      *
      * @return string
      */
-    public function formatDate($date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
+    public function formatDate(\DateTime|string|int $date, $pattern = null, $locale = null, $timezone = null, $dateType = null)
     {
         if (null !== $pattern) {
             return $this->helper->format($date, $pattern, $locale, $timezone);
@@ -44,15 +40,14 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \DateTime|string|int $time
-     * @param string|null          $pattern
-     * @param string|null          $locale
-     * @param string|null          $timezone
-     * @param int|null             $timeType
+     * @param string|null $pattern
+     * @param string|null $locale
+     * @param string|null $timezone
+     * @param int|null    $timeType
      *
      * @return string
      */
-    public function formatTime($time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
+    public function formatTime(\DateTime|string|int $time, $pattern = null, $locale = null, $timezone = null, $timeType = null)
     {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
@@ -62,16 +57,15 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param \DateTime|string|int $time
-     * @param string|null          $pattern
-     * @param string|null          $locale
-     * @param string|null          $timezone
-     * @param int|null             $dateType
-     * @param int|null             $timeType
+     * @param string|null $pattern
+     * @param string|null $locale
+     * @param string|null $timezone
+     * @param int|null    $dateType
+     * @param int|null    $timeType
      *
      * @return string
      */
-    public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
+    public function formatDatetime(\DateTime|string|int $time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);

@@ -24,18 +24,16 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
  */
 final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInterface
 {
-    private TimezoneDetectorInterface $timezoneDetector;
-
     /**
      * @var \ReflectionClass<\IntlDateFormatter>|null
      */
     private static ?\ReflectionClass $reflection = null;
 
-    public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset)
-    {
+    public function __construct(
+        private TimezoneDetectorInterface $timezoneDetector,
+        string $charset
+    ) {
         parent::__construct($charset);
-
-        $this->timezoneDetector = $timezoneDetector;
     }
 
     public function formatDate($date, ?string $locale = null, ?string $timezone = null, ?int $dateType = null): string

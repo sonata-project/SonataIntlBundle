@@ -23,18 +23,16 @@ use Sonata\IntlBundle\Twig\NumberRuntime;
 class NumberRuntimeTest extends TestCase
 {
     /**
-     * @param string|float|int         $number
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
      * @group legacy
-     *
      * @dataProvider provideFormatCurrencyArguments
      */
     public function testFormatCurrency(
         string $expectedResult,
-        $number,
+        string|float|int $number,
         string $currency,
         array $attributes = [],
         array $textAttributes = [],
@@ -80,18 +78,16 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @param string|float|int         $number
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
      * @group legacy
-     *
      * @dataProvider provideFormatDecimalArguments
      */
     public function testFormatDecimal(
         string $expectedResult,
-        $number,
+        string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = []
@@ -132,18 +128,16 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @param string|float|int         $number
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
      * @group legacy
-     *
      * @dataProvider provideFormatScientificArguments
      */
     public function testFormatScientific(
         string $expectedResult,
-        $number,
+        string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = []
@@ -181,18 +175,16 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @param string|float|int         $number
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
      * @group legacy
-     *
      * @dataProvider provideFormatDurationArguments
      */
     public function testFormatDuration(
         string $expectedResult,
-        $number,
+        string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = []
@@ -218,18 +210,16 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @param string|float|int         $number
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
      * @group legacy
-     *
      * @dataProvider provideFormatPercentArguments
      */
     public function testFormatPercent(
         string $expectedResult,
-        $number,
+        string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = []
