@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0-alpha-1](https://github.com/sonata-project/SonataIntlBundle/compare/2.x...3.0.0-alpha-1) - 2022-08-07
+### Added
+- [[#539](https://github.com/sonata-project/SonataIntlBundle/pull/539)] Final keyword to all classes ([@VincentLanglet](https://github.com/VincentLanglet))
+- [[#539](https://github.com/sonata-project/SonataIntlBundle/pull/539)] Typehint to all methods ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [2.13.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.12.1...2.13.0) - 2022-08-05
 ### Changed
 - [[#520](https://github.com/sonata-project/SonataIntlBundle/pull/520)] Make `Symfony/Templating` Component optional ([@Hanmac](https://github.com/Hanmac))
