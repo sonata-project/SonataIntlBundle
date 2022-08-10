@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0-alpha-2](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.0-alpha-1...3.0.0-alpha-2) - 2022-08-07
+### Fixed
+- [[#542](https://github.com/sonata-project/SonataIntlBundle/pull/542)] Add missing kernel.local_aware dependency injection container tags for definitions that implement symfony's LocaleAwareInterface. ([@temp](https://github.com/temp))
+
 ## [3.0.0-alpha-1](https://github.com/sonata-project/SonataIntlBundle/compare/2.x...3.0.0-alpha-1) - 2022-08-07
 ### Added
 - [[#539](https://github.com/sonata-project/SonataIntlBundle/pull/539)] Final keyword to all classes ([@VincentLanglet](https://github.com/VincentLanglet))
