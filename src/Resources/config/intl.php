@@ -31,18 +31,21 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
         ->set('sonata.intl.helper.locale', Localizer::class)
             ->public()
+            ->tag('kernel.locale_aware')
             ->args([
                 param('kernel.charset'),
             ])
 
         ->set('sonata.intl.helper.number', NumberFormatter::class)
             ->public()
+            ->tag('kernel.locale_aware')
             ->args([
                 param('kernel.charset'),
             ])
 
         ->set('sonata.intl.helper.datetime', DateTimeFormatter::class)
             ->public()
+            ->tag('kernel.locale_aware')
             ->args([
                 service('sonata.intl.timezone_detector'),
                 param('kernel.charset'),
@@ -107,6 +110,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('sonata_intl.timezone_detector', [
                 'alias' => 'locale_aware',
             ])
+            ->tag('kernel.locale_aware')
             ->args([
                 abstract_arg('timezone map'),
             ]);
