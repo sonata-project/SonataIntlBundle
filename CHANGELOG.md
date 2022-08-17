@@ -11,6 +11,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - [[#539](https://github.com/sonata-project/SonataIntlBundle/pull/539)] Final keyword to all classes ([@VincentLanglet](https://github.com/VincentLanglet))
 - [[#539](https://github.com/sonata-project/SonataIntlBundle/pull/539)] Typehint to all methods ([@VincentLanglet](https://github.com/VincentLanglet))
 
+## [2.14.0](https://github.com/sonata-project/SonataIntlBundle/compare/2.13.1...2.14.0) - 2022-08-16
+### Added
+- [[#547](https://github.com/sonata-project/SonataIntlBundle/pull/547)] Added support for `symfony/translation-contracts` ^3 ([@AirBair](https://github.com/AirBair))
+
 ## [2.13.1](https://github.com/sonata-project/SonataIntlBundle/compare/2.13.0...2.13.1) - 2022-08-09
 ### Fixed
 - [[#542](https://github.com/sonata-project/SonataIntlBundle/pull/542)] Add missing kernel.local_aware dependency injection container tags for definitions that implement symfony's LocaleAwareInterface. ([@temp](https://github.com/temp))
