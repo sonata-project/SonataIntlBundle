@@ -118,9 +118,9 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      * @param mixed $symbols The symbols used by the formatter
      * @param mixed $locale  The locale
      *
-     * @throws \BadMethodCallException If the arguments does not match any signature
-     *
      * @return array{string|null, array<string, string>} Arguments list normalized to the new method signature
+     *
+     * @throws \BadMethodCallException If the arguments does not match any signature
      *
      * @internal
      */
@@ -185,9 +185,9 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      *
      * @param array<string, mixed> $attributes The list of attributes
      *
-     * @throws \InvalidArgumentException If any attribute does not match any constant
-     *
      * @return array<int, mixed> List of \NumberFormatter constants
+     *
+     * @throws \InvalidArgumentException If any attribute does not match any constant
      *
      * @phpstan-template T of mixed
      * @phpstan-param array<string, T> $attributes
@@ -209,9 +209,9 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      *
      * @param string $attribute The constant's name
      *
-     * @throws \InvalidArgumentException If the value does not match any constant
-     *
      * @return mixed The \NumberFormatter constant
+     *
+     * @throws \InvalidArgumentException If the value does not match any constant
      */
     protected function parseConstantValue(string $attribute)
     {
