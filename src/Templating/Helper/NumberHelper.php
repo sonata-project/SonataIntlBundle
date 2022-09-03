@@ -238,9 +238,9 @@ class NumberHelper extends BaseHelper
      * @param mixed $symbols The symbols used by the formatter
      * @param mixed $locale  The locale
      *
-     * @return array{string|null, array<string, string>} Arguments list normalized to the new method signature
-     *
      * @throws \BadMethodCallException If the arguments does not match any signature
+     *
+     * @return array{string|null, array<string, string>} Arguments list normalized to the new method signature
      *
      * @internal
      */
@@ -315,9 +315,9 @@ class NumberHelper extends BaseHelper
      *
      * @param array<string, mixed> $attributes The list of attributes
      *
-     * @return array<int, mixed> List of \NumberFormatter constants
-     *
      * @throws \InvalidArgumentException If any attribute does not match any constant
+     *
+     * @return array<int, mixed> List of \NumberFormatter constants
      *
      * @phpstan-template T of mixed
      * @phpstan-param array<string, T> $attributes
@@ -339,9 +339,9 @@ class NumberHelper extends BaseHelper
      *
      * @param string $attribute The constant's name
      *
-     * @return int The \NumberFormatter constant
-     *
      * @throws \InvalidArgumentException If the value does not match any constant
+     *
+     * @return int The \NumberFormatter constant
      */
     protected function parseConstantValue($attribute)
     {
