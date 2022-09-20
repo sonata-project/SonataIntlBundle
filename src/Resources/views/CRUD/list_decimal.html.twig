@@ -17,8 +17,9 @@ file that was distributed with this source code.
     {%- else -%}
         {% set attributes = field_description.options.attributes|default({}) %}
         {% set textAttributes = field_description.options.textAttributes|default({}) %}
+        {% set symbols = field_description.options.symbols|default({}) %}
         {% set locale = field_description.options.locale|default(null) %}
 
-        {{ value | sonata_number_format_decimal(attributes, textAttributes, locale) }}
+        {{ value | sonata_number_format_decimal(attributes, textAttributes, symbols, locale) }}
     {%- endif -%}
 {% endblock %}
