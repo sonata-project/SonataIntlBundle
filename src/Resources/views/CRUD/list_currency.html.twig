@@ -18,8 +18,9 @@ file that was distributed with this source code.
         {% set currency = field_description.options.currency %}
         {% set attributes = field_description.options.attributes|default({}) %}
         {% set textAttributes = field_description.options.textAttributes|default({}) %}
+        {% set symbols = field_description.options.symbols|default({}) %}
         {% set locale = field_description.options.locale|default(null) %}
 
-        {{ value | sonata_number_format_currency(currency, attributes, textAttributes, locale) }}
+        {{ value | sonata_number_format_currency(currency, attributes, textAttributes, symbols, locale) }}
     {%- endif -%}
 {% endblock %}
