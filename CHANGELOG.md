@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.1](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.0...3.0.1) - 2022-09-27
+### Fixed
+- [[#560](https://github.com/sonata-project/SonataIntlBundle/pull/560)] All the templates using `sonata_number_format_*` methods ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [3.0.0](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.0-alpha-2...3.0.0) - 2022-08-16
 ### Added
 - [[#547](https://github.com/sonata-project/SonataIntlBundle/pull/547)] Added support for `symfony/translation-contracts` ^3 ([@AirBair](https://github.com/AirBair))
