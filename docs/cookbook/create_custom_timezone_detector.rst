@@ -50,7 +50,7 @@ You can now use this class by configuring the ``detector`` section:
                 detectors:
                     - app.my_custom_timezone_detector
                     - sonata.intl.timezone_detector.user
-                    - sonata.intl.timezone_detector.locale
+                    - sonata.intl.timezone_detector.locale_aware
 
 .. important::
 
