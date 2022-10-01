@@ -49,7 +49,7 @@ can change the order in the configuration:
             timezone:
                 detectors:
                     - sonata.intl.timezone_detector.user
-                    - sonata.intl.timezone_detector.locale
+                    - sonata.intl.timezone_detector.locale_aware
 
 **IMPORTANT** In order to guess the timezone, the detectors will be
 called **in the order they are declared**.
