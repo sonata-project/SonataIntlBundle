@@ -42,9 +42,9 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
      * @param array<string, string>    $textAttributes The default text attributes to apply to the \NumberFormatter instance
      * @param array<string, string>    $symbols        The default symbols to apply to the \NumberFormatter instance
      */
-    public function __construct(string $charset, array $attributes = [], array $textAttributes = [], array $symbols = [])
+    public function __construct(string $charset, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $defaultLocale = null)
     {
-        parent::__construct($charset);
+        parent::__construct($charset, $defaultLocale);
 
         $this->attributes = $attributes;
         $this->textAttributes = $textAttributes;
