@@ -31,9 +31,12 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
      */
     private static ?\ReflectionClass $reflection = null;
 
-    public function __construct(TimezoneDetectorInterface $timezoneDetector, string $charset)
-    {
-        parent::__construct($charset);
+    public function __construct(
+        TimezoneDetectorInterface $timezoneDetector,
+        string $charset,
+        ?string $defaultLocale = null
+    ) {
+        parent::__construct($charset, $defaultLocale);
 
         $this->timezoneDetector = $timezoneDetector;
     }

@@ -50,8 +50,6 @@ class SonataIntlExtension extends Extension
         }
 
         $this->configureTimezone($container, $config);
-
-        // NEXT_MAJOR: Remove this code
         $this->configureLocale($container, $config);
     }
 
@@ -106,17 +104,21 @@ class SonataIntlExtension extends Extension
     }
 
     /**
-     * NEXT_MAJOR: remove this.
-     *
-     * @deprecated since sonata-project/intl-bundle 2.13, to be removed in version 3.0.
-     *
      * @param mixed[] $config
      *
      * @return void
      */
     protected function configureLocale(ContainerBuilder $container, array $config)
     {
-        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $config['locale'] ?? '%kernel.default_locale%');
+        $locale = $config['locale'] ?? '%kernel.default_locale%';
+
+        $container->getDefinition('sonata.intl.helper.datetime')->replaceArgument(2, $locale);
+        $container->getDefinition('sonata.intl.helper.locale')->replaceArgument(1, $locale);
+        $container->getDefinition('sonata.intl.helper.number')->replaceArgument(4, $locale);
+        $container->getDefinition('sonata.intl.timezone_detector.locale_aware')->replaceArgument(1, $locale);
+
+        // NEXT_MAJOR: Remove the two following line.
+        $container->getDefinition('sonata.intl.locale_detector.request_stack')->replaceArgument(1, $locale);
         $container->setAlias('sonata.intl.locale_detector', 'sonata.intl.locale_detector.request_stack');
     }
 
