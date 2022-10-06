@@ -40,6 +40,7 @@ final class SonataIntlExtension extends Extension
         $loader->load('intl.php');
 
         $this->configureTimezone($container, $config);
+        $this->configureLocale($container, $config);
     }
 
     /**
@@ -86,6 +87,21 @@ final class SonataIntlExtension extends Extension
     }
 
     /**
+     * @param mixed[] $config
+     */
+    private function configureLocale(ContainerBuilder $container, array $config): void
+    {
+        $locale = $config['locale'] ?? '%kernel.default_locale%';
+
+        $container->getDefinition('sonata.intl.helper.datetime')->replaceArgument(2, $locale);
+        $container->getDefinition('sonata.intl.helper.locale')->replaceArgument(1, $locale);
+        $container->getDefinition('sonata.intl.helper.number')->replaceArgument(4, $locale);
+        $container->getDefinition('sonata.intl.timezone_detector.locale_aware')->replaceArgument(1, $locale);
+    }
+
+    /**
+     * Validate timezones.
+     *
      * @param array<string> $timezones
      *
      * @throws \RuntimeException If one of the locales is invalid

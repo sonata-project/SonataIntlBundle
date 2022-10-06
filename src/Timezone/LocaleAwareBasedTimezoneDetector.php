@@ -27,8 +27,11 @@ final class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterfac
     /**
      * @param array<string, string> $timezoneMap
      */
-    public function __construct(private array $timezoneMap = [])
+    public function __construct(private array $timezoneMap = [], ?string $defaultLocale = null)
     {
+        if (null !== $defaultLocale) {
+            $this->setLocale($defaultLocale);
+        }
     }
 
     public function getTimezone(): ?string

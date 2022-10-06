@@ -33,9 +33,13 @@ abstract class BaseHelper implements LocaleAwareInterface
 
     private ?string $locale = null;
 
-    public function __construct(string $charset)
+    public function __construct(string $charset, ?string $defaultLocale = null)
     {
         $this->setCharset($charset);
+
+        if (null !== $defaultLocale) {
+            $this->setLocale($defaultLocale);
+        }
     }
 
     public function setCharset(string $charset): void
