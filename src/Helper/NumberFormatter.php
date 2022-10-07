@@ -31,9 +31,10 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         string $charset,
         private array $attributes = [],
         private array $textAttributes = [],
-        private array $symbols = []
+        private array $symbols = [],
+        ?string $defaultLocale = null
     ) {
-        parent::__construct($charset);
+        parent::__construct($charset, $defaultLocale);
     }
 
     public function formatPercent(string|float|int $number, array $attributes = [], array $textAttributes = [], array $symbols = [], ?string $locale = null): string

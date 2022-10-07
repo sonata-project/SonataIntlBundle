@@ -34,6 +34,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('kernel.locale_aware')
             ->args([
                 param('kernel.charset'),
+                abstract_arg('default locale'),
             ])
 
         ->set('sonata.intl.helper.number', NumberFormatter::class)
@@ -41,6 +42,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('kernel.locale_aware')
             ->args([
                 param('kernel.charset'),
+                [],
+                [],
+                [],
+                abstract_arg('default locale'),
             ])
 
         ->set('sonata.intl.helper.datetime', DateTimeFormatter::class)
@@ -49,6 +54,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->args([
                 service('sonata.intl.timezone_detector'),
                 param('kernel.charset'),
+                abstract_arg('default locale'),
             ])
 
         ->set('sonata.intl.twig.extension.locale', LocaleExtension::class)
@@ -113,5 +119,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ->tag('kernel.locale_aware')
             ->args([
                 abstract_arg('timezone map'),
+                abstract_arg('default locale'),
             ]);
 };
