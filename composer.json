@@ -23,11 +23,11 @@
     "homepage": "https://docs.sonata-project.org/projects/SonataIntlBundle",
     "require": {
         "php": "^8.0",
-        "symfony/config": "^5.4 || ^6.0",
-        "symfony/dependency-injection": "^5.4 || ^6.0",
-        "symfony/http-foundation": "^5.4 || ^6.0",
-        "symfony/http-kernel": "^5.4 || ^6.0",
-        "symfony/intl": "^5.4 || ^6.0",
+        "symfony/config": "^5.4 || ^6.2",
+        "symfony/dependency-injection": "^5.4 || ^6.2",
+        "symfony/http-foundation": "^5.4 || ^6.2",
+        "symfony/http-kernel": "^5.4 || ^6.2",
+        "symfony/intl": "^5.4 || ^6.2",
         "symfony/translation-contracts": "^2.5 || ^3.0",
         "twig/twig": "^3.0"
     },
@@ -41,12 +41,12 @@
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/phpstan-symfony": "^1.0",
         "phpunit/phpunit": "^9.5",
-        "psalm/plugin-phpunit": "^0.17",
-        "psalm/plugin-symfony": "^4.0",
+        "psalm/plugin-phpunit": "^0.18",
+        "psalm/plugin-symfony": "^4.0 || ^5.0",
         "rector/rector": "^0.15",
-        "symfony/phpunit-bridge": "^6.1",
-        "symfony/security-core": "^5.4 || ^6.0",
-        "vimeo/psalm": "^4.7.2"
+        "symfony/phpunit-bridge": "^6.2",
+        "symfony/security-core": "^5.4 || ^6.2",
+        "vimeo/psalm": "^4.7.2 || ^5.0"
     },
     "conflict": {
         "sonata-project/user-bundle": "<3.6"
