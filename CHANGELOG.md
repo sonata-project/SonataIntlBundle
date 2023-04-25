@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.1.0](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.2...3.1.0) - 2023-04-25
+### Removed
+- [[#578](https://github.com/sonata-project/SonataIntlBundle/pull/578)] Drop support for Symfony 6.0 and 6.1. ([@jordisala1991](https://github.com/jordisala1991))
+
 ## [3.0.2](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.1...3.0.2) - 2022-10-05
 ### Fixed
 - [[#565](https://github.com/sonata-project/SonataIntlBundle/pull/565)] Use the sonata_intl.locale or kernel.default_locale when no locale are provided. ([@VincentLanglet](https://github.com/VincentLanglet))
