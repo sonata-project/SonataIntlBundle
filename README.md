@@ -42,9 +42,9 @@ This package is available under the [MIT license](LICENSE).
 [test_unstable_badge]: https://github.com/sonata-project/SonataIntlBundle/workflows/Test/badge.svg?branch=4.x
 [test_unstable_link]: https://github.com/sonata-project/SonataIntlBundle/actions?query=workflow:test+branch:4.x
 [coverage_stable_badge]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/3.x/graph/badge.svg
-[coverage_stable_link]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/3.x
+[coverage_stable_link]: https://app.codecov.io/gh/sonata-project/SonataIntlBundle/tree/3.x
 [coverage_unstable_badge]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/4.x/graph/badge.svg
-[coverage_unstable_link]: https://codecov.io/gh/sonata-project/SonataIntlBundle/branch/4.x
+[coverage_unstable_link]: https://app.codecov.io/gh/sonata-project/SonataIntlBundle/tree/4.x
 [shepherd_stable_badge]: https://shepherd.dev/github/sonata-project/SonataIntlBundle/coverage.svg
 [shepherd_stable_link]: https://shepherd.dev/github/sonata-project/SonataIntlBundle
 [documentation_stable_badge]: https://readthedocs.org/projects/sonataintlbundle/badge/?version=3.x
