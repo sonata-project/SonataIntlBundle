@@ -51,6 +51,8 @@
     "conflict": {
         "sonata-project/user-bundle": "<3.6"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Sonata\\IntlBundle\\": "src/"
