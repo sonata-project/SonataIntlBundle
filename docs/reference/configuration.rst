@@ -21,17 +21,15 @@ Locale timezone detector
 The timezone is guessed from the current request locale. You can
 configure the locale / timezone mapping in the configuration:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_intl.yaml
 
-        # config/packages/sonata_intl.yaml
-
-        sonata_intl:
-            timezone:
-                locales:
-                    fr:    Europe/Paris
-                    en_UK: Europe/London
+    sonata_intl:
+        timezone:
+            locales:
+                fr:    Europe/Paris
+                en_UK: Europe/London
 
 Configure timezone detectors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -39,17 +37,15 @@ Configure timezone detectors
 By default, ``user`` then ``locale`` timezone detectors are used. You
 can change the order in the configuration:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_intl.yaml
 
-        # config/packages/sonata_intl.yaml
-
-        sonata_intl:
-            timezone:
-                detectors:
-                    - sonata.intl.timezone_detector.user
-                    - sonata.intl.timezone_detector.locale_aware
+    sonata_intl:
+        timezone:
+            detectors:
+                - sonata.intl.timezone_detector.user
+                - sonata.intl.timezone_detector.locale_aware
 
 **IMPORTANT** In order to guess the timezone, the detectors will be
 called **in the order they are declared**.
@@ -63,14 +59,12 @@ in the ``php.ini`` file).
 
 You can override this default timezone in the configuration:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_intl.yaml
 
-        # config/packages/sonata_intl.yaml
-
-        sonata_intl:
-            timezone:
-                default: Europe/Paris
+    sonata_intl:
+        timezone:
+            default: Europe/Paris
 
 .. _SonataUserBundle: https://docs.sonata-project.org/projects/SonataUserBundle/en/5.x/reference/installation/#enable-the-bundle
