@@ -19,14 +19,14 @@ You can format a compatible date with 4 methods, a date can be:
  - a timestamp : ``375930000``
  - a date string : ``'1981-11-30'``
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {{ date_time_object | format_date }} => '1 févr. 2011'
     {{ date_time_object | format_time }} => '19:55:26'
     {{ date_time_object | format_datetime }} => '1 févr. 2011 19:55:26'
 
 By default the helper methods use the current user's locale to display
-information. Of course this behavior can be controlled from within the template 
+information. Of course this behavior can be controlled from within the template
 by providing extra parameters :
 
 * pattern : the pattern to use to render the date
@@ -39,7 +39,7 @@ by providing extra parameters :
   were provided: the given value must be one of ``\IntlDateFormatter::{SHORT, MEDIUM, LONG, FULL}``
   or ``null`` (if ``null``, defaults to ``\IntlDateFormatter::MEDIUM``)
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {{ date_time_object | format_date(null, 'fr', 'Europe/Paris', constant('IntlDateFormatter::LONG')) }} => '1 février 2011'
     {{ date_time_object | format_time(null, 'fr', 'Europe/Paris', constant('IntlDateFormatter::SHORT')) }} => '19:55'

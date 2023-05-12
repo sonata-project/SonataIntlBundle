@@ -21,7 +21,7 @@ By default, if the second argument is not set then the current locale value is
 retrieved by using the request instance.
 
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {{ 'FR' | country }} {# => France (if the current locale in session is 'fr') #}
     {{ 'FR' | country('de') }} {# => Frankreich (force the locale) #}
