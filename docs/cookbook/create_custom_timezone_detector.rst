@@ -14,43 +14,31 @@ Add the Service
 
 Create a service with the ``sonata_intl.timezone_detector`` tag with a custom alias.
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/services.yaml
 
-        # config/services.yaml
-
-        services:
-            app.my_custom_timezone_detector:
-                class: App\TimezoneDetector\MyCustomTimezoneDetector
-                tags:
-                    - { name: sonata_intl.timezone_detector }
-
-    .. code-block:: xml
-
-        <!-- config/services.xml -->
-
-        <service id="app.my_custom_timezone_detector" class="App\TimezoneDetector\MyCustomTimezoneDetector">
-            <tag name="sonata_intl.timezone_detector"/>
-        </service>
+    services:
+        app.my_custom_timezone_detector:
+            class: App\TimezoneDetector\MyCustomTimezoneDetector
+            tags:
+                - { name: sonata_intl.timezone_detector }
 
 Add the detector to the Configuration
 -------------------------------------
 
 You can now use this class by configuring the ``detector`` section:
 
-.. configuration-block::
+.. code-block:: yaml
 
-    .. code-block:: yaml
+    # config/packages/sonata_intl.yaml
 
-        # config/packages/sonata_intl.yaml
-
-        sonata_intl:
-            timezone:
-                detectors:
-                    - app.my_custom_timezone_detector
-                    - sonata.intl.timezone_detector.user
-                    - sonata.intl.timezone_detector.locale_aware
+    sonata_intl:
+        timezone:
+            detectors:
+                - app.my_custom_timezone_detector
+                - sonata.intl.timezone_detector.user
+                - sonata.intl.timezone_detector.locale_aware
 
 .. important::
 

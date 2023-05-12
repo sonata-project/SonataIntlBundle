@@ -25,7 +25,7 @@ For a list of available values, check the PHP_ documentation.
 
 .. _PHP: http://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants.unumberformatsymbol
 
-.. code-block:: jinja
+.. code-block:: html+twig
 
     {{ 10.49|number_format_currency('EUR') }} {# => 10,49 € #}
     {{ 10.15459|number_format_decimal }} {# => 10,155 #}
