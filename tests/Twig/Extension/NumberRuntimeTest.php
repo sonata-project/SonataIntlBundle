@@ -27,7 +27,7 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @dataProvider provideFormatCurrencyArguments
+     * @dataProvider provideFormatCurrencyCases
      */
     public function testFormatCurrency(
         string $expectedResult,
@@ -45,34 +45,32 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string|float|int, 2: string, 3?: array<string, int|float>, 4?: array<string, string>, 5?: array<string, string>}>
+     * @return iterable<array{0: string, 1: string|float|int, 2: string, 3?: array<string, int|float>, 4?: array<string, string>, 5?: array<string, string>}>
      */
-    public function provideFormatCurrencyArguments(): array
+    public function provideFormatCurrencyCases(): iterable
     {
-        return [
-            [
-                '€10.49',
-                10.49,
-                'EUR',
-            ],
-            [
-                '€10.50',
-                10.499,
-                'EUR',
-            ],
-            [
-                '€10,000.50',
-                10000.499,
-                'EUR',
-            ],
-            [
-                '€10DOT000.50',
-                10000.499,
-                'EUR',
-                [],
-                [],
-                ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
-            ],
+        yield [
+            '€10.49',
+            10.49,
+            'EUR',
+        ];
+        yield [
+            '€10.50',
+            10.499,
+            'EUR',
+        ];
+        yield [
+            '€10,000.50',
+            10000.499,
+            'EUR',
+        ];
+        yield [
+            '€10DOT000.50',
+            10000.499,
+            'EUR',
+            [],
+            [],
+            ['MONETARY_GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
         ];
     }
 
@@ -81,7 +79,7 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @dataProvider provideFormatDecimalArguments
+     * @dataProvider provideFormatDecimalCases
      */
     public function testFormatDecimal(
         string $expectedResult,
@@ -98,30 +96,28 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatDecimalArguments(): array
+    public function provideFormatDecimalCases(): iterable
     {
-        return [
-            [
-                '10',
-                10,
-            ],
-            [
-                '10.155',
-                10.15459,
-            ],
-            [
-                '1,000,000.155',
-                1_000_000.15459,
-            ],
-            [
-                '1DOT000DOT000.155',
-                1_000_000.15459,
-                [],
-                [],
-                ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
-            ],
+        yield [
+            '10',
+            10,
+        ];
+        yield [
+            '10.155',
+            10.15459,
+        ];
+        yield [
+            '1,000,000.155',
+            1_000_000.15459,
+        ];
+        yield [
+            '1DOT000DOT000.155',
+            1_000_000.15459,
+            [],
+            [],
+            ['GROUPING_SEPARATOR_SYMBOL' => 'DOT'],
         ];
     }
 
@@ -130,7 +126,7 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @dataProvider provideFormatScientificArguments
+     * @dataProvider provideFormatScientificCases
      */
     public function testFormatScientific(
         string $expectedResult,
@@ -147,27 +143,25 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatScientificArguments(): array
+    public function provideFormatScientificCases(): iterable
     {
-        return [
-            [
-                '1E1',
-                10,
-            ],
-            [
-                '1E3',
-                1000,
-            ],
-            [
-                '1.0001E3',
-                1000.1,
-            ],
-            [
-                '1.00000015459E6',
-                1_000_000.15459,
-            ],
+        yield [
+            '1E1',
+            10,
+        ];
+        yield [
+            '1E3',
+            1000,
+        ];
+        yield [
+            '1.0001E3',
+            1000.1,
+        ];
+        yield [
+            '1.00000015459E6',
+            1_000_000.15459,
         ];
     }
 
@@ -176,7 +170,7 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @dataProvider provideFormatDurationArguments
+     * @dataProvider provideFormatDurationCases
      */
     public function testFormatDuration(
         string $expectedResult,
@@ -193,15 +187,13 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatDurationArguments(): array
+    public function provideFormatDurationCases(): iterable
     {
-        return [
-            [
-                '277:46:40',
-                1_000_000,
-            ],
+        yield [
+            '277:46:40',
+            1_000_000,
         ];
     }
 
@@ -210,7 +202,7 @@ class NumberRuntimeTest extends TestCase
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
      *
-     * @dataProvider provideFormatPercentArguments
+     * @dataProvider provideFormatPercentCases
      */
     public function testFormatPercent(
         string $expectedResult,
@@ -227,23 +219,21 @@ class NumberRuntimeTest extends TestCase
     }
 
     /**
-     * @return array<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
+     * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatPercentArguments(): array
+    public function provideFormatPercentCases(): iterable
     {
-        return [
-            [
-                '10%',
-                0.1,
-            ],
-            [
-                '200%',
-                1.999,
-            ],
-            [
-                '99%',
-                0.99,
-            ],
+        yield [
+            '10%',
+            0.1,
+        ];
+        yield [
+            '200%',
+            1.999,
+        ];
+        yield [
+            '99%',
+            0.99,
         ];
     }
 

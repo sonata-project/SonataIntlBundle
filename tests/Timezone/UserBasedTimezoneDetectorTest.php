@@ -29,16 +29,14 @@ final class UserBasedTimezoneDetectorTest extends TestCase
     /**
      * @return iterable<array{string|null}>
      */
-    public static function timezoneProvider(): iterable
+    public static function provideUserTimezoneDetectionCases(): iterable
     {
-        return [
-            ['Europe/Paris'],
-            [null],
-        ];
+        yield ['Europe/Paris'];
+        yield [null];
     }
 
     /**
-     * @dataProvider timezoneProvider
+     * @dataProvider provideUserTimezoneDetectionCases
      */
     public function testUserTimezoneDetection(?string $timezone): void
     {

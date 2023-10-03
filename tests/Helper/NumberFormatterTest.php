@@ -95,7 +95,7 @@ final class NumberFormatterTest extends TestCase
     }
 
     /**
-     * @dataProvider provideConstantValues
+     * @dataProvider provideParseConstantValueCases
      */
     public function testParseConstantValue(string $constantName, int $expectedConstant, bool $exceptionExpected): void
     {
@@ -112,21 +112,19 @@ final class NumberFormatterTest extends TestCase
     }
 
     /**
-     * @return array<array{string, int, bool}>
+     * @return iterable<array{string, int, bool}>
      */
-    public function provideConstantValues(): array
+    public function provideParseConstantValueCases(): iterable
     {
-        return [
-            ['positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false],
-            ['non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true],
-        ];
+        yield ['positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false];
+        yield ['non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true];
     }
 
     /**
      * @param array<string, string> $attributes
      * @param array<int, string>    $expectedAttributes
      *
-     * @dataProvider provideAttributeValues
+     * @dataProvider provideParseAttributesCases
      */
     public function testParseAttributes(array $attributes, array $expectedAttributes, bool $exceptionExpected): void
     {
@@ -143,29 +141,27 @@ final class NumberFormatterTest extends TestCase
     }
 
     /**
-     * @return array<array{array<string, string>, array<int, string>, bool}>
+     * @return iterable<array{array<string, string>, array<int, string>, bool}>
      */
-    public function provideAttributeValues(): array
+    public function provideParseAttributesCases(): iterable
     {
-        return [
+        yield [
             [
-                [
-                    'positive_prefix' => 'POSITIVE',
-                    'negative_prefix' => 'NEGATIVE',
-                ],
-                [
-                    \NumberFormatter::POSITIVE_PREFIX => 'POSITIVE',
-                    \NumberFormatter::NEGATIVE_PREFIX => 'NEGATIVE',
-                ],
-                false,
+                'positive_prefix' => 'POSITIVE',
+                'negative_prefix' => 'NEGATIVE',
             ],
             [
-                [
-                    'non_existent_constant' => 'NON_EXISTENT_VALUE',
-                ],
-                [],
-                true,
+                \NumberFormatter::POSITIVE_PREFIX => 'POSITIVE',
+                \NumberFormatter::NEGATIVE_PREFIX => 'NEGATIVE',
             ],
+            false,
+        ];
+        yield [
+            [
+                'non_existent_constant' => 'NON_EXISTENT_VALUE',
+            ],
+            [],
+            true,
         ];
     }
 
