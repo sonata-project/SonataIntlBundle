@@ -19,21 +19,19 @@ use Sonata\IntlBundle\SonataIntlBundle;
 class SonataIntlBundleTest extends TestCase
 {
     /**
-     * @return array<array{string, string, bool, bool}>
+     * @return iterable<array{string, string, bool, bool}>
      */
-    public function getVersions(): array
+    public function provideSymfonyVersionCases(): iterable
     {
-        return [
-            ['2.0.1', '2.0.1', true, true],
-            ['2.0.2', '2.0.1', true, true],
-            ['2.1.1-DEV', '2.1.1', false, true],
-            ['2.1.0-RC1', '2.1.0', false, true],
-            ['2.1.0-RC1', '2.1.1', false, false],
-        ];
+        yield ['2.0.1', '2.0.1', true, true];
+        yield ['2.0.2', '2.0.1', true, true];
+        yield ['2.1.1-DEV', '2.1.1', false, true];
+        yield ['2.1.0-RC1', '2.1.0', false, true];
+        yield ['2.1.0-RC1', '2.1.1', false, false];
     }
 
     /**
-     * @dataProvider getVersions
+     * @dataProvider provideSymfonyVersionCases
      */
     public function testSymfonyVersion(string $currentVersion, string $minVersion, bool $versionExpected, bool $versionBundle): void
     {
