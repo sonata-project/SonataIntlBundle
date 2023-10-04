@@ -23,23 +23,21 @@ use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
 final class ChainTimezoneDetectorTest extends TestCase
 {
     /**
-     * @return array<array{array<string|null>, string}>
+     * @return iterable<array{array<string|null>, string}>
      */
-    public static function timezoneProvider(): array
+    public static function provideDetectsTimezoneForUserCases(): iterable
     {
-        return [
-            [['Europe/Paris', 'Europe/London'], 'Europe/Paris'],
-            [['Europe/Paris', null], 'Europe/Paris'],
-            [[null, 'Europe/Paris'], 'Europe/Paris'],
-            [[null, null], 'America/Denver'],
-            [['Invalid/Timezone', null], 'America/Denver'],
-        ];
+        yield [['Europe/Paris', 'Europe/London'], 'Europe/Paris'];
+        yield [['Europe/Paris', null], 'Europe/Paris'];
+        yield [[null, 'Europe/Paris'], 'Europe/Paris'];
+        yield [[null, null], 'America/Denver'];
+        yield [['Invalid/Timezone', null], 'America/Denver'];
     }
 
     /**
      * @param array<string|null> $detectorsTimezones
      *
-     * @dataProvider timezoneProvider
+     * @dataProvider provideDetectsTimezoneForUserCases
      */
     public function testDetectsTimezoneForUser(array $detectorsTimezones, string $expectedTimezone): void
     {
