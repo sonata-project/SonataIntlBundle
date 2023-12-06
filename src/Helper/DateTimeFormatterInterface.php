@@ -24,6 +24,8 @@ interface DateTimeFormatterInterface
 {
     /**
      * @param int|null $dateType See \IntlDateFormatter::getDateType
+     *
+     * @phpstan-param non-empty-string|null $timezone
      */
     public function formatDate(
         \DateTimeInterface|string|int $date,
@@ -35,6 +37,8 @@ interface DateTimeFormatterInterface
     /**
      * @param int|null $dateType See \IntlDateFormatter::getDateType
      * @param int|null $timeType See \IntlDateFormatter::getTimeType
+     *
+     * @phpstan-param non-empty-string|null $timezone
      */
     public function formatDateTime(
         \DateTimeInterface|string|int $datetime,
@@ -46,6 +50,8 @@ interface DateTimeFormatterInterface
 
     /**
      * @param int|null $timeType See \IntlDateFormatter::getTimeType
+     *
+     * @phpstan-param non-empty-string|null $timezone
      */
     public function formatTime(
         \DateTimeInterface|string|int $time,
@@ -54,6 +60,9 @@ interface DateTimeFormatterInterface
         ?int $timeType = null
     ): string;
 
+    /**
+     * @phpstan-param non-empty-string|null $timezone
+     */
     public function format(
         \DateTimeInterface|string|int $datetime,
         string $pattern,
@@ -63,6 +72,8 @@ interface DateTimeFormatterInterface
 
     /**
      * Gets a date time instance by a given data and timezone.
+     *
+     * @phpstan-param non-empty-string|null $timezone
      */
     public function getDatetime(
         \DateTimeInterface|string|int $data,
