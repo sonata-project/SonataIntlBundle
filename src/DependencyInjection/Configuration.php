@@ -27,9 +27,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 final class Configuration implements ConfigurationInterface
 {
     /**
-     * @psalm-suppress PossiblyNullReference, UndefinedInterfaceMethod
-     *
-     * @see https://github.com/psalm/psalm-plugin-symfony/issues/174
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {

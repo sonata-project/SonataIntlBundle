@@ -23,18 +23,18 @@
     "homepage": "https://docs.sonata-project.org/projects/SonataIntlBundle",
     "require": {
         "php": "^8.0",
-        "symfony/config": "^5.4 || ^6.2",
-        "symfony/dependency-injection": "^5.4 || ^6.2",
-        "symfony/http-foundation": "^5.4 || ^6.2",
-        "symfony/http-kernel": "^5.4 || ^6.2",
-        "symfony/intl": "^5.4 || ^6.2",
+        "symfony/config": "^5.4 || ^6.2 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.2 || ^7.0",
+        "symfony/http-foundation": "^5.4 || ^6.2 || ^7.0",
+        "symfony/http-kernel": "^5.4 || ^6.2 || ^7.0",
+        "symfony/intl": "^5.4 || ^6.2 || ^7.0",
         "symfony/translation-contracts": "^2.5 || ^3.0",
         "twig/twig": "^3.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.4",
-        "matthiasnoback/symfony-config-test": "^4.2",
-        "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+        "matthiasnoback/symfony-config-test": "^4.2 || ^5.1",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.0 || ^5.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
@@ -45,7 +45,7 @@
         "psalm/plugin-symfony": "^5.0",
         "rector/rector": "^0.18",
         "symfony/phpunit-bridge": "^6.2",
-        "symfony/security-core": "^5.4 || ^6.2",
+        "symfony/security-core": "^5.4 || ^6.2 || ^7.0",
         "vimeo/psalm": "^5.0"
     },
     "conflict": {
