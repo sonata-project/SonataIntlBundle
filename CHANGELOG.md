@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.0](https://github.com/sonata-project/SonataIntlBundle/compare/3.1.0...3.2.0) - 2023-12-07
+### Added
+- [[#595](https://github.com/sonata-project/SonataIntlBundle/pull/595)] Support for packages from `symfony/*` 7.x ([@phansys](https://github.com/phansys))
+
+### Fixed
+- [[#598](https://github.com/sonata-project/SonataIntlBundle/pull/598)] Passing an empty string as argument 1 to `\DateTimeZone` at `DateTimeFormatter::getDatetime()` ([@phansys](https://github.com/phansys))
+
 ## [3.1.0](https://github.com/sonata-project/SonataIntlBundle/compare/3.0.2...3.1.0) - 2023-04-25
 ### Removed
 - [[#578](https://github.com/sonata-project/SonataIntlBundle/pull/578)] Drop support for Symfony 6.0 and 6.1. ([@jordisala1991](https://github.com/jordisala1991))
