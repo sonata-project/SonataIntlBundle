@@ -105,6 +105,8 @@ final class SonataIntlExtension extends Extension
      * @param array<string> $timezones
      *
      * @throws \RuntimeException If one of the locales is invalid
+     *
+     * @phpstan-param array<non-empty-string> $timezones
      */
     private function validateTimezones(array $timezones): void
     {

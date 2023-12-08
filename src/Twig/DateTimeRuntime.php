@@ -22,6 +22,9 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
     {
     }
 
+    /**
+     * @phpstan-param non-empty-string|null $timezone
+     */
     public function formatDate(
         \DateTimeInterface|string|int $date,
         ?string $pattern = null,
@@ -36,6 +39,9 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         return $this->helper->formatDate($date, $locale, $timezone, $dateType);
     }
 
+    /**
+     * @phpstan-param non-empty-string|null $timezone
+     */
     public function formatTime(
         \DateTimeInterface|string|int $time,
         ?string $pattern = null,
@@ -50,6 +56,9 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         return $this->helper->formatTime($time, $locale, $timezone, $timeType);
     }
 
+    /**
+     * @phpstan-param non-empty-string|null $timezone
+     */
     public function formatDatetime(
         \DateTimeInterface|string|int $time,
         ?string $pattern = null,

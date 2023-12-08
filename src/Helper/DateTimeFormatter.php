@@ -135,9 +135,15 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
             }
         }
 
+        $timezone ??= $this->timezoneDetector->getTimezone();
+
+        if (null === $timezone || '' === $timezone) {
+            throw new \InvalidArgumentException('Invalid timezone provided');
+        }
+
         $date = new \DateTime();
         $date->setTimestamp($data);
-        $date->setTimezone(new \DateTimeZone($timezone ?? $this->timezoneDetector->getTimezone() ?? ''));
+        $date->setTimezone(new \DateTimeZone($timezone));
 
         return $date;
     }
