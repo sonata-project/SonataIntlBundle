@@ -48,12 +48,22 @@ final class UserBasedTimezoneDetectorTest extends TestCase
                 $this->timezone = $timezone;
             }
 
-            public function getPassword(): ?string
+            /**
+             * @todo: Remove this method when support for "symfony/security" < 6.0 is dropped.
+             *
+             * @return null
+             */
+            public function getPassword()
             {
                 return null;
             }
 
-            public function getSalt(): ?string
+            /**
+             * @todo: Remove this method when support for "symfony/security" < 6.0 is dropped.
+             *
+             * @return null
+             */
+            public function getSalt()
             {
                 return null;
             }
