@@ -85,7 +85,7 @@ abstract class BaseHelper implements LocaleAwareInterface
             foreach ($info as $line) {
                 $results = [];
 
-                if (preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results) > 0) {
+                if (1 === preg_match('/(ICU Data version|ICU version) => (.*)/', $line, $results)) {
                     return $results[2];
                 }
             }
@@ -93,11 +93,11 @@ abstract class BaseHelper implements LocaleAwareInterface
             foreach ($info as $line) {
                 $results = [];
 
-                if (preg_match('/(ICU Data version).*/', $line, $results) > 0) {
+                if (1 === preg_match('/(ICU Data version).*/', $line, $results)) {
                     return trim(strtolower(strip_tags($results[0])), 'ICU Data version');
                 }
 
-                if (preg_match('/(ICU version).*/', $line, $results) > 0) {
+                if (1 === preg_match('/(ICU version).*/', $line, $results)) {
                     return trim(strtolower(strip_tags($results[0])), 'icu version');
                 }
             }
