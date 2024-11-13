@@ -30,7 +30,7 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         ?string $pattern = null,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $dateType = null
+        ?int $dateType = null,
     ): string {
         if (null !== $pattern) {
             return $this->helper->format($date, $pattern, $locale, $timezone);
@@ -47,7 +47,7 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         ?string $pattern = null,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);
@@ -65,7 +65,7 @@ final class DateTimeRuntime implements RuntimeExtensionInterface
         ?string $locale = null,
         ?string $timezone = null,
         ?int $dateType = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string {
         if (null !== $pattern) {
             return $this->helper->format($time, $pattern, $locale, $timezone);

@@ -40,7 +40,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatCurrency($number, $currency, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -61,7 +61,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatDecimal($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -82,7 +82,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatScientific($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -103,7 +103,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatSpellout($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -124,7 +124,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatPercent($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -145,7 +145,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatDuration($number, $attributes, $textAttributes, $symbols, $locale);
     }
@@ -166,7 +166,7 @@ final class NumberRuntime implements RuntimeExtensionInterface
         array $attributes = [],
         array $textAttributes = [],
         array $symbols = [],
-        ?string $locale = null
+        ?string $locale = null,
     ): string {
         return $this->helper->formatOrdinal($number, $attributes, $textAttributes, $symbols, $locale);
     }

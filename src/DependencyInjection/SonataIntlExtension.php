@@ -114,7 +114,7 @@ final class SonataIntlExtension extends Extension
             try {
                 new \DateTimeZone($timezone);
             } catch (\Exception) {
-                throw new \RuntimeException(sprintf(
+                throw new \RuntimeException(\sprintf(
                     'Unknown timezone "%s". Please check your sonata_intl configuration.',
                     $timezone
                 ));
