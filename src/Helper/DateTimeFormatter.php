@@ -32,7 +32,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
     public function __construct(
         private TimezoneDetectorInterface $timezoneDetector,
         string $charset,
-        ?string $defaultLocale = null
+        ?string $defaultLocale = null,
     ) {
         parent::__construct($charset, $defaultLocale);
     }
@@ -41,7 +41,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         \DateTimeInterface|string|int $date,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $dateType = null
+        ?int $dateType = null,
     ): string {
         $date = $this->getDatetime($date, $timezone);
 
@@ -61,7 +61,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         ?string $locale = null,
         ?string $timezone = null,
         ?int $dateType = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string {
         $date = $this->getDatetime($datetime, $timezone);
 
@@ -80,7 +80,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         \DateTimeInterface|string|int $time,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string {
         $date = $this->getDatetime($time, $timezone);
 
@@ -99,7 +99,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
         \DateTimeInterface|string|int $datetime,
         string $pattern,
         ?string $locale = null,
-        ?string $timezone = null
+        ?string $timezone = null,
     ): string {
         $date = $this->getDatetime($datetime, $timezone);
 
@@ -117,7 +117,7 @@ final class DateTimeFormatter extends BaseHelper implements DateTimeFormatterInt
 
     public function getDatetime(
         \DateTimeInterface|string|int $data,
-        ?string $timezone = null
+        ?string $timezone = null,
     ): \DateTimeInterface {
         if ($data instanceof \DateTimeInterface) {
             return $data;

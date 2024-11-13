@@ -35,7 +35,7 @@ class NumberRuntimeTest extends TestCase
         string $currency,
         array $attributes = [],
         array $textAttributes = [],
-        array $symbols = []
+        array $symbols = [],
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -86,7 +86,7 @@ class NumberRuntimeTest extends TestCase
         string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
-        array $symbols = []
+        array $symbols = [],
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -133,7 +133,7 @@ class NumberRuntimeTest extends TestCase
         string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
-        array $symbols = []
+        array $symbols = [],
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -177,7 +177,7 @@ class NumberRuntimeTest extends TestCase
         string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
-        array $symbols = []
+        array $symbols = [],
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
@@ -209,7 +209,7 @@ class NumberRuntimeTest extends TestCase
         string|float|int $number,
         array $attributes = [],
         array $textAttributes = [],
-        array $symbols = []
+        array $symbols = [],
     ): void {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
