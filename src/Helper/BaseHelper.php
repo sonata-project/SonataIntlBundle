@@ -134,10 +134,10 @@ abstract class BaseHelper implements LocaleAwareInterface
 
         $messages = [];
         foreach ($args as $name => $value) {
-            $messages[] = sprintf('%s => %s', $name, $value);
+            $messages[] = \sprintf('%s => %s', $name, $value);
         }
 
-        throw new \RuntimeException(sprintf(
+        throw new \RuntimeException(\sprintf(
             'Unable to create internal class: %s, with params: %s',
             $class,
             implode(', ', $messages)

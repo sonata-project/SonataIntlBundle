@@ -31,7 +31,7 @@ interface DateTimeFormatterInterface
         \DateTimeInterface|string|int $date,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $dateType = null
+        ?int $dateType = null,
     ): string;
 
     /**
@@ -45,7 +45,7 @@ interface DateTimeFormatterInterface
         ?string $locale = null,
         ?string $timezone = null,
         ?int $dateType = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string;
 
     /**
@@ -57,7 +57,7 @@ interface DateTimeFormatterInterface
         \DateTimeInterface|string|int $time,
         ?string $locale = null,
         ?string $timezone = null,
-        ?int $timeType = null
+        ?int $timeType = null,
     ): string;
 
     /**
@@ -67,7 +67,7 @@ interface DateTimeFormatterInterface
         \DateTimeInterface|string|int $datetime,
         string $pattern,
         ?string $locale = null,
-        ?string $timezone = null
+        ?string $timezone = null,
     ): string;
 
     /**
@@ -77,6 +77,6 @@ interface DateTimeFormatterInterface
      */
     public function getDatetime(
         \DateTimeInterface|string|int $data,
-        ?string $timezone = null
+        ?string $timezone = null,
     ): \DateTimeInterface;
 }

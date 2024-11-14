@@ -32,7 +32,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         private array $attributes = [],
         private array $textAttributes = [],
         private array $symbols = [],
-        ?string $defaultLocale = null
+        ?string $defaultLocale = null,
     ) {
         parent::__construct($charset, $defaultLocale);
     }
@@ -65,7 +65,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         $result = $formatter->formatCurrency($number, $currency);
         if (false === $result) {
             throw new \InvalidArgumentException(
-                sprintf('Cannot format the value %s with the currency %s.', $number, $currency)
+                \sprintf('Cannot format the value %s with the currency %s.', $number, $currency)
             );
         }
 
@@ -89,7 +89,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
 
         $result = $formatter->format($number);
         if (false === $result) {
-            throw new \InvalidArgumentException(sprintf('Cannot format the value %s', $number));
+            throw new \InvalidArgumentException(\sprintf('Cannot format the value %s', $number));
         }
 
         return $this->fixCharset($result);
@@ -167,7 +167,7 @@ final class NumberFormatter extends BaseHelper implements NumberFormatterInterfa
         $constantName = 'NumberFormatter::'.$attribute;
 
         if (!\defined($constantName)) {
-            throw new \InvalidArgumentException(sprintf('NumberFormatter has no constant "%s".', $attribute));
+            throw new \InvalidArgumentException(\sprintf('NumberFormatter has no constant "%s".', $attribute));
         }
 
         return \constant($constantName);
