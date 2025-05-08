@@ -20,7 +20,7 @@ use Sonata\IntlBundle\Twig\NumberRuntime;
 /**
  * @author Stefano Arlandini <sarlandini@alice.it>
  */
-class NumberRuntimeTest extends TestCase
+final class NumberRuntimeTest extends TestCase
 {
     /**
      * @param array<string, int|float> $attributes

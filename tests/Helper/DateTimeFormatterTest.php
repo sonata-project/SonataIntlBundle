@@ -60,15 +60,15 @@ final class DateTimeFormatterTest extends TestCase
         static::assertSame('Nov 30, 1981', $helper->formatDate($datetimeParis));
         static::assertSame('Dec 30, 2010', $helper->formatDate('2010-12-30 12:23:23'));
 
-        static::assertSame('2:00:00 AM', $helper->formatTime($datetimeParis));
-        static::assertSame('Nov 30, 1981, 2:00:00 AM', $helper->formatDateTime($datetimeParis));
+        static::assertSame("2:00:00\u{202f}AM", $helper->formatTime($datetimeParis));
+        static::assertSame("Nov 30, 1981, 2:00:00\u{202f}AM", $helper->formatDateTime($datetimeParis));
 
         // custom format
         static::assertSame('November 30, 1981', $helper->formatDate($datetimeParis, null, null, \IntlDateFormatter::LONG));
 
-        static::assertSame('2:00:00 AM GMT+1', $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeFormatter::getICUDataVersion());
+        static::assertSame("2:00:00\u{202f}AM GMT+1", $helper->formatTime($datetimeParis, null, null, \IntlDateFormatter::LONG), 'ICU Version: '.DateTimeFormatter::getICUDataVersion());
 
-        static::assertSame('November 30, 1981 at 2:00 AM', $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
+        static::assertSame("November 30, 1981 at 2:00\u{202f}AM", $helper->formatDateTime($datetimeParis, null, null, \IntlDateFormatter::LONG, \IntlDateFormatter::SHORT));
         static::assertSame('30 Nov 1981 AD', $helper->format($datetimeParis, 'dd MMM Y G'));
     }
 
