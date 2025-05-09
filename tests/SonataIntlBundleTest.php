@@ -16,7 +16,7 @@ namespace Sonata\IntlBundle\Tests\Helper;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\SonataIntlBundle;
 
-class SonataIntlBundleTest extends TestCase
+final class SonataIntlBundleTest extends TestCase
 {
     /**
      * @return iterable<array{string, string, bool, bool}>

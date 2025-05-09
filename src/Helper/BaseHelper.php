@@ -115,7 +115,10 @@ abstract class BaseHelper implements LocaleAwareInterface
     protected function fixCharset(string $string): string
     {
         if ('UTF-8' !== $this->getCharset()) {
-            $string = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
+            $convertedString = mb_convert_encoding($string, $this->getCharset(), 'UTF-8');
+            if (\is_string($convertedString)) {
+                $string = $convertedString;
+            }
         }
 
         return $string;
