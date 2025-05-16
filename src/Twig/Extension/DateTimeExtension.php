@@ -126,8 +126,8 @@ class DateTimeExtension extends AbstractExtension
     public function formatDatetime($time, $pattern = null, $locale = null, $timezone = null, $dateType = null, $timeType = null)
     {
         @trigger_error(
-            'The format_date_time filter is deprecated since 2.12 and will be removed on 3.0. '.
-            'Use sonata_format_date_time instead.',
+            'The format_datetime filter is deprecated since 2.12 and will be removed on 3.0. '.
+            'Use sonata_format_datetime instead.',
             \E_USER_DEPRECATED
         );
 
