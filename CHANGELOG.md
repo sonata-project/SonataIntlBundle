@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.2.1](https://github.com/sonata-project/SonataIntlBundle/compare/3.2.0...3.2.1) - 2025-05-16
+### Fixed
+- [[#625](https://github.com/sonata-project/SonataIntlBundle/pull/625)] Deprecated usages of `spaceless` twig filter ([@AirBair](https://github.com/AirBair))
+- [[#615](https://github.com/sonata-project/SonataIntlBundle/pull/615)] Symfony 7.1 deprecation about `Symfony\Component\HttpKernel\DependencyInjection\Extension` usage ([@VincentLanglet](https://github.com/VincentLanglet))
+
 ## [3.2.0](https://github.com/sonata-project/SonataIntlBundle/compare/3.1.0...3.2.0) - 2023-12-07
 ### Added
 - [[#595](https://github.com/sonata-project/SonataIntlBundle/pull/595)] Support for packages from `symfony/*` 7.x ([@phansys](https://github.com/phansys))
