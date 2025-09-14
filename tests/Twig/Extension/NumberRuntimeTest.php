@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Tests\Twig\Extension;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\NumberFormatter;
 use Sonata\IntlBundle\Twig\NumberRuntime;
@@ -26,9 +27,8 @@ final class NumberRuntimeTest extends TestCase
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
-     *
-     * @dataProvider provideFormatCurrencyCases
      */
+    #[DataProvider('provideFormatCurrencyCases')]
     public function testFormatCurrency(
         string $expectedResult,
         string|float|int $number,
@@ -47,7 +47,7 @@ final class NumberRuntimeTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: string|float|int, 2: string, 3?: array<string, int|float>, 4?: array<string, string>, 5?: array<string, string>}>
      */
-    public function provideFormatCurrencyCases(): iterable
+    public static function provideFormatCurrencyCases(): iterable
     {
         yield [
             '€10.49',
@@ -78,9 +78,8 @@ final class NumberRuntimeTest extends TestCase
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
-     *
-     * @dataProvider provideFormatDecimalCases
      */
+    #[DataProvider('provideFormatDecimalCases')]
     public function testFormatDecimal(
         string $expectedResult,
         string|float|int $number,
@@ -98,7 +97,7 @@ final class NumberRuntimeTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatDecimalCases(): iterable
+    public static function provideFormatDecimalCases(): iterable
     {
         yield [
             '10',
@@ -125,9 +124,8 @@ final class NumberRuntimeTest extends TestCase
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
-     *
-     * @dataProvider provideFormatScientificCases
      */
+    #[DataProvider('provideFormatScientificCases')]
     public function testFormatScientific(
         string $expectedResult,
         string|float|int $number,
@@ -145,7 +143,7 @@ final class NumberRuntimeTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatScientificCases(): iterable
+    public static function provideFormatScientificCases(): iterable
     {
         yield [
             '1E1',
@@ -169,9 +167,8 @@ final class NumberRuntimeTest extends TestCase
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
-     *
-     * @dataProvider provideFormatDurationCases
      */
+    #[DataProvider('provideFormatDurationCases')]
     public function testFormatDuration(
         string $expectedResult,
         string|float|int $number,
@@ -189,7 +186,7 @@ final class NumberRuntimeTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatDurationCases(): iterable
+    public static function provideFormatDurationCases(): iterable
     {
         yield [
             '277:46:40',
@@ -201,9 +198,8 @@ final class NumberRuntimeTest extends TestCase
      * @param array<string, int|float> $attributes
      * @param array<string, string>    $textAttributes
      * @param array<string, string>    $symbols
-     *
-     * @dataProvider provideFormatPercentCases
      */
+    #[DataProvider('provideFormatPercentCases')]
     public function testFormatPercent(
         string $expectedResult,
         string|float|int $number,
@@ -221,7 +217,7 @@ final class NumberRuntimeTest extends TestCase
     /**
      * @return iterable<array{0: string, 1: string|float|int, 2?: array<string, int|float>, 3?: array<string, string>, 4?: array<string, string>}>
      */
-    public function provideFormatPercentCases(): iterable
+    public static function provideFormatPercentCases(): iterable
     {
         yield [
             '10%',

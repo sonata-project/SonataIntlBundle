@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\TimezoneAwareInterface;
 use Sonata\IntlBundle\Timezone\TimezoneAwareTrait;
@@ -35,9 +36,7 @@ final class UserBasedTimezoneDetectorTest extends TestCase
         yield [null];
     }
 
-    /**
-     * @dataProvider provideUserTimezoneDetectionCases
-     */
+    #[DataProvider('provideUserTimezoneDetectionCases')]
     public function testUserTimezoneDetection(?string $timezone): void
     {
         $user = new class($timezone) implements UserInterface, TimezoneAwareInterface {
