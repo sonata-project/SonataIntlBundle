@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Tests\Timezone;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Timezone\ChainTimezoneDetector;
 use Sonata\IntlBundle\Timezone\TimezoneDetectorInterface;
@@ -36,9 +37,8 @@ final class ChainTimezoneDetectorTest extends TestCase
 
     /**
      * @param array<string|null> $detectorsTimezones
-     *
-     * @dataProvider provideDetectsTimezoneForUserCases
      */
+    #[DataProvider('provideDetectsTimezoneForUserCases')]
     public function testDetectsTimezoneForUser(array $detectorsTimezones, string $expectedTimezone): void
     {
         $chainTimezoneDetector = new ChainTimezoneDetector('America/Denver');

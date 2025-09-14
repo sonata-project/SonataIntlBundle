@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\Helper\NumberFormatter;
 
@@ -94,15 +95,12 @@ final class NumberFormatterTest extends TestCase
         $helper->format(10.49, -1);
     }
 
-    /**
-     * @dataProvider provideParseConstantValueCases
-     */
+    #[DataProvider('provideParseConstantValueCases')]
     public function testParseConstantValue(string $constantName, int $expectedConstant, bool $exceptionExpected): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseConstantValue');
-        $method->setAccessible(true);
 
         if ($exceptionExpected) {
             $this->expectException(\InvalidArgumentException::class);
@@ -114,7 +112,7 @@ final class NumberFormatterTest extends TestCase
     /**
      * @return iterable<array{string, int, bool}>
      */
-    public function provideParseConstantValueCases(): iterable
+    public static function provideParseConstantValueCases(): iterable
     {
         yield ['positive_prefix', \NumberFormatter::POSITIVE_PREFIX, false];
         yield ['non_existent_constant', \NumberFormatter::NEGATIVE_PREFIX, true];
@@ -123,15 +121,13 @@ final class NumberFormatterTest extends TestCase
     /**
      * @param array<string, string> $attributes
      * @param array<int, string>    $expectedAttributes
-     *
-     * @dataProvider provideParseAttributesCases
      */
+    #[DataProvider('provideParseAttributesCases')]
     public function testParseAttributes(array $attributes, array $expectedAttributes, bool $exceptionExpected): void
     {
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'parseAttributes');
-        $method->setAccessible(true);
 
         if ($exceptionExpected) {
             $this->expectException(\InvalidArgumentException::class);
@@ -143,7 +139,7 @@ final class NumberFormatterTest extends TestCase
     /**
      * @return iterable<array{array<string, string>, array<int, string>, bool}>
      */
-    public function provideParseAttributesCases(): iterable
+    public static function provideParseAttributesCases(): iterable
     {
         yield [
             [
@@ -170,7 +166,6 @@ final class NumberFormatterTest extends TestCase
         $helper = new NumberFormatter('UTF-8');
         $helper->setLocale('en');
         $method = new \ReflectionMethod($helper, 'format');
-        $method->setAccessible(true);
 
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], []));
         static::assertSame('10', $method->invoke($helper, 10, \NumberFormatter::DECIMAL, [], [], [], 'fr'));
