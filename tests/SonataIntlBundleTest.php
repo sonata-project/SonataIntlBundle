@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\IntlBundle\Tests\Helper;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sonata\IntlBundle\SonataIntlBundle;
 
@@ -21,7 +22,7 @@ final class SonataIntlBundleTest extends TestCase
     /**
      * @return iterable<array{string, string, bool, bool}>
      */
-    public function provideSymfonyVersionCases(): iterable
+    public static function provideSymfonyVersionCases(): iterable
     {
         yield ['2.0.1', '2.0.1', true, true];
         yield ['2.0.2', '2.0.1', true, true];
@@ -30,9 +31,7 @@ final class SonataIntlBundleTest extends TestCase
         yield ['2.1.0-RC1', '2.1.1', false, false];
     }
 
-    /**
-     * @dataProvider provideSymfonyVersionCases
-     */
+    #[DataProvider('provideSymfonyVersionCases')]
     public function testSymfonyVersion(string $currentVersion, string $minVersion, bool $versionExpected, bool $versionBundle): void
     {
         static::assertSame(
