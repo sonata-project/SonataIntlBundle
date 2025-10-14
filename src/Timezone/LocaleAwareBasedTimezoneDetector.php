@@ -52,6 +52,9 @@ final class LocaleAwareBasedTimezoneDetector implements TimezoneDetectorInterfac
         return $this->locale;
     }
 
+    /**
+     * @phpstan-throws void
+     */
     public function setLocale(string $locale): void
     {
         $this->locale = $locale;
