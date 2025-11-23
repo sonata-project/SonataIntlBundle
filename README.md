@@ -10,7 +10,6 @@ Symfony SonataIntlBundle
 
 [![Latest Stable Version](https://poser.pugx.org/sonata-project/intl-bundle/v/stable)](https://packagist.org/packages/sonata-project/intl-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/sonata-project/intl-bundle/v/unstable)](https://packagist.org/packages/sonata-project/intl-bundle)
-[![Psalm Type Coverage][shepherd_stable_badge]][shepherd_stable_link]
 [![License](https://poser.pugx.org/sonata-project/intl-bundle/license)](https://packagist.org/packages/sonata-project/intl-bundle)
 
 [![Total Downloads](https://poser.pugx.org/sonata-project/intl-bundle/downloads)](https://packagist.org/packages/sonata-project/intl-bundle)
