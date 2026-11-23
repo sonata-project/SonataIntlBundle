@@ -35,6 +35,7 @@ jobs:
                     - '8.3'
                     - '8.4'
                     - '8.5'
+                    - '8.6'
                 dependencies: [highest]
                 allowed-to-fail: [false]
                 symfony-require: ['']
@@ -52,18 +53,13 @@ jobs:
                     - php-version: '8.5'
                       dependencies: highest
                       allowed-to-fail: false
-                      symfony-require: 7.3.*
-                      variant: symfony/symfony:"7.3.*"
-                    - php-version: '8.5'
-                      dependencies: highest
-                      allowed-to-fail: false
                       symfony-require: 7.4.*
                       variant: symfony/symfony:"7.4.*"
                     - php-version: '8.5'
                       dependencies: highest
                       allowed-to-fail: false
-                      symfony-require: 8.0.*
-                      variant: symfony/symfony:"8.0.*"
+                      symfony-require: 8.1.*
+                      variant: symfony/symfony:"8.1.*"
 
         steps:
             - name: Checkout
